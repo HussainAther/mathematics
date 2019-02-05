@@ -2,8 +2,10 @@
 General algorithm for hierchical clustering analysis.
 """
 
+
+# Construct a graph T by assigning an 
 def hca(d, n): # n is the number of clusters to form. # d is the data itself.
-    
+
 
 
 
