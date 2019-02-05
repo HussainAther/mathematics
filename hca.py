@@ -22,12 +22,22 @@ def findMinDiff(arr, m):
     # Return min diff
     return diff, min_pair
 
+# Computer the distance between a cluster and a list of clusters
+def compute_distance(c, arr):
+    distances = []
+    for i in arr:
+        distances.append(i-c)
+    return distances
+
 # Construct a graph T by assigning an isolated vertex to ecah cluster
 def hca(d, n): # n is the number of clusters to form. # d is the data itself in list form.
-    T = [] # graph to consctruct and output
+    T = {} # graph to consctruct and output. keys are clusters and items are elements.
+    count = 0 # cluster count
     while n > 1:
         diff, closest = findMinDiff(d, len(d))
-
+        T[count] = closest
+        count += 1
+        T[
 
 
 
