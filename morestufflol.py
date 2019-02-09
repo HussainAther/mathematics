@@ -1,9 +1,6 @@
 # Import some modules to hit that yeet
 import numpy as np
 import matplotlib.pyplot as plt
-# This makes the plots appear inside the notebook
-%matplotlib inline
-
 from scipy.integrate import odeint # scipy has some neato ordinary differnetial equation functions.
 
 """
@@ -35,3 +32,5 @@ plt.ylabel("Error")
 plt.xlabel("x")
 plt.title("Error in numerical integration");
 # Note the logarithmic scale on the y-axis.
+
+
