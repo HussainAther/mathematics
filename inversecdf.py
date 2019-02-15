@@ -66,7 +66,6 @@ This means that we don’t want an unecessarily large M because that makes it mo
 
 # Rejection method for continuous function f(x) = exp(− (x-1)^2 / 2x) * (x + 1)/12
 
-
 x = np.linspace(0.001,15,100)
 f = lambda x: np.exp(-(x-1)**2/2./x)*(x+1)/12.
 fx = f(x)
