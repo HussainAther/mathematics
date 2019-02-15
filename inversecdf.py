@@ -51,9 +51,20 @@ v = np.array(map(Finv,u.rvs(nsamp)))
 In some cases, inverting the CDF may be impossible. The rejection method can handle this situation.
 The idea is to pick two uniform random variables u1, u2 ∼ U[a, b] so that
 
-P(u_1 ∈ NΔ(x) ^ u_2 < f(u_1) / M) ≈ Δx / (b−a) * f(u_1)/ M
+P( u_1 ∈ NΔ(x) ^ u_2 < f(u_1) / M) ≈ Δx / (b−a) * f(u_1)/ M
 
+where we take x = u1 and f (x) < M. This is a two-step process. First, draw u1 uniformly from the interval
+[a, b]. Second, feed it into f (x) and if u2 < f (u1)/M, then you have a valid sample for f (x). Thus,
+u1 is the proposed sample from f that may or may not be rejected depending on u2. The only job of the M constant
+is to scale down the f (x) so that the u2 variable can span the range. The efficiency of this method is the
+probability of accepting u1 which comes from integrating out the above approximation,
+
+integral: (f(x) / M(b−a))dx = 1 / (M(b−a)) * integral: f(x)dx = 1 / (M(b−a))
+
+This means that we don’t want an unecessarily large M because that makes it more likely that samples will be discarded.
 """
+
+# Rejection method for continuous function f(x) = exp(− (x-1)^2 / 2x) * (x + 1)/12
 
 
 x = np.linspace(0.001,15,100)
