@@ -46,3 +46,21 @@ u = scipy.stats.uniform(0,1)
 Finv = lambda u: 1/alpha*log(1/(1-u))
 # apply inverse function to samples
 v = np.array(map(Finv,u.rvs(nsamp)))
+
+"""
+In some cases, inverting the CDF may be impossible. The rejection method can handle this situation.
+The idea is to pick two uniform random variables u1, u2 ∼ U[a, b] so that
+
+P(u_1 ∈ NΔ(x) ^ u_2 < f(u_1) / M) ≈ Δx / (b−a) * f(u_1)/ M
+
+"""
+
+
+x = np.linspace(0.001,15,100)
+f = lambda x: np.exp(-(x-1)**2/2./x)*(x+1)/12.
+fx = f(x)
+M=0.3                          # scale factor
+u1 = np.random.rand(10000)*15  # uniform random samples scaled out
+u2 = np.random.rand(10000)     # uniform random samples
+idx,= np.where(u2<=f(u1)/M)    # rejection criterion
+v = u1[idx]
