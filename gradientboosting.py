@@ -9,13 +9,12 @@ algorithmic generalizations such as Real AdaBoost, Gentle AdaBoost, and LogitBoo
 these generalizations were put into a unifying framework called gradient boosting machines.
 """
 
- Initialized all predictions to the sample log-odds: f(0) = log p􏰁 . i 1−p􏰁
-2 for iteration j = 1...M do
-3 Compute the residual (i.e. gradient) zi = yi − p􏰁i
-4 Randomly sample the training data
-5 Train a tree model on the random subset using the residuals as
-the outcome
-6 Compute the terminal node estimates of the Pearson residuals:
+# Initialized all predictions to the sample log-odds: f(0) = log p^ / (i 1−p^)
+for iteration j = 1...M do
+Compute the residual (i.e. gradient) z_i = y_i − p_i
+Randomly sample the training data
+Train a tree model on the random subset using the residuals as the outcome
+Compute the terminal node estimates of the Pearson residuals:
   i
 1 / n i
 p􏰁 i ( 1 − p􏰁 i )
