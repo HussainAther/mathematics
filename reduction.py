@@ -42,6 +42,7 @@ def convertPartitionToPacking(inString):
     Polyreduction
     """
     weights = [int(x) for x in inString.split()]
+    totalWeight = sum(weights)
     if totalWeight % 2 == 1:
         # if the total weight is odd, no partition is possible,
         # so return any negative instance of Packing
