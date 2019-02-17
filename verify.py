@@ -20,11 +20,11 @@ def verifyFactor(I, S, H):
         return "unsure"
 
 """
-In the next example uses the hint H to work in a reasonable amount of time. Decision variant of TSP, which originally takes
+In the next example uses the hint H to work in a reasonable amount of time. Decision variant of the Traveling Salesman, which originally takes
 an undirected, weighted graph G and outputs a solution of the shortest Hamilton cycle of G (or "no" if none exists).
 """
 
-def verifyTspD(I, S, H):
+def verifyTravelingSalesmanDecision(I, S, H):
     if S == "no":
         return "unsure"
     # extract G, L, and I and convert to correct data types
@@ -35,7 +35,7 @@ def verifyTspD(I, S, H):
     cycle = Path(H.split(","))
 
     # verify the hint is a Hamilton cycle, and has length at most L
-    if G.isHamiltonCycle(cycle) and G.cycleLength(cycle) <= L:
+    if G.isHamiltonCycle(cycle) and G.cycleLength(cycle) <= L: # A Hamilton cycle visits each node only once, except the starting node, which it visits twice
         return "correct"
     else:
         return "unsure"
