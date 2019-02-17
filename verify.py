@@ -1,3 +1,15 @@
+def Path(edges):
+    return list(edges) + list(edges[0])
+
+def isHamiltonCycle(cycle):
+    if 
+
+def cycleLength(cycle):
+    length = 0
+    for i in range(len(cycle)):
+        length += cycle[i+1] - cycle[i]
+    return length
+
 """
 Complexity classes in computer science have varying times in finding solutions. Verifying that
 solutions exist exist in complexity classes.
