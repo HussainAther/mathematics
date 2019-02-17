@@ -2,7 +2,10 @@ def Path(edges):
     return list(edges) + list(edges[0])
 
 def isHamiltonCycle(cycle):
-    if 
+    for i in cycle:
+        if cycle.count(i) != 1:
+            return "no"
+    return "yes"
 
 def cycleLength(cycle):
     length = 0
