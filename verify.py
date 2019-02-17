@@ -20,7 +20,8 @@ def verifyFactor(I, S, H):
         return "unsure"
 
 """
-In the next example uses the hint H to work in a reasonable amount of time.
+In the next example uses the hint H to work in a reasonable amount of time. Decision variant of TSP, which originally takes
+an undirected, weighted graph G and outputs a solution of the shortest Hamilton cycle of G (or "no" if none exists).
 """
 
 def verifyTspD(I, S, H):
