@@ -30,7 +30,7 @@ def verifyTspD(I, S, H):
     # extract G, L, and I and convert to correct data types
     (G, L) = I.split(";")
 
-    # split hte hint string into a list of verticies, which will
+    # split the hint string into a list of verticies, which will
     # form a Hamilton cycle of length at most L, if the hint is correct
     cycle = Path(H.split(","))
 
