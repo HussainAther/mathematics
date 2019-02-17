@@ -54,3 +54,11 @@ def verifyTravelingSalesmanDecision(I, S, H):
         return "correct"
     else:
         return "unsure"
+
+def verifyCheckMultiply(I, S, H):
+    (M1, M2, K) = [int() for x in I.split()]
+    if M1*M2 == K and S == "yes":
+        return "correct"
+    elif M1*M2 != K and S == "no":
+        return "correct"
+    return "unsure"
