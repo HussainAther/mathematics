@@ -62,3 +62,15 @@ def verifyCheckMultiply(I, S, H):
     elif M1*M2 != K and S == "no":
         return "correct"
     return "unsure"
+
+def verifyAdd(I, S, H):
+    if len(S)>2*len(I) or len(H)>0:
+        return "unsure"
+    (M1, M2) = [int(s) for x in I.split()]
+    S = int(S)
+    total = M1
+    for i in range(M2):
+        total += 1
+    if total == S:
+        return "correct"
+    return "unsure"
