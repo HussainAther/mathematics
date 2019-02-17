@@ -37,6 +37,33 @@ def packing(weights, L, H):
 
     return bins
 
+def partition(weights):
+    """
+    Same as packing but the weight of a feasible packing must equal exactly half the total
+    weight of the packages
+    """
+    exactWeight = sum(weights)/2
+
+    weights = sorted(weights, reverse=True)
+    bins = []
+
+    for item in weights:
+        # Try to fit item into a bin
+        for bin in bins:
+            if bin.sum + item == exactWeight:
+                #print 'Adding', item, 'to', bin
+                bin.append(item)
+                break
+        else:
+            # item didn't fit into any bin, start a new bin
+            #print 'Making new bin for', item
+            bin = Bin()
+            bin.append(item)
+            bins.append(bin)
+
+    return bins
+
+
 def convertPartitionToPacking(inString):
     """
     Polyreduction
