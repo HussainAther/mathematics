@@ -6,7 +6,20 @@ from convertHaltToPeano import convertHaltToPeano
 Logician Kurt Gödel proved his first incompleteness theorem in the 1930s. It can loosely be descrbied as
 "there are true statements about theintegers that cant be proved from the axioms." We can' use computers to rpove all the true
 statements in mathematics.
+
+Peano arithmetic is a logical system that correspond to parts of the real world using staements about integers,
+addition, and multiplication. 
 """
+def provableInPeano(inString):
+    proofString = ""
+    while True:
+        if isPeanoProof(proofString, inString)=="yes":
+            return "yes"
+        proofString = utils.nextASCII(proofString)
+
+def haltsViaPeano(inString):
+    haltsInPA = convertHaltToPeano(inString)
+    return trueInPeano(haltInPA)
 
 def haltsViaCompletePeano(inString):
     haltInPeano = convertHaltToPeano(inString)
@@ -28,3 +41,4 @@ def godel(inString):
         return "halted"
     else:
         utils.loop()
+
