@@ -61,3 +61,11 @@ ste = data.std() / np.sqrt(data.shape[0])
 fig, ax = plt.subplots()
 ax.hist(data, bins=np.arange(0, 10, 1))
 ax.hlines(ax.get_ylim()[-1] + 10, mn - ste, mn + ste, lw=10)
+
+# Bootstrap: Randomly sample data, calculate mean, repeat and calculate percentiles of the distribution
+n_boots = 1000
+means = np.zeros(n_boots)
+for ii in range(n_boots):
+    ixs_sample = np.random.randint(0, data.shape[0], size=data.shape[0])
+    sample = data[ixs_sample]
+    means[ii] = sample.mean()
