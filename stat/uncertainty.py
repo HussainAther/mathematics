@@ -69,3 +69,10 @@ for ii in range(n_boots):
     ixs_sample = np.random.randint(0, data.shape[0], size=data.shape[0])
     sample = data[ixs_sample]
     means[ii] = sample.mean()
+
+# Calculate confidence intervals
+clo, chi = np.percentile(means, [2.5, 97.5])
+fig, ax = plt.subplots()
+ax.hist(means, histtype='step', color='r')
+ax.hlines(ax.get_ylim()[-1] + 10, clo, chi, lw=10, color='r')
+ax.hlines(ax.get_ylim()[-1] + 20, mn - ste, mn + ste, lw=10, color='g')
