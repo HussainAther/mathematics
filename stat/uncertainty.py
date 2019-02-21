@@ -16,3 +16,8 @@ sd = 5
 # Generate random data
 data1 = sd * np.random.randn(N) + mu1
 data2 = sd * np.random.randn(N) + mu2
+
+# Histograms lol
+fig, ax = plt.subplots()
+ax.hist(data1)
+ax.hist(data2)
