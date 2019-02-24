@@ -80,3 +80,7 @@ print X2, func(X2)
 # just different commands, e.g. plot vs plot3). In Matplotlib
 # you have to import additional modules in the right order, and
 # use the object oriented approach to plotting as shown here.
+
+
+# Lagrange interpolation takes equations and fits them to data to try
+# to understand how well they fit.
