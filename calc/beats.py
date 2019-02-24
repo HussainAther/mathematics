@@ -11,3 +11,7 @@ graph = gdisplay(x=0, y=0, width=500, height=300, title="Beats: f(x)=sin(30x)+si
     background=color.white)
 
 function = gcurve(color=color.red)
+for x in range(0, 5, .01):
+    rate(40)
+    y = sin(30*x) + sin(33*x)
+    function.plot(pos=(x,y))
