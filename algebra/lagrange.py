@@ -89,4 +89,6 @@ print X2, func(X2)
 # We can re-write this as:
 # g(z) ~ g1*λ1 + g2λ2 + ... + gnλn
 # in which lambda is the product of each (x-xj) / (xi - xj) from j = 1 to j = n.
-
+# The difference between teh polynomial evaluated at some x and that of the actual function is
+# R_n ~ ((x-x1)(x-x2)...(x-xn))/(n!) * (g**n) * ζ in which ζ  is undetermined.
+# This shows that significantly high derivates can't be approximated well by a polynomial.
