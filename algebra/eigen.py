@@ -17,4 +17,4 @@ Vec = array([evectors[0, 0,], evectors[1, 0], evectors[2, 0]])
 # Set the left-hand side and right-hand side of the equations equal to one another
 LHS = dot(I, Vec)
 RHS = dot(Vec, Es[0])
-
+print(LHS - RHS)
