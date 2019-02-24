@@ -52,4 +52,16 @@ def gauss(npts, job, a, b, x, w): # the gaussian integration
             x[i] = (b*xi + b + a + a)/(1-xi)
             w[i] = (w[i]*2*(a+b))/((1-xi)*(1-xi))
 
-def gaussint(no, min, max):  # perform the integration
+def gaussint(no, min, max):  # perform the integration by calculating the integral
+    quadra = 0
+    gass(np, 0, min, max, x, w)
+    for n in range(0, no):
+        quadra += f(x[n]) * w[n]
+    return quadra
+
+for i in range(3, max_in+1, 2):
+    result = gaussint(i, vmin, vmax)
+    print(" i ", i, " error", abs(result - 1 + 1/euler))
+
+print("Enter and return any character to quit")
+s = raw_input()
