@@ -39,4 +39,17 @@ def gauss(npts, job, a, b, x, w): # the gaussian integration
         w[npts - i] = w[i - 1]
     if job == 0:
         for i in range(0, npts):
-            
+            x[i] = x[i]*(b-a)/2 + (b+a)/2
+            w[i] = w[i]*(b-a)/2
+    if job == 1:
+        for i in range(0, npts):
+            xi = x[i]
+            x[i] = (a*b(1+xi))/(b+a-(b-a)*xi)
+            w[i] = (w[i]*2*a*b*b)/((b+a-(b-a)*xi)*(b+a-(b-a)*xi))
+    if job == 2:
+        for i in range(0, npts):
+            xi = x[i]
+            x[i] = (b*xi + b + a + a)/(1-xi)
+            w[i] = (w[i]*2*(a+b))/((1-xi)*(1-xi))
+
+def gaussint(no, min, max):  # perform the integration
