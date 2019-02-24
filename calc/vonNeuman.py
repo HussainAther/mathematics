@@ -52,3 +52,4 @@ for i in range(1, Npts): # generate points inside the box
         genpts.append(pos=(xp,yp), color=color.green)
     boxarea = 2*pi*5
     area =  boxarea*j/(Npts-1)
+    arealbl2.text = "%8.5f"%area
