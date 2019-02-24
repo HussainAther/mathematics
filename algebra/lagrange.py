@@ -121,3 +121,12 @@ def lagrange (x ,i , xm ):
         if i!=j:
             y*=( x-xm[j])/( xm[i]-xm[j])
     return y
+
+def interpolation (x , xm , ym ):
+    """
+    Fit our lagrange function to actual data
+    """
+    n=len( xm )-1
+    lagrpoly = array ([ lagrange (x ,i , xm ) for i in range ( n+1 )])
+    y = dot( ym , lagrpoly )
+    return y
