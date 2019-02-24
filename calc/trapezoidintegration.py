@@ -2,7 +2,10 @@ from numpy import *
 from sys import version
 
 """
-Trapezoid method of integration
+Trapezoid method of integration. The trapezoid rule stakes each integration interval i and
+constructs a trapezoid of width h in it. This approximates the function by a straight line in each
+interval i and uses the average height as the value for f. The area is computed as the integral of
+the function.
 """
 
 if int(version[0])>2: # raw_input is depcrated in Python 3 :O
