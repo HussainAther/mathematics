@@ -41,3 +41,14 @@ for i in range(1, Npts): # generate points inside the box
     rate(500)
     x = 2*pi*random.random()
     y= 5*random.random()
+    xp = x*80/pi-80
+    yp = 20*y-50
+    pts2.text = "4%s" %i
+    if y <= fx(x):
+        j += 1
+        genpts.append(pos=(xp, yp), color=color.cyan)
+        inside2.text="%4s"%j
+    else:
+        genpts.append(pos=(xp,yp), color=color.green)
+    boxarea = 2*pi*5
+    area =  boxarea*j/(Npts-1)
