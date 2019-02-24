@@ -27,3 +27,8 @@ print("z1=", z1)
 z2 = Complex(4.0, 6.0)
 print("z2=", z2)
 z3 = Complex.addt(z1, z2) # add em up!
+print("z1 + z2= ", z3)
+print("z1 - z2=", Complex.subt(z1, z2))
+print("z1 * z2=", Complex.mult(z1, z2))
+print("Enter and return any character to quit")
+s = raw.input()
