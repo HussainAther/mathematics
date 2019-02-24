@@ -31,3 +31,13 @@ def plotfunction(): # Plot hte function and the box
         box = curve(pos=[(-80, -50), (-80, 50), (80, 50), (80, -50), (-80, -50)], color=color.white)
 
 plotfunction() # get to it!
+j = 0
+Npts = 3001 # poiints generated inside the box
+analyt = pi**2 # analytical integral
+areanal.text = "analytical=%8.5f"%analyt # output analytical integral
+genpts = points(size=2)
+
+for i in range(1, Npts): # generate points inside the box
+    rate(500)
+    x = 2*pi*random.random()
+    y= 5*random.random()
