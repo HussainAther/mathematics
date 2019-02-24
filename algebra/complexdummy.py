@@ -20,3 +20,10 @@ class Complex:
         return "(%f, %f) " %(z.re, z.im)
 
 print("Operations with two complex numbers\n")
+
+# Print the complex numbers
+z1 = Complex(2.0, 3.0)
+print("z1=", z1)
+z2 = Complex(4.0, 6.0)
+print("z2=", z2)
+z3 = Complex.addt(z1, z2) # add em up!
