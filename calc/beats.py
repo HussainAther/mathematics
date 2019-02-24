@@ -1,4 +1,4 @@
-from visual.graph import *
+from vpython.graph import *
 
 """
 When we add two sine functions with nearly identical frequences, we obtain beats.
