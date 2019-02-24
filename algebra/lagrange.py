@@ -83,4 +83,10 @@ print X2, func(X2)
 
 
 # Lagrange interpolation takes equations and fits them to data to try
-# to understand how well they fit.
+# to understand how well they fit. Lagrange himself figured out that
+# a closed-form formula can directly fit the (n-1)-order polynomial given by:
+# g(x) ~ a0 + a1 * x + a2 * x**2 + ... + a_n-1 * x**n-1
+# We can re-write this as:
+# g(z) ~ g1*λ1 + g2λ2 + ... + gnλn
+# in which lambda is the product of each (x-xj) / (xi - xj) from j = 1 to j = n.
+
