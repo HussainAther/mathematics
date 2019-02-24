@@ -18,4 +18,19 @@ def f(y):
 
 def wTrap(i, h):
     if i == 1 or i == N:
-        wLocal = h/2.00 # determine the weight
+        wLocal = h/2.00 # determine the weight. We can call it the local weight
+    else:
+        wLocal = h
+    return wLocal
+
+h = (B-A)/(N-1)
+suma = 0
+
+for i in range(1, N+1):
+    t = A+(i-1)*h
+    w = wTrap(i, h)
+    suma = suma + w * f(t)
+
+print("Total sum = ", suma)
+print("Enter adn retrun any character to quit")
+s = raw_input()
