@@ -93,20 +93,31 @@ print X2, func(X2)
 # R_n ~ ((x-x1)(x-x2)...(x-xn))/(n!) * (g**n) * ζ in which ζ  is undetermined.
 # This shows that significantly high derivates can't be approximated well by a polynomial.
 
-def lagrange_interpolation(g, x, m): # WORK IN PROGRESS!!!
-    """
-    Perform Lagrange interpolation using g(x) ~ a0 + a1 * x + a2 * x**2 + ... + a_n-1 * x**n-1
-    in which g is the function, x is the point to evaluate, and m is the maximum number of terms to use.
-    """
-    totalsum = 0
-    xj = x + 1
-    xi = x + .1
-    l = (x-xj) / (xi - xj) # l is lambda
-    for i in range(1, max+1):
-        for j in range(1, n+1):
-            xj = x + 1*j
-            xi = x + .1*j
-            l *= (x-xj) / (xi - xj)
-        totalsum += * g(x) * l
-    return totalsum
+#def lagrange_interpolation(g, x, m): # WORK IN PROGRESS!!!
+#    """
+#    Perform Lagrange interpolation using g(x) ~ a0 + a1 * x + a2 * x**2 + ... + a_n-1 * x**n-1
+#    in which g is the function, x is the point to evaluate, and m is the maximum number of terms to use.
+#    """
+#    totalsum = 0
+#    xj = x + 1
+#    xi = x + .1
+#    l = (x-xj) / (xi - xj) # l is lambda
+#    for i in range(1, max+1):
+#        for j in range(1, n+1):
+#            xj = x + 1*j
+#            xi = x + .1*j
+#            l *= (x-xj) / (xi - xj)
+#        totalsum += * g(x) * l
+#    return totalsum
 
+def lagrange (x ,i , xm ):
+    """
+    Evaluates the i-th Lagrange polynomial at x
+    based on grid data xm
+    """
+    n=len( xm )-1
+    y=1
+    for j in range ( n+1 ):
+        if i!=j:
+            y*=( x-xm[j])/( xm[i]-xm[j])
+    return y
