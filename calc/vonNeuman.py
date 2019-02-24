@@ -19,4 +19,15 @@ zero = label(pos=(-85, -48), text="0", box=0)
 five = label(pos=(-85, 50), text="5", box=0)
 twopi = label(pos=(90, -48), text="2pi", box=0)
 
+def fx(x): # Integrand
+    return x*sin(x)*sin(x)
 
+def plotfunction(): # Plot hte function and the box
+    inc = 2*pi/N
+    for i in range(0, N):
+        xx = i*incr
+        xsinx.x[i] = ((80/pi)*xx-80)
+        xsinx.y[i] = 20*fx(xx)-50
+        box = curve(pos=[(-80, -50), (-80, 50), (80, 50), (80, -50), (-80, -50)], color=color.white)
+
+plotfunction() # get to it!
