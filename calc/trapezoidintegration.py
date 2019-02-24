@@ -1,0 +1,5 @@
+
+
+"""
+Trapezoid method of integration
+"""
