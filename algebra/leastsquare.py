@@ -47,3 +47,10 @@ print("A*inverse(A) " + Itest + "\n")
 
 xvec = solve(A, bvec) # Solve via elimination
 print("x Matrix via direct" + str(xvec))
+for i in range(0, Nd):
+    s = xvec[0] + xvec[1]*x[i] + xvec[2]*x[i]*x[i]
+    print(" %d %5.3f %5.3f %8.7f \n" %(i, x[i], y[i], x))
+curve = xvec[0] + xvec[1]*t + xvec[2]*t**2
+points = xvec[0] + xvec[1]*c + xvec[2]*x**2
+p.plot(t, curve, "r", x, points, "ro") # Plot the fit line in red.
+p.show() 
