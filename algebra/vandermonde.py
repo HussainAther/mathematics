@@ -1,5 +1,5 @@
-from vpython import *
-import math
+from sympy import Matrix, pprint, Rational, sqrt, symbols, Symbol, zeros
+from sympy.core.compatibility import range
 
 """
 Interpolation using the Vandermode function.
