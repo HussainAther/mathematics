@@ -12,6 +12,16 @@ The easiest way to create this matrix is to write the functions above the matrix
 to the left of the matrix as is shown below. Then evaluate the functions at the corresponding points.
 """
 
+def symbol_gen(sym_str):
+    """Symbol generator
+    Generates sym_str_n where n is the number of times the generator
+    has been called.
+    """
+    n = 0
+    while True:
+        yield Symbol("%s_%d" % (sym_str, n))
+        n += 1
+
 def comb_w_rep(n, k):
     """Combinations with repetition
     Returns the list of k combinations with repetition from n objects.
