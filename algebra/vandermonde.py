@@ -12,6 +12,21 @@ The easiest way to create this matrix is to write the functions above the matrix
 to the left of the matrix as is shown below. Then evaluate the functions at the corresponding points.
 """
 
+def comb_w_rep(n, k):
+    """Combinations with repetition
+    Returns the list of k combinations with repetition from n objects.
+    """
+    if k == 0:
+        return [[]]
+    combs = [[i] for i in range(n)]
+    for i in range(k - 1):
+        curr = []
+        for p in combs:
+            for m in range(p[-1], n):
+                curr.append(p + [m])
+        combs = curr
+    return combs
+
 def vandermonde(order, dim=1, syms='a b c d'):
     """Computes a Vandermonde matrix of given order and dimension.
     Define syms to give beginning strings for temporary variables.
