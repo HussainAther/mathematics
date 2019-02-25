@@ -38,3 +38,9 @@ for i in range(0, Nd):
 
 A = array([[ss, sx, sxx], [sx, sxx, sxxx], [sxx, sxxx, sxxx]])
 
+bvec = array([sy, sxy, sxxy])
+
+xvec = multiply(inv(A), bvec)
+Itest = multiply(A, inv(A))
+print("\n x vector via inverse" + str(xvec) + "\n")
+print("A*inverse(A) " + Itest + "\n")
