@@ -44,3 +44,6 @@ xvec = multiply(inv(A), bvec)
 Itest = multiply(A, inv(A))
 print("\n x vector via inverse" + str(xvec) + "\n")
 print("A*inverse(A) " + Itest + "\n")
+
+xvec = solve(A, bvec) # Solve via elimination
+print("x Matrix via direct" + str(xvec))
