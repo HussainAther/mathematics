@@ -23,3 +23,18 @@ Nd = 7
 A = zeros((3,3), float))
 bvec = zeros((3,1), float)
 ss = sx = sxx = sy = sxxx = sxxxx = sxy = sxy = sxxy = 0 # s and its derivatives
+
+for i in range(0, Nd):
+    sig2 = sig[i] * sig[i]
+    ss += 1/sig2
+    sx += x[i]/sig2
+    sy += y[i]/sig2
+    rh1 = x[i]*x[i]
+    sxx += rh1/sig2
+    sxxy += rh1 * y[i]/sig2
+    sxy += x[i]*y[i]/sig2
+    sxxx += rh1*x[i]/sig2
+    sxxxx += rh1*rh1/sig2
+
+A = array([[ss, sx, sxx], [sx, sxx, sxxx], [sxx, sxxx, sxxx]])
+
