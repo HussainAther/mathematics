@@ -4,7 +4,6 @@ import math
 """
 Interpolation using the Vandermode function.
 
-
 The Vandermonde matrix is an n × n matrix where the first row is the first point evaluated at
 each of the n monomials, the second row is the second point x2 evaluated at each of the n monomials,
 and so on. These are the terms of the geometric progression for each row.
