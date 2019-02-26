@@ -2,7 +2,7 @@ from vpython.graph import *
 import cmath # for complex math functions
 import numpy as np
 
-# discretefourier.py: Discrete Fourier Transform using built-in complex numbers
+# Discrete Fourier Transform using built-in complex numbers
 
 sgingr =  gdisplay(x=0, y=0, width=600, height=250, title ="Signal", \
                 xtitle="x", ytitle = "signal", xmax = 2.∗math.pi, xmin = 0,\
@@ -28,7 +28,7 @@ def f(signal): # signal function
         signal[i] = 30*cos(x**4)
         sigfig.plot(pos = (x, signal[i]))
 
-def fourier(dftz): # fourier transform
+def fouriercomplex(dftz): # fourier transform
     for n in range(0, Np):
         zsum = complex(0, 0)
         for k in range(0, N):
@@ -39,4 +39,18 @@ def fourier(dftz): # fourier transform
             impart.plot(pos=(n, dftz[n].imag))
 
 f(signal)
-fourier(dftz)
+fouriercomplex(dftz)
+
+# Discrete Fourier Transform using built-in real numbers
+
+def fourierreal(dftimag):
+    for n in range (0 ,Np) :
+        imag = 0.
+        for k in range(0, N):
+            imag += signal [k]∗ sin (( twopi∗k∗n) /N)
+        dftimag [n] = −imag∗sq2pi
+        if dftimag[n] !=0:
+            impart.plot(pos=(n,dftimag[n]))
+
+f(signal)
+fourierreal(dfimag)
