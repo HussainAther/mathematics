@@ -7,6 +7,15 @@ We shall base a unit test on this idea and implement a corresponding test functi
 tests and writing test functions) for automatic verification of our implementation.
 """
 
+def ode_FE(f, U_0, dt, T):
+    N_t = int(round(float(T)/dt))
+    u = zeros(N_t+1)
+    t = linspace(0, N_t*dt, len(u))
+    u[0] = U_0
+    for n in range(N_t):
+        u[n+1] = u[n] + dt*f(u[n], t[n])
+    return u, t
+
 def test_ode_FE():
     """Test that a linear u(t)=a*t+b is exactly reproduced."""
 
