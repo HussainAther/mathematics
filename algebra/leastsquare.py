@@ -3,6 +3,7 @@ from vpython import *
 from numpy import *
 from numpy.linalg import inv
 from numpy.linalg import solve
+from numpy import zeros
 
 """
 Perform least-square fit of a parabola to data using linalg package to solve the set
