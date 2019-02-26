@@ -43,6 +43,18 @@ fouriercomplex(dftz)
 
 # Discrete Fourier Transform using built-in real numbers
 
+# for the original signal
+signgr = gdisplay(x=0,y=0,width=600,height=250, title="Original signal y(t)= 3 cos(wt)+2 cos(3wt)+ cos(5wt) ",\
+                xtitle="x", ytitle="signal", xmax=2.∗math.pi ,xmin=0,ymax=7,ymin=−7)
+
+sigfig = gcurve(color=color.yellow,display=signgr) # For the imaginary part of the transform
+
+imagr = gdisplay(x=0,y=250,width=600,height=250,\
+                title="Fourier transform imaginary part", xtitle="x",\
+                ytitle ="Transf.Imag" , xmax = 1 0 . 0 , xmin=−1,ymax =20 , ymin=−70)
+    
+impart = gvbars(delta=0.05,color=color.red,display=imagr)
+
 def fourierreal(dftimag):
     for n in range (0 ,Np) :
         imag = 0.
