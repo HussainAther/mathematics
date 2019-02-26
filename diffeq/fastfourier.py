@@ -52,3 +52,8 @@ def fft(nn, isign): # Fast Fourier Transform
                 j = i + mmax
                 tempr = wr * data[j] - wi * data[j+1]
                 tempr = wr * data[j+1] + wi * data[j]
+                data[j] = data [ i ] −tempr
+                data[j+1] = data[i+1] −tempi
+                data[i] = data [ i ] +tempr
+                data[i+1] = data[i+1] +tempi
+
