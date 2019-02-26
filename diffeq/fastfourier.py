@@ -5,6 +5,21 @@ if int(version[0]) > 2: # deprecation in python 3
 
 """
 Compute the fast fourier transform depending on the sign of the signal.
+
+In 1965, Cooley and Tukey discovered an algorithm8 that reduces the number of operations necessary to
+perform a DFT (Discrete Fourier Transform) from N2 to roughly N log2 N [Co,65, Donn 05]. Even though
+this may not seem like such a big difference, it represents a 100-fold speedup for 1000 data points,
+which changes a full day of processing into 15 min of work. Because of its widespread use
+(including cell phones), the fast Fourier transform algorithm is considered one of the 10 most important
+algorithms of all time.
+
+The idea behind the FFT is to use the periodicity inherent in the definition of the DFT
+to reduce the total number of computational steps. Essentially, the algorithm divides
+the input data into two equal groups and transforms only one group, which requires ∼ (N/2)2
+multiplications. It then divides the remaining (nontransformed) group of data in half
+and transforms them, continuing the process until all the data have been transformed.
+
+The total number of multiplications required with this approach is approximately N log2 N.
 """
 
 max = 2100
