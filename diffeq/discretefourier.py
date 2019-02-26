@@ -26,7 +26,7 @@ def f(signal): # signal function
         signal[i] = 30*cos(x**4)
         sigfig.plot(pos = (x, signal[i]))
 
-def fourier(dftz):
+def fourier(dftz): # fourier transform
     for n in range(0, Np):
         zsum = complex(0, 0)
         for k in range(0, N):
