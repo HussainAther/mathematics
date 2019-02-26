@@ -1,6 +1,6 @@
 from numpy import *
 from sys import version
-if int(version[0]) > 2:
+if int(version[0]) > 2: # deprecation in python 3
     raw_input = input
 
 """
@@ -56,4 +56,25 @@ def fft(nn, isign): # Fast Fourier Transform
                 data[j+1] = data[i+1] −tempi
                 data[i] = data [ i ] +tempr
                 data[i+1] = data[i+1] +tempi
+            tempr = wr
+            wr = wr*wstpr - wi*wstpi + wr
+            wi = wi*wstpr + tempr*wstpi + wi
+        mmax = istep
+    for i in range(0, nn):
+        j = 2*i+1
+        dtr[i, 0] = data[j]
+        dtr[i, 1] = data[j+1]
+nn = 16
+isign = -1 # -i for transform. +1 for inverse transform.
+for i in range(0, nn):
+    dtr[i,0] = 1*i # real
+    dtr[i,1] = 1*i # imaginary
+    print(" %2d %9.5f %9.5f" %(i, dtr[i,0], dtr[i,1]))
+
+fft(nn, isign)
+for i in range(0,nn):
+    print(" %2d %9.5f %9.5f "%(i, dtr[i,0], dtr[i,1]))
+
+print("Enter and return any character to quit")
+s = raw_input()
 
