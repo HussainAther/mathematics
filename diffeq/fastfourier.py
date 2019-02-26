@@ -40,4 +40,15 @@ def fft(nn, isign): # Fast Fourier Transform
         print ("%2d data[%2d] %9.5f "%(i , i , data [ i ]) ) # show the reorder
     mmax = 2
     while (mmax−n) < 0 :
-
+        istep = 2*mmax
+        theta = 6.2831853/(1.0*isign*mmax)
+        sinth = math.sin(theta/2.0)
+        wstpr = -2.0*sinth**2
+        wstpi = math.sin(theta)
+        wr = 1.0
+        wi = 0.0
+        for m in range(1, mmax+1, 2):
+            for i in range(m, n+1, istep):
+                j = i + mmax
+                tempr = wr * data[j] - wi * data[j+1]
+                tempr = wr * data[j+1] + wi * data[j]
