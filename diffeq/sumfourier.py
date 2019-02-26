@@ -33,15 +33,16 @@ def sawtooth(signal): # sawtooth function
             signal[i] = ((i-T)/(T/2))
             sigfig.plot(x, signal[i]))
 
-def sawtooth(signal): # sawtooth function
+def halfwave(signal): # half-wave function
     T = len(signal)
     x = 0
+    omega = .5
     for i in range(0, N+1):
         if i < T/2:
-            signal[i] = (i/(T/2))
+            signal[i] = sin(omega*i)
             sigfig.plot(x, signal[i]))
         else:
-            signal[i] = ((i-T)/(T/2))
+            signal[i] = 0
             sigfig.plot(x, signal[i]))
 
 def fourier(dftz): # fourier transform
@@ -55,4 +56,7 @@ def fourier(dftz): # fourier transform
             impart.plot(pos=(n, dftz[n].imag))
 
 sawtooth(signal)
+fourier(dftz)
+
+halfwave(signal)
 fourier(dftz)
