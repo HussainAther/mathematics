@@ -1,5 +1,6 @@
 from vpython.graph import *
 import cmath # for complex math functions
+import numpy as np
 
 # discretefourier.py: Discrete Fourier Transform using built-in complex numbers
 
@@ -13,11 +14,12 @@ imagr = gdisplay(x=0,y=250,width=600,height=250,title ="Imag Fourier TF", \
 impart = gvbars(delta = 0.05, color = color.red, display = imagr)
 
 N = 50 # number of points
-signal = zeros((N+1), float)
+Np = N
+signal = np.zeros((N+1), float)
 twopi = 2*pi
 sq2pi = 1/sqrt(twopi)
 h = twopi/N
-dftz = zeros((Np), complex) # sequence complex elements
+dftz = np.zeros((Np), complex) # sequence complex elements
 
 def f(signal): # signal function
     step = twopi/N
