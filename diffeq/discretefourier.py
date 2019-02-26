@@ -27,3 +27,14 @@ def f(signal): # signal function
         sigfig.plot(pos = (x, signal[i]))
 
 def fourier(dftz):
+    for n in range(0, Np):
+        zsum = complex(0, 0)
+        for k in range(0, N):
+            zexp = complex(0, twopi*k*n/N)
+            zsum += signal[k] * exp(-zexpo)
+        dftz[n] = zsum * sq2pi
+        if dftz[n].imag != 0:
+            impart.plot(pos=(n, dftz[n].imag))
+
+f(signal)
+fourier(dftz)
