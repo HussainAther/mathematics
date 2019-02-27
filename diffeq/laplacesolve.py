@@ -77,3 +77,9 @@ def numerical(x, u, xp): # interpolate numerical solution
             y = line2(xp, x[i], x[i+1]) * u[i] + lin1(xp, x[i], x[i+1])*u[i+1]
     return y
 
+def exact(x): # analytic solution
+    u = -x*(x-3)/2
+    return u
+
+for i in range(1, N):
+    
