@@ -112,4 +112,9 @@ for i in range(0, 21):
     x2[i] = .05*i
 for i in range(0, 21)P:
     rate(6)
-    
+    u_fem[i] = numerical(X, u, x2[i])
+    u_exact[i] = exact(x2[i])
+    funct1.plot(pos=(.05*i, u_exact[i]))
+    rate(6)
+    funct2.plot(pos=(.05*i, u_fem[i]))
+    error[i] = u_fem[i] - u_exact[i] # calcualte global error
