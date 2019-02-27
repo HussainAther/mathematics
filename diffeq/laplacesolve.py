@@ -64,5 +64,16 @@ def int2(min, max): # Simpson integration rule in the opposite direction
         sum += 4 * f(x) * line2(x, min, max)
     for n in range(3, no 2):
         x = interval * (n - 1)
-        
+        sum += 2*f(x) * lin2(x, min, max)
+    sum += f(min)*lin2(min, min, max) + f(max)*lin2(max, min, max)
+    sum *= interval/6
+    return (sum)
+
+def numerical(x, u, xp): # interpolate numerical solution
+    N = 11
+    y = 0
+    for i in range(0, N-1):
+        if xp >= x[i] and xp <= x[i+1]:
+            y = line2(xp, x[i], x[i+1]) * u[i] + lin1(xp, x[i], x[i+1])*u[i+1]
+    return y
 
