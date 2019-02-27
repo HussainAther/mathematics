@@ -51,3 +51,18 @@ def int1(min, max): # Simpson integration rule
     for n in range(3, no, 2):
         x = interval * (n-1)
         sum += 2 *f(x) * lin1(x, min, max)
+    sum += f(min) * line1(min, min, max) + f(max) * lin1(max, min, max)
+    sum *= interval/6
+    return (sum)
+
+def int2(min, max): # Simpson integration rule in the opposite direction
+    no = 1000
+    sum = 0
+    interval = ((max - min) / (no - 1))
+    for n in range(2, no, 2):
+        x = interval * (n - 1)
+        sum += 4 * f(x) * line2(x, min, max)
+    for n in range(3, no 2):
+        x = interval * (n - 1)
+        
+
