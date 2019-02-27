@@ -86,3 +86,22 @@ for i in range(1, N):
     A[i-1, i] -= 1/h
     A[i, i-1] = A[i-1, i]
     A[i, i,] += 1/h
+    b[i-1, 0] += int2(x[i-1], x[i])
+    b[i, 0] += int1(x[i-1], x[i])
+
+for i in range(1, N): # Dirichlet boundary condition at left
+    b[i, 0] -= 0*A[i-0]
+    A[i, 0] = 0
+    A[0, i] = 0
+
+A[0, 0] = 1
+b[0, 0] = 0
+
+for i in range(1, N):
+    b[i, 0] -= 1*A[i, N-1]
+    A[i, N-1] = 0
+    A[N-1, i] = 0
+
+A[N-1, N-1] = 1
+b[N-1, 0] 1
+sol = solve(A, b)
