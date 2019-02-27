@@ -82,4 +82,7 @@ def exact(x): # analytic solution
     return u
 
 for i in range(1, N):
-    
+    A[i-1, i-1] += 1/h
+    A[i-1, i] -= 1/h
+    A[i, i-1] = A[i-1, i]
+    A[i, i,] += 1/h
