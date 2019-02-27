@@ -34,14 +34,14 @@ for i in range(1, imax):
         xn = .2*x - .2*y
         yn = .2*x + .2*y + .8
         zn = .3*x
-    else:
+    else: # 15% probability
         xn = -.2*x + .2*y
         yn = .2*x + .2*y + .8
         zn = .3*x
     x = xn
     y = yn
     z = zn
-    xc = 4*x
+    xc = 4*x # linear TF for the plot
     yz = 2*y - 7
     zc = z
     pts.append(pos=(xc, yc, zc))
