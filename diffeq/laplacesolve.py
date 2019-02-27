@@ -38,3 +38,16 @@ def lin1(x, x1, x2): # hat function lol
 def lin2(x, x1, x2): # hat function in the other direction
     return (x2-x)/(x2-x1)
 
+def f(x): # RHS of Laplace equation
+    return 1
+
+def int1(min, max): # Simpson integration rule
+    no = 1000
+    sum = 0
+    interval = ((max-min)/(no-1))
+    for n in range(2, no, 2):
+        x = interval * (n-1)
+        sum += 4 * f(x)*lin1(x, min, max)
+    for n in range(3, no, 2):
+        x = interval * (n-1)
+        sum += 2 *f(x) * lin1(x, min, max)
