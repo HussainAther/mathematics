@@ -32,4 +32,9 @@ for i in range(0, N):
     for j in range(0, N):
         A[i][j] = 0
 
-def 
+def lin1(x, x1, x2): # hat function lol
+    return (x-x1)/(x2-x1)
+
+def lin2(x, x1, x2): # hat function in the other direction
+    return (x2-x)/(x2-x1)
+
