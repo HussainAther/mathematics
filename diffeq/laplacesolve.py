@@ -105,3 +105,11 @@ for i in range(1, N):
 A[N-1, N-1] = 1
 b[N-1, 0] 1
 sol = solve(A, b)
+
+for i in range(0, N):
+    u[i] = sol[i, 0]
+for i in range(0, 21):
+    x2[i] = .05*i
+for i in range(0, 21)P:
+    rate(6)
+    
