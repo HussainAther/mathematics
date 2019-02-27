@@ -21,3 +21,15 @@ x = zeros((N), float)
 
 # graph it up
 graph1 = gdisplay(width=500, height=500, title="Exact: blue, FEM: red", xtitle="x", ytitle="U", xmax=1, ymax=1, xmin=0, ymin=0)
+funct1 = gcurve(color=color.blue)
+funct2 = fdots(color=color.red)
+funct3 = gcurve(color=color.cyan)
+
+for i in range(0, N):
+    x[i] = i*h
+for i in range(0, N):
+    b[i, 0] =
+    for j in range(0, N):
+        A[i][j] = 0
+
+def 
