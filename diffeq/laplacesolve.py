@@ -4,7 +4,9 @@ from vpython.graph import *
 
 """
 Provide a finite-element method solution of the one-dimensional Laplace equation via a
-Galerkin spectral decomposition. Direct solution with no iteration.
+Galerkin spectral decomposition. Direct solution with no iteration. The basis function vanishes
+at the endpoints so we expand our solution to include those points by adding a Dirichlet solution
+which fulfills the boundary solutions.
 """
 
 # Initialize the parameters and other variables
