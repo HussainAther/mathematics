@@ -2,6 +2,7 @@ from __future__ import division
 import pandas as pd
 from numpy.random import randn
 import numpy as np
+import matplotlib.pyplot as plt
 pd.options.display.max_rows = 12
 np.set_printoptions(precision=4, suppress=True)
 import matplotlib.pyplot as plt
@@ -57,3 +58,24 @@ dd = defaultdict(dict)
 for lb in lookbacks:
     for hold in holdings:
         dd[lb][hold] = strat_sr(px, lb, hold)
+ddf = pd.DataFrame(dd)
+ddf.index.name = "Holding Period"
+ddf.columns.name = "Lookback Period"
+
+"""
+Visualize the results.
+"""
+
+def heatmap(df, cmap=plt.cm.gray_r):
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    axim = ax.imshow(df.values, cmap=cmap, interpolation="nearest")
+    ax.set_xlabel(df.columns.name)
+    ax.set_xticks(np.arange(len(df.columns)))
+    ax.set_xticklabels(list(df.columns))
+    ax.set_ylabel(df.index.name)
+    ax.set_yticks(np.arange(len(df.index)))
+    ax.set_yticklabels(list(df.index))
+    plt.colorbar(axim)
+
+heatmap(ddf)
