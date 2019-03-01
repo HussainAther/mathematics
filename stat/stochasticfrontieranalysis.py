@@ -5,14 +5,14 @@ import numpy as np
 pd.options.display.max_rows = 12
 np.set_printoptions(precision=4, suppress=True)
 import matplotlib.pyplot as plt
-plt.rc('figure', figsize=(12, 6))
+plt.rc("figure", figsize=(12, 6))
 from pandas_datareader import data, wb
 
 """
 A simplified cross-sectional momentum portfolio and a grid of model parameterizations.
 """
 
-names = ['AAPL', 'GOOG', 'MSFT', 'DELL', 'GS', 'MS', 'BAC', 'C']
+names = ["AAPL", "GOOG", "MSFT", "DELL", "GS", "MS", "BAC", "C"]
 
 def get_px(stock, start, end):
     return web.get_data_yahoo(stock, start, end)["Adj Close"]
@@ -40,11 +40,20 @@ daily_sr = lambda x: x.mean() / x.std()
 
 def strat_sr(prices, lb, hold):
     # Compute portfolio weights
-    freq = '%dB' % hold
+    freq = "%dB" % hold
     port = calc_mom(prices, lb, lag=1)
     daily_rets = prices.pct_change()
     # Compute portfolio returns
-    port = port.shift(1).resample(freq, how='first')
+    port = port.shift(1).resample(freq, how="first")
     returns = daily_rets.resample(freq, how=compound)
     port_rets = (port * returns).sum(axis=1)
     return daily_sr(port_rets) * np.sqrt(252 / hold)
+
+
+lookbacks = range(20, 90, 5)
+holdings = range(20, 90, 5)
+dd = defaultdict(dict)
+
+for lb in lookbacks:
+    for hold in holdings:
+        dd[lb][hold] = strat_sr(px, lb, hold)
