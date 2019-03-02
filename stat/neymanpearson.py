@@ -15,16 +15,26 @@ Any other hypothesis is a composite hypothesis.
 The critical region is the region of values that corresponds to the rejection of the null hypothesis at some chosen probability level.
 """
 
-def neymanPearson(funct):
-    if 
+def neymanPearson(funct, k):
+    """
+    Return the critical regions for a likelihood function
+    """
+    cr = [] # critical regions
+    for i in range(0, 1, .01):
+        for j in range(0, 1, .01):
+            c = (i,j) # testing critical region
+            if lf(i)/lf(j) >= k or lf(i)/lf(j) <= k:
+                brak
+        cr.append(c)
+    return cr
 
-def likelihoodFunction(theta):
+def lf(prob):
     """
-    For some likelihood function
+    Return some likelihood function that corresponds to the prob, which is the probability measure for a random variable x.
     """
-    if theta = theta1:
+    if prob <= .5:
         return .5
-    elif theta = theta0:
+    elif prob > .5 and <=.75:
         return .25
     else:
         return .1
