@@ -1,7 +1,6 @@
 
 """
-If we compare the power of two different tests that have the same size a, we can create
-a formula about the one test h(r) compared against the other that uses a likelihood ratio l(r).
-
+If a random sapmle is taken from a distribution with parameter t, a hypothesis is a simple hypothesis
+if the hypothesis uniquely specififes the distribution of the population from which the sample is taken. 
 
 """
