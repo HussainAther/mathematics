@@ -1,8 +1,10 @@
 """
 Implement the Merge sort algorithm for a neato listo in Python.
 """
-
 def mergeSort(listo):
+    """
+    Repeatedly call this until we get individual elements into their own lists.
+    """
     if len(listo)>1:
         mid = len(listo)//2
         l = listo[:mid]
