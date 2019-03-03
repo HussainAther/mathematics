@@ -1,20 +1,8 @@
-# Sorts a linked list using merge sort. A new head reference is returned.
+"""
+Implement the Merge sort algorithm for a neato listo in Python.
+"""
 
-def llistMergeSort( theList ):
-    # Split the linked list into two sublists of equal size.
-    rightList = _splitLinkedList( theList )
-    leftList = theList
-
-    # Perform the same operation on the left half
-    leftList = llistMergeSort( leftList )
-
-    # and the right half.
-    rightList = llistMergeSort( rightList )
-
-    # Merge the two ordered sublists.
-    theList = _mergeLinkedLists( leftList, rightList )
-
-    # Return the head pointer of the ordered sublist.
-    return theList
-
-    # Splits a linked list
+def mergeSort(listo):
+    """
+    Sort the listo in ascending order using the merge sort algorithm.
+    """
