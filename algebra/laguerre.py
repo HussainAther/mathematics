@@ -8,6 +8,9 @@ xy'' + (1 - x)y' + ny = 0
 or soutions of
 
 xy'' + (alpha + 1 - x)y' + ny = 0
+
+They arise in radial parts of solutions to the Schrödinger equation for a one-electron atom.
+They describe static Wigner functions of oscillator systems in quantum mechanics in phase space.
 """
 
 lp = { # Laguerre polynomials
