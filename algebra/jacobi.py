@@ -43,7 +43,7 @@ def jacobi(a):
     that were required. Only the upper tirangle of a is accessed.
     """
     eps = 1e-9 # (epsilon) accuracy
-    theta =
+    theta = np.radians(30)
     if np.size(a,0) != np.size(a,1):
         print("Error: matrix must be symmertic. E.g., of shape nxn")
         return
@@ -76,7 +76,19 @@ def jacobi(a):
                         t = a[ip][iq]/h
                     else:
                         theta = .5*h/(a[ip][iq])
-                        t = 1.0/(abs(theta) + sqrt(1+theta**2))
+                        t = 1.0/(abs(theta) + np.sqrt(1+theta**2))
+                        if theta < 0: # reverse direction
+                            t = -t
+                    c = 1.0/np.sqrt(1+t**2)
+                    s = t*c
+                    tau = s/(1.0+c)
+                    h = t*a[ip][iq]
+                    z[ip] -= h
+                    z[iq] += h
+                    d[ip] -= h
+                    a[ip][iq] = 0
+                    for j in range(0, ip):
+                        rot
 
 
 
