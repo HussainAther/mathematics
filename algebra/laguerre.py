@@ -25,4 +25,12 @@ def laguerre(x, k):
     Return up to kth order Laguerre polynomials
     """
     results = [1, 1-x] # the first two polynomials are by definition
+    if k == 0:
+        return results[:1]
+    if k == 1:
+        return result
+    else:
+        for i in range(2, k+1):
+            poly = # calculate the polynomial using the recurrence relation
+
 
