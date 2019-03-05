@@ -3,6 +3,13 @@ import matplotlib.pyplot as plt
 
 """
 Jacobi's method is a way of computing eigenvalues and eigenvectors of a real symmetric matrix.
+
+We use a series of linear equations to multiple the elemnets of the matrix a.
+
+It uses off-diagonal elements of a matrix and zeros them by a series of plane rotations. We look at the
+rotational angle phi as a functional element of theta in:
+
+theta = cot(2*phi) = c^2 - s^2 / (2sc)
 """
 def eigsrt(d, v):
     """
@@ -36,6 +43,7 @@ def jacobi(a):
     that were required. Only the upper tirangle of a is accessed.
     """
     eps = 1e-9 # (epsilon) accuracy
+    theta =
     if np.size(a,0) != np.size(a,1):
         print("Error: matrix must be symmertic. E.g., of shape nxn")
         return
@@ -64,6 +72,11 @@ def jacobi(a):
                     a[ip][iq] = 0
                 elif abs(a[ip][iq]) > tresh:
                     h = d[iq] - d[ip]
+                    if g <= eps*abs(h):
+                        t = a[ip][iq]/h
+                    else:
+                        theta = .5*h/(a[ip][iq])
+                        t = 1.0/(abs(theta) + sqrt(1+theta**2))
 
 
 
