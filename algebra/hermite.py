@@ -14,7 +14,7 @@ or for "physicists" using:
 H_n(x) = (-1)^n * exp((x^2) * d^n/dx*n(exp(-(x^2))) = (2x - d/dx)^n * 1
 """
 
-hpp = { # Hermite Probabilist's polynomials
+hpop = { # Hermite Probabilist's polynomials
         # key is the number of the polynomial, and value is the polynomial
     0: 1,
     1: x,
@@ -27,6 +27,20 @@ hpp = { # Hermite Probabilist's polynomials
     8: x**8 - 28*x**4 + 210*x**4 - 420*x**2 + 105,
     9: x**9 - 36*x**7 + 378*x**5 - 1260*x**3 + 945*x,
     10: x**10 - 45*x**8 + 630*x**6 - 3150*x**4 + 4725*x**2 - 945
+}
+
+hphp = {  # Hermite Physicist's polynomials
+    0: 1,
+    1: 2*x,
+    2: 4*x**2 - 2,
+    3: 8*x**3 - 12*x,
+    4: 16*x**4 - 48*x**2 + 12,
+    5: 32*x**5 - 160*x**3 + 120*x,
+    6: 64*x**6 - 480*x**4 + 720*x**2- 120,
+    7: 128*x**7 - 1344*x**5 + 3360*x**3 - 1680*x,
+    8: 256*x**8 - 3584*x**6 + 13440*x**4 - 13440*x**2 + 1680,
+    9: 512*x**9 - 9216*x**7 + 48384*x**5 - 80640*x**3 + 30240*x,
+    10: 1024*x**10 - 23040*x**8 + 161280*x**6 - 403200*x**4 + 302400*x**2 - 30240,
 }
 
 
