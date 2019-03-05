@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from scipy.ndimage.interpolation import rotate
+
 """
 Jacobi's method is a way of computing eigenvalues and eigenvectors of a real symmetric matrix.
 
@@ -11,6 +13,7 @@ rotational angle phi as a functional element of theta in:
 
 theta = cot(2*phi) = c^2 - s^2 / (2sc)
 """
+
 def eigsrt(d, v):
     """
     Given the eigenvalues d[0...n-1] and optionaly the eigenveectors v[0...n-1] as determined by Jacobi,
@@ -39,11 +42,12 @@ def jacobi(a):
     """
     Compute all eigenvalues and eigenvectors of a real symmetric matrix a of side-length n and output
     d[0...n-1] that has the eigenvalues of a sorted into descending order while v[0...n-1][0...n-1] is a
-    matrix whose columns contain the corresponding nromalized eigenvectors. nrot contains the Jacobi rotations
-    that were required. Only the upper tirangle of a is accessed.
+    matrix whose columns contain the corresponding nromalized eigenvectors. nrot is the number of the Jacobi rotations
+    that are required. Only the upper tirangle of a is accessed.
     """
     eps = 1e-9 # (epsilon) accuracy
     theta = np.radians(30)
+    nrot = 0
     if np.size(a,0) != np.size(a,1):
         print("Error: matrix must be symmertic. E.g., of shape nxn")
         return
@@ -87,9 +91,10 @@ def jacobi(a):
                     z[iq] += h
                     d[ip] -= h
                     a[ip][iq] = 0
-                    for j in range(0, ip):
-                        rot
+                    # perform the rotations
+                    
+                    nrot += 1
 
-
+    return v, nrot
 
 
