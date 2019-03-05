@@ -110,8 +110,10 @@ def jacobi(a):
                     a[ip][iq] = 0
                     # perform the rotations
                     for j in range(0, ip):
-                        rotate(a, s, )
+                        rotate(a, j, s)
+                        rotate
                     nrot += 1
+
 
     return v, nrot
 
