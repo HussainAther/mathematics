@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from numpy.polynomial.hermite import Hermite
 
 """
@@ -89,3 +90,12 @@ def hoHermite(x,n,m,ohm):
     vec[n] = 1
     Hn = Hermite(vec)
     return (1/sqrt(2**n*factorial(n)))*pow(m*ohm/pi,0.25)*exp(-0.5*m*ohm*x**2)*Hn(x*sqrt(m*ohm))
+
+
+# Let's look at 'em!
+plt(x,ho_evec(x,0,1,1),label="Analytic")
+plt(x,-U[:,0]/sqrt(h),label="Numeric")
+plt.xlabel("x (bohr)")
+plt.ylabel(r"$\psi(x)$")
+plt.title("Comparison of numeric and analytic solutions to the Harmonic Oscillator")
+plt.legend()
