@@ -18,6 +18,8 @@ def jacobi(a):
     n = np.size(a,0)
     v = np.matrix([0]*n,[0]*n)
     np.fill_diagonal(v, 1.0)
-
+    b = np.diagonal(v) # b and d are diagonals that we initialize for convenience
+    d = np.diagonal(v)
+    
 
 
