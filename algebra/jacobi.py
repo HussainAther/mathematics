@@ -38,6 +38,23 @@ def eigsrt(d, v):
     return v
 
 
+def jacobiNP(A,b,N=25,x=None):
+    """Solves the equation Ax=b via the Jacobi iterative method."""
+    # Create an initial guess if needed
+    if x is None:
+        x = np.zeros(len(A[0]))
+
+    # Create a vector of the diagonal elements of A
+    # and subtract them from A
+    D = np.diag(A)
+    R = A - np.diagflat(D)
+
+    # Iterate for N times
+    for i in range(N):
+        x = (b - np.dot(R,x)) / D
+    return x
+
+
 def jacobi(a):
     """
     Compute all eigenvalues and eigenvectors of a real symmetric matrix a of side-length n and output
@@ -92,7 +109,8 @@ def jacobi(a):
                     d[ip] -= h
                     a[ip][iq] = 0
                     # perform the rotations
-                    
+                    for j in range(0, ip):
+                        rotate(a, s, )
                     nrot += 1
 
     return v, nrot
