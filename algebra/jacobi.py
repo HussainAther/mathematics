@@ -109,11 +109,13 @@ def jacobi(a):
                     d[ip] -= h
                     a[ip][iq] = 0
                     # perform the rotations
-                    for j in range(0, ip):
-                        rotate(a, j, s)
-                        rotate
-                    nrot += 1
-
+                    for j in range(0, n+1):
+                        # not sure if I have to work case-by-case to handle the p and q parameters.
+                        v = rotate(a, j)
+        for ip in range(0, n+1):
+            b[ip] += z[ip]
+            d[ip] = b[ip]
+            z[ip] = 0
 
     return v, nrot
 
