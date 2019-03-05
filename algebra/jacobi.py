@@ -35,6 +35,7 @@ def jacobi(a):
     matrix whose columns contain the corresponding nromalized eigenvectors. nrot contains the Jacobi rotations
     that were required. Only the upper tirangle of a is accessed.
     """
+    eps = 1e-9 # (epsilon) accuracy
     if np.size(a,0) != np.size(a,1):
         print("Error: matrix must be symmertic. E.g., of shape nxn")
         return
@@ -56,7 +57,14 @@ def jacobi(a):
             tresh =  .2*sm(n**2)
         else:
             tresh = 0
-        for ip in range
+        for ip in range(0,n):
+            for eq in range(ip+1, n+1):
+                g = 100*abs(a[ip][iq])
+                if i > 4 and g <= eps*abs(d[ip]) and g <= eps*abs*d[iq]: # after 4 sweeps, skip rotation if the off-diagonal element is small.
+                    a[ip][iq] = 0
+                elif abs(a[ip][iq]) > tresh:
+                    h = d[iq] - d[ip]
+
 
 
 
