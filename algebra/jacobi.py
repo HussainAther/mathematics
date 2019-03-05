@@ -4,14 +4,29 @@ import matplotlib.pyplot as plt
 """
 Jacobi's method is a way of computing eigenvalues and eigenvectors of a real symmetric matrix.
 """
-def eigsrt(d):
+def eigsrt(v):
     """
     Given the eigenvalues d[0...n-1] and optionaly the eigenveectors v[0...n-1] as determined by Jacobi,
-    this sorts the eigenvalues into descending order and rearranges the columns of v correspondingly.
+    this sorts the eigenvalues into descending order and rearranges the columns of matrix v correspondingly.
     """
+    k=i
+    d = np.diagonal(v)
     n = len(d)
     for i in range(0, n):
-        
+        k = i
+        p = d[i]
+        for j in range(i, n+1):
+            if d[j] >= p:
+                p = d[k]
+            if k != i:
+                d[k] = d[i]
+                d[i] = p
+                if v != None:
+                    for j in range(0, n+1):
+                        p = v[j][i]
+                        v[j][i] = v[j][k]
+                        v[j][k] = p
+    return v
 
 
 def jacobi(a):
