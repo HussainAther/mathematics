@@ -4,9 +4,18 @@ rise to the Edgeworth series. In combinatorics, they're an example of an Appell 
 analysis, they're a Gaussian quadrature. In physics, they're used in eigenstars of the quantum
 harmonic oscillator. In systemsm ,theory, they're used with nonlinear operations on Gaussian noise.
 In random matrix theory, they're used in Wigner-Dyson ensembles.
+
+Hermite polynomials can be standardized for the "probabilists" using:
+
+He_n(x) = (-1)^n * exp((x^2)/2 * d^n/dx*n(exp(-(x^2)/2)) = (x - d/dx)^n * 1
+
+or for "physicists" using:
+
+H_n(x) = (-1)^n * exp((x^2) * d^n/dx*n(exp(-(x^2))) = (2x - d/dx)^n * 1
 """
 
-hermitepolynomials = { # key is the number of the polynomial, and value is the polynomial
+hpp = { # Hermite Probabilist's polynomials
+        # key is the number of the polynomial, and value is the polynomial
     0: 1,
     1: x,
     2: x**2 - 1,
