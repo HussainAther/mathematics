@@ -21,5 +21,8 @@ lp = { # Laguerre polynomials
 }
 
 def laguerre(x, k):
-    results =
+    """
+    Return up to kth order Laguerre polynomials
+    """
+    results = [1, 1-x] # the first two polynomials are by definition
 
