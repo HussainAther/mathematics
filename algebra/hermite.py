@@ -6,6 +6,11 @@ harmonic oscillator. In systemsm ,theory, they're used with nonlinear operations
 In random matrix theory, they're used in Wigner-Dyson ensembles.
 """
 
+hermitepolynomials = { # key is the number of the polynomial, and value is the polynomial
+    
+
+}
+
 
 def recursiveHermite(x,n):
     """
