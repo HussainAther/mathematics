@@ -1,5 +1,5 @@
 """
-Pancake sort algorithm fs various parts of the list
+Pancake sort algorithm for various parts of the list
 until they're sorted.
 """
 
