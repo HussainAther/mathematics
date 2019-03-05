@@ -15,5 +15,7 @@ def Jacobi(a):
     if np.size(a,0) != np.size(a,1):
         print("Error: matrix must be symmertic. E.g., of shape nxn")
         return
-    v = np.matrix
-    for i in
+    n = np.size(a,0)
+    v = np.matrix([0]*n,[0]*n)
+
+
