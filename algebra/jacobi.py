@@ -20,6 +20,9 @@ def jacobi(a):
     np.fill_diagonal(v, 1.0)
     b = np.diagonal(v) # b and d are diagonals that we initialize for convenience
     d = np.diagonal(v)
-    
+    z = np.zeros(n)
+    for i in range(1,51): 
+        sm = 0 # sum the magnitude of off-diagonal elements
+
 
 
