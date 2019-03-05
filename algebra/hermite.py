@@ -46,7 +46,7 @@ hphp = {  # Hermite Physicist's polynomials
 
 def recursiveHermite(x,n):
     """
-    Recursive functino to calculate hermite polynomials.
+    Recursive function to calculate hermite polynomials.
     """
     if n==0:
         return 1
@@ -54,3 +54,18 @@ def recursiveHermite(x,n):
         return 2*x
     else:
         return 2*x*recursiveHermite(x,n-1)-2*(n-1)*recursiveHermite(x,n-2)
+
+
+"""
+The Hermite functions are a set of eigenfunctions of the continuous Fourier transform.
+If we multiply the physicists version by exp((-1/2)*(x^2)), we get
+
+exp((-1/2)*(x^2) + 2xt - t^2) summation from n=0 to infinity of exp((-1/2)*(x^2)) * H_n(x) * t^n/n! so that the left
+"""
+
+def hermiteFourier(x, n):
+    """
+    For a given x and n, calculate the left and right side of the Fourier transform dictated by
+    the Hermite polynomials.
+    """
+    LHS = np.sum
