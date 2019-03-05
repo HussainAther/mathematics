@@ -1,3 +1,6 @@
+import numpy as np
+from numpy.polynomial.hermite import Hermite
+
 """
 Hermite polynomials are a classical orthogonal polynomial sequence. In probability, they give
 rise to the Edgeworth series. In combinatorics, they're an example of an Appell sequence. In numerical
@@ -68,4 +71,21 @@ def hermiteFourier(x, n):
     For a given x and n, calculate the left and right side of the Fourier transform dictated by
     the Hermite polynomials.
     """
-    LHS = np.sum
+    pass
+
+"""
+The solutions to the harmonic oscillator are Hermite polynomials.
+Harmonic oscillator states are given by:
+
+psi_n(x) = (1/sqrt(2^n * n)) * ((m*omega)/(pi*hbar))^(1/4) * exp((-m*omega*x^2)/(2*hbar)) * H_n(sqrt(m*omega/hbar)*x)
+
+"""
+
+def hoHermite(x,n,m,ohm):
+    """
+    Use Hermite polynomials to solve the Harmonic Oscillator.
+    """
+    vec = [0]*9
+    vec[n] = 1
+    Hn = Hermite(vec)
+    return (1/sqrt(2**n*factorial(n)))*pow(m*ohm/pi,0.25)*exp(-0.5*m*ohm*x**2)*Hn(x*sqrt(m*ohm))
