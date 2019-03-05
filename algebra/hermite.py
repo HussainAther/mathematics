@@ -7,7 +7,10 @@ In random matrix theory, they're used in Wigner-Dyson ensembles.
 """
 
 hermitepolynomials = { # key is the number of the polynomial, and value is the polynomial
-    
+    0: 1,
+    1: x,
+    2: x**2 - 1,
+    3: x**3 - 3x,
 
 }
 
