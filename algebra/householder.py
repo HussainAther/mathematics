@@ -53,3 +53,8 @@ def householder(A):
         x = [row[k] for row in R[k:]]
         e = [row[k] for row in I[k:]]
         alpha = -cmp(x[0],0) * norm(x)
+
+        # Using anonymous functions, we create u and v
+        u = map(lambda p,q: p + alpha * q, x, e)
+        norm_u = norm(u)
+        v = map(lambda p: p/norm_u, u)
