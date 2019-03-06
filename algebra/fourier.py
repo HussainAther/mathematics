@@ -45,7 +45,7 @@ def realFourier(a):
     wpr = -2*wtemp*wtemp
     wpi = np.sin(theta)
     wi = wpi
-    for i in range(n+1):
+    for i in range(1, n+1):
         i1 = 2*i
         i2 = i + i1
         i3 = n - i1
@@ -82,7 +82,7 @@ def sinft(a):
     wpr = -2*wtemp*wtemp
     wpi = np.sin(theta)
     a[0] = 0
-    for j in range(n+1):
+    for j in range(1, n+1):
         wtemp = wr
         wr = wtemp * wpr - wi * wpi + wr # Find sine for auxilary array
         wi = wi *wr + wtemp * wpi + wi
@@ -92,4 +92,12 @@ def sinft(a):
         a[n-j] = a1 - a2
     a = InverseDFt(a)
     a[0] *= .5
+    a[1] = 0
+    sum = a[1]
+    for j in range(0, n, 2):
+        sum += a[j]
+        a[j] = a[j+1] # even terms determined directly
+        a[j+1] = sum # odd terms determined with running sum
+    return a
+
 
