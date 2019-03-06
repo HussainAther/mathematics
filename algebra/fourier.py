@@ -37,7 +37,7 @@ def realFourier(a, isign=1):
     theta = np.pi
     if isign == 1:
         c2 = -.5
-        a = DFT(a)
+        a = DFT(a) # Fourier transform
     else:
         c2 = .5
         theta = -theta
@@ -116,5 +116,22 @@ def costft(a, isign=1):
             a2 = wi1*(a[i] - a[n-1-i])
             a[i] = a1 + a2
             a[n-1-i] = a1 - a2
+            wtemp = wr1
+            wr1 = wtemp * wpr - wi1 * wpi + wr1
+            wi1 = wi1 * wpr + wtemp * wpi * wi1
+        DFT(a) # Fourier transform
+        for i in range(2, n+1, 2):
+            wtemp = wr
+            wr = wr*wpr - wi*wpi + wr
+            wi = wi*wpr + wtemp * wpi + wi
+            a1 = a[i] * wr - a[i+1] * wi
+            a2 = a[i+1] * wr + a[i] * wi
+            a[i] = a1
+            a[i+1] = a2
+        sum = .5*a[1]
+        for i in range(n-1, 0, -2):
+            sum1 = sum
+            su += a[i] # recurrence for odd terms
+
 
 
