@@ -159,7 +159,6 @@ def costft(a, isign=1):
 
 def ndimDFT(a, isign=1):
     """
-    N-dimensional Discrete Fourier Transform on real array a that has the multidimensional data.
+    N-dimensional Discrete Fourier Transform on real multidimensional array a.
     """
     
-
