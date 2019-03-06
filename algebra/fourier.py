@@ -100,4 +100,8 @@ def sinft(a):
         a[j+1] = sum # odd terms determined with running sum
     return a
 
-
+def costft(a):
+    """
+    Calculate cosine transform ofa set a of real-valued data points.
+    """
+    
