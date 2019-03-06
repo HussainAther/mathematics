@@ -33,8 +33,18 @@ In this function, we're going to calculate the spectral estimation using the mul
 Slepian tapers.
 """
 
+def dB(x, out=None):
+    """
+    Some input signal function.
+    """
+    if out is None:
+        return 10 * np.log10(x)
+    else:
+        np.log10(x, out)
+        np.multiply(out, 10, out)
+
 def slepian():
     """
     Calculate Slepian functions.
     """
-    
+
