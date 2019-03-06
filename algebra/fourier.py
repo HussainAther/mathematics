@@ -18,7 +18,7 @@ def forwardFourier(d):
 
 def realFourier(a):
     """
-    Perform Fourier transform on list (a) of data points.
+    Perform Fourier transform on list (a) of data points. Use recurrence relation.
     """
     n = len(a)
     theta = np.pi
@@ -37,7 +37,14 @@ def realFourier(a):
         i2 = i + i1
         i3 = n - i1
         i4 = 1 + i3
-        h1r = c1*(a[i1] + data[i3])
-        h1i = c2*(a[i2] - data[i4])
-        h2r = -c2*(data[i2] + data[i4])
-        
+        h1r = c1*(a[i1] + a[i3]) # transform of the original data.
+        h1i = c2*(a[i2] - a[i4])
+        h2r = -c2*(a[i2] + a[i4])
+        h2i = c2*(a[i1] - a[i3])
+        a[i1] = h1r + wr * h2r - wi * h2i
+        a[i2] = h1i + wr * h2i + wi * h2r
+        a[i3] = h1r - wr * h2r + wi * h2i
+        a[i4] = -h1i + wr * h2i + 2i * h2r
+        wtemp = wr
+        wr = wtemp*wpr - wi*wpi + wr # recurrence relation
+        wi = wr*wpr
