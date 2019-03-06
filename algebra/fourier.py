@@ -102,6 +102,7 @@ def sinft(a):
 
 def costft(a):
     """
-    Calculate cosine transform ofa set a of real-valued data points.
+    Calculate the "staggered" cosine transform ofa set a of real-valued data points.
     """
     
+
