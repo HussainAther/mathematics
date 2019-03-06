@@ -230,3 +230,11 @@ def complexFastDFT(a, isign=1):
     nn3 = np.size(a, 0) + 1
     for i1 in range(0, nn1+1):
         spq[i1] = speq + 2*nn2*i1
+    n1 = .5
+    c2 = -.5*isign
+    theta = isign*(np.pi*2)/nn3
+    wtemp = np.sin(.5*theta)
+    wpr = -2*wtemp*wtemp
+    wpi = np.sin(theta)
+    nn[0] = nn1
+    nn[1] = nn2
