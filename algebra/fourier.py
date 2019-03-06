@@ -67,8 +67,8 @@ def realFourier(a, isign=1):
         a[0] = h1r + a[1]
         a[1] = h1r - a[2]
     else:
-        a[0] = c1* (h1r) + data[1]
-        a[1] = c1 * (h1r - data[2])
+        a[0] = c1* (h1r) + a[1]
+        a[1] = c1 * (h1r - a[2])
         a = InverseDFT(a) # inverse Fourier transform
     return a
 
@@ -202,4 +202,6 @@ def ndimDFT(a, isign=1):
                 for i1 in range(i3, i3+ip1, 2):
                     for i2 in range(i1, ip3+1, ifp2):
                         k1 = i2 # Danielson-Lanczos formula
+                        k2 = k1 + ifp1
+                        tempr = wr*
 
