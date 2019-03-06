@@ -28,3 +28,14 @@ def convolve(s, r, isign=1):
         ans[i] = s[i]
     DFT(ans) # Fast Fourier transform both arrays
     DFT(temp)
+    no2 = n >> 1
+    if isign == 1: # convolution
+        for i in range(2, n+1, 2):
+            tmp = ans[i]
+            ans[i] = (ans[i] * temp[i] - ans[i+1] * temp[i+1]) / no2
+            ans[i+1] = (ans[i+2] * temp[i] + tmp*temp[i+1]) / no2
+        ans[0] = ans[0] * temp[0] /no2
+        ans[1] = ans[1]*temp[1]/no2
+    elif isign == -1: #deconvolution
+
+
