@@ -30,6 +30,11 @@ def InverseDFT(FmList):
         fnList.append(fn)
     return fnList
 
+def FFT(a):
+    """
+    Fast Fourier transform on list (a) of data points.
+    """
+
 def realFourier(a, isign=1):
     """
     Perform Fourier transform on list (a) of data points. Use recurrence relation.
