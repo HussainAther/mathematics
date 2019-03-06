@@ -151,6 +151,10 @@ def costft(a, isign=1):
             a2 = (.5/wi1)*(a[i] - a[n-1-i])
             a[i] = .5*(a1+a2)
             a[n-1-i] = .5*(a1-a2)
+            wtemp = wr1
+            wr1 = wtemp*wpr - wi1*wpi*wr1
+            wi1 = wi1*wpr + wtemp*wpi + wi1
+    return a
 
 
 
