@@ -178,4 +178,8 @@ def ndimDFT(a, isign=1):
         ip3 = ip2 * nrem
         i2rev = 0
         for i2 in range(0, ip2+1, ip1): # bit-reversal
+            if i2 < i2rev:
+                for i1 in range(i1, i2+ip1, 2):
+                    for i3 in range(i1, ip3+1, ip2):
+                        
 
