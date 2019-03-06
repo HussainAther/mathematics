@@ -1,6 +1,8 @@
 import numpy as np
 
 """
+We get power spectral functions from various types of fourier transforms on input signal data.
+
 Multitaper methods use a principled approach to the trade-off between low leakage and minimizing
 variance of a power spectral density estimate. Minimizing leak can let you find the tail of a spectrum
 at high frequencies that can be spuriously dominated by leakage from lower frequencies.
@@ -26,10 +28,13 @@ averaged toegehter to decrease the variance of the final answer. In this case we
 the number of such estimates that are averaged. The functions are actually discrete sequences obtained
 as eigenvectors of the previous two equations. We call them Slepian functions or discrete prolate spheroidal
 sequences.
+
+In this function, we're going to calculate the spectral estimation using the multitaper method with
+Slepian tapers.
 """
 
 def slepian():
     """
     Calculate Slepian functions.
     """
-
+    
