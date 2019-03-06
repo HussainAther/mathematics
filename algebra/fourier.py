@@ -195,4 +195,11 @@ def ndimDFT(a, isign=1):
             ifp2 = ifp1 << 1
             theta = isign*np.pi*2/(ifp2/ip2) # initialize for trigonometric recurrence
             wtemp = np.sin(.5*theta)
+            wpr = -2*wtemp*wtemp
+            wr = 1
+            wi = 0
+            for i3 in range(0, ifp1+ip1, ip1):
+                for i1 in range(i3, i3+ip1, 2):
+                    for i2 in range(i1, ip3+1, ifp2):
+                        k1 = i2 # Danielson-Lanczos formula
 
