@@ -39,9 +39,12 @@ def convolve(s, r, isign=1):
         ans[1] = ans[1]*temp[1]/no2
     elif isign == -1: #deconvolution
         for i in range(2, n+1, 2): # Divide the Fast Fourier Transforms to deconvolve
-            if (mag2 == (np.sqrt(temp[i]) + np.sqrt(temp[i+1]))) == 0:
+            if (np.sqrt(temp[i]) + np.sqrt(temp[i+1])) == 0:
                 print("Deconvolving at repsonse zero in convolution")
                 return
-
+            mag2 = np.sqrt(temp[i]) + np.sqrt(temp[i+1])
+            tmp = ans[i]
+            ans[i] = (ans[i]*temp[i] + ans[i+1]*temp[i+1])/mag2/no2
+            ans[i+1] = (ans[i+1]*temp[i] - tmp*temp[i+1])/mag2/no2
 
 
