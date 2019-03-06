@@ -87,11 +87,12 @@ def houseVector(x):
     if s == 0:
         beta = 0
     else:
-        mu = np.sqrt(x[0]^2 + s)
+        mu = np.sqrt(x[0]**2 + s)
         if x[0] <= 0:
             v[0] = x[0] - mu
         else:
             v[0] = -s/(x[0] + mu)
+        beta = 2*v[0]**2
 
 """
 We can find a Hessenberg matrix using the Householder method. Hessenberg matrix is (almost) the Schur triangular form of a matrix.
