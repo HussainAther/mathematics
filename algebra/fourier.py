@@ -29,6 +29,7 @@ def InverseDFT(FmList):
             fn += FmList[m] * np.exp(1j * np.pi*2 * m * n / N)
         fnList.append(fn)
     return fnList
+
 def realFourier(a, isign=1):
     """
     Perform Fourier transform on list (a) of data points. Use recurrence relation.
@@ -156,8 +157,4 @@ def costft(a, isign=1):
             wi1 = wi1*wpr + wtemp*wpi + wi1
     return a
 
-
-
-
-
-
+def 
