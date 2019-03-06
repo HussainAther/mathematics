@@ -16,6 +16,7 @@ def convolve(s, r, isign=1):
     response function at positive times while the second half has the impulse function at negative times.
     isign = 1 for convolution or -1 for deconvolution. Return the answer as ans.
     """
+    mag2 = 0
     n = len(s) + 1
     temp = [""]*n
     temp[0] = r[0]
@@ -37,5 +38,10 @@ def convolve(s, r, isign=1):
         ans[0] = ans[0] * temp[0] /no2
         ans[1] = ans[1]*temp[1]/no2
     elif isign == -1: #deconvolution
+        for i in range(2, n+1, 2): # Divide the Fast Fourier Transforms to deconvolve
+            if (mag2 == (np.sqrt(temp[i]) + np.sqrt(temp[i+1]))) == 0:
+                print("Deconvolving at repsonse zero in convolution")
+                return
+
 
 
