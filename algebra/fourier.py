@@ -160,5 +160,9 @@ def costft(a, isign=1):
 def ndimDFT(a, isign=1):
     """
     N-dimensional Discrete Fourier Transform on real multidimensional array a.
+    nn is an integer array containing the lengths of each dmens
     """
-    
+    nn = [np.size(a,0), np.size(a,1)]
+    ntot = 1 # total number of complex values
+    for idim in range(0, ndim+1):
+        ntot *= nn[idim] 
