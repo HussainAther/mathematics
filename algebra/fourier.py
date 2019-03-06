@@ -20,6 +20,7 @@ def realFourier(a):
     """
     Perform Fourier transform on list (a) of data points.
     """
+    n = len(a)
     theta = np.pi
     if isign == 1:
         c2 = -.5
@@ -30,3 +31,13 @@ def realFourier(a):
     wtemp = np.sin(.5*theta)
     wpr = -2*wtemp*wtemp
     wpi = np.sin(theta)
+    wi = wpi
+    for i in range(n+1):
+        i1 = 2*i
+        i2 = i + i1
+        i3 = n - i1
+        i4 = 1 + i3
+        h1r = c1*(a[i1] + data[i3])
+        h1i = c2*(a[i2] - data[i4])
+        h2r = -c2*(data[i2] + data[i4])
+        
