@@ -12,4 +12,5 @@ in which w is a real vector with |w|^2 = 1.
 
 def mult_matrix(M, N):
     """Multiply square matrices of same dimension M and N"""
-
+    tuple_N = zip(*N)
+    
