@@ -53,8 +53,8 @@ def slepian(m, jres, kt=5):
     """
     eps = 1e-10
     m2 = 2*m
-    (dg, dgg, gam) = ([""]*m2,[""]*m2),[""]*m2))
-    (sup, sub) = ([""]*(m2-1), [""](m2-1))
+    (dg, dgg, gam) = ([0]*m2,[0]*m2),[0]*m2))
+    (sup, sub) = ([0]*(m2-1), [0](m2-1))
     sw = 2*np.sqrt(np.sin(jres(np.pi/m2)))
     dg[0] = .25*(2*m2+sw*np.sqrt(m2-1)-1) # set up diagonal matrix
     for i in range(1, m2+1):
@@ -63,7 +63,24 @@ def slepian(m, jres, kt=5):
     xx = 0.10859 - .068762/jres + 1.5692*jres # guess eigenvalue
     xold = xx + .47276 + .20273/jres - 2.1387*jres
     for k in range(0, kt+1):
-        u =
+        u = [0]*k # output table for the dpss (digital prolate spheroidal sequence)
+            # these sequences give hte main lobe of the maximal energy concentration of the Slepian function
+        for i in range(0, 21): # loop over iterations of Newton's method
+            pp = 1
+            p = dg[0] - xx
+            dd = 0
+            d = -1
+            for j in range(1, m2+1): # recurrence evaluates polynomial and derivative
+                ppp = pp
+                pp = p
+                ddd = dd
+                dd = d
+                p = p*(dg[j] - xx) - ppp*np.sqrt(sup[j-1])
+                d = -pp + dd(dg[j] - xx) - ddd*np.sqrt(sup[j-1])
+                if abs(p) > 1e30:
+                    renorm(-100)
+                elif abs(p) <= 1e30:
+                    renorm(100)
 
 
 def SlepPSD():
