@@ -86,7 +86,7 @@ def jacobi(a):
             tresh =  .2*sm(n**2)
         else:
             tresh = 0
-        for ip in range(0,n):
+        for ip in range(1,n):
             for eq in range(ip+1, n+1):
                 g = 100*abs(a[ip][iq])
                 if i > 4 and g <= eps*abs(d[ip]) and g <= eps*abs*d[iq]: # after 4 sweeps, skip rotation if the off-diagonal element is small.
