@@ -81,3 +81,9 @@ We can find a Hessenberg matrix using the Householder method. Hessenberg matrix 
 Shur triangular is a matrix that's unitarilty equivalent to an upper triangular matrix whose diagonal elements are the eigenvalues of the original matrix.
 The upper Hessenberg matrix has zero entries below the first subdiagonal, and the lower one has zero entries above the first superdiagonal.
 """
+def housHess(a):
+    """
+    Householder-Hessenberg method outputs a Hessenberg matrix on some numpy matrix a.
+    """
+    n = max(np.size(a,1), np.size(a,0)) # find the number of rows/columns (whichever is greater)
+    q = np.identity(n) # get the identity matrix of size n
