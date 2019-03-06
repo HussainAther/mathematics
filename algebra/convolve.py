@@ -46,5 +46,12 @@ def convolve(s, r, isign=1):
             tmp = ans[i]
             ans[i] = (ans[i]*temp[i] + ans[i+1]*temp[i+1])/mag2/no2
             ans[i+1] = (ans[i+1]*temp[i] - tmp*temp[i+1])/mag2/no2
-
-
+        if (temp[0] == 0 or temp[1] == 0):
+            print("Deconvolving at response zero in convolution")
+            return
+        ans[0] = ans[0]/temp[0]/no2
+        ans[1] = ans[1]/temp[1]/no2
+    else:
+        print("isign must be 1 or -1")
+        return
+    return InverseDFT(ans)
