@@ -1,5 +1,7 @@
 import numpy as np
 
+from fourier import * # from the fourier.py script in the same dirctory.
+
 """
 Convolution or deconvolution of a real set of data in array form a of two functions s(t) and r(t) (written as s(t) * r(t)).
 Fourier transform of the convolution of two functions is equal to the product of their individual Fourier transforms.
@@ -7,7 +9,7 @@ Fourier transform of the convolution of two functions is equal to the product of
 has peaks that fall to zero in both directions from its maximum.
 """
 
-def convolve(s, t, isign=1):
+def convolve(s, r, isign=1):
     """
     Convolve or deconvolve a real set of data (s[0...n-1]) with a response functino (r[0...m-1]) in which
     m is an odd integer <= n. The response should be in wraparound order such that the first half has the impulse
@@ -16,5 +18,13 @@ def convolve(s, t, isign=1):
     """
     n = len(s) + 1
     temp = [""]*n
+    temp[0] = r[0]
     for i in range(1, (m+2)/2):
-        temp
+        temp[i] = r[i]
+        temp[n-i] = r[m-i]
+    for i in range((m+1)/2, n-m):
+        temp[i] = 0
+    for i in range(0, n+1):
+        ans[i] = s[i]
+    DFT(ans) # Fast Fourier transform both arrays
+    DFT(temp)
