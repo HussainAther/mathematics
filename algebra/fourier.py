@@ -216,3 +216,7 @@ def ndimDFT(a, isign=1):
         nprev *= n
     return a
 
+def complexFastDFT(a):
+    """
+    Compute complex fast Fourier transform as two complex arrays: data as the zero and positive 
+    """
