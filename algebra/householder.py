@@ -25,3 +25,8 @@ def trans_matrix(M):
 def norm(x):
     """Return the Euclidean norm of the vector x."""
     return sqrt(sum([x_i**2 for x_i in x]))
+
+def Q_i(Q_min, i, j, k):
+    """Construct the Q_t matrix by left-top padding the matrix Q
+    with elements from the identity matrix."""
+    if i < k or j < k:
