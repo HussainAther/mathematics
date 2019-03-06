@@ -238,3 +238,6 @@ def complexFastDFT(a, isign=1):
     wpi = np.sin(theta)
     nn[0] = nn1
     nn[1] = nn2
+    nn[2] = nn3 >> 1
+    if isign == 1:
+        DFT(a)
