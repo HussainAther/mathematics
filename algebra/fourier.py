@@ -32,8 +32,12 @@ def InverseDFT(FmList):
 
 def FFT(a):
     """
-    Fast Fourier transform on list (a) of data points.
+    Fast Fourier transform on list (a) of data points. Exploit symmetry using a recurisve function
     """
+    Aeven = FFT(a[::2])
+    Aodd = FFT(a[1::2])
+    factor = np.exp(-2j * np.pi * np.arange(N) / N)
+    return np.concatenate([Aeven + factor[:N / 2] * Aodd, Aeven + factor[N / 2:] * Aodd])
 
 def realFourier(a, isign=1):
     """
