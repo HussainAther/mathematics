@@ -33,3 +33,9 @@ def Q_i(Q_min, i, j, k):
         return float(i == j)
     else:
         return Q_min[i-k][j-k]
+
+def householder(A):
+    """Performs a Householder Reflections based QR Decomposition of the
+    matrix A. The function returns Q, an orthogonal matrix and R, an
+    upper triangular matrix such that A = QR."""
+    n = len(A)
