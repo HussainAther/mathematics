@@ -218,5 +218,8 @@ def ndimDFT(a, isign=1):
 
 def complexFastDFT(a):
     """
-    Compute complex fast Fourier transform as two complex arrays: data as the zero and positive 
+    Compute complex fast Fourier transform as two complex arrays: data as the zero and positive frequency values
+    of hte third feequency component while spec contains the Nyquist critical frequency values of the third frequency
+    component.
     """
+    
