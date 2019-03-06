@@ -38,6 +38,6 @@ def corr(a, b):
         ans[i+1] = (ans[i+1]*temp[i] - tmp*temp[i+1])/ no2
     ans[0] = ans[0] * temp[0]/no2
     ans[1] = ans[1] * temp[1]/no2
-    InverseDFT(ans)
-    
+    InverseDFT(ans) # get the correlation from inverse transformation
+    return ans
 
