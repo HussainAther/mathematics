@@ -203,5 +203,16 @@ def ndimDFT(a, isign=1):
                     for i2 in range(i1, ip3+1, ifp2):
                         k1 = i2 # Danielson-Lanczos formula
                         k2 = k1 + ifp1
-                        tempr = wr*
+                        tempr = wr*a[k2] - wi*a[k2+1]
+                        tempi = wr*a[k2+1] + wi*a[k2]
+                        a[k2] = a[k1] - tempr
+                        a[k2+1] = a[k1+1] - tempi
+                        a[k1] += tempr
+                        a[k1+1] += tempi
+                wtemp = wr
+                wr = wtemp*wpr - wr*wpi+wr # trig recurrence
+                wi = wr*wpi + wtemp *wpi + wi
+            ifp1 = ifp2
+        nprev *= n
+    return a
 
