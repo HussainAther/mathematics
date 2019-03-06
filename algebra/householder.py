@@ -58,3 +58,7 @@ def householder(A):
         u = map(lambda p,q: p + alpha * q, x, e)
         norm_u = norm(u)
         v = map(lambda p: p/norm_u, u)
+
+        # Create the Q minor matrix
+        Q_min = [ [float(i==j) - 2.0 * v[i] * v[j] for i in xrange(n-k)] for j in xrange(n-k) ]
+
