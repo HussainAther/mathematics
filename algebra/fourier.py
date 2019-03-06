@@ -169,4 +169,13 @@ def ndimDFT(a, isign=1):
     if ntot < 2:
         print("Need power of 2 in array")
         return
-    
+    nprev = 1
+    for idim in range(ndim-1, 0, -1):
+        n = nn[idim]
+        nrem = ntot/(n*nprev)
+        ip1 = nprev << 1 # bit-shift
+        ip2 = ip1 * n
+        ip3 = ip2 * nrem
+        i2rev = 0
+        for i2 in range(0, ip2+1, ip1): # bit-reversal
+
