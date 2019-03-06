@@ -216,10 +216,11 @@ def ndimDFT(a, isign=1):
         nprev *= n
     return a
 
-def complexFastDFT(a):
+def complexFastDFT(a, isign=1):
     """
-    Compute complex fast Fourier transform as two complex arrays: data as the zero and positive frequency values
+    Compute complex fast Fourier transform on a three-dimensional real array.
+    as two complex arrays: data as the zero and positive frequency values
     of hte third feequency component while spec contains the Nyquist critical frequency values of the third frequency
     component.
     """
-    
+
