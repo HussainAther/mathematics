@@ -30,3 +30,6 @@ def Q_i(Q_min, i, j, k):
     """Construct the Q_t matrix by left-top padding the matrix Q
     with elements from the identity matrix."""
     if i < k or j < k:
+        return float(i == j)
+    else:
+        return Q_min[i-k][j-k]
