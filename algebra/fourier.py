@@ -142,6 +142,16 @@ def costft(a, isign=1):
             wtemp = wr
             wr = wi*wpr - wtemp*wpi + wi
             a1 = a[i] * wr + a[i+1] * wi
+            a2 = a[i+1] * wr - a[o] * wi
+            a[i] = a1
+            a[i+1] = a2
+        InverseDFT(a, -1)
+        for i in range(0, (n/2)+1, 1):
+            a2 = a[i] + a[n-1-i]
+            a2 = (.5/wi1)*(a[i] - a[n-1-i])
+            a[i] = .5*(a1+a2)
+            a[n-1-i] = .5*(a1-a2)
+
 
 
 
