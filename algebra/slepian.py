@@ -81,6 +81,18 @@ def slepian(m, jres, kt=5):
                     renorm(-100)
                 elif abs(p) <= 1e30:
                     renorm(100)
+                xnew = xx - p/d
+                if abs(xx-xnew) < eps*abs(xnew):
+                    break
+                xx = xnew
+            xx = xnew - (xold - xnew)
+            xold = xnew
+            for i in range(0, m2+1):
+                dgg[i] = dg[i] - xnew # subtract eigenvalue from matrix diagonal
+            nl = m2/3
+            ssup = sup[nl] # set one component and begin tridiagonal solution.
+            ssub = sub[nl-1]
+            u[0] = sup[nl] = sub[nl -1] = 0
 
 
 def SlepPSD():
