@@ -47,4 +47,24 @@ def realFourier(a):
         a[i4] = -h1i + wr * h2i + 2i * h2r
         wtemp = wr
         wr = wtemp*wpr - wi*wpi + wr # recurrence relation
-        wi = wr*wpr
+        wi = wr*wpr + wtemp*wpi + wi
+    if isign == 1:
+        h1r = a[0]
+        a[0] = h1r + a[1]
+        a[1] = h1r - a[2]
+    else:
+        a[0] = c1* (h1r) + data[1]
+        a[1] = c1 * (h1r - data[2])
+        np.fft.ifft(a) # inverse Fourier transform
+    return a
+
+
+def sinft(a):
+    """
+    Calculate the sine transform of a set of n real-valued data points stored in array a.
+    """
+    theta = np.pi
+    wtemp = np.sin(.5*theta)
+    wpr = -2*wtemp*wtemp
+    wpi = np.sin(theta)
+
