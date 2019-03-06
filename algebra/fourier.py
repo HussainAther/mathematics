@@ -181,5 +181,5 @@ def ndimDFT(a, isign=1):
             if i2 < i2rev:
                 for i1 in range(i1, i2+ip1, 2):
                     for i3 in range(i1, ip3+1, ip2):
-                        
+                        i3rev = i2rev + i3 - i2
 
