@@ -21,3 +21,7 @@ def trans_matrix(M):
     """Take the transpose of a matrix."""
     n = len(M)
     return [[ M[i][j] for i in range(n)] for j in range(n)]
+
+def norm(x):
+    """Return the Euclidean norm of the vector x."""
+    return sqrt(sum([x_i**2 for x_i in x]))
