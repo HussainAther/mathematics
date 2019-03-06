@@ -1,4 +1,7 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import scipy.signal as sig
+import scipy.stats.distributions as dist
 
 """
 We get power spectral functions from various types of fourier transforms on input signal data.
@@ -45,6 +48,7 @@ def dB(x, out=None):
 
 def slepian():
     """
-    Calculate Slepian functions.
+    Use Slepian tapers with the multitaper method to calculate the power spectral estimation.
     """
+    
 
