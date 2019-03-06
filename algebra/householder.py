@@ -62,3 +62,5 @@ def householder(A):
         # Create the Q minor matrix
         Q_min = [ [float(i==j) - 2.0 * v[i] * v[j] for i in xrange(n-k)] for j in xrange(n-k) ]
 
+        # "Pad out" the Q minor matrix with elements from the identity
+        Q_t = [[ Q_i(Q_min,i,j,k) for i in xrange(n)] for j in xrange(n)]
