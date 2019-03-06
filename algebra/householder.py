@@ -76,6 +76,11 @@ def householder(A):
 
     return trans_matrix(Q), R
 
+def houseVector(x):
+    """
+    Return the Householder vector.
+    """
+
 """
 We can find a Hessenberg matrix using the Householder method. Hessenberg matrix is (almost) the Schur triangular form of a matrix.
 Shur triangular is a matrix that's unitarilty equivalent to an upper triangular matrix whose diagonal elements are the eigenvalues of the original matrix.
@@ -87,3 +92,6 @@ def housHess(a):
     """
     n = max(np.size(a,1), np.size(a,0)) # find the number of rows/columns (whichever is greater)
     q = np.identity(n) # get the identity matrix of size n
+    h = a
+    for k in range(1, n-1): # iterate through each row/column except the last two
+        [v,beta] =
