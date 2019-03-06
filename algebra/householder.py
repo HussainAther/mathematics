@@ -7,5 +7,9 @@ The Householder matrix P has the form:
 
 P = 1 - 2w dot w^T
 
-in which w is a real vector with |w|^2 = 1. 
+in which w is a real vector with |w|^2 = 1.
 """
+
+def mult_matrix(M, N):
+    """Multiply square matrices of same dimension M and N"""
+
