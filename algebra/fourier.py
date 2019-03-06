@@ -110,5 +110,11 @@ def costft(a, isign=1):
     wi1 = np.sin(theta)
     sp2 = .2*wi1*wi1
     wpi = np.sin(2*theta)
-    if ising ==
+    if isign == 1:
+        for i in range((n/2)+1):
+            a1 = .5*(a[pi] + a[n-1-i])
+            a2 = wi1*(a[i] - a[n-1-i])
+            a[i] = a1 + a2
+            a[n-1-i] = a1 - a2
+
 
