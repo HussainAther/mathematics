@@ -48,3 +48,8 @@ def householder(A):
     for k in range(n-1):
         # Create identity matrix of same size as A
         I = [[float(i == j) for i in xrange(n)] for j in xrange(n)]
+
+        # Create the vectors x, e and the scalar alpha
+        x = [row[k] for row in R[k:]]
+        e = [row[k] for row in I[k:]]
+        alpha = -cmp(x[0],0) * norm(x)
