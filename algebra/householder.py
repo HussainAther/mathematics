@@ -64,3 +64,12 @@ def householder(A):
 
         # "Pad out" the Q minor matrix with elements from the identity
         Q_t = [[ Q_i(Q_min,i,j,k) for i in xrange(n)] for j in xrange(n)]
+
+        # If this is the first run through, right multiply by A,
+        # else right multiply by Q
+        if k == 0:
+            Q = Q_t
+            R = mult_matrix(Q_t,A)
+        else:
+            Q = mult_matrix(Q_t,Q)
+            R = mult_matrix(Q_t,R)
