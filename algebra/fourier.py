@@ -4,18 +4,31 @@ import numpy as np
 Calculate Fourier transform of a set of n real-valued data points.
 """
 
-def forwardFourier(d):
+def DFT(fnList):
     """
-    Forward Fourier Transform on data d
+    Forward Discrete Fourier Transform
     """
-    for n in range (0 ,Np) :
-        imag = 0.
-        for k in range(0, N):
-            imag += signal [k]∗ sin (( twopi∗k∗n) /N) # imaginary component
-        d [n] = −imag∗sq2pi
-        if d[n] !=0:
-            impart.plot(pos=(n,d[n]))
+    N = len(fnList)
+    FmList = []
+    for m in range(N):
+        Fm = 0.0
+        for n in range(N):
+            Fm += fnList[n] * np.exp(- 1j * np.pi*2 * m * n / N)
+        FmList.append(Fm / N)
+    return FmList
 
+def InverseDFT(FmList):
+    """
+    Inverse Discrete Fourier Transform
+    """
+    N = len(FmList)
+    fnList = []
+    for n in range(N):
+        fn = 0.0
+        for m in range(N):
+            fn += FmList[m] * np.exp(1j * np.pi*2 * m * n / N)
+        fnList.append(fn)
+    return fnList
 def realFourier(a):
     """
     Perform Fourier transform on list (a) of data points. Use recurrence relation.
@@ -24,7 +37,7 @@ def realFourier(a):
     theta = np.pi
     if isign == 1:
         c2 = -.5
-        forwardFourier(a)
+        a = DFT(a)
     else:
         c2 = .5
         theta = -theta
@@ -55,7 +68,7 @@ def realFourier(a):
     else:
         a[0] = c1* (h1r) + data[1]
         a[1] = c1 * (h1r - data[2])
-        np.fft.ifft(a) # inverse Fourier transform
+        a = InverseDFT(a) # inverse Fourier transform
     return a
 
 
@@ -73,4 +86,10 @@ def sinft(a):
         wtemp = wr
         wr = wtemp * wpr - wi * wpi + wr # Find sine for auxilary array
         wi = wi *wr + wtemp * wpi + wi
+        a1 = wi*(a[j] + a[n-j])
+        a2 = .5*(a[j] - a[n-j])
+        a[j] = a1 + a2
+        a[n-j] = a1 - a2
+    a = InverseDFt(a)
+    a[0] *= .5
 
