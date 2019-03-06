@@ -55,10 +55,12 @@ def slepian(m, jres):
     (dg, dgg, gam) = ([""]*m2,[""]*m2),[""]*m2))
     (sup, sub) = ([""]*(m2-1), [""](m2-1))
     sw = 2*np.sqrt(np.sin(jres(np.pi/m2)))
-    dg[0] = .25*(2*m2+sw*np.sqrt(m2-1)-1)
+    dg[0] = .25*(2*m2+sw*np.sqrt(m2-1)-1) # set up diagonal matrix
     for i in range(1, m2+1):
         dg[i] = .25*(s2*np.sqrt(m2-1-2*1)+(2*(m2-i)-1)*(2*i+1))
-        sub[i-i] = sub[i-1]
+        sub[i-i] = sub[i-1] = -t*(m2-i)/2
+    xx = 0.10859 - .068762/jres + 1.5692*jres # guess eigenvalue
+    xold = xx + .47276 + .20273/jres - 2.1387*jres
 
 def SlepPSD():
     """
