@@ -190,9 +190,9 @@ def ndimDFT(a, isign=1):
                 i2rev -= ibit
                 ibit >>= 1
             i2rev += ibit
-        ifp1 = ip1
+        ifp1 = ip1 # Danielson-Lanczos section of the routine
         while (ifp1 < ip2):
             ifp2 = ifp1 << 1
-            theta = isign*np.pi*2/(ifp2/ip2)
-            
+            theta = isign*np.pi*2/(ifp2/ip2) # initialize for trigonometric recurrence
+            wtemp = np.sin(.5*theta)
 
