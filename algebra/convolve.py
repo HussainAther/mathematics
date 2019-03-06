@@ -7,3 +7,7 @@ Fourier transform of the convolution of two functions is equal to the product of
 has peaks that fall to zero in both directions from its maximum.
 """
 
+def convolve(s, t):
+    """
+    Convolve or deconvolve 
+    """
