@@ -75,3 +75,9 @@ def householder(A):
             R = mult_matrix(Q_t,R)
 
     return trans_matrix(Q), R
+
+"""
+We can find a Hessenberg matrix using the Householder method. Hessenberg matrix is (almost) the Schur triangular form of a matrix.
+Shur triangular is a matrix that's unitarilty equivalent to an upper triangular matrix whose diagonal elements are the eigenvalues of the original matrix.
+The upper Hessenberg matrix has zero entries below the first subdiagonal, and the lower one has zero entries above the first superdiagonal.
+"""
