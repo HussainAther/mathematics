@@ -18,7 +18,7 @@ def convolve(s, r, isign=1):
     """
     mag2 = 0
     n = len(s) + 1
-    temp = [""]*n
+    temp = [0]*n
     temp[0] = r[0]
     for i in range(1, (m+2)/2):
         temp[i] = r[i]
