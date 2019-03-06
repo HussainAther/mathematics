@@ -73,3 +73,5 @@ def householder(A):
         else:
             Q = mult_matrix(Q_t,Q)
             R = mult_matrix(Q_t,R)
+
+    return trans_matrix(Q), R
