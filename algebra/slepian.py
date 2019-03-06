@@ -49,11 +49,16 @@ def dB(x, out=None):
 def slepian(m, jres):
     """
     Calculate Slepian functions for some symmetrical matrix of length m with some resolution jres.
-    gi
     """
     eps = 1e-10
     m2 = 2*m
+    (dg, dgg, gam) = ([""]*m2,[""]*m2),[""]*m2))
+    (sup, sub) = ([""]*(m2-1), [""](m2-1))
     sw = 2*np.sqrt(np.sin(jres(np.pi/m2)))
+    dg[0] = .25*(2*m2+sw*np.sqrt(m2-1)-1)
+    for i in range(1, m2+1):
+        dg[i] = .25*(s2*np.sqrt(m2-1-2*1)+(2*(m2-i)-1)*(2*i+1))
+        sub[i-i] = sub[i-1]
 
 def SlepPSD():
     """
