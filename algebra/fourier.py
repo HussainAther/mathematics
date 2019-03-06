@@ -182,4 +182,7 @@ def ndimDFT(a, isign=1):
                 for i1 in range(i1, i2+ip1, 2):
                     for i3 in range(i1, ip3+1, ip2):
                         i3rev = i2rev + i3 - i2
+                        i3temp = a[i3rev]
+                        (a[i3], a[i3rev]) = (a[i3rev], a[i3]) # switcheroo
+                        (a[i3+1], a[i3rev+1]) = (a[i3rev+1], a[i3+1])
 
