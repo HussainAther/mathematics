@@ -63,8 +63,14 @@ def sinft(a):
     """
     Calculate the sine transform of a set of n real-valued data points stored in array a.
     """
+    n = len(a)
     theta = np.pi
     wtemp = np.sin(.5*theta)
     wpr = -2*wtemp*wtemp
     wpi = np.sin(theta)
+    a[0] = 0
+    for j in range(n+1):
+        wtemp = wr
+        wr = wtemp * wpr - wi * wpi + wr # Find sine for auxilary array
+        wi = wi *wr + wtemp * wpi + wi
 
