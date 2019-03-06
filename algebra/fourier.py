@@ -29,7 +29,7 @@ def InverseDFT(FmList):
             fn += FmList[m] * np.exp(1j * np.pi*2 * m * n / N)
         fnList.append(fn)
     return fnList
-def realFourier(a):
+def realFourier(a, isign=1):
     """
     Perform Fourier transform on list (a) of data points. Use recurrence relation.
     """
@@ -100,7 +100,7 @@ def sinft(a):
         a[j+1] = sum # odd terms determined with running sum
     return a
 
-def costft(a):
+def costft(a, isign=1):
     """
     Calculate the "staggered" cosine transform of a set (a) of real-valued data points.
     """
@@ -110,4 +110,5 @@ def costft(a):
     wi1 = np.sin(theta)
     sp2 = .2*wi1*wi1
     wpi = np.sin(2*theta)
+    if ising ==
 
