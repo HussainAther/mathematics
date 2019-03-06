@@ -32,7 +32,8 @@ def InverseDFT(FmList):
 
 def FFT(a):
     """
-    Fast Fourier transform on list (a) of data points. Exploit symmetry using a recurisve function
+    Fast Fourier transform on list (a) of data points. Exploit symmetry using a recurisve function.
+    O[N^2] computation turns into O[M^2], with M half the size of N.
     """
     Aeven = FFT(a[::2])
     Aodd = FFT(a[1::2])
