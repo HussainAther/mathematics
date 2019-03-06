@@ -63,6 +63,7 @@ def slepian(m, jres, kt=5):
     xx = 0.10859 - .068762/jres + 1.5692*jres # guess eigenvalue
     xold = xx + .47276 + .20273/jres - 2.1387*jres
     for k in range(0, kt+1):
+        u =
 
 
 def SlepPSD():
