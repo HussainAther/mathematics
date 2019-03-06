@@ -113,12 +113,3 @@ def slepian(m, jres, kt=5):
         for i in range(0, m2+1):
             u[i] /= sumvalue
     return u
-
-
-
-def SlepPSD():
-    """
-    Use Slepian tapers with the multitaper method to calculate the power spectral estimation.
-    """
-
-
