@@ -131,7 +131,19 @@ def costft(a, isign=1):
         sum = .5*a[1]
         for i in range(n-1, 0, -2):
             sum1 = sum
-            su += a[i] # recurrence for odd terms
+            sum += a[i] # recurrence for odd terms
+            a[i] = sum1
+    elif isign == -1:
+        atemp = a[n-1]
+        for i in range(n-1, 2,-2):
+            a[i] = a[i-2] - a[i] # difference of odd terms
+        a[1] = 2 * atemp
+        for i in range(2, n, 2):
+            wtemp = wr
+            wr = wi*wpr - wtemp*wpi + wi
+            a1 = a[i] * wr + a[i+1] * wi
+
+
 
 
 
