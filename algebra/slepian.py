@@ -48,7 +48,14 @@ def dB(x, out=None):
 
 def slepian():
     """
+    Calculate Slepian functions.
+    """
+    eps = 1e-10
+    
+
+def SlepPSD():
+    """
     Use Slepian tapers with the multitaper method to calculate the power spectral estimation.
     """
-    
+
 
