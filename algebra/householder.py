@@ -39,3 +39,12 @@ def householder(A):
     matrix A. The function returns Q, an orthogonal matrix and R, an
     upper triangular matrix such that A = QR."""
     n = len(A)
+
+    # Set R equal to A, and create Q as a zero matrix of the same size
+    R = A
+    Q = [[0.0] * n for i in xrange(n)]
+
+    # The Householder method
+    for k in range(n-1):
+        # Create identity matrix of same size as A
+        I = [[float(i == j) for i in xrange(n)] for j in xrange(n)]
