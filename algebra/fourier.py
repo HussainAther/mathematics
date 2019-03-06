@@ -220,7 +220,13 @@ def complexFastDFT(a, isign=1):
     """
     Compute complex fast Fourier transform on a three-dimensional real array.
     as two complex arrays: data as the zero and positive frequency values
-    of hte third feequency component while spec contains the Nyquist critical frequency values of the third frequency
-    component.
+    of hte third feequency component while spec contains the Nyquist critical
+    frequency values of the third frequency component.
     """
-
+    nn = []
+    nn1 = 1
+    sqp = nn1
+    nn2 = np.size(a, 1) + 1
+    nn3 = np.size(a, 0) + 1
+    for i1 in range(0, nn1+1):
+        spq[i1] = speq + 2*nn2*i1
