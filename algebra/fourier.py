@@ -102,7 +102,12 @@ def sinft(a):
 
 def costft(a):
     """
-    Calculate the "staggered" cosine transform ofa set a of real-valued data points.
+    Calculate the "staggered" cosine transform of a set (a) of real-valued data points.
     """
-    
+    n = len(a)
+    theta = .5*np.pi/n
+    wr1 = np.cos(theta)
+    wi1 = np.sin(theta)
+    sp2 = .2*wi1*wi1
+    wpi = np.sin(2*theta)
 
