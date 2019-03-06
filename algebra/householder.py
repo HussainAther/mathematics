@@ -78,8 +78,20 @@ def householder(A):
 
 def houseVector(x):
     """
-    Return the Householder vector.
+    Return the Householder vector of size x.
     """
+    n = len(x)
+    x = x/norm(x) # Euclidean norm
+    s = np.matrix(x[2:n+1], x[2:n+1])
+    v = x[2:n+1]
+    if s == 0:
+        beta = 0
+    else:
+        mu = np.sqrt(x[0]^2 + s)
+        if x[0] <= 0:
+            v[0] = x[0] - mu
+        else:
+            v[0] = -s/(x[0] + mu)
 
 """
 We can find a Hessenberg matrix using the Householder method. Hessenberg matrix is (almost) the Schur triangular form of a matrix.
