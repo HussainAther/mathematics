@@ -78,7 +78,7 @@ def householder(A):
 
 def houseVector(x):
     """
-    Return the Householder vector of an array x. 
+    Return the Householder vector of an array x.
     """
     n = len(x)
     x = x/norm(x) # Euclidean norm
@@ -94,7 +94,7 @@ def houseVector(x):
             v[0] = -s/(x[0] + mu)
         beta = 2*v[0]**2 / (s+v[0]**2)
         v = v/v[0]
-    return v
+    return v, beta
 
 """
 We can find a Hessenberg matrix using the Householder method. Hessenberg matrix is (almost) the Schur triangular form of a matrix.
@@ -108,5 +108,17 @@ def housHess(a):
     n = max(np.size(a,1), np.size(a,0)) # find the number of rows/columns (whichever is greater)
     q = np.identity(n) # get the identity matrix of size n
     h = a
-    for k in range(1, n-1): # iterate through each row/column except the last two
-        [v,beta] =
+    for k in range(n-1): # iterate through each row/column except the last two
+        v,beta = houseVector(h[k+1:n+1])
+        i = np.identity(k)
+        n = np.zeros(k, n-k)
+        m = len(v)
+        r = np.identity(m) - beta*v*v
+        h[k+1: n+1] = r*h[k+1: n+1]
+        h[k: n+1] = r*h[k: n+1]
+        h[1:n+1] = r*h[1:n+1]
+        h[k+1: n+1] = r*h[k+1: n+1]
+        ni = np.linalg.inv(n)
+        p = [i, n; ni, r]
+        q = q*p
+    return q
