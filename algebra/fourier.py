@@ -185,4 +185,14 @@ def ndimDFT(a, isign=1):
                         i3temp = a[i3rev]
                         (a[i3], a[i3rev]) = (a[i3rev], a[i3]) # switcheroo
                         (a[i3+1], a[i3rev+1]) = (a[i3rev+1], a[i3+1])
+            ibit= ip2 >> 1
+            while (ibit >= ip2 && i2rev+1 > ibit):
+                i2rev -= ibit
+                ibit >>= 1
+            i2rev += ibit
+        ifp1 = ip1
+        while (ifp1 < ip2):
+            ifp2 = ifp1 << 1
+            theta = isign*np.pi*2/(ifp2/ip2)
+            
 
