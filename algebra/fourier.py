@@ -165,4 +165,8 @@ def ndimDFT(a, isign=1):
     nn = [np.size(a,0), np.size(a,1)]
     ntot = 1 # total number of complex values
     for idim in range(0, ndim+1):
-        ntot *= nn[idim] 
+        ntot *= nn[idim]
+    if ntot < 2:
+        print("Need power of 2 in array")
+        return
+    
