@@ -81,18 +81,39 @@ def slepian(m, jres, kt=5):
                     renorm(-100)
                 elif abs(p) <= 1e30:
                     renorm(100)
-                xnew = xx - p/d
-                if abs(xx-xnew) < eps*abs(xnew):
-                    break
-                xx = xnew
-            xx = xnew - (xold - xnew)
-            xold = xnew
-            for i in range(0, m2+1):
-                dgg[i] = dg[i] - xnew # subtract eigenvalue from matrix diagonal
-            nl = m2/3
-            ssup = sup[nl] # set one component and begin tridiagonal solution.
-            ssub = sub[nl-1]
-            u[0] = sup[nl] = sub[nl -1] = 0
+            xnew = xx - p/d
+            if abs(xx-xnew) < eps*abs(xnew):
+                break
+        xx = xnew
+        xx = xnew - (xold - xnew)
+        xold = xnew
+        for i in range(0, m2+1):
+            dgg[i] = dg[i] - xnew # subtract eigenvalue from matrix diagonal
+        nl = m2/3
+        ssup = sup[nl] # set one component and prepare for tridiagonal solution.
+        ssub = sub[nl-1]
+        u[0] = sup[nl] = sub[nl -1] = 0
+        bet = dgg[0]
+        for i in range(1, m2+1): # tridagonal solution
+            gam[i] = sup[i-1]/bet
+            bet = dgg[i] - subp[i-1]*gam[i]
+            if i == nl:
+                u[i] = 0
+            else:
+                u[i] = -sub[i-1]*u[i-1]/bet
+        for i in range(m2-2, -1, -1):
+            sup[nl] = ssup # restore saved values
+            sub[nl-1] = ssub
+            sumvalue = 0
+        for i in range(0, m2+1):
+            if u[3] > 0:
+                sumvalue = np.sqrt(sumvalue)
+            else:
+                sumvalue = -np.sqrt(sumvalue)
+        for i in range(0, m2+1):
+            u[i] /= sumvalue
+    return u
+
 
 
 def SlepPSD():
