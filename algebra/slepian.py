@@ -46,12 +46,14 @@ def dB(x, out=None):
         np.log10(x, out)
         np.multiply(out, 10, out)
 
-def slepian():
+def slepian(m, jres):
     """
-    Calculate Slepian functions.
+    Calculate Slepian functions for some symmetrical matrix of length m with some resolution jres.
+    gi
     """
     eps = 1e-10
-    
+    m2 = 2*m
+    sw = 2*np.sqrt(np.sin(jres(np.pi/m2)))
 
 def SlepPSD():
     """
