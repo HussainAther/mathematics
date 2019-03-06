@@ -46,9 +46,10 @@ def dB(x, out=None):
         np.log10(x, out)
         np.multiply(out, 10, out)
 
-def slepian(m, jres):
+def slepian(m, jres, kt=5):
     """
-    Calculate Slepian functions for some symmetrical matrix of length m with some resolution jres.
+    Calculate Slepian functions for some symmetrical matrix of length m with some resolution jres up
+    to kt number of window functions.
     """
     eps = 1e-10
     m2 = 2*m
@@ -61,6 +62,8 @@ def slepian(m, jres):
         sub[i-i] = sub[i-1] = -t*(m2-i)/2
     xx = 0.10859 - .068762/jres + 1.5692*jres # guess eigenvalue
     xold = xx + .47276 + .20273/jres - 2.1387*jres
+    for k in range(0, kt+1):
+
 
 def SlepPSD():
     """
