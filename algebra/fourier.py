@@ -157,4 +157,9 @@ def costft(a, isign=1):
             wi1 = wi1*wpr + wtemp*wpi + wi1
     return a
 
-def 
+def ndimDFT(a, isign=1):
+    """
+    N-dimensional Discrete Fourier Transform on real array a that has the multidimensional data.
+    """
+    
+
