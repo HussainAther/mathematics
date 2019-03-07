@@ -133,5 +133,18 @@ def period(x, y, ofac=4, hifac):
     for j in range(0, n): # initialize values for the trigonometric recurrences at each data point
         arg = 2*np.pi*(x[j]-ave)*pnow
         wpr[j] = -2*np.sqrt(np.sin(.5*arg))
+        wpi[j] = np.sin(arg)
+        wr[j] = np.cos(arg)
+        wi[j] = wpi[j]
+    for i in range(0, nout):
+        px[i] = pnow
+        sumsh = sumc = 0
+        for j in range(0,n):
+            c = wr[j]
+            s = wi[j]
+            sumsh += s*c
+            sumc += (c-s)*(c+s)
+        wtau = .5*np.arctan(p2*sumsh, sumc])
+        swtau = np.sin(wtau)
 
 
