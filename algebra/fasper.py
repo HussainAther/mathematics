@@ -52,4 +52,5 @@ def fastper(x, y, ofac=4, hifac):
         ck = np.remainder((x[j]-xmin)*fac, fndim)
         ckk= 2*(ck+1)
         ckk = np.remainder(ckk, fndim)
+        ckk += 1
         
