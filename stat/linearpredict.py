@@ -113,6 +113,8 @@ def period(x, y, ofac=4, hifac):
     (wi, wpi, wpr, wr, px, py) = ([0]*n, [0]*n, [0]*n, [0]*n, [0]*n)
     nout = int(.5*ofac*hifac*n)
     if np < nout:
-        
+        px.np.ndarray.resize(nout)
+        py.np.ndarray.resize(nout)
+    
 
 
