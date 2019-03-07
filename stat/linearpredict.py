@@ -32,4 +32,8 @@ def memcof(a, m=5):
             den += np.sqrt(wk1[j]) + np.sqrt(wk2[j])
         d[k] = 2*num/den
         xms *= (1-np.sqrt(d[k]))
+        for i in range(0, k):
+            d[i] = wkm[i] - d[k] * wkm[k-i-1]
+            # recursive algorithm building up the answer for larger and
+            # larger values of m until the desiredf value is achieved.
 
