@@ -60,8 +60,17 @@ From MEM, we can create a power spectrum estimate as a function fdt = f*delta. f
 should lie in the Nyquist range between -1/2 and 1/2.
 """
 
-def pse(xms):
+def PSE(xms, d):
     """
-    Given xms from the MEM function, this function returns power spectrum estimate
+    Given xms and d from the MEM function, this function returns power spectrum estimate
     as a function fo fdt = f*delta.
     """
+    fdt = xms
+    smr = 1
+    sumi = 1
+    wr = 1
+    wr = 0
+    m = len(d)
+    theta = 2*np.pi*fdt
+
+    return xms/(sumr*sumr + sumi*sumi)
