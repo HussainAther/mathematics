@@ -77,4 +77,9 @@ def fastper(x, y, ofac=4, hifac):
         ckk += 1
         wk1 = spread(y[j] - ave, wk1, ck, MACC)
         wk2 = spread(1, wk2, ckk, MACC)
+    DFT(wk1) # Fourier transform
+    DFT(wk2)
+    df = 1/(xdif*ofac)
+    pmax = -1
+    for k in range(2,)
 
