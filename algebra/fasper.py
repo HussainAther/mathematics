@@ -14,6 +14,10 @@ def spread(y, yy, x, m):
     Spread function used in extirpolation.
     """
     nfac = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]
+    nlen = len(yy)
+    if x == np.round(x):
+        yy[x] = yy[x] + y
+    
 
 def fastper(x, y, ofac=4, hifac):
     """
