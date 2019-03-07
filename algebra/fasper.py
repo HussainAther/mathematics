@@ -9,6 +9,12 @@ of the Lomb method to data sets at least as large as 10^6 data points. It's fast
 of equations of Lomb normalized periodogram.
 """
 
+def spread(y, yy, x, m):
+    """
+    Spread function used in extirpolation.
+    """
+    nfac = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]
+
 def fastper(x, y, ofac=4, hifac):
     """
     Fast computation of the Lomb Periodogram.
@@ -18,7 +24,7 @@ def fastper(x, y, ofac=4, hifac):
     frequencies. x and y are not altered. The vectors px and py resize to nout if their initial size is less
     than this. Otherwise the first nout components are filled.
     """
-    MACC = 4
+    MACC = 4 # multiple accumulate operator
     n = len(x)
     np = n
     px = [0]*n
@@ -48,9 +54,11 @@ def fastper(x, y, ofac=4, hifac):
     wk2 = [0]*nwk
     fac = nwk/(xdif*ofac)
     fndim = nwk
-    for j in range(0, n):
+    for j in range(0, n): # extirpolation
         ck = np.remainder((x[j]-xmin)*fac, fndim)
         ckk= 2*(ck+1)
         ckk = np.remainder(ckk, fndim)
         ckk += 1
-        
+        spread(y[j] - ave, wk1, ck, MACC)
+        spread
+
