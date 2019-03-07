@@ -41,4 +41,6 @@ def memcof(a, m=5):
         for i in range(0, k+1):
             wkm[i] = d[i]
         for j in range(0, n-k-1):
-            
+            wk1[j] -= wkm[j]*wk2[j]
+            wk1[j] = wk2[j+1] - wkm[k]*wk1[j+1]
+    return xms, d
