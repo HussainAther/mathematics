@@ -120,6 +120,18 @@ def period(x, y, ofac=4, hifac):
     if var == 0:
         print("Zero variacne in period")
         return
-
+    xmax = xmin = x[0]
+    for j in range(0, n):
+        if x[j] > xmax:
+            xmax = x[j]
+        if x[j] < xmin:
+            xmin = x[j]
+    xdif = xmax - xmin
+    xave = .5*(xmax+xmin)
+    pymax =0
+    pnow = 1/(xdif*ofac) # starting frequency
+    for j in range(0, n): # initialize values for the trigonometric recurrences at each data point
+        arg = 2*np.pi*(x[j]-ave)*pnow
+        wpr[j] = -2*np.sqrt(np.sin(.5*arg))
 
 
