@@ -109,4 +109,8 @@ def period(x, y, ofac=4):
     frequencies. x and y are not altered. The vectors px and py resize to nout if their initial size is less
     than this. Otehrwise the first nout components are filled.
     """
+    n = len(x)
+    (wi, wpi, wpr, wr, px, py) = ([0]*n, [0]*n, [0]*n, [0]*n, [0]*n)
+
+
 
