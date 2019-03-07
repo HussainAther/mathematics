@@ -162,4 +162,9 @@ def period(x, y, ofac=4, hifac):
             wr[j] = (wtemp*wpr[j] - wr[j] * wpi[j]) + wr[j] # trigonometric recurrences
             wi[j] = (wi[j] * wpr[j] + wtemp * wpi[j]) + wi[j]
         py[i] = .5*(sumcy * sumcy/sumc + sumsy * sumsy/sums)/var
+        if py[i] >= pymax:
+            jmax = i
+            pymax = py[jmax]
+        pnow += 1/(ofac*xdif)
+    expy = np.exp(-pymax)
 
