@@ -11,6 +11,7 @@ of equations of Lomb normalized periodogram.
 
 def fastper(x, y, ofac=4, hifac):
     """
+    Fast computation of the Lomb Periodogram.
     Given list of data points x[0...n-1] and ordinates y[0...n-1] and oversampling factor ofac, this
     fills array px[0...nout-1] with increasing sequence of frequencies up to hifac times the "average"
     Nyquist freuqnecy. It fills array py[0...nout-1] with the Lomb normalized periodogram values at those
@@ -27,3 +28,8 @@ def fastper(x, y, ofac=4, hifac):
     while nfreq < nfreqt:
         nfreq << 1
     nwk = nfreq << 1
+    if np < nout:
+        px.np.ndarray.resize(nout)
+        py.np.ndarray.resize(nout)
+    ave = np.average(y)
+    var = np.var(y)
