@@ -22,4 +22,8 @@ def fastper(x, y, ofac=4, hifac):
     np = n
     px = [0]*n
     nout = int(.5*ofac*hifac*n)
-    
+    nfreqt = int(ofac*hifac*n*MACC)
+    nfreq = 64
+    while nfreq < nfreqt:
+        nfreq << 1
+    nwk = nfreq << 1
