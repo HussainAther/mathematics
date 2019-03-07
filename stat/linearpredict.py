@@ -56,7 +56,12 @@ we will create a function that evaluates and returns the estimated power spectru
 of f*delta (with delta being the sampling interval). The sampling interval describes the space between
 the spectral features of the frequency.
 
-From MEM, we can create a power spectrum estimate as a function fdt = f*delta
+From MEM, we can create a power spectrum estimate as a function fdt = f*delta. f*delta
+should lie in the Nyquist range between -1/2 and 1/2.
 """
 
-
+def pse(xms):
+    """
+    Given xms from the MEM function, this function returns power spectrum estimate
+    as a function fo fdt = f*delta.
+    """
