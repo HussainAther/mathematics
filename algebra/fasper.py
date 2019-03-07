@@ -33,3 +33,14 @@ def fastper(x, y, ofac=4, hifac):
         py.np.ndarray.resize(nout)
     ave = np.average(y)
     var = np.var(y)
+    if var == 0:
+        print("Zero variance.")
+        return
+    xmin = x[0]
+    xmax = xmin
+    for j in range(1, n):
+        if x[j] < xmin:
+            xmin = x[j]
+        if x[j] > xmax:
+            xmax = x[j]
+    
