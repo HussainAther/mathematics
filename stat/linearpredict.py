@@ -91,6 +91,14 @@ discrepancy will occur more fequently than larger ones. This is Huffman coding.
 
 The Wiener-Khinchin theorem says the Fourier transform of the autocorrelation is
 equal to the power spectrum. This means the Fourier transform is a Laurent series in z.
+
+We must find coefficients that satsify the equation:
+
+a_o / abs(a + summation of k=1 to M of (a_k*z^k)^2 ~ summtion from j = -M to M of phi_j*z^j
+
+The ~ is an apprxoimate equal sign. It means the series expansion on the left sdie is supposed to agree
+with the right side term-by-term from z^-M to z^M. Outside of this, the right side is obviously zero
+whiel the left size will have nonzero terms.
 """
 
 def period():
