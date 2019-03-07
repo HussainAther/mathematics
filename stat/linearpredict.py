@@ -82,3 +82,12 @@ def PSE(xms, d, *fdt):
         sumr -= d[i] * wr
         sumi -= d[i] * wi
     return xms/(sumr*sumr + sumi*sumi)
+
+"""
+We can remove the bias in linear prediction by noticing that the linear prediction coefficients
+are computed using the quantized data, and that the discrepancy is also quantized.
+We can compute the residuals by takign advantage of how the smaller values of
+discrepancy will occur more fequently than larger ones. This is Huffman coding.
+"""
+
+def period
