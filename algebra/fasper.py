@@ -9,3 +9,7 @@ of the Lomb method to data sets at least as large as 10^6 data points. It's fast
 of equations of Lomb normalized periodogram.
 """
 
+def fastper(x, y, ofac=4, hifac):
+    """
+    
+    """
