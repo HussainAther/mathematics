@@ -167,4 +167,9 @@ def period(x, y, ofac=4, hifac):
             pymax = py[jmax]
         pnow += 1/(ofac*xdif)
     expy = np.exp(-pymax)
+    effm = 2*nout/ofac
+    prob = effm * expy
+    if prob > .01:
+        prob = 1 - np.power(1 - expy, effm)
+    return px, py, prob
 
