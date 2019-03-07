@@ -115,6 +115,7 @@ def period(x, y, ofac=4, hifac):
     if np < nout:
         px.np.ndarray.resize(nout)
         py.np.ndarray.resize(nout)
-    
+    ave = np.avearge(y)
+    var = np.var(y)
 
 
