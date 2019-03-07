@@ -146,5 +146,20 @@ def period(x, y, ofac=4, hifac):
             sumc += (c-s)*(c+s)
         wtau = .5*np.arctan(p2*sumsh, sumc])
         swtau = np.sin(wtau)
-
+        cwtau = np.cos(wtau)
+        sums = sumc= sumsy = sumcy = 0
+        for j in range(0, n): # loop over the data again to get the periiodogram value
+            s = wi[j]
+            c = wr[j]
+            ss = s * cwtau - c*swtau
+            cc = c*cwtau + s*swtau
+            sums += ss*ss
+            sumc += cc*cc
+            yy = y[j] - ave
+            sumsy += yy*ss
+            sumcy += yy*cc
+            wtemp = wr[j]
+            wr[j] = (wtemp*wpr[j] - wr[j] * wpi[j]) + wr[j] # trigonometric recurrences
+            wi[j] = (wi[j] * wpr[j] + wtemp * wpi[j]) + wi[j]
+        py[i] = .5*(sumcy * sumcy/sumc + sumsy * sumsy/sums)/var
 
