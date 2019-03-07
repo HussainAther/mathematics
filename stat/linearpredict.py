@@ -88,6 +88,10 @@ We can remove the bias in linear prediction by noticing that the linear predicti
 are computed using the quantized data, and that the discrepancy is also quantized.
 We can compute the residuals by takign advantage of how the smaller values of
 discrepancy will occur more fequently than larger ones. This is Huffman coding.
+
+The Wiener-Khinchin theorem says the Fourier transform of the autocorrelation is
+equal to the power spectrum. This means the Fourier transform is a Laurent series in z.
 """
 
-def period
+def period():
+
