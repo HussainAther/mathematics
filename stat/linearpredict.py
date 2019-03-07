@@ -73,5 +73,12 @@ def PSE(xms, d, *fdt):
     wr = 0
     m = len(d)
     theta = 2*np.pi*fdt
-
+    wpr = np.cos(theta)
+    wpi = np.sin(theta)
+    for i in range(0, m):
+        wtemp = wr
+        wr = wtemp * wpr - wi* w pi
+        wi = wi * wpr + wtemp * wpi
+        sumr -= d[i] * wr
+        sumi -= d[i] * wi
     return xms/(sumr*sumr + sumi*sumi)
