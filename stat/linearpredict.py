@@ -71,6 +71,6 @@ def PSE(xms, d):
     wr = 1
     wr = 0
     m = len(d)
-    theta = 2*np.pi*fdt
+    theta = 2*np.pi*fdt 
 
     return xms/(sumr*sumr + sumi*sumi)
