@@ -36,4 +36,9 @@ def memcof(a, m=5):
             d[i] = wkm[i] - d[k] * wkm[k-i-1]
             # recursive algorithm building up the answer for larger and
             # larger values of m until the desiredf value is achieved.
-
+        if k == m-1:
+            return xms, d
+        for i in range(0, k+1):
+            wkm[i] = d[i]
+        for j in range(0, n-k-1):
+            
