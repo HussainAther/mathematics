@@ -18,3 +18,8 @@ def fastper(x, y, ofac=4, hifac):
     than this. Otherwise the first nout components are filled.
     """
     MACC = 4
+    n = len(x)
+    np = n
+    px = [0]*n
+    nout = int(.5*ofac*hifac*n)
+    
