@@ -117,5 +117,9 @@ def period(x, y, ofac=4, hifac):
         py.np.ndarray.resize(nout)
     ave = np.avearge(y)
     var = np.var(y)
+    if var == 0:
+        print("Zero variacne in period")
+        return
+
 
 
