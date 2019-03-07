@@ -3,6 +3,9 @@ import numpy as np
 """
 Linear prediction uses data points equally spaced along a line such that we use
 values to autocorrelate and predict based on them.
+
+This is the maximum entropy method (MEM) with all poles. We can adjust various values of m in our
+linear prediction.
 """
 
 def memcof(a, m=5):
@@ -47,6 +50,8 @@ def memcof(a, m=5):
 
 """
 We can extrapolate the autocorrelation function to lags larger than M (the order or number of poles of the approximation).
+
+The
 
 From memcof, we can create a power spectrum estimate as a function fdt = f*delta
 """
