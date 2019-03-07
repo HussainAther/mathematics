@@ -43,4 +43,13 @@ def fastper(x, y, ofac=4, hifac):
             xmin = x[j]
         if x[j] > xmax:
             xmax = x[j]
-    
+    xdif = xmax - xmin
+    wk1 = [0]*nwk
+    wk2 = [0]*nwk
+    fac = nwk/(xdif*ofac)
+    fndim = nwk
+    for j in range(0, n):
+        ck = np.remainder((x[j]-xmin)*fac, fndim)
+        ckk= 2*(ck+1)
+        ckk = np.remainder(ckk, fndim)
+        
