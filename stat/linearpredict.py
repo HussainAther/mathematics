@@ -46,6 +46,8 @@ def memcof(a, m=5):
     return xms, d
 
 """
-From memcof, we can create a power spectrum estimate
+We can extrapolate the autocorrelation function to lags larger than M (the order or number of poles of the approximation).
+
+From memcof, we can create a power spectrum estimate as a function fdt = f*delta
 """
 
