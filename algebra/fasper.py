@@ -12,7 +12,9 @@ of equations of Lomb normalized periodogram.
 
 def spread(y, yy, x, m):
     """
-    Spread function used in extirpolation.
+    Spread function used in extirpolation. Given an array yy, extirpolate (spread) a value y into m
+    actualy array elements that best approximate the "fictional" array element number x.
+    The weights used are coefficients of the Lagrange interpolating polynomial.
     """
     nfac = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]
     nlen = len(yy)
