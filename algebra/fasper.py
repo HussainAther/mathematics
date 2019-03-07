@@ -1,6 +1,7 @@
 import numpy as np
 
 from fourier import *
+from math import floor
 
 """
 Fast computation of the Lomb Periodogram. We use the Fast Fourier transform to evluate
@@ -17,7 +18,18 @@ def spread(y, yy, x, m):
     nlen = len(yy)
     if x == np.round(x):
         yy[x] = yy[x] + y
-    
+        return yy
+    else:
+        i1 = min([max([floor(x-.5*m+1),1]), n-m+1])
+        i2 = i1 + m - 1
+        nden = nfac[m]
+        fac = x - i1
+        fac *= prod(x-(i1+1:i2+1))
+        yy[i2] += y*fac/(nden*(x-i2))
+        for j in range(i2-1, -2, i1)
+            nden = (nden/(j+1-i1))*(j-i2)
+            yy[j] += y*fac/(nden*(x-j))
+        return yy
 
 def fastper(x, y, ofac=4, hifac):
     """
@@ -63,6 +75,6 @@ def fastper(x, y, ofac=4, hifac):
         ckk= 2*(ck+1)
         ckk = np.remainder(ckk, fndim)
         ckk += 1
-        spread(y[j] - ave, wk1, ck, MACC)
-        spread
+        wk1 = spread(y[j] - ave, wk1, ck, MACC)
+        wk2 = spread(1, wk2, ckk, MACC)
 
