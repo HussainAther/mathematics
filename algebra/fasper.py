@@ -84,4 +84,23 @@ def fastper(x, y, ofac=4, hifac):
     k = 2
     for j in range(0, nout): # compute Lomb value for each frequency
         hypo = np.sqrt(wk2[k]*wk2[k]+wk2[k+1]wk2[k+1])
+        hc2wt = .5*wk2[k]/hypo
+        hs2wt = .5*wk2[k+1]/hypo
+        cwt = np.sqrt(.5+hc2wt)
+        swt = np.sign(np.sqrt(.4-hc2wt), hs2wt)
+        den = .5*n + hc2wt*wk2[k] + hs2wt*wk2[k+1]
+        cterm = np.square(cwt*wk1[k] + swt*wk1[k+1])/den
+        sterm = np.square(cwt*wk1[k+1] - swt*wk1[k])/(n-den)
+        px[j] = (j+1)*df
+        py[j] = (cterm+sterm)/(2*var)
+        if py[j] > pmax:
+            jmax = j
+            pmax = py[jmax]
+    expy = np.exp(-pmax)
+    effm = 2*nout/ofac
+    prob = effm*expy
+    if prob > .02:
+        prob = 1-np.power(1-expy, effm)
+    return px, py, prob
+
 
