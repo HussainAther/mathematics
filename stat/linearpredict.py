@@ -101,5 +101,12 @@ with the right side term-by-term from z^-M to z^M. Outside of this, the right si
 whiel the left size will have nonzero terms.
 """
 
-def period():
+def period(x, y, ofac=4):
+    """
+    Given list of data points x[0...n-1] and ordinates y[0...n-1] and oversampling factor ofac, this
+    fills array px[0...nout-1] with increasing sequence of frequencies up to hifac times the "average"
+    Nyquist freuqnecy. It fills array py[0...nout-1] with the Lomb normalized periodogram values at those
+    frequencies. x and y are not altered. The vectors px and py resize to nout if their initial size is less
+    than this. Otehrwise the first nout components are filled.
+    """
 
