@@ -51,6 +51,9 @@ def slepian(m, jres, kt=5):
     Calculate Slepian functions for some symmetrical matrix of length m with some resolution jres up
     to kt number of window functions.
     """
+    u = [[0]*kt]*kt
+    # output table for the dpss (digital prolate spheroidal sequence)
+    # these sequences give hte main lobe of the maximal energy concentration of the Slepian function
     eps = 1e-10
     m2 = 2*m
     (dg, dgg, gam) = ([0]*m2,[0]*m2),[0]*m2))
@@ -63,8 +66,6 @@ def slepian(m, jres, kt=5):
     xx = 0.10859 - .068762/jres + 1.5692*jres # guess eigenvalue
     xold = xx + .47276 + .20273/jres - 2.1387*jres
     for k in range(0, kt+1):
-        u = [0]*k # output table for the dpss (digital prolate spheroidal sequence)
-            # these sequences give hte main lobe of the maximal energy concentration of the Slepian function
         for i in range(0, 21): # loop over iterations of Newton's method
             pp = 1
             p = dg[0] - xx
