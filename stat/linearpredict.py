@@ -44,3 +44,8 @@ def memcof(a, m=5):
             wk1[j] -= wkm[j]*wk2[j]
             wk1[j] = wk2[j+1] - wkm[k]*wk1[j+1]
     return xms, d
+
+"""
+From memcof, we can create a power spectrum estimate
+"""
+
