@@ -81,5 +81,7 @@ def fastper(x, y, ofac=4, hifac):
     DFT(wk2)
     df = 1/(xdif*ofac)
     pmax = -1
-    for k in range(2,)
+    k = 2
+    for j in range(0, nout): # compute Lomb value for each frequency
+        hypo = np.sqrt(wk2[k]*wk2[k]+wk2[k+1]wk2[k+1])
 
