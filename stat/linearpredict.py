@@ -8,7 +8,7 @@ This is the maximum entropy method (MEM) with all poles. We can adjust various v
 linear prediction.
 """
 
-def memcof(a, m=5):
+def MEM(a, m=5):
     """
     Takes a vector of list a. Return the mean square discrepancy as xms and m linear prediction coefficients
     as a list d.
@@ -51,8 +51,12 @@ def memcof(a, m=5):
 """
 We can extrapolate the autocorrelation function to lags larger than M (the order or number of poles of the approximation).
 
-The
+The MEM estimation is a function of continously varying frequency f. Given the coefficients it computes,
+we will create a function that evaluates and returns the estimated power spectrum as a functon
+of f*delta (with delta being the sampling interval). The sampling interval describes the space between
+the spectral features of the frequency.
 
-From memcof, we can create a power spectrum estimate as a function fdt = f*delta
+From MEM, we can create a power spectrum estimate as a function fdt = f*delta
 """
+
 
