@@ -101,7 +101,7 @@ with the right side term-by-term from z^-M to z^M. Outside of this, the right si
 whiel the left size will have nonzero terms.
 """
 
-def period(x, y, ofac=4):
+def period(x, y, ofac=4, hifac):
     """
     Given list of data points x[0...n-1] and ordinates y[0...n-1] and oversampling factor ofac, this
     fills array px[0...nout-1] with increasing sequence of frequencies up to hifac times the "average"
@@ -111,6 +111,8 @@ def period(x, y, ofac=4):
     """
     n = len(x)
     (wi, wpi, wpr, wr, px, py) = ([0]*n, [0]*n, [0]*n, [0]*n, [0]*n)
-
+    nout = int(.5*ofac*hifac*n)
+    if np < nout:
+        
 
 
