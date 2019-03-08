@@ -24,6 +24,13 @@ We introduce a kernel function psi(s) of an interior point: it's zero for s suff
 and becomes nonezro only when s is in the range where h_j multiplying it is actually used in the interpolation.
 
 There are two methods of interpolation: cubic and trapzeoidal. We can write a function with the terms for each of them.
+
+The program dftcor, below, implements the endpoint corrections for the cubic case. Given input values of omega, delta, a, b, and an array of endpoint corrections
+in equation
+
+I(omega_n) = delta np.exp(i*omega_n*alpha) 
+
+it returns the real and imaginary parts of the endpoint corrections in equation (13.9.13), and the factor W.􏰌/. The code is turgid, but only because the formulas above are complicated. The formulas have cancellations to high powers of 􏰌. It is therefore necessary to compute the right-hand sides in double precision, even when the corrections are desired only to single precision. It is also necessary to use the series expansion for small values of 􏰌. The opti- mal cross-over value of 􏰌 depends on your machine’s wordlength, but you can always find it experimentally as the largest value where the two methods give identical results to machine precision.
 """
 
 def DFTcor(w, delta, a, b):
