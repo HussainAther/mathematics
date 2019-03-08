@@ -102,6 +102,14 @@ def DFTint(func, a, b):
     NDFT = 1024 # length of the Fast Fourier transform (power of 2)
     MPOL = 6 # degree of polynomial interpolation used to obtain the desired frequency from the Fast Fourier transform
 
+    data = [""]*NDFT
+    endpoints = [""]*8
     funcold = ""
     if init != 1 or a != aold or b != bold or func != funcold:
          init = 1
+         aold = a
+         bold = b
+         funcold = func
+         delta = (b-a)/M
+         for j in range(0, M):
+            data[j] = func(a+j*delta)
