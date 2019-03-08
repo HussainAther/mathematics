@@ -34,7 +34,7 @@ def haarMatrix(n, normalized=False):
     return h
 
 def wletFilter(a, nn):
-    
+    return
 
 def WT1(a, isign):
     """
@@ -47,11 +47,10 @@ def WT1(a, isign):
     if isign > 0: # wavelet transform
         wlet.condition(a,n,1)
         for nn in range(n, 5):
-            wlet.filt(a, nn, isign) # start from largest hierarchy and work toward smallest
+            wletFilter(a, nn, isign) # start from largest hierarchy and work toward smallest
     else:
         for nn in range(n, 4):
-            wlet.filt(a, nn, isign) # from smallest and work upward
-        wlet.condition(a,n, -1)
+            wletFilter(a, nn, isign) # from smallest and work upward
     return wlet
 
 
