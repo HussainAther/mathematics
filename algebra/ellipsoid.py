@@ -52,17 +52,29 @@ def sepOracle(p):
     Return ans as True or False.
     Return a violating constraint as H if it exists.
     """
-    
-        ans = True
+    H = (0, 0, 0)
+    ans = True
     return ans, H
+
+def hyperplane(E, H):
+    """
+    Return the minimum volume ellipsoid containing the intersection of
+    E and H. Do this by taking the separating hyperplane and calculating volume.
+    """
+    return E*H
 
 def ellipsoid(Eo, Vl):
     """
     With input bounding ellipsoid Eo (in x, y, and z coordinates for
     height, length, and width centered at the origin) for S and a
-    lower bound Vl on Vol(S), output "yes" if the linear program is feasible and "no" otherwise.
+    lower bound Vl on Vol(S), output True if the linear program is feasible and False otherwise.
     """
     i = 0
     while (volEllipsoid(Eo)> Vol):
         p = (0, 0, 0)
         (ans, H) = sepOracle(p)
+        if ans == True:
+            return True
+        else:
+            Eo = hyperplane(E, H)
+    return False
