@@ -96,7 +96,7 @@ def DFTint(func, a, b):
     init = 0
     aold = -1e30
     bold = -1e30
-    
+
     # illustrative values that should be optimized for a particular application. #
     M = 64 # number of subintervals
     NDFT = 1024 # length of the Fast Fourier transform (power of 2)
@@ -106,10 +106,19 @@ def DFTint(func, a, b):
     endpoints = [""]*8
     funcold = ""
     if init != 1 or a != aold or b != bold or func != funcold:
-         init = 1
-         aold = a
-         bold = b
-         funcold = func
-         delta = (b-a)/M
-         for j in range(0, M):
+        init = 1
+        aold = a
+        bold = b
+        funcold = func
+        delta = (b-a)/M
+        for j in range(0, M):
             data[j] = func(a+j*delta)
+        for j in range(M+1, NDFT):
+            data[j] = 0
+        for j in range(0, 4):
+            endpoints[j] = data[j]
+            endpoints[j+4] = data[M-3+j]
+        FFT(data)
+        data[1] = 0
+        en = w*delta*NDFT/(2*np.pi + 1)
+        nn = min(max(int(en - .5*MPOL + 1),1), NDFT/2-MPOL+1) # leftmost point for interpolation
