@@ -87,7 +87,7 @@ def DFTcor(w, delta, a, b, endpoints):
     corim = sl + s * cr + c * sr
     return corfac, corre, corim
 
-def DFTint():
+def DFTint(func, a, b):
     """
     User supplies an external function func that returns the quantity h(t).
     Return integral of a to be of cos(omega*t)*h(t)*dt as cosint and
@@ -102,4 +102,6 @@ def DFTint():
     NDFT = 1024 # length of the Fast Fourier transform (power of 2)
     MPOL = 6 # degree of polynomial interpolation used to obtain the desired frequency from the Fast Fourier transform
 
-    
+    funcold = ""
+    if init != 1 or a != aold or b != bold or func != funcold:
+         init = 1
