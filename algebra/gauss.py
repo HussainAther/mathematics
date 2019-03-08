@@ -4,7 +4,8 @@ def gj(a, n)
     """
     Gaussian-Jordan elimination on two input matrices represented by a and b.
     """
-    n = np.size(a,0)
+    n = np.size(a, 0)
+    m = np.size(b, 0)
     indxc = [0]*n # bookkeeping during pvots
     ipiv = [0]*n
     indxr = [0]*n
@@ -29,5 +30,10 @@ def gj(a, n)
         an implied column interchange. With this form of bookkeeping, the solution b’s will end up in the
         correct order, and the inverse matrix will be scrambled by columns
         """
+        if irow != col:
+            for l in range(0, n):
+                a[irow][l], a[icol][l] = a[icol][l], a[irow][l]
+            for l in range(0, m):
+                b[irow][l], b[icol][l] = b[icol][l], b[irow][l]
 
 
