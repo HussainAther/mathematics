@@ -13,5 +13,16 @@ def ludecomp(a):
     d is output as +/- 1 depending on whether the number of row interchanges was even or add.
     """
     n = len(np.size(a,0))
+    lu = a
+    big = 0
+    temp = 0
     TINY = 1e-40
     d = 1
+    for i in range(0, n):
+        big = 0
+        for j in range(0, n):
+            if ((temp=abs(lu[i][j])) > big):
+                big = temp
+        if big == 0:
+            print("Singular matrix in LU decomposition")
+            return
