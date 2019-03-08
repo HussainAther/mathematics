@@ -36,15 +36,24 @@ def haarMatrix(n, normalized=False):
     h = np.vstack((h_n, h_i))
     return h
 
-def wletFilter(a, nn, isign):
-    if isign == 1:
-        n = len(a)
-        a0 = a[1:3:n-1] + np.sqrt(3)*a[1:2:n)
-        d0 = a[1:3:n] - np.sqrt(3)/4*a0 - (np.sqrt(3)-2)/4*[a0[n/2], a0[1:n/2-1]]
-        a1 = s1 - [d0[2:n/2]; d0[0]]]
-        l = (np.sqrt(3)-1)/np.sqrt(2) * a1
-        r = -(np.sqrt(3)+1)/np.sqrt(2) * d0
-    return l + r
+def wletFilter(a, nn, isign, m):
+    n = len(a)
+    if m == "db4": # Daubechie4 or DAUB4
+        if isign == 1: # forward direction. from greater size to smaller.
+            a0 = a[2:n:1] + np.sqrt(3)*a[2:n+1:2]
+            d0 = a[2:n+1:2] - np.sqrt(3)/4*a0 - (np.sqrt(3)-2)/4*[a0[n/2+1], a0[1:n/2]]
+            a1 = s1 - [d0[2:n/2+1]; d0[0]]]
+            l = (np.sqrt(3)-1)/np.sqrt(2) * a1
+            r = -(np.sqrt(3)+1)/np.sqrt(2) * d0
+            return l + r
+        else: # reverse direction. from smaller size to greater.
+            d1 = d * ((np.sqrt(3)-1)/np.sqrt(2))
+            s2 = s * ((np.sqrt(3)+1)/np.sqrt(2))
+            s1 = s2 + circshift(d1,-1)
+            S[2:N+2:2] = d1 + np.sqrt(3)/4*s1 + (np.sqrt(3)-2)/4*np.roll(s1,1)
+            S[2:N] = s1 - np.sqrt(3)*S[2:N:2]
+            return S
+
 
 def WT1(a, isign):
     """
@@ -57,10 +66,10 @@ def WT1(a, isign):
     if isign > 0: # wavelet transform
         wlet.condition(a,n,1)
         for nn in range(n, 5):
-            a = wletFilter(a, nn, isign) # start from largest hierarchy and work toward smallest
+            a = wletFilter(a, nn, isign, db4) # start from largest hierarchy and work toward smallest
     else:
         for nn in range(n, 4):
-            a = wletFilter(a, nn, isign) # from smallest and work upward
+            a = wletFilter(a, nn, isign, db4) # from smallest and work upward
     return wlet
 
 
