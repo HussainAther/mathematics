@@ -40,8 +40,18 @@ of the linear program. All that is required is a polynomial time Separating Orac
 in S or not, and returns a separating hyperplane in the latter case. The following high level pseudocode describes the algorithm
 """
 
+def volEllipsoid(x, y, z):
+    """
+    With x, y, and z being the height, length, and width of the ellipsoid, return the volume.
+    """
+    return (4/3)*x*y*z
+
 def ellipsoid(Eo, Vl):
     """
-    With input bounding ellipsoid Eo for S and a lower bound Vl on Vol(S),
+    With input bounding ellipsoid Eo (in x, y, and z coordinates for
+    height, length, and width) for S and a lower bound Vl on Vol(S),
     output "yes" if the linear program is feasible and "no" otherwise.
     """
+    i = 0
+    while (volEllipsoid(Eo)> Vol):
+        
