@@ -39,4 +39,9 @@ def DFTcor(w, delta, a, b):
         print("bad arguments")
         return
     if abs(th) < 5e-2: # Use series method
+        t = th # for convenience
+        t2 = t*t
+        t4 = t2*t2
+        t6 = t4*t2
+        corfact = 1-(11/720)*t4(23/15120)*t6
         
