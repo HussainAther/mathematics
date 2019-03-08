@@ -49,9 +49,10 @@ def volEllipsoid(x, y, z):
 def ellipsoid(Eo, Vl):
     """
     With input bounding ellipsoid Eo (in x, y, and z coordinates for
-    height, length, and width) for S and a lower bound Vl on Vol(S),
-    output "yes" if the linear program is feasible and "no" otherwise.
+    height, length, and width centered at the origin) for S and a
+    lower bound Vl on Vol(S), output "yes" if the linear program is feasible and "no" otherwise.
     """
     i = 0
     while (volEllipsoid(Eo)> Vol):
+        p = (0, 0, 0)
         
