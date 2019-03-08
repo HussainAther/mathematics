@@ -22,6 +22,25 @@ We start with an estimate of the maximum value, co, and check for feasibility of
 (transpose of c) * x >= co
 A * x <= b
 x >= 0
+
+The Ellipsoid Algorithm solves the feasibility problem in an ingenious way. Let us denote the convex set
+defined by the feasible solution space by S. Further, we assume that the constraints are non-degenerate,
+so that S is either empty or has a non-zero volumed denoted by V ol(S). In other words we can find a lower
+bound Vl on V ol(S). We start off with an ellipsoid of volume Vu guaranteed to bound S if it is finite.
+
+If V ol(S) is infinite, we start with a suitable Vu and we will eventually get to a feasible point anyway.
+In our case, the initial bounding ellipsoid is a sphere in Rn. A single step of the algorithm either
+finds a point in S, in which case we have proved feasibility, or finds another
+ellipsoid bounding S that has a volume that is substantially smaller than the
+volume of the previous ellipsoid. We iterate on this new ellipsoid. In the
+worst case we need to iterate until the volume of the bounding ellipsoid gets
+below Vl
+, in which case we can conclude that the system is infeasible. It turns
+out that only a polynomial number of iterations are required in the case of
+linear programming. The algorithm does not require an explicit description
+of the linear program. All that is required is a polynomial time Separating
+Oracle, which checks whether a point lies in S or not, and returns a separating hyperplane in the latter case. The following high level pseudocode
+describes the algorithm
 """
 
 def ellipsoid(Eo, Vl):
