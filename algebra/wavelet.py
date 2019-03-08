@@ -41,14 +41,14 @@ def wletFilter(a, nn, isign, m):
     if m == "db4": # Daubechie4 or DAUB4
         if isign == 1: # forward direction. from greater size to smaller.
             a0 = a[2:n:1] + np.sqrt(3)*a[2:n+1:2]
-            d0 = a[2:n+1:2] - np.sqrt(3)/4*a0 - (np.sqrt(3)-2)/4*[a0[n/2+1], a0[1:n/2]]
-            a1 = s1 - [d0[2:n/2+1]; d0[0]]]
+            d = a[2:n+1:2] - np.sqrt(3)/4*a0 - (np.sqrt(3)-2)/4*[a0[n/2+1], a0[1:n/2]]
+            a1 = s1 - [d[2:n/2+1]; d[0]]]
             l = (np.sqrt(3)-1)/np.sqrt(2) * a1
-            r = -(np.sqrt(3)+1)/np.sqrt(2) * d0
+            r = -(np.sqrt(3)+1)/np.sqrt(2) * d
             return l + r
         else: # reverse direction. from smaller size to greater.
-            d1 = d * ((np.sqrt(3)-1)/np.sqrt(2))
-            s2 = s * ((np.sqrt(3)+1)/np.sqrt(2))
+            d1 = a * ((np.sqrt(3)-1)/np.sqrt(2))
+            s2 = a * ((np.sqrt(3)+1)/np.sqrt(2))
             s1 = s2 + np.roll(d1,-1)
             S[2:N+2:2] = d1 + np.sqrt(3)/4*s1 + (np.sqrt(3)-2)/4*np.roll(s1,1)
             S[2:N] = s1 - np.sqrt(3)*S[2:N+1:2]
