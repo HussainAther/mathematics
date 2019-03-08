@@ -49,11 +49,10 @@ def wletFilter(a, nn, isign, m):
         else: # reverse direction. from smaller size to greater.
             d1 = d * ((np.sqrt(3)-1)/np.sqrt(2))
             s2 = s * ((np.sqrt(3)+1)/np.sqrt(2))
-            s1 = s2 + circshift(d1,-1)
+            s1 = s2 + np.roll(d1,-1)
             S[2:N+2:2] = d1 + np.sqrt(3)/4*s1 + (np.sqrt(3)-2)/4*np.roll(s1,1)
-            S[2:N] = s1 - np.sqrt(3)*S[2:N:2]
+            S[2:N] = s1 - np.sqrt(3)*S[2:N+1:2]
             return S
-
 
 def WT1(a, isign):
     """
