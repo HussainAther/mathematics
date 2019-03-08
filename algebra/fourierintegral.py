@@ -47,4 +47,28 @@ def DFTcor(w, delta, a, b):
         a0r = (-2/3) + t2/45 + (103/15120) * t4 - (169/226800) * t6
         a1r = (7/24) - (7/180) * t2 + (t/3456) * t4 - (7/259200) * t6
         a2r = (-1/6) + t2/45 - (5/6048) * t4 + t6/64800
-        
+        a3r = (1/24) - t2/180 + (5/24192) * t4 - t6/259200
+        a0i = t*(2/45 + (2/105) * t2 - (8/2835) * t4 + (86/467775) * t6)
+        a1i = t*(7/72 - t2/168 + (11/72576) * t4 - (13/5987520) *t6)
+        a2i = t*(-7.0/90.0+t2/210.0-(11.0/90720.0)*t4+(13.0/7484400.0)*t6)
+        a3i=t*(7.0/360.0-t2/840.0+(11.0/362880.0)*t4-(13.0/29937600.0)*t6);
+    else: # use trigonometric formulas
+        cth=cos(th)
+        sth=sin(th)
+        ctth=cth*cth-sth*sth
+        stth=2.0e0*sth*cth
+        th2=th*th
+        th4=th2*th2
+        tmth2=3.0e0-th;
+        spth2=6.0e0+th2
+        sth4i=1.0/(6.0e0*th4)
+        tth4i=2.0e0*sth4i
+        corfac=tth4i*spth2*(3.0e0-4.0e0*cth+ctth)
+        a0r=sth4i*(-42.0e0+5.0e0*th2+spth2*(8.0e0*cth-ctth))
+        a0i=sth4i*(th*(-12.0e0+6.0e0*th2)+spth2*stth)
+        a1r=sth4i*(14.0e0*tmth2-7.0e0*spth2*cth)
+        a1i=sth4i*(30.0e0*th-5.0e0*spth2*sth)
+        a2r=tth4i*(-4.0e0*tmth2+2.0e0*spth2*cth)
+        a2i=tth4i*(-12.0e0*th+2.0e0*spth2*sth)
+        a3r=sth4i*(2.0e0*tmth2-spth2*cth)
+        a3i=sth4i*(6.0e0*th-spth2*sth)
