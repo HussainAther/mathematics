@@ -12,3 +12,6 @@ def ludecomp(a):
     indx is an output vector that records the row permutation effected by the partial pivoting.
     d is output as +/- 1 depending on whether the number of row interchanges was even or add.
     """
+    n = len(np.size(a,0))
+    TINY = 1e-40
+    d = 1
