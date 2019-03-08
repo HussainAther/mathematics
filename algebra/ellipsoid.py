@@ -19,7 +19,9 @@ separating x from K. The procedure should run in polynomial time. Note that from
 We optimize by reducing an objective function to a series of feasibility problems by doing the following.
 We start with an estimate of the maximum value, co, and check for feasibility of the folloiwng system:
 
-
+(transpose of c) * x >= co
+A * x <= b
+x >= 0
 """
 
 def ellipsoid(Eo, Vl):
