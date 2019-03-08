@@ -87,6 +87,12 @@ def DFTcor(w, delta, a, b, endpts):
     corim = sl + s * cr + c * sr
     return corfac, corre, corim
 
+def Poly_interp(xx, yy, x):
+    """
+    Given a value x and data xx and yy, return an interpolated value y and store
+    and error estimate dy.
+    """
+
 def DFTint(func, a, b):
     """
     User supplies an external function func that returns the quantity h(t).
