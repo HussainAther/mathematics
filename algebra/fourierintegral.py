@@ -87,11 +87,19 @@ def DFTcor(w, delta, a, b, endpts):
     corim = sl + s * cr + c * sr
     return corfac, corre, corim
 
-def Poly_interp(xx, yy, x):
+def Poly_interp(xx, yy, x, *mm):
     """
     Given a value x and data xx and yy, return an interpolated value y and store
-    and error estimate dy.
+    and error estimate dy. It uses mm-point polynomial interpolation.
     """
+    i = 0
+    m = 0
+    ns = 0
+    if not mm:
+        mm = 5
+    j1 = len(xx) - (mm + 1)
+    diff = abs(x - xa[0])
+
 
 def DFTint(func, a, b):
     """
