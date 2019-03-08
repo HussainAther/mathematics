@@ -17,6 +17,9 @@ def gj(a, n)
                 for k in range(0, n):
                     if ipiv[k] == 0:
                         if abs(a[j][k] >= big):
-                            big = 
+                            big = abs(a[j][k])
+                            irow = j
+                            icol = k
+        ipiv[icol] += 1
 
 
