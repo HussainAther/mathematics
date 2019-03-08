@@ -35,5 +35,7 @@ def gj(a, n)
                 a[irow][l], a[icol][l] = a[icol][l], a[irow][l]
             for l in range(0, m):
                 b[irow][l], b[icol][l] = b[icol][l], b[irow][l]
+        indxr[i] = irow
+        # Divide the pivot row by the pivot element which is at irow and icol
 
 
