@@ -35,7 +35,30 @@ def gj(a, n)
                 a[irow][l], a[icol][l] = a[icol][l], a[irow][l]
             for l in range(0, m):
                 b[irow][l], b[icol][l] = b[icol][l], b[irow][l]
-        indxr[i] = irow
         # Divide the pivot row by the pivot element which is at irow and icol
+        indxr[i] = irow
+        indxc[i] = icol
+        if a[icol][icol] == 0:
+            print("Singular matrix")
+        pivinv = 1/a[icol][icol] # pivot inverse
+        a[icol][icol] = 1
+        for l in range(0, n):
+            a[icol][l] *= pivinv
+        for l in range(0, m):
+            b[icol][l] *= pivinv
+        for ll in range(0, n):
+            if ll != icol:
+                dum=a[ll][icol]
+                a[ll][icol]=0
+                for l in range(0, n):
+                    a[ll][l] -= a[icol][l]*dum
+                for l in range(0, m):
+                    b[ll][l] -= b[icol][l]*dum
+    """
+    This is the end of the main loop over columns of the reduction. It only remains to
+    unscramble the solution in view of the column interchanges. We do this by interchanging
+    pairs of columns in the reverse order that the permutation was built up.
+    """
+    for l in range(n-1,-1,-1):
 
 
