@@ -10,5 +10,13 @@ def gj(a, n)
     indxr = [0]*n
     for j in range(0, n): # main loop over columns that we reduce
         ipiv[j] = 0
+    for i in range(0, n):
+        big = 0,0
+        for j in range(0, n):
+            if ipiv[j] != 1:
+                for k in range(0, n):
+                    if ipiv[k] == 0:
+                        if abs(a[j][k] >= big):
+                            big = 
 
 
