@@ -22,6 +22,8 @@ h(t) ~ summation of h_j from j=0 to M * psi(t-t_j)/delta + summation of j = endp
 Given sampled points h_j, we approximate h(t) everywhere in the interval [a, b] by interpolation on nearby h_j's.
 We introduce a kernel function psi(s) of an interior point: it's zero for s sufficiently negative or sufficiently positive
 and becomes nonezro only when s is in the range where h_j multiplying it is actually used in the interpolation.
+
+There are two methods of interpolation: cubic and trapzeoidal. We can write a function with the terms for each of them.
 """
 
 def DFTcor(w, delta, a, b):
@@ -37,4 +39,4 @@ def DFTcor(w, delta, a, b):
         print("bad arguments")
         return
     if abs(th) < 5e-2: # Use series method
-
+        
