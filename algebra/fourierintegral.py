@@ -77,7 +77,15 @@ def DFTcor(w, delta, a, b):
         a2i = tth4i*(-12.0e0*th+2.0e0*spth2*sth)
         a3r = sth4i*(2.0e0*tmth2-spth2*cth)
         a3i = sth4i*(6.0e0*th-spth2*sth)
-    cl = a0r*endpts[0]+a1r*endpts[1]+a2r*endpts[2]+a3r*endpts[3]
-    sl = a0i*endpts[0]+a1i*endpts[1]+a2i*endpts[2]+a3i*endpts[3]
-    cr = a0r*endpts[7]+a1r*endpts[6]+a2r*endpts[5]+a3r*endpts[4]
-    sr = -a0i*endpts[7]-a1i*endpts[6]-a2i*endpts[5]-a3i*endpts[4]
+    cl = a0r * endpts[0] + a1r*endpts[1]+a2r*endpts[2]+a3r*endpts[3]
+    sl = a0i * endpts[0] +a 1i*endpts[1]+a2i*endpts[2]+a3i*endpts[3]
+    cr = a0r * endpts[7] + a1r*endpts[6]+a2r*endpts[5]+a3r*endpts[4]
+    sr = -a0i * endpts[7] - a1i*endpts[6]-a2i*endpts[5]-a3i*endpts[4]
+    arg=w * (b - a)
+    c = cos(arg)
+    s = sin(arg)
+    corre = cl + c * cr - s * sr
+    corim = sl + s * cr + c * sr
+    return corfac, corre, corim
+
+
