@@ -9,3 +9,10 @@ Wavelet filter coefficients are a particular set of numbers to describe wavelets
 DAUB4 is the simplest and most localized member. It has only four coefficients.
 """
 
+def WT1(a):
+    """
+    One-dimensional wavelet transform. Implement the pyramid algorithm on a set of data a.
+    """
+    n = len(a)
+
+
