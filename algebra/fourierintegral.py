@@ -34,6 +34,11 @@ def DFTcor(w, delta, a, b):
     The correction factor is returned as crofac while the real and imaginary parts of the endpoint
     correction are returned as corre and corim.
     """
+    endpoints = []
+    for i in range(a, a+4):
+        endpoints.append(np.exp(np.imag(j)*w * i))
+    for i in range(b, b-4, -1):
+        endpoints.append(np.exp(np.imag(j)*w * i))
     th = w*delta
     if a >= b or th < 0 or th > np.pi:
         print("bad arguments")
@@ -53,22 +58,26 @@ def DFTcor(w, delta, a, b):
         a2i = t*(-7.0/90.0+t2/210.0-(11.0/90720.0)*t4+(13.0/7484400.0)*t6)
         a3i=t*(7.0/360.0-t2/840.0+(11.0/362880.0)*t4-(13.0/29937600.0)*t6);
     else: # use trigonometric formulas
-        cth=cos(th)
-        sth=sin(th)
-        ctth=cth*cth-sth*sth
-        stth=2.0e0*sth*cth
-        th2=th*th
-        th4=th2*th2
-        tmth2=3.0e0-th;
-        spth2=6.0e0+th2
-        sth4i=1.0/(6.0e0*th4)
-        tth4i=2.0e0*sth4i
-        corfac=tth4i*spth2*(3.0e0-4.0e0*cth+ctth)
-        a0r=sth4i*(-42.0e0+5.0e0*th2+spth2*(8.0e0*cth-ctth))
-        a0i=sth4i*(th*(-12.0e0+6.0e0*th2)+spth2*stth)
-        a1r=sth4i*(14.0e0*tmth2-7.0e0*spth2*cth)
-        a1i=sth4i*(30.0e0*th-5.0e0*spth2*sth)
-        a2r=tth4i*(-4.0e0*tmth2+2.0e0*spth2*cth)
-        a2i=tth4i*(-12.0e0*th+2.0e0*spth2*sth)
-        a3r=sth4i*(2.0e0*tmth2-spth2*cth)
-        a3i=sth4i*(6.0e0*th-spth2*sth)
+        cth = cos(th)
+        sth = sin(th)
+        ctth = cth*cth-sth*sth
+        stth = 2.0e0*sth*cth
+        th2 = th*th
+        th4 = th2*th2
+        tmth2 = 3.0e0-th;
+        spth2 = 6.0e0+th2
+        sth4i = 1.0/(6.0e0*th4)
+        tth4i = 2.0e0*sth4i
+        corfac = tth4i*spth2*(3.0e0-4.0e0*cth+ctth)
+        a0r = sth4i*(-42.0e0+5.0e0*th2+spth2*(8.0e0*cth-ctth))
+        a0i = sth4i*(th*(-12.0e0+6.0e0*th2)+spth2*stth)
+        a1r = sth4i*(14.0e0*tmth2-7.0e0*spth2*cth)
+        a1i = sth4i*(30.0e0*th-5.0e0*spth2*sth)
+        a2r = tth4i*(-4.0e0*tmth2+2.0e0*spth2*cth)
+        a2i = tth4i*(-12.0e0*th+2.0e0*spth2*sth)
+        a3r = sth4i*(2.0e0*tmth2-spth2*cth)
+        a3i = sth4i*(6.0e0*th-spth2*sth)
+    cl = a0r*endpts[0]+a1r*endpts[1]+a2r*endpts[2]+a3r*endpts[3]
+    sl = a0i*endpts[0]+a1i*endpts[1]+a2i*endpts[2]+a3i*endpts[3]
+    cr = a0r*endpts[7]+a1r*endpts[6]+a2r*endpts[5]+a3r*endpts[4]
+    sr = -a0i*endpts[7]-a1i*endpts[6]-a2i*endpts[5]-a3i*endpts[4]
