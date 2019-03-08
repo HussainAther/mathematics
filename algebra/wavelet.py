@@ -14,5 +14,9 @@ def WT1(a):
     One-dimensional wavelet transform. Implement the pyramid algorithm on a set of data a.
     """
     n = len(a)
+    if n <4:
+        print("a must be larger than three members")
+        return
+    
 
 
