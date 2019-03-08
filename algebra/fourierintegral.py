@@ -30,7 +30,7 @@ The program dftcor, below, implements the endpoint corrections for the cubic cas
 it returns the real and imaginary parts of the endpoint corrections in equation (13.9.13), and the factor W.􏰌/. The code is turgid, but only because the formulas above are complicated. The formulas have cancellations to high powers of 􏰌. It is therefore necessary to compute the right-hand sides in double precision, even when the corrections are desired only to single precision. It is also necessary to use the series expansion for small values of 􏰌. The opti- mal cross-over value of 􏰌 depends on your machine’s wordlength, but you can always find it experimentally as the largest value where the two methods give identical results to machine precision.
 """
 
-def DFTcor(w, delta, a, b, endpoints):
+def DFTcor(w, delta, a, b, endpts):
     """
     For an integral approximated by a discrete Fourier transform, compute the correction factor
     that multiplies the DFT and the endpoint correction to be added. Input is angular frequency w, stepsize delta,
@@ -122,3 +122,20 @@ def DFTint(func, a, b):
         data[1] = 0
         en = w*delta*NDFT/(2*np.pi + 1)
         nn = min(max(int(en - .5*MPOL + 1),1), NDFT/2-MPOL+1) # leftmost point for interpolation
+        for j in range(0, MPOL):
+            cpol[j] = data[2*nn-2]
+            spol[j] = data[2*nn-1]
+            xpol[j] = nn
+        cdft = Poly_interp(xpol, cpol, MPOL).interp(en)
+        sdft = Poly_interp(xpol, spol, MPOL).interp(en)
+        (corfac, corre, corim) = DFTcor(w, delta, a, b, endpoints)
+        cdft *= corfac
+        sdft *= corfac
+        cdft += corre
+        sdft += corim
+        c = delta * np.cos(w * a)
+        s = delta * np.sin(w * a)
+        cosint = c * cdft - s * sdft
+        sinint = s * cdft + c * sdft
+        return cosint, sinint
+
