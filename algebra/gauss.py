@@ -60,5 +60,9 @@ def gj(a, n)
     pairs of columns in the reverse order that the permutation was built up.
     """
     for l in range(n-1,-1,-1):
+        if indxr[l] != indxc[l]:
+            for k in range(0, n):
+                a[k][indxr[l]], a[k][indxc[l]] = a[k][indxc[l]], a[k][indxr[l]]
+    return a
 
 
