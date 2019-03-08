@@ -46,6 +46,16 @@ def volEllipsoid(x, y, z):
     """
     return (4/3)*x*y*z
 
+def sepOracle(p):
+    """
+    Check whether p satisfies the constraints of the linear program.
+    Return ans as True or False.
+    Return a violating constraint as H if it exists.
+    """
+    
+        ans = True
+    return ans, H
+
 def ellipsoid(Eo, Vl):
     """
     With input bounding ellipsoid Eo (in x, y, and z coordinates for
@@ -55,4 +65,4 @@ def ellipsoid(Eo, Vl):
     i = 0
     while (volEllipsoid(Eo)> Vol):
         p = (0, 0, 0)
-        
+        (ans, H) = sepOracle(p)
