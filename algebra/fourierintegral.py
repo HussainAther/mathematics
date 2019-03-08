@@ -25,15 +25,12 @@ and becomes nonezro only when s is in the range where h_j multiplying it is actu
 
 There are two methods of interpolation: cubic and trapzeoidal. We can write a function with the terms for each of them.
 
-The program dftcor, below, implements the endpoint corrections for the cubic case. Given input values of omega, delta, a, b, and an array of endpoint corrections
-in equation
-
-I(omega_n) = delta np.exp(i*omega_n*alpha) 
+The program dftcor, below, implements the endpoint corrections for the cubic case. Given input values of omega, delta, a, b, and an array of endpoint corrections in equation for I(omega_n).
 
 it returns the real and imaginary parts of the endpoint corrections in equation (13.9.13), and the factor W.􏰌/. The code is turgid, but only because the formulas above are complicated. The formulas have cancellations to high powers of 􏰌. It is therefore necessary to compute the right-hand sides in double precision, even when the corrections are desired only to single precision. It is also necessary to use the series expansion for small values of 􏰌. The opti- mal cross-over value of 􏰌 depends on your machine’s wordlength, but you can always find it experimentally as the largest value where the two methods give identical results to machine precision.
 """
 
-def DFTcor(w, delta, a, b):
+def DFTcor(w, delta, a, b, endpoints):
     """
     For an integral approximated by a discrete Fourier transform, compute the correction factor
     that multiplies the DFT and the endpoint correction to be added. Input is angular frequency w, stepsize delta,
@@ -41,11 +38,6 @@ def DFTcor(w, delta, a, b):
     The correction factor is returned as crofac while the real and imaginary parts of the endpoint
     correction are returned as corre and corim.
     """
-    endpoints = []
-    for i in range(a, a+4):
-        endpoints.append(np.exp(np.imag(j)*w * i))
-    for i in range(b, b-4, -1):
-        endpoints.append(np.exp(np.imag(j)*w * i))
     th = w*delta
     if a >= b or th < 0 or th > np.pi:
         print("bad arguments")
@@ -95,4 +87,10 @@ def DFTcor(w, delta, a, b):
     corim = sl + s * cr + c * sr
     return corfac, corre, corim
 
-
+def DFTint():
+    """
+    User supplies an external function func that returns the quantity h(t).
+    Return integral of a to be of cos(omega*t)*h(t)*dt as cosint and
+    integral of a to be of sin(omega*t)*h(t)*dt as sinint.
+    """
+    init = 0
