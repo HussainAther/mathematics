@@ -17,7 +17,7 @@ by the first-order error.
 We use interpolation to approximate a function by a sum of kernel functions (which depend only on the intrepolation
 scheme) times sample values (which depend only on the function). We write:
 
-
+h(t) ~ summation of h_j from j=0 to M * psi(t-t_j)/delta + summation of j = endpoints * h_j * phi_j (t-t_j)/delta
 
 Given sampled points h_j, we approximate h(t) everywhere in the interval [a, b] by interpolation on nearby h_j's.
 We introduce a kernel function psi(s) of an interior point: it's zero for s sufficiently negative or sufficiently positive
