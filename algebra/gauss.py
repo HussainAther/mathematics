@@ -21,5 +21,13 @@ def gj(a, n)
                             irow = j
                             icol = k
         ipiv[icol] += 1
+        """
+        We now have the pivot element, so we interchange rows, if needed, to put the pivot element
+        on the diagonal. The columns are not physically interchanged, only relabeled: indxc[i], the
+        column of the .i C 1/th pivot element, is the .i C 1/th column that is reduced, while indxr[i]
+        is the row in which that pivot element was originally located. If indxr[i] ¤ indxc[i], there is
+        an implied column interchange. With this form of bookkeeping, the solution b’s will end up in the
+        correct order, and the inverse matrix will be scrambled by columns
+        """
 
 
