@@ -44,4 +44,4 @@ def DFTcor(w, delta, a, b):
         t4 = t2*t2
         t6 = t4*t2
         corfact = 1-(11/720)*t4(23/15120)*t6
-        
+        a0r = (-2/3) 
