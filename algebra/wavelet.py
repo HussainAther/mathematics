@@ -36,8 +36,15 @@ def haarMatrix(n, normalized=False):
     h = np.vstack((h_n, h_i))
     return h
 
-def wletFilter(a, nn):
-    return
+def wletFilter(a, nn, isign):
+    if isign == 1:
+        n = len(a)
+        a0 = a[1:3:n-1] + np.sqrt(3)*a[1:2:n)
+        d0 = a[1:3:n] - np.sqrt(3)/4*a0 - (np.sqrt(3)-2)/4*[a0[n/2], a0[1:n/2-1]]
+        a1 = s1 - [d0[2:n/2]; d0[0]]]
+        l = (np.sqrt(3)-1)/np.sqrt(2) * a1
+        r = -(np.sqrt(3)+1)/np.sqrt(2) * d0
+    return l + r
 
 def WT1(a, isign):
     """
@@ -50,10 +57,10 @@ def WT1(a, isign):
     if isign > 0: # wavelet transform
         wlet.condition(a,n,1)
         for nn in range(n, 5):
-            wletFilter(a, nn, isign) # start from largest hierarchy and work toward smallest
+            a = wletFilter(a, nn, isign) # start from largest hierarchy and work toward smallest
     else:
         for nn in range(n, 4):
-            wletFilter(a, nn, isign) # from smallest and work upward
+            a = wletFilter(a, nn, isign) # from smallest and work upward
     return wlet
 
 
