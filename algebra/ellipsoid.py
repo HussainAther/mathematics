@@ -60,6 +60,8 @@ def hyperplane(E, H):
     """
     Return the minimum volume ellipsoid containing the intersection of
     E and H. Do this by taking the separating hyperplane and calculating volume.
+    
+    Still working on this.
     """
     return E*H
 
