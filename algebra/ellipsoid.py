@@ -10,3 +10,9 @@ A convex set K is a set of points such that  ∀x, y ∈ K, λx+(1−λ)y ∈ K,
 convex set.
 
 """
+
+def ellipsoid(Eo, Vl):
+    """
+    With input bounding ellipsoid Eo for S and a lower bound Vl on Vol(S),
+    output "yes" if the linear program is feasible and "no" otherwise.
+    """
