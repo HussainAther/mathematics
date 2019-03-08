@@ -113,8 +113,21 @@ def Poly_interp(xx, yy, x, *mm):
     y = ya[ns - 1]
     for m in range(1, mm):
         for i in range(0, mm-m): # loop over c's and d's and update them.
-            ho 
-
+            ho = xa[i] - x
+            hp = xa[i+m] - x
+            w = c[i+1] - d[i]
+            if ((den=ho-hp) ==0):
+                print("return polyinterpolation error") # if two input xa's are identical
+            den = w/den
+            d[i] = hp * den
+            c[i] = ho * den
+        if (ns+1) < (mm-m)):
+            dy = (2* c[ns+1])
+            y += dy
+        else:
+            dy = (2* d[ns-1])
+            y += dy
+    return y, dy
 
 
 def DFTint(func, a, b):
@@ -156,8 +169,8 @@ def DFTint(func, a, b):
             cpol[j] = data[2*nn-2]
             spol[j] = data[2*nn-1]
             xpol[j] = nn
-        cdft = Poly_interp(xpol, cpol, MPOL).interp(en)
-        sdft = Poly_interp(xpol, spol, MPOL).interp(en)
+        cdft, cdftdy = Poly_interp(xpol, cpol, MPOL).interp(en)
+        sdft, sdftdy = Poly_interp(xpol, spol, MPOL).interp(en)
         (corfac, corre, corim) = DFTcor(w, delta, a, b, endpoints)
         cdft *= corfac
         sdft *= corfac
