@@ -94,3 +94,12 @@ def DFTint():
     integral of a to be of sin(omega*t)*h(t)*dt as sinint.
     """
     init = 0
+    aold = -1e30
+    bold = -1e30
+    
+    # illustrative values that should be optimized for a particular application. #
+    M = 64 # number of subintervals
+    NDFT = 1024 # length of the Fast Fourier transform (power of 2)
+    MPOL = 6 # degree of polynomial interpolation used to obtain the desired frequency from the Fast Fourier transform
+
+    
