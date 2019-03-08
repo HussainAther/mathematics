@@ -121,6 +121,15 @@ def Poly_interp(xx, yy, x, *mm):
             den = w/den
             d[i] = hp * den
             c[i] = ho * den
+    """
+    After each column in the tableau is completed, we decide which correction,
+    c or d, we want to add to our accumulating value of y, i.e., which path to take through
+    the tableau — forking up or down. We do this in such a way as to take the most “straight line”
+    route through the tableau to its apex, updating ns accordingly to keep track of where we are.
+    
+    This route keeps the partial approximations centered (insofar as possible) on the target x.
+    The last dy added is thus the error indication.
+    """
         if (ns+1) < (mm-m)):
             dy = (2* c[ns+1])
             y += dy
@@ -128,7 +137,6 @@ def Poly_interp(xx, yy, x, *mm):
             dy = (2* d[ns-1])
             y += dy
     return y, dy
-
 
 def DFTint(func, a, b):
     """
