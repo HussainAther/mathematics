@@ -15,7 +15,7 @@ number of smooth components remain. It outputs the remaining components and all 
 that were accumulated along the way.
 """
 
-def WT1(a):
+def WT1(a, isign):
     """
     One-dimensional wavelet transform. Implement the pyramid algorithm on a set of data a.
     """
@@ -23,6 +23,14 @@ def WT1(a):
     if n <4:
         print("a must be larger than three members")
         return
-
+    if isign > 0:
+        wlet.condition(a, n, 1) # wavelet transform
+        for nn in range(n, 5):
+            wlet.filt(a, nn, isign) # start from largest hierarchy and work toward smallest
+    else:
+        for nn in range(n, 4):
+            wlet.filt(a, nn, isign)
+        wlet.condition(a,n, -1)
+    return wlet
 
 
