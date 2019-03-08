@@ -95,10 +95,26 @@ def Poly_interp(xx, yy, x, *mm):
     i = 0
     m = 0
     ns = 0
+    dift = 0
     if not mm:
         mm = 5
     j1 = len(xx) - (mm + 1)
+    xa = xx[j1]
+    ya = yy[j1]
+    c = [0]*mm
+    d = [0]*mm
     diff = abs(x - xa[0])
+    for i in range(0, mm): # find index ns of closest table entry
+        if (dift = abs(x-xa[i])) < dif):
+            ns = i
+            dif = dift
+        c[i] = ya[i] # initialize tableu of c's and d's
+        d[i] = ya[i]
+    y = ya[ns - 1]
+    for m in range(1, mm):
+        for i in range(0, mm-m): # loop over c's and d's and update them.
+            ho 
+
 
 
 def DFTint(func, a, b):
