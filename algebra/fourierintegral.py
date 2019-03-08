@@ -14,7 +14,14 @@ Taking advantage of hte oscillatory nature of the integral, if h(t) is at all sm
 enough to imply several cycles in the interval [a, b], then the value of I is typically very small that it's sswamped
 by the first-order error.
 
+We use interpolation to approximate a function by a sum of kernel functions (which depend only on the intrepolation
+scheme) times sample values (which depend only on the function). We write:
+
+
+
 Given sampled points h_j, we approximate h(t) everywhere in the interval [a, b] by interpolation on nearby h_j's.
+We introduce a kernel function psi(s) of an interior point: it's zero for s sufficiently negative or sufficiently positive
+and becomes nonezro only when s is in the range where h_j multiplying it is actually used in the interpolation.
 """
 
 def DFTcor(w, delta, a, b):
@@ -25,4 +32,9 @@ def DFTcor(w, delta, a, b):
     The correction factor is returned as crofac while the real and imaginary parts of the endpoint
     correction are returned as corre and corim.
     """
-    
+    th = w*delta
+    if a >= b or th < 0 or th > np.pi:
+        print("bad arguments")
+        return
+    if abs(th) < 5e-2: # Use series method
+
