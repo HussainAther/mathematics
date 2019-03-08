@@ -15,6 +15,9 @@ number of smooth components remain. It outputs the remaining components and all 
 that were accumulated along the way.
 """
 def haarMatrix(n, normalized=False):
+    """
+    Haar matrix also used in some forms of DFT analysis.
+    """
     # Allow only size n of power 2
     n = 2**np.ceil(np.log2(n))
     if n > 2:
