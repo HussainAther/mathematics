@@ -46,7 +46,7 @@ def difference(m1, m2):
 
 def similarity(m1, m2):
     """
-    Return the similary between two hidden Markov models m1 and m2.
+    Return the similarity between two hidden Markov models m1 and m2.
     """
     s1 = coemission(m1, m2)/np.sqrt(coemission(m1,m1)*coemission(m2,m2))
     s2 = 2*coemission(m1, m2)/(np.sqrt(coemission(m1, m1) + coemission(m2, m2)))
