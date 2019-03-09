@@ -1,5 +1,6 @@
 import numpy as np
 
+
 """
 We use coemission probability to compute the L2-distance between the probability distributions
 of two Markov models.
@@ -16,10 +17,18 @@ the summation over PM1(s) * PM2 (s)
 in which PM1 and PM2 are the probabilities for either model to produce a sequence s.
 """
 
-def coemission(m1, m2, s):
+def coemission(m1, m2):
     """
-    Return the co-emission probability for models m1 and m2 for the sequence s.
+    Return the co-emission probability for models m1 and m2.
     """
-    table = numpy.zeros(shape=(len(m1),len(m2)))
-    
+    return np.inner(m1, m2)
 
+
+
+def angle(m1, m2):
+    """
+    Return the angle between two hidden Markov Models m1 and m2.
+    """
+    num = coemission(m1, m2)
+    den = coemission(np.sqrt((m1, m2)*(np.sqrt(m2,m2))))
+    return np.arccos(num/den)
