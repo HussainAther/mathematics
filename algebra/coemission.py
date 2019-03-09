@@ -38,8 +38,14 @@ def angle(m1, m2):
     den = coemission(np.sqrt((m1, m2)*(np.sqrt(m2,m2)))) # denominator
     return np.arccos(num/den)
 
-def diffenrence(m1, m2):
+def difference(m1, m2):
     """
     Return the difference between two hidden Markov Models m1 and m2.
     """
     return np.sqrt(angle(m1,m1) + angle(m2, m2) - 2*angle(m1, m2))
+
+def similarity(m1, m2):
+    """
+    Return the similary between two hidden Markov models m1 and m2.
+    """
+    
