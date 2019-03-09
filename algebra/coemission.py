@@ -15,3 +15,8 @@ the summation over PM1(s) * PM2 (s)
 
 in which PM1 and PM2 are the probabilities for either model to produce a sequence s.
 """
+
+def coemission(m1, m2, s):
+    """
+    Return the co-emission probability for models m1 and m2 for the sequence s.
+    """
