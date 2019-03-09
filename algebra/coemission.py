@@ -20,3 +20,6 @@ def coemission(m1, m2, s):
     """
     Return the co-emission probability for models m1 and m2 for the sequence s.
     """
+    table = numpy.zeros(shape=(len(m1),len(m2)))
+    
+
