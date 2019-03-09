@@ -42,4 +42,4 @@ def diffenrence(m1, m2):
     """
     Return the difference between two hidden Markov Models m1 and m2.
     """
-    
+    return np.sqrt(angle(m1,m1) + angle(m2, m2) - 2*angle(m1, m2))
