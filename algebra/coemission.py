@@ -15,6 +15,12 @@ The probability two profile hidden Markov models independently generate the same
 the summation over PM1(s) * PM2 (s)
 
 in which PM1 and PM2 are the probabilities for either model to produce a sequence s.
+
+Co-emission probability depends on how alike they are and how self-confident they are (to what
+extent the probabilities are concentrated to a small subset of all possible sequences).
+
+Let M be a hidden Markov model and p = max{P_M(s) | s ∈ Σ∗}. The maximum co-emission probability with
+M attainable for any hidden Markov model is p. 
 """
 
 def coemission(m1, m2):
@@ -23,12 +29,10 @@ def coemission(m1, m2):
     """
     return np.inner(m1, m2)
 
-
-
 def angle(m1, m2):
     """
     Return the angle between two hidden Markov Models m1 and m2.
     """
-    num = coemission(m1, m2)
-    den = coemission(np.sqrt((m1, m2)*(np.sqrt(m2,m2))))
+    num = coemission(m1, m2) # numerator
+    den = coemission(np.sqrt((m1, m2)*(np.sqrt(m2,m2)))) # denominator
     return np.arccos(num/den)
