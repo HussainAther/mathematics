@@ -39,4 +39,7 @@ def angle(m1, m2):
     return np.arccos(num/den)
 
 def diffenrence(m1, m2):
+    """
+    Return the difference between two hidden Markov Models m1 and m2.
+    """
     
