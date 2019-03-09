@@ -51,7 +51,8 @@ def similarity(m1, m2):
     s2 = 2*coemission(m1, m2)/(np.sqrt(coemission(m1, m1) + coemission(m2, m2)))
     return s1, s2
 
-def coemissionProbs(m1, m2):
+def coemissionProbs(m1, m2, p0, p1):
     """
-    Return co-emission probabilites at all pairs of states in the same class as p, p'.
+    Return co-emission probabilites at all pairs of states in the same class as p0 and p1.
     """
+    (q0, q1) = (p0, p1)
