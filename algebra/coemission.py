@@ -20,7 +20,8 @@ Co-emission probability depends on how alike they are and how self-confident the
 extent the probabilities are concentrated to a small subset of all possible sequences).
 
 Let M be a hidden Markov model and p = max{P_M(s) | s ∈ Σ∗}. The maximum co-emission probability with
-M attainable for any hidden Markov model is p. 
+M attainable for any hidden Markov model is p. The hdiden Markov models attaining this co-emission probability
+with M are exactly those models, M', for which P_M'(s) > 0 <=>P_M(s) = p for all s ∈ Σ∗ .
 """
 
 def coemission(m1, m2):
@@ -36,3 +37,6 @@ def angle(m1, m2):
     num = coemission(m1, m2) # numerator
     den = coemission(np.sqrt((m1, m2)*(np.sqrt(m2,m2)))) # denominator
     return np.arccos(num/den)
+
+def diffenrence(m1, m2):
+    
