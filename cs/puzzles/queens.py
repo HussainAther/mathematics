@@ -8,4 +8,7 @@ such that no queen attacks any other queen. This means that
 3. No two queens can be on the same diagonal.
 
 Systematic search.
+
+This is how I play chess: https://www.youtube.com/watch?v=8ghGvbdlTDQ
 """
+
