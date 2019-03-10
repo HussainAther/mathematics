@@ -17,3 +17,37 @@ Is there an algorithm that tiles any 2^n × 2^n courtyard with one missing squar
 arbitrary location? As an example, below is a 2^3 × 2^3 where the missing square is
 marked Δ. Does the location of the missing square matter?
 """
+
+
+def tileFourMissingYard(n, missing):
+    """
+    Given n in a 2^n x 2^n checkyard with a missing square at position (r, c),
+    find tililng of yard with trominoes (L-shaped dominoes).
+    """
+    size = 2**n
+    missingquad = []
+    """
+    Get the missing tiles.
+    """
+    for (r,c) in missing:
+        missingquad.append(2*(r >= size//2) +(c >=size//2))
+    count = 0
+    
+    for i in range(4):
+        if i in missingquad:
+            count +=1
+    """
+    This means yes.
+    """
+    if count == 4:
+        return True
+    """
+    Do we have the appropriate arrangement? Check.
+    """
+    for (r,c) in missing:
+        if (((r+1,c) in missing and (r,c+1) in missing) or ((r-1,c) in missing and (r,c+1) in missing)
+        or ((r+1,c) in missing and (r,c-1) in missing) or ((r-1,c) in missing and (r,c-1)in missing)):
+            return True
+    return False
+
+
