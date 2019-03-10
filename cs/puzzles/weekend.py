@@ -79,3 +79,9 @@ def bipartiteGraphColor(graph, start, coloring, color):
     else:
         newcolor = "Sha"
 
+    for vertex in graph[start]:
+        val, coloring = bipartiteGraphColor(graph, vertex, coloring, newcolor)
+        if val == False:
+            return False, {}
+
+    return True, coloring
