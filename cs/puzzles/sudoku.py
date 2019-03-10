@@ -78,3 +78,24 @@ def makeImplications(grid, i, j, e):
                         
            for m in range(len(sectinfo)):
                 sin = sectinfo[m]
+
+                #find the set of elements on the row corresponding to m and remove them
+                rowv = set()
+                for y in range(9):
+                    rowv.add(grid[sin[0]][y])
+                left = sin[2].difference(rowv)
+
+                #find the set of elements on the column corresponding to m and remove them
+                colv = set()
+                for x in range(9):
+                    colv.add(grid[x][sin[1]])
+                left = left.difference(colv)
+                
+                #check if the vset is a singleton
+                if len(left) == 1:
+                    val = left.pop()
+                    if isValid(grid, sin[0], sin[1], val):
+                        grid[sin[0]][sin[1]] = val
+                        impl.append((sin[0], sin[1], val))
+                        done = False
+                
