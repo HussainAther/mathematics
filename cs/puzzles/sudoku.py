@@ -107,3 +107,16 @@ def undoImplications(grid, impl):
     for i in range(len(impl)):
         grid[impl[i][0]][impl[i][1]] = 0
     return
+
+
+def solveSudokuOpt(grid, i = 0, j = 0):
+    """
+    Fill in missing squares while obeying rules.
+    """
+
+    global backtracks
+
+    #find the next empty cell to fill
+    i, j = findNextCellToFill(grid)
+    if i == -1:
+        return True
