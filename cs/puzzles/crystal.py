@@ -119,3 +119,11 @@ def howHardIsTheCrystal(n, d):
     hardness = convertToDecimal(r, d, floorNoBreak)
     print("Hardness coefficient is", hardness)
     print("Total number of drops is", numDrops)
+
+def convertToDecimal(r, d, rep):
+    number = 0
+    for i in range(d-1):
+        number = (number + rep[i]) * r
+    number += rep[d-1]
+
+    return number
