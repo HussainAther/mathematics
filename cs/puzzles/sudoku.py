@@ -120,3 +120,15 @@ def solveSudokuOpt(grid, i = 0, j = 0):
     i, j = findNextCellToFill(grid)
     if i == -1:
         return True
+
+    for e in range(1, 10):
+        #Try different values in i, j location
+        if isValid(grid, i, j, e):
+
+            impl = makeImplications(grid, i, j, e)
+            
+            if solveSudokuOpt(grid, i, j):
+                return True
+            #Undo the current cell for backtracking
+            backtracks += 1
+            undoImplications(grid, impl)
