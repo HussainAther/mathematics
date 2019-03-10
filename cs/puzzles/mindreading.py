@@ -48,3 +48,7 @@ def outputFirstCard(numbers, oneTwo, cards):
         hidden = oneTwo[1]
         other = oneTwo[0]
         encode = (numbers[oneTwo[1]] - numbers[oneTwo[0]]) % 13
+        
+    print ('First card is:', cards[other])
+
+    return hidden, other, encode
