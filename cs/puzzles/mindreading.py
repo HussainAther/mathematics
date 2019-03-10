@@ -1,5 +1,6 @@
-
 """
+Solving this without import.
+
 You are a Magician and a Mind Reader Extraordinaire. The Assistant goes into the
 audience with an authentic deck of 52 cards while you are outside the room and can’t
 possibly see anything. Five audience members each select one card from the deck. The
@@ -101,3 +102,13 @@ def ComputerAssistant():
     number = 0
     while number < 99999:
         number = int(input('Please give random number of at least 6 digits:'))
+
+    #Generate five "random" numbers from the input number
+    clist = []
+    i = 0
+    while len(clist) < 5:
+        number = number * (i + 1) // (i + 2)
+        n = number % 52
+        i += 1
+        if not n in clist:
+            clist.append(n)
