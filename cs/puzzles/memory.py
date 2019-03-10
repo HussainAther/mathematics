@@ -95,3 +95,11 @@ def coinsVariantMemoize(row, memo):
         return memo[len(row)], memo
     except KeyError:
         #Subproblem was not solved, need to solve it
+
+        skip = coinsVariantMemoize(row[1:], memo)[0]
+        pickSkip = coinsVariantMemoize(row[2:], memo)[0] + row[0]
+        pickPick = coinsVariantMemoize(row[4:], memo)[0] + row[0] + row[1]
+        result = max(skip, pickSkip, pickPick)
+        memo[len(row)] = result
+        
+        return result, memo
