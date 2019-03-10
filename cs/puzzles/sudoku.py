@@ -8,5 +8,13 @@ several sub-grids have missing numbers. Scanning rows (or columns as the case ma
 can tell us where to place a missing number in a sector.
 
 Our goal is to write a recursive Sudoku solver that solves any Sudoku puzzle regardless
-of how many numbers are filled in. Then, we will add “human intelligence” to the solver. 
+of how many numbers are filled in. Then, we will add “human intelligence” to the solver.
+
+Given a partially filled in Sudoku board, complete the puzzle.
 """
+
+sectors = [ [0, 3, 0, 3], [3, 6, 0, 3], [6, 9, 0, 3],
+            [0, 3, 3, 6], [3, 6, 3, 6], [6, 9, 3, 6],
+            [0, 3, 6, 9], [3, 6, 6, 9], [6, 9, 6, 9] ]
+
+
