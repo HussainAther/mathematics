@@ -98,4 +98,4 @@ def makeImplications(grid, i, j, e):
                         grid[sin[0]][sin[1]] = val
                         impl.append((sin[0], sin[1], val))
                         done = False
-                
+    return impl
