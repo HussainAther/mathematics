@@ -99,3 +99,11 @@ def makeImplications(grid, i, j, e):
                         impl.append((sin[0], sin[1], val))
                         done = False
     return impl
+
+def undoImplications(grid, impl):
+    """
+    Reverse the implications.
+    """
+    for i in range(len(impl)):
+        grid[impl[i][0]][impl[i][1]] = 0
+    return
