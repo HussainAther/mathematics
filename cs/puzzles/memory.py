@@ -112,3 +112,11 @@ def coinsVariantIterative(row):
     table = {}
     table[0] = 0
     table[1] = row[-1]
+    table[2] = row[-1] + row[-2]
+    table[3] = max(table[1] + row[-3], table[2], row[-2] + row[-3])
+    for i in range(4, len(row) + 1):
+        resulti = max(table[i-4] + row[1-i] + row[-i],\
+                       table[i-2] + row[-i], table[i-1])
+        table[i] = resulti
+
+    return table[len(row)], table
