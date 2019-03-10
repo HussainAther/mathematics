@@ -85,3 +85,5 @@ def sortList(tlist):
             if tlist[ismall] > tlist[i]:
                 ismall = i
         tlist[index], tlist[ismall] = tlist[ismall], tlist[index]
+
+    return
