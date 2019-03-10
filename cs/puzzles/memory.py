@@ -72,8 +72,8 @@ def tracebackVariant(row, table):
             # skip
             i += 1
 
-    print ("Input row = ", row)
-    print ("Table = ", table)
-    print ("Selected coins are", select, "and sum up to", table[len(row)])
+    print("Input row = ", row)
+    print("Table = ", table)
+    print("Selected coins are", select, "and sum up to", table[len(row)])
     return table[len(row)], select
 
