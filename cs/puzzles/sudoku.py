@@ -75,3 +75,6 @@ def makeImplications(grid, i, j, e):
                 for y in range(sectors[k][2], sectors[k][3]):
                     if grid[x][y] == 0:
                         sectinfo.append([x, y, vset.copy()])
+                        
+           for m in range(len(sectinfo)):
+                sin = sectinfo[m]
