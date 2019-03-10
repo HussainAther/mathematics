@@ -24,7 +24,7 @@ It turns out that the order in which the Assistant reveals the cards tells the M
 the fifth card is! The Assistant needs to be able to decide which of the cards is going to be
 hidden – he or she cannot allow the audience to pick the hidden card out of the five cards
 that the audience picks. Here’s one way that the Assistant and the Magician can work
-together.
+together. 
 """
 
 deck = ['A_C', 'A_D', 'A_H', 'A_S', '2_C', '2_D', '2_H', '2_S', '3_C', '3_D', '3_H', '3_S',
