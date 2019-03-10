@@ -115,3 +115,7 @@ def howHardIsTheCrystal(n, d):
             if yes == "yes":
                 floorNoBreak[i] -= 1
                 break
+
+    hardness = convertToDecimal(r, d, floorNoBreak)
+    print("Hardness coefficient is", hardness)
+    print("Total number of drops is", numDrops)
