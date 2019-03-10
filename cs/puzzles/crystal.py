@@ -74,5 +74,10 @@ interval [21, 128] but we have two balls. Let’s next go to floor 40 and drop t
 (second drop of the first ball). If the first ball breaks we search [21, 39] one floor at a
 time. This is, in the worst case, a total of 2 drops for the first ball (at floors 20 and 40)
 and 19 drops of the second ball for a total of 21. Onto floor 60 and so on. Trying floors
-20, 40, 60, 80, etc., is going to get us a worst-case solution of less than 30 drops for sure. 
+20, 40, 60, 80, etc., is going to get us a worst-case solution of less than 30 drops for sure.
+
+Our purpose here is not to just solve a specific 128-floor problem. Is there a general
+algorithm where given an n-floor building and given two balls we can show a symbolic
+worst-case bound of func(n) where func is some function? Then, we can apply this
+algorithm to our specific 128-floor problem.
 """
