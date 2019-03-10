@@ -41,7 +41,7 @@ def prettyPrint(board):
         for j in range(size):
             if board[j] == i:
                 queen = j
-        row = '. ' * queen + 'Q ' + '. ' * (size - queen - 1)
+        row = ". "* queen + "Q " + ". " * (size - queen - 1)
         print (row)
 
     return
