@@ -59,3 +59,6 @@ def tracebackVariant(row, table):
     print("  Row:", row)
     print("Table:", table)
     while i < len(row):
+        if (table[len(row)-i] == row[i]) or\
+            (table[len(row)-i] == table.get(len(row)-i-2,0) + row[i]):
+            select.append(row[i])
