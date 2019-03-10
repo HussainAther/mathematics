@@ -112,3 +112,13 @@ def ComputerAssistant():
         i += 1
         if not n in clist:
             clist.append(n)
+
+   for i in range(5):
+        n = clist[i]
+        cards.append(deck[n])
+        cind.append(n)
+        cardsuits.append(n % 4)
+        cnumbers.append(n // 4)
+        numsuits[n % 4] += 1
+        if numsuits[n % 4] > 1:
+            pairsuit = n % 4
