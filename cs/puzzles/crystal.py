@@ -101,3 +101,9 @@ def howHardIsTheCrystal(n, d):
 
     numDrops = 0
     floorNoBreak = [0] * d
+    for i in range(d):
+        for j in range(r-1):
+            floorNoBreak[i] += 1
+            Floor = convertToDecimal(r, d, floorNoBreak)
+            #Make sure you aren't higher than the highest floor
+            if Floor > n:
