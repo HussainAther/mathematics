@@ -62,3 +62,8 @@ def tracebackVariant(row, table):
         if (table[len(row)-i] == row[i]) or\
             (table[len(row)-i] == table.get(len(row)-i-2,0) + row[i]):
             select.append(row[i])
+            i += 2
+        elif (table[len(row)-i] == row[i] + row[i+1]) or\
+           (table[len(row)-i] == table.get(len(row)-i-4,0) + row[i] + row[i+1]):
+            select.append(row[i])
+            select.append(row[i+1])
