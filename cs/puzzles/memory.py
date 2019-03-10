@@ -120,3 +120,26 @@ def coinsVariantIterative(row):
         table[i] = resulti
 
     return table[len(row)], table
+
+row = [14, 3, 27, 4, 5, 15, 1]
+result, memo = coinsVariant(row, {})
+tracebackVariant(row, memo)
+result, memo = coinsVariantMemoize(row, {})
+tracebackVariant(row, memo)
+result, memo = coinsVariantIterative(row)
+tracebackVariant(row, memo)
+
+
+lrow = [3, 15, 17, 23, 11, 3, 4, 5, 17, 23, 34, 17, 18, 14, 12, 15]
+result, memo = coinsVariant(lrow, {})
+tracebackVariant(lrow, memo)
+result, memo = coinsVariantMemoize(lrow, {})
+tracebackVariant(lrow, memo)
+result, memo = coinsVariantIterative(lrow)
+tracebackVariant(lrow, memo)
+
+lrow = [3, 92, 63, 2, 79, 16, 56, 30, 75, 76, 66, 62, 11, 12, 11, 70, 10, 93, 95, 27, 100, 56, 1, 15, 50, 80, 6, 1, 37, 8, 51, 72, 33, 29, 70, 99, 42, 80, 21, 31, 25, 87, 48, 45, 66, 95, 9, 47, 89, 43, 17, 69, 88, 55, 98, 40, 78, 87, 40, 74, 6, 91]
+result, memo = coinsVariantMemoize(lrow, {})
+tracebackVariant(lrow, memo)
+result, memo = coinsVariantIterative(lrow)
+tracebackVariant(lrow, memo)
