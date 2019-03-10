@@ -109,4 +109,4 @@ def howHardIsTheCrystal(n, d):
             if Floor > n:
                 floorNoBreak[i] -= 1
                 break
-            
+            print ("Drop ball", o+1, "from Floor", Floor)
