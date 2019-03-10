@@ -37,14 +37,14 @@ def bestTimeToPartySmart(schedule, ystart, yend):
     """
     times = []
     for c in schedule:
-        times.append((c[0], 'start'))
-        times.append((c[1], 'end'))
+        times.append((c[0], "start"))
+        times.append((c[1], "end"))
 
     sortlist(times)
     maxcount, time = chooseTimeConstrained(times, ystart, yend)
 
-    print ('The best time to attend the party is at', time,\
-           'o\'clock', ':', maxcount, 'celebrities will be attending!')
+    print ("The best time to attend the party is at", time,\
+           "o\"clock", ":", maxcount, "celebrities will be attending!")
 
 def sortlist(tlist):
     """
@@ -69,9 +69,9 @@ def chooseTimeConstrained(times, ystart, yend):
     time = 0
     
     for t in times: # max number of celebrities
-        if t[1] == 'start':
+        if t[1] == "start":
             rcount = rcount + 1
-        elif t[1] == 'end':
+        elif t[1] == "end":
             rcount = rcount - 1
         if rcount > maxcount and t[0] >= ystart and t[0] < yend: # are you available at this time?
             maxcount = rcount
