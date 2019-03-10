@@ -103,3 +103,12 @@ def coinsVariantMemoize(row, memo):
         memo[len(row)] = result
         
         return result, memo
+
+def coinsVariantIterative(row):
+    """
+    Iteratively select coins.
+    """
+
+    table = {}
+    table[0] = 0
+    table[1] = row[-1]
