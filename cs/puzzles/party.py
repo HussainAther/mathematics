@@ -40,3 +40,19 @@ def bestTimeToPartySmart(schedule, ystart, yend):
         times.append((c[0], 'start'))
         times.append((c[1], 'end'))
 
+    sortlist(times)
+
+def sortlist(tlist):
+    """
+    Tuple method to sort.
+    """
+    for index in range(len(tlist)-1):
+        ismall = index
+        for i in range(index, len(tlist)):
+            if tlist[ismall][0] > tlist[i][0] or \
+               (tlist[ismall][0] == tlist[i][0] and \
+                tlist[ismall][1] > tlist[i][1]):
+                ismall = i
+        tlist[index], tlist[ismall] = tlist[ismall], tlist[index]
+    
+    return
