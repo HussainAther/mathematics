@@ -65,3 +65,5 @@ def EightQueens(numsol, n=8):
                                                 else:
                                                     return
     return
+    
+EightQueens(7)
