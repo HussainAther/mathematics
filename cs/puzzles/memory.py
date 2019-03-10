@@ -67,3 +67,7 @@ def tracebackVariant(row, table):
            (table[len(row)-i] == table.get(len(row)-i-4,0) + row[i] + row[i+1]):
             select.append(row[i])
             select.append(row[i+1])
+            i += 4
+        else:
+            # skip
+            i += 1
