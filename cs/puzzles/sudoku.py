@@ -45,3 +45,15 @@ def isValid(grid, i, j, e):
                         return False
             return True
     return False
+
+def makeImplications(grid, i, j, e):
+    """
+    Based on what could be, determined the likelihood of numbers in various coordinates.
+    """
+
+    global sectors
+
+    grid[i][j] = e
+    impl = [(i, j, e)]
+
+    done = False
