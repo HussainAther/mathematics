@@ -77,3 +77,15 @@ def tracebackVariant(row, table):
     print("Selected coins are", select, "and sum up to", table[len(row)])
     return table[len(row)], select
 
+
+def coinsVariantMemoize(row, memo):
+    """
+    Keep maximum value for each subproblem in dictionary memo.
+    We look up in this dictionary to  make sure subprolems are not solved more
+    than once.
+    """
+
+    if len(row) == 0:
+        memo[0] = 0
+        return 0, memo
+    elif len(row) == 1:
