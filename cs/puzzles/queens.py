@@ -22,3 +22,12 @@ def noConflicts(board, current):
         if (current - i == abs(board[current] - board[i])):
             return False
     return True
+
+def EightQueens(numsol, n=8):
+    """
+    Place 8 queens on a board so they don't break rules.
+    """
+    board = [-1] * n
+    sol = 0
+    for i in range(n):
+    
