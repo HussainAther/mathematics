@@ -69,3 +69,9 @@ def makeImplications(grid, i, j, e):
                 for y in range(sectors[k][2], sectors[k][3]):
                     if grid[x][y] != 0:
                         vset.remove(grid[x][y])
+
+            #attach copy of vset to each missing square in ith sector
+            for x in range(sectors[k][0], sectors[k][1]):
+                for y in range(sectors[k][2], sectors[k][3]):
+                    if grid[x][y] == 0:
+                        sectinfo.append([x, y, vset.copy()])
