@@ -50,3 +50,18 @@ def EightQueens(numsol, n=8):
                                     continue
                                 for o in range(n):
                                     board[5] = o
+                                    if not noConflicts(board, 5):
+                                        continue
+                                    for p in range(n):
+                                        board[6] = p
+                                        if not noConflicts(board, 6):
+                                            continue
+                                        for q in range(n):
+                                            board[7] = q
+                                            if noConflicts(board, 7):
+                                                if sol < numsol:
+                                                    print(board)
+                                                    sol += 1
+                                                else:
+                                                    return
+    return
