@@ -48,6 +48,11 @@ def tileFourMissingYard(n, missing):
         if (((r+1,c) in missing and (r,c+1) in missing) or ((r-1,c) in missing and (r,c+1) in missing)
         or ((r+1,c) in missing and (r,c-1) in missing) or ((r-1,c) in missing and (r,c-1)in missing)):
             return True
+    """
+    This means no.
+    """
     return False
 
-
+tileFourMissingYard(3, [(4, 4), (1, 1), (2, 1), (1, 2)])
+tileFourMissingYard(3, [(4, 4), (3, 1), (2, 1), (1, 2)])
+tileFourMissingYard(3, [(3, 7), (4, 4), (4, 6), (4, 7)])
