@@ -44,4 +44,15 @@ start with the second ball at floor 1 and move up as described earlier possibly 
 up to floor 127. The number of drops in the worst case is 1 drop (from floor 128) plus
 drops from floors 1 through 127 inclusive, a total of 128. No improvement from the case
 of one ball.
+
+Intuition says that you should guess the midpoint of the interval [1, 128] for the 128-floor
+building. Suppose you drop a ball at floor 64. There are two cases as always:
+
+1. The ball breaks. This means that you can focus on floors 1 through 63, i.e.,
+interval [1, 63] with the remaining ball.
+
+2. The ball does not break. This means that you can focus on floors 65 through 128,
+i.e., interval [65, 128] with both balls.
+
+
 """
