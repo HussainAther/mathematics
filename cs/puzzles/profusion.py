@@ -24,6 +24,24 @@ f calling f again.
 """
 
 def nQueens(size):
+    """
+    Initialize empty board and call the recursive N-queens
+    procedure to print the returned solution.
+    """
     board = [-1] * size
     rQueens(board, 0, size)
     prettyPrint(board)
+
+def prettyPrint(board):
+    """
+    Print the board.
+    """
+    size = len(board)
+    for i in range(size):
+        for j in range(size):
+            if board[j] == i:
+                queen = j
+        row = '. ' * queen + 'Q ' + '. ' * (size - queen - 1)
+        print (row)
+
+    return
