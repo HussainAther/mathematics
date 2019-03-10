@@ -14,4 +14,15 @@ the ball does not break at floor f, but does break at floor f + 1. Else you woul
 reported f + 1. Your bonus depends on how high a floor you report, and if you report a
 floor f from which the ball breaks, you face a stiff fine, which you want to avoid at all
 costs.
+
+Once a ball breaks, you can’t reuse it again, but you can if it does not break. Since the
+ball’s velocity as it hits the ground is the sole determining factor as to whether it breaks
+or not, and this velocity is proportional to the floor number, you can assume that if a ball
+does not break when dropped from floor x, it will not break from any floor whose number
+< x. Similarly, if it breaks when dropped from floor y, it will break when dropped from
+any floor whose number > y.
+
+Sadly, you are not allowed to take an elevator because the shiny round objects you are
+carrying may scare off other passengers. You would therefore like to minimize the
+number of times you drop a ball, since it is a lot of work to keep climbing up stairs. 
 """
