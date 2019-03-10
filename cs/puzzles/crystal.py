@@ -64,4 +64,15 @@ You don’t want to give up any part of your bonus, and a fine is a no-no.
 Can you think of a way to maximize your bonus and avoid a fine while using no more
 than 21 drops in the case of two balls? What if you had more balls or what if the
 Shanghai Tower suddenly doubled in size in terms of number of floors?
+
+We should be able to do better than 64 drops. The problem with beginning with floor 64
+when we only have two balls is that if the first ball breaks, we have to start with floor 1
+and go all the way to floor 63. What if we started at floor 20? If the first ball breaks, we
+have to search the smaller interval [1, 19] with the second ball one floor at a time. That is
+20 drops total in the worst case. If the first ball does not break, we search the large
+interval [21, 128] but we have two balls. Let’s next go to floor 40 and drop the first ball
+(second drop of the first ball). If the first ball breaks we search [21, 39] one floor at a
+time. This is, in the worst case, a total of 2 drops for the first ball (at floors 20 and 40)
+and 19 drops of the second ball for a total of 21. Onto floor 60 and so on. Trying floors
+20, 40, 60, 80, etc., is going to get us a worst-case solution of less than 30 drops for sure. 
 """
