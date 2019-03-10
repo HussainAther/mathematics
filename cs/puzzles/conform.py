@@ -16,3 +16,12 @@ Our goal is to perform this in the fewest number of commands.
 
 caps = ['F', 'F', 'B', 'B', 'B', 'F', 'B', 'B', 'B', 'F', 'F', 'B', 'F' ]
 cap2 = ['F', 'F', 'B', 'B', 'B', 'F', 'B', 'B', 'B', 'F', 'F', 'F', 'F' ]
+
+def pleaseConform(caps):
+    """
+    Why are we being so conformist? :thinking:
+    """
+    start = 0
+    forward = 0
+    backward = 0
+    intervals = []
