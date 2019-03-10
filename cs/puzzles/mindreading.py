@@ -1,5 +1,25 @@
 
+"""
+You are a Magician and a Mind Reader Extraordinaire. The Assistant goes into the
+audience with an authentic deck of 52 cards while you are outside the room and can’t
+possibly see anything. Five audience members each select one card from the deck. The
+Assistant then gathers up the five cards. The Assistant shows the entire audience four
+cards, one at a time. For each of these four cards, the Assistant asks the audience to
+mentally focus on the card, while you look away and try to read their collective minds.
+Then, after a few seconds you are shown the card. This helps you calibrate your mind
+reading to the particular audience.
 
+After you see these four cards, you claim that you are well calibrated to this audience and
+leave the room. The Assistant shows the fifth card to the audience and puts it away.
+Again, the audience mentally focuses on the fifth card. You return to the room,
+concentrate for a short time and correctly name the secret, fifth card!
+
+You are in cahoots with your Assistant and have planned and practiced this trick.
+However, everyone is watching closely and the only information that the Assistant can
+give you is the four cards.
+
+How does this trick work?
+"""
 
 deck = ['A_C', 'A_D', 'A_H', 'A_S', '2_C', '2_D', '2_H', '2_S', '3_C', '3_D', '3_H', '3_S',
         '4_C', '4_D', '4_H', '4_S', '5_C', '5_D', '5_H', '5_S', '6_C', '6_D', '6_H', '6_S',
