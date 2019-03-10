@@ -38,6 +38,7 @@ def pleaseConform(caps):
             start = i
 
     intervals.append((start, len(caps) - 1, caps[start]))
+    # add to last interval
     if caps[start] == 'F':
         forward += 1
     else:
