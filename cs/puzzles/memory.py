@@ -17,3 +17,12 @@ Can you find the maximum value for the coin row problem below?
 
 3    15    17    23    11   3    4    5    17    23    34    17    18    14    12    15
 """
+
+
+def coinsVariant(row, table):
+    """
+    Recursively select coins satisfying the adjacency constraint.
+    """
+
+    #Base case: no coins
+    if len(row) == 0:
