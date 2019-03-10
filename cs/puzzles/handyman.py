@@ -5,5 +5,17 @@ is unique and has a corresponding unique bolt, but the disorganized handyman has
 dumped them all into one bag and they are all mixed up. How best to “sort” these nuts
 and attach each to its corresponding bolt?
 
+Given n nuts and n bolts, the handyman can pick an arbitrary nut and try it with each bolt
+and find the one that fits the nut. Then, he can put away the nut-bolt pair, and he has a
+problem of size n – 1. This means that he has done n “comparisons” to reduce the
+problem size by 1. n – 1 comparisons will then shrink the problem size to n – 2, and so
+on. The total number of comparisons required is n + (n – 1) + (n – 2) + … + 1 =
+n(n+1)/2. You could argue the last comparison is not required since there will only be one
+nut and one bolt left, but we will call it a confirmation comparison.
 
+Can one do better in terms of number of comparisons required? More concretely, can
+one split the nuts and bolts up into two sets, each of half the size, so we have two
+problems of size n/2 to work on? This way, if the handyman has a helper, they can work
+in parallel. Of course, we could apply this strategy recursively to each of the problems of
+size n/2 if there are additional kind people willing to help.
 """
