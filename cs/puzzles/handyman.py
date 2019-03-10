@@ -33,3 +33,17 @@ def pivotPartitionClever(lst, start, end):
     moves = 0
 
     done = False
+
+    while not done:
+
+        while not done:
+            #Move rightward from left searching for element > pivot
+            bottom += 1
+            if bottom == top:
+                done = True
+                break
+            if lst[bottom] > pivot:
+                lst[top] = lst[bottom]
+                moves += 1
+                #print (lst, 'bottom =', bottom, 'top = ', top)
+                break
