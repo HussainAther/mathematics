@@ -18,4 +18,7 @@ one split the nuts and bolts up into two sets, each of half the size, so we have
 problems of size n/2 to work on? This way, if the handyman has a helper, they can work
 in parallel. Of course, we could apply this strategy recursively to each of the problems of
 size n/2 if there are additional kind people willing to help.
+
+Can you think of a recursive Divide and Conquer strategy to solve the Nuts and Bolts
+problem so you require significantly fewer than n(n+1)/2 comparisons when n is large?
 """
