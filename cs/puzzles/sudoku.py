@@ -18,3 +18,12 @@ sectors = [ [0, 3, 0, 3], [3, 6, 0, 3], [6, 9, 0, 3],
             [0, 3, 6, 9], [3, 6, 6, 9], [6, 9, 6, 9] ]
 
 
+def findNextCellToFill(grid):
+    """
+    Find the next cell to fill in. This should be an unused location.
+    """
+    for x in range(0, 9):
+        for y in range(0, 9):
+            if grid[x][y] == 0:
+                return x,y
+    return -1,-1
