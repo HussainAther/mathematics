@@ -62,3 +62,14 @@ def pivotPartitionClever(lst, start, end):
 
     lst[top] = pivot
     return top, moves
+
+def quicksort(lst, start, end):
+    """
+    Quick sort implementation.
+    """
+    moves = 0
+    if start < end:
+        split, moves = pivotPartitionClever(lst, start, end)
+        moves += quicksort(lst, start, split - 1)
+        moves += quicksort(lst, split + 1, end)
+    return moves
