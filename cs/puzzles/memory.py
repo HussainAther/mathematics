@@ -54,3 +54,8 @@ def tracebackVariant(row, table):
 
     #Tracing back the coin selection
     select = []
+
+    i = 0
+    print("  Row:", row)
+    print("Table:", table)
+    while i < len(row):
