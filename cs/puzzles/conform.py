@@ -25,3 +25,14 @@ def pleaseConform(caps):
     forward = 0
     backward = 0
     intervals = []
+
+    for i in range(len(caps)): # find intervals in which caps are on in the same direction
+        if caps[start] != caps[i]:
+            # each interval is a tuple with 3 elements (start, end, type)
+            intervals.append((start, i - 1, caps[start]))
+            
+            if caps[start] == 'F':
+                forward += 1
+            else:
+                backward += 1
+            start = i
