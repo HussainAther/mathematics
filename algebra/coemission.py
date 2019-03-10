@@ -56,3 +56,6 @@ def coemissionProbs(m1, m2, p0, p1):
     Return co-emission probabilites at all pairs of states in the same class as p0 and p1.
     """
     (q0, q1) = (p0, p1)
+    ap = coemission(m1, m2)
+    r = 1
+    
