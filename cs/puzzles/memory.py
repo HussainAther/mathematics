@@ -32,3 +32,16 @@ def coinsVariant(row, table):
     elif len(row) == 1:
         table[1] = row[0]
         return row[0], table
+
+    """
+    Take the maximum amount and store it. With the
+    recursive calls, we can skip, pick the coin and skip the next,
+    and pick two coins and skip two coins.
+    """
+    skip = coinsVariant(row[1:], table)[0]
+    pickSkip = coinsVariant(row[2:], table)[0] + row[0]
+    pickPick = coinsVariant(row[4:], table)[0] + row[0] + row[1]
+    result = max(skip, pickSkip, pickPick)
+    table[len(row)] = result
+    
+    return result, table
