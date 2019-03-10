@@ -122,3 +122,8 @@ def ComputerAssistant():
         numsuits[n % 4] += 1
         if numsuits[n % 4] > 1:
             pairsuit = n % 4
+
+    cardh = []
+    for i in range(5):
+        if cardsuits[i] == pairsuit:
+            cardh.append(i)
