@@ -70,3 +70,7 @@ def outputNext3Cards(code, ind):
         second, third, fourth = ind[2], ind[0], ind[1]
     else:
         second, third, fourth = ind[2], ind[1], ind[0]
+
+    print ('Second card is:', deck[second])
+    print ('Third card is:', deck[third])
+    print ('Fourth card is:', deck[fourth])
