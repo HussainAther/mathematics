@@ -56,3 +56,22 @@ def noConflicts(board, current):
         if (current - i == abs(board[current] - board[i])):
             return False
     return True
+
+
+def rQueens(board, current, size):
+    """
+    Place queen on a given column so it doesn't
+    conflictw ith the existing queens and then call
+    itself recursively to place subseqeunt queens till the requisitie number of queens
+    are placed.
+    """
+    if (current == size):
+        return True
+    else:
+        for i in range(size):
+            board[current] = i
+            if (noConflicts(board, current)):
+                done = rQueens(board, current + 1, size)
+                if (done):
+                    return True
+        return False
