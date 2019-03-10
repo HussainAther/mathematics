@@ -47,3 +47,6 @@ def EightQueens(numsol, n=8):
                             for m in range(n):
                                 board[4] = m
                                 if not noConflicts(board, 4):
+                                    continue
+                                for o in range(n):
+                                    board[5] = o
