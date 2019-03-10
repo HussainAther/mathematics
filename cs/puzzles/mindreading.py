@@ -54,4 +54,19 @@ def outputFirstCard(numbers, oneTwo, cards):
     return hidden, other, encode
 
 def outputNext3Cards(code, ind):
-    
+    """
+    Simple if-else in accordance with problem.
+    """
+
+    if code == 1:
+        second, third, fourth = ind[0], ind[1], ind[2]
+    elif code == 2:
+        second, third, fourth = ind[0], ind[2], ind[1]
+    elif code == 3:
+        second, third, fourth = ind[1], ind[0], ind[2]
+    elif code == 4:
+        second, third, fourth = ind[1], ind[2], ind[0]
+    elif code == 5:
+        second, third, fourth = ind[2], ind[0], ind[1]
+    else:
+        second, third, fourth = ind[2], ind[1], ind[0]
