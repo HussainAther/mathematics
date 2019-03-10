@@ -45,3 +45,12 @@ def coinsVariant(row, table):
     table[len(row)] = result
     
     return result, table
+
+def tracebackVariant(row, table):
+    """
+    Input row of coins and the maximum value of each subproblem
+    stored in the dictionary.
+    """
+
+    #Tracing back the coin selection
+    select = []
