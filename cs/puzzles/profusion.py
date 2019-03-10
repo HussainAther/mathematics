@@ -20,5 +20,10 @@ in programming is where a function being defined is applied within its own defin
 In Python a function can call itself. If a function calls itself, it is called a recursive
 function. Recursion may also correspond to a function A calling a function B, which in
 turn calls function A. We’ll focus on the simple case of recursion here, namely a function
-f calling f again. 
+f calling f again.
 """
+
+def nQueens(size):
+    board = [-1] * size
+    rQueens(board, 0, size)
+    prettyPrint(board)
