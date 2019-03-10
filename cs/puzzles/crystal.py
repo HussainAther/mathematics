@@ -79,5 +79,5 @@ and 19 drops of the second ball for a total of 21. Onto floor 60 and so on. Tryi
 Our purpose here is not to just solve a specific 128-floor problem. Is there a general
 algorithm where given an n-floor building and given two balls we can show a symbolic
 worst-case bound of func(n) where func is some function? Then, we can apply this
-algorithm to our specific 128-floor problem.
+algorithm to our specific 128-floor problem. 
 """
