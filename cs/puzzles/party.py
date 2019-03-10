@@ -60,3 +60,21 @@ def sortlist(tlist):
         tlist[index], tlist[ismall] = tlist[ismall], tlist[index]
     
     return
+
+
+def chooseTimeConstrained(times, ystart, yend):
+
+    rcount = 0
+    maxcount = 0
+    time = 0
+    
+    for t in times: # max number of celebrities
+        if t[1] == 'start':
+            rcount = rcount + 1
+        elif t[1] == 'end':
+            rcount = rcount - 1
+        if rcount > maxcount and t[0] >= ystart and t[0] < yend: # are you available at this time?
+            maxcount = rcount
+            time = t[0]
+
+    return maxcount, time
