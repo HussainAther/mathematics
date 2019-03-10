@@ -187,3 +187,15 @@ diff  = [[0,0,5,3,0,0,0,0,0],
          [0,6,0,5,0,0,0,0,9],
          [0,0,4,0,0,0,0,3,0],
          [0,0,0,0,0,9,7,0,0]]
+
+solveSudokuOpt(inp2)
+printSudoku(inp2)
+print ("Backtracks = ", backtracks)
+
+backtracks = 0
+print(solveSudokuOpt(hard))
+print("Backtracks = ", backtracks)
+
+backtracks = 0
+print(solveSudokuOpt(diff))
+print("Backtracks = ", backtracks)
