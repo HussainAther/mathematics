@@ -12,4 +12,11 @@ had a small social circle like the one below, it would be easy. Recall that in t
 graph below, the vertices are friends and an edge between a pair of vertices mean
 that the two corresponding friends dislike each other, and cannot be invited to the
 party on the same night.
+
+To summarize:
+1. Each of your friends must attend exactly one of the two dinners.
+2. If A dislikes B or B dislikes A, they cannot both be in the same dinner party. 
+
+Can you invite all of your friends A through I above following your self-imposed rules?
+Or are you going to have go to back on your word, and not invite someone?
 """
