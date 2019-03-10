@@ -87,3 +87,9 @@ def sortList(tlist):
         tlist[index], tlist[ismall] = tlist[ismall], tlist[index]
 
     return
+
+
+def ComputerAssistant():
+
+    print ('Cards are character strings as shown below.')
+    print ('Ordering is:', deck)
