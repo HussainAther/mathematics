@@ -90,6 +90,8 @@ def sortList(tlist):
 
 
 def ComputerAssistant():
-
+    """
+    Randomly generate five cards.
+    """
     print ('Cards are character strings as shown below.')
     print ('Ordering is:', deck)
