@@ -73,3 +73,9 @@ def bipartiteGraphColor(graph, start, coloring, color):
         return False, {}
     else:
         return True, coloring
+
+    if color == "Sha":
+        newcolor = "Hat"
+    else:
+        newcolor = "Sha"
+
