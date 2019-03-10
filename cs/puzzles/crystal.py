@@ -54,5 +54,14 @@ interval [1, 63] with the remaining ball.
 2. The ball does not break. This means that you can focus on floors 65 through 128,
 i.e., interval [65, 128] with both balls.
 
+The worst-case number of drops is 64 because in Case 1 you will need to start with the
+lowest floor in the interval and work your way up. Better than 128 but only by a factor of
+two.
 
+You would like to do better than the worst case of 64 drops when you have two balls.
+You don’t want to give up any part of your bonus, and a fine is a no-no.
+
+Can you think of a way to maximize your bonus and avoid a fine while using no more
+than 21 drops in the case of two balls? What if you had more balls or what if the
+Shanghai Tower suddenly doubled in size in terms of number of floors?
 """
