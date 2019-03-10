@@ -99,3 +99,5 @@ def howHardIsTheCrystal(n, d):
         print ('Using only', newd, 'balls')
     d = newd
 
+    numDrops = 0
+    floorNoBreak = [0] * d
