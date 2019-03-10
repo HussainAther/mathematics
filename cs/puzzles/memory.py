@@ -26,3 +26,9 @@ def coinsVariant(row, table):
 
     #Base case: no coins
     if len(row) == 0:
+        table[0] = 0
+        return 0, table
+    #base case: one coin, select it
+    elif len(row) == 1:
+        table[1] = row[0]
+        return row[0], table
