@@ -89,3 +89,9 @@ def coinsVariantMemoize(row, memo):
         memo[0] = 0
         return 0, memo
     elif len(row) == 1:
+        return row[0], memo
+    try:
+        #In this case the subproblem was already solved
+        return memo[len(row)], memo
+    except KeyError:
+        #Subproblem was not solved, need to solve it
