@@ -34,5 +34,14 @@ floor 1, which means no bonus. With one ball, you will have to start with floor 
 the ball breaks, report floor 1, and if it does not you move up to floor 2, all the way till
 floor 128. If it doesn’t break at floor 128, you happily report 128. If the ball breaks when
 dropped from floor f, you will have dropped the ball f times. The number of drops could
-be as large as 128, floors 1 through 128 inclusive. 
+be as large as 128, floors 1 through 128 inclusive.
+
+What if you have two balls? Suppose you drop one ball from floor 128. If it does not
+break, you report floor 128 and you are done with the experiment and rich. However, if it breaks,
+you are down to one ball and all you know is that the balls you are given
+definitely break at floor 128. To avoid a fine and to maximize your bonus, you will have
+start with the second ball at floor 1 and move up as described earlier possibly all the way
+up to floor 127. The number of drops in the worst case is 1 drop (from floor 128) plus
+drops from floors 1 through 127 inclusive, a total of 128. No improvement from the case
+of one ball.
 """
