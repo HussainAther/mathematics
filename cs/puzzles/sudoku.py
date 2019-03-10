@@ -143,8 +143,8 @@ def printSudoku(grid):
     numrow = 0
     for row in grid:
         if numrow % 3 == 0 and numrow != 0:
-            print (' ')
-        print (row[0:3], ' ', row[3:6], ' ', row[6:9])
+            print (" ")
+        print (row[0:3], " ", row[3:6], " ", row[6:9])
         numrow += 1
     return
 
