@@ -80,3 +80,8 @@ def sortList(tlist):
     Implement sorting list elements in ascending order.
     """
     for index in range(0, len(tlist)-1):
+        ismall = index
+        for i in range(index, len(tlist)):
+            if tlist[ismall] > tlist[i]:
+                ismall = i
+        tlist[index], tlist[ismall] = tlist[ismall], tlist[index]
