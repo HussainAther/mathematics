@@ -91,3 +91,7 @@ def colorDisconnectedGraph(graph, coloring):
     Color each vertex.
     """
     for g in graph:
+        if g not in coloring:
+            success, coloring = bipartiteGraphColor(graph, g, coloring, 'Sha')
+            if not success:
+                return False, {}
