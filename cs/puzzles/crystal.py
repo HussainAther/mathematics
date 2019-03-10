@@ -90,13 +90,13 @@ def howHardIsTheCrystal(n, d):
     r = 1
     while (r**d <= n):
         r = r + 1
-    print('Radix chosen is', r)
+    print("Radix chosen is", r)
 
     newd = d
     while (r**(newd-1) > n):
         newd -= 1
     if newd < d:
-        print ('Using only', newd, 'balls')
+        print ("Using only", newd, "balls")
     d = newd
 
     numDrops = 0
@@ -110,3 +110,8 @@ def howHardIsTheCrystal(n, d):
                 floorNoBreak[i] -= 1
                 break
             print ("Drop ball", o+1, "from Floor", Floor)
+            yes = input("Did the ball break (yes/no)?:")
+            numDrops += 1
+            if yes == "yes":
+                floorNoBreak[i] -= 1
+                break
