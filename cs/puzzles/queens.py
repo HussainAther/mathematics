@@ -7,6 +7,5 @@ such that no queen attacks any other queen. This means that
 2. No two queens can be on the same row.
 3. No two queens can be on the same diagonal.
 
-
-
+Systematic search.
 """
