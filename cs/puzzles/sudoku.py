@@ -5,5 +5,8 @@ sectors that compose the grid contains all of the digits from 1 to 9.
 
 These constraints are used to determine the missing numbers. In the puzzle below,
 several sub-grids have missing numbers. Scanning rows (or columns as the case may be)
-can tell us where to place a missing number in a sector. 
+can tell us where to place a missing number in a sector.
+
+Our goal is to write a recursive Sudoku solver that solves any Sudoku puzzle regardless
+of how many numbers are filled in. Then, we will add “human intelligence” to the solver. 
 """
