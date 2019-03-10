@@ -134,3 +134,12 @@ def ComputerAssistant():
     for i in range(5):
         if i != hidden and i != other:
             remindices.append(cind[i])
+
+    sortList(remindices)
+    outputNext3Cards(encode, remindices)
+
+    guess = input('What is the hidden card?')
+    if guess == cards[hidden]:
+        print ('You are a Mind Reader Extraordinaire!')
+    else:
+        print ('Sorry, not impressed!')
