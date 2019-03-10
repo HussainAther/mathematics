@@ -16,4 +16,10 @@ that the celebrity will be partying on and through the th hour, but will have le
 celebrity.
 
 When is the best time to attend the party? That is, which hour should you go to?
+
+Given a list of intervals when celebrities will be at the party
+Output is the time that you want to go the party when the maximum number of
+celebrities are still there.
+
+Clever algorithm that will work with fractional times
 """
