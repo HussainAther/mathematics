@@ -22,3 +22,14 @@ size n/2 if there are additional kind people willing to help.
 Can you think of a recursive Divide and Conquer strategy to solve the Nuts and Bolts
 problem so you require significantly fewer than n(n+1)/2 comparisons when n is large?
 """
+
+def pivotPartitionClever(lst, start, end):
+    """
+    Select a pivot and partitions the list into 3 sublists.
+    """
+    pivot = lst[end]
+    bottom = start - 1
+    top = end
+    moves = 0
+
+    done = False
