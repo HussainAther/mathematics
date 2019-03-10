@@ -15,4 +15,5 @@ we picked 3, 4, and 15, we would get a pathetic score of 22.
 
 Can you find the maximum value for the coin row problem below?
 
+3    15    17    23    11 3    4    5    17    23    34    17    18    14    12    15
 """
