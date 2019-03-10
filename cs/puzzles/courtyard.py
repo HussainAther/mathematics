@@ -12,4 +12,8 @@ courtyard with one square that we can leave untiled because, for example, there 
 of your favorite President on it.
 
 We’ll call this square that can be left untiled the missing square.
+
+Is there an algorithm that tiles any 2^n × 2^n courtyard with one missing square in an
+arbitrary location? As an example, below is a 2^3 × 2^3 where the missing square is
+marked Δ. Does the location of the missing square matter?
 """
