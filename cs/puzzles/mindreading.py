@@ -127,3 +127,10 @@ def ComputerAssistant():
     for i in range(5):
         if cardsuits[i] == pairsuit:
             cardh.append(i)
+
+    hidden, other, encode = outputFirstCard(cnumbers, cardh, cards)
+
+    remindices = []
+    for i in range(5):
+        if i != hidden and i != other:
+            remindices.append(cind[i])
