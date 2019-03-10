@@ -85,3 +85,9 @@ def bipartiteGraphColor(graph, start, coloring, color):
             return False, {}
 
     return True, coloring
+
+def colorDisconnectedGraph(graph, coloring):
+    """
+    Color each vertex.
+    """
+    for g in graph:
