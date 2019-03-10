@@ -45,3 +45,14 @@ def prettyPrint(board):
         print (row)
 
     return
+
+def noConflicts(board, current):
+    """
+    Check for no conflicts.
+    """
+    for i in range(current):
+        if (board[i] == board[current]):
+            return False
+        if (current - i == abs(board[current] - board[i])):
+            return False
+    return True
