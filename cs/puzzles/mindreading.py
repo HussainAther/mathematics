@@ -95,3 +95,9 @@ def ComputerAssistant():
     """
     print ('Cards are character strings as shown below.')
     print ('Ordering is:', deck)
+
+    cards, cind, cardsuits, cnumbers = [], [], [], []
+    numsuits = [0, 0, 0, 0]
+    number = 0
+    while number < 99999:
+        number = int(input('Please give random number of at least 6 digits:'))
