@@ -12,3 +12,13 @@ Systematic search.
 This is how I play chess: https://www.youtube.com/watch?v=8ghGvbdlTDQ
 """
 
+def noConflicts(board, current):
+    """
+    Check to make sure we're playing by the rules.
+    """
+    for i in range(current):
+        if (board[i] == board[current]):
+            return False
+        if (current - i == abs(board[current] - board[i])):
+            return False
+    return True
