@@ -24,5 +24,15 @@ any floor whose number > y.
 
 Sadly, you are not allowed to take an elevator because the shiny round objects you are
 carrying may scare off other passengers. You would therefore like to minimize the
-number of times you drop a ball, since it is a lot of work to keep climbing up stairs. 
+number of times you drop a ball, since it is a lot of work to keep climbing up stairs.
+
+Of course, the big question is how many balls do you have to play with? Suppose you are
+given exactly one ball. You don’t have much freedom to operate. If you drop the ball
+from floor 43, say, and it breaks, you don’t dare report floor 42, because it might break
+when dropped from floor 42, floor 41, or floor 1 for that matter. You will have to report
+floor 1, which means no bonus. With one ball, you will have to start with floor 1 and if
+the ball breaks, report floor 1, and if it does not you move up to floor 2, all the way till
+floor 128. If it doesn’t break at floor 128, you happily report 128. If the ball breaks when
+dropped from floor f, you will have dropped the ball f times. The number of drops could
+be as large as 128, floors 1 through 128 inclusive. 
 """
