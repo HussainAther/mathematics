@@ -10,12 +10,12 @@ that the cap on the left below is being normally worn and the one on the right i
 worn backwards.
 
 Input is a vector of F's and B's, in terms of forwards and backwards caps
-Output is a set of commands (printed out) to get either all F's or all B's
+Output is a set of commands (printed out) to get either all F"s or all B"s
 Our goal is to perform this in the fewest number of commands.
 """
 
-caps = ['F', 'F', 'B', 'B', 'B', 'F', 'B', 'B', 'B', 'F', 'F', 'B', 'F' ]
-cap2 = ['F', 'F', 'B', 'B', 'B', 'F', 'B', 'B', 'B', 'F', 'F', 'F', 'F' ]
+caps = ["F", "F", "B", "B", "B", "F", "B", "B", "B", "F", "F", "B", "F" ]
+cap2 = ["F", "F", "B", "B", "B", "F", "B", "B", "B", "F", "F", "F", "F" ]
 
 def pleaseConform(caps):
     """
@@ -31,7 +31,7 @@ def pleaseConform(caps):
             # each interval is a tuple with 3 elements (start, end, type)
             intervals.append((start, i - 1, caps[start]))
             
-            if caps[start] == 'F':
+            if caps[start] == "F":
                 forward += 1
             else:
                 backward += 1
@@ -39,21 +39,21 @@ def pleaseConform(caps):
 
     intervals.append((start, len(caps) - 1, caps[start]))
     # add to last interval
-    if caps[start] == 'F':
+    if caps[start] == "F":
         forward += 1
     else:
         backward += 1
 
      # switch it up
     if forward < backward:
-        flip = 'F'
+        flip = "F"
     else:
-        flip = 'B'
+        flip = "B"
     for t in intervals:
         if t[2] == flip:
             #Exercise: if t[0] == t[1] change the printing!
             if t[0] == t[1]:
-                print ('Person at position', t[0], 'flip your cap!')
+                print ("Person at position", t[0], "flip your cap!")
             else:
-                print ('People in positions', t[0], 'through', t[1], 'flip your caps!')
+                print ("People in positions", t[0], "through", t[1], "flip your caps!")
 
