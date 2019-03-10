@@ -57,3 +57,15 @@ def makeImplications(grid, i, j, e):
     impl = [(i, j, e)]
 
     done = False
+    while not done:
+        done = True
+
+        for k in range(len(sectors)):
+           sectinfo = []
+
+            #find missing elements in ith sector
+            vset = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+            for x in range(sectors[k][0], sectors[k][1]):
+                for y in range(sectors[k][2], sectors[k][3]):
+                    if grid[x][y] != 0:
+                        vset.remove(grid[x][y])
