@@ -30,4 +30,11 @@ def EightQueens(numsol, n=8):
     board = [-1] * n
     sol = 0
     for i in range(n):
-    
+        board[0] = i
+        for j in range(n):
+            board[1] = j
+            if not noConflicts(board, 1):
+                continue
+            for k in range(n):
+                board[2] = k
+                if not noConflicts(board, 2):
