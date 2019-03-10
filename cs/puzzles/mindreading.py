@@ -143,3 +143,5 @@ def ComputerAssistant():
         print ('You are a Mind Reader Extraordinaire!')
     else:
         print ('Sorry, not impressed!')
+
+    return
