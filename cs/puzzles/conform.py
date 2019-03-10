@@ -36,3 +36,10 @@ def pleaseConform(caps):
             else:
                 backward += 1
             start = i
+
+    intervals.append((start, len(caps) - 1, caps[start]))
+    if caps[start] == 'F':
+        forward += 1
+    else:
+        backward += 1
+
