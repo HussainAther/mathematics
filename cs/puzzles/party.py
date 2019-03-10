@@ -30,3 +30,13 @@ sched2 = [(6.0, 8.0), (6.5, 12.0), (6.5, 7.0), (7.0, 8.0), (7.5, 10.0), (8.0, 9.
           (8.0, 10.0), (9.0, 12.0), (9.5, 10.0), (10.0, 11.0), (10.0, 12.0), (11.0, 12.0)]
 sched3 = [(6, 7), (7,9), (10, 11), (10, 12), (8, 10), (9, 11), (6, 8),
           (9, 10), (11, 12), (11, 13), (11, 14)]
+
+def bestTimeToPartySmart(schedule, ystart, yend):
+    """
+    Edit the schedule to find party times.
+    """
+    times = []
+    for c in schedule:
+        times.append((c[0], 'start'))
+        times.append((c[1], 'end'))
+
