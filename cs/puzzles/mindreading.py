@@ -24,7 +24,7 @@ It turns out that the order in which the Assistant reveals the cards tells the M
 the fifth card is! The Assistant needs to be able to decide which of the cards is going to be
 hidden – he or she cannot allow the audience to pick the hidden card out of the five cards
 that the audience picks. Here’s one way that the Assistant and the Magician can work
-together. 
+together.
 """
 
 deck = ['A_C', 'A_D', 'A_H', 'A_S', '2_C', '2_D', '2_H', '2_S', '3_C', '3_D', '3_H', '3_S',
@@ -32,3 +32,11 @@ deck = ['A_C', 'A_D', 'A_H', 'A_S', '2_C', '2_D', '2_H', '2_S', '3_C', '3_D', '3
         '7_C', '7_D', '7_H', '7_S', '8_C', '8_D', '8_H', '8_S', '9_C', '9_D', '9_H', '9_S',
         '10_C', '10_D', '10_H', '10_S', 'J_C', 'J_D', 'J_H', 'J_S',
         'Q_C', 'Q_D', 'Q_H', 'Q_S', 'K_C', 'K_D', 'K_H', 'K_S']
+
+def outputFirstCard(numbers, oneTwo, cards):
+    """
+    This procedure figures out which card should be hidden based on the distance
+    between the two cards that have the same suit.
+    It returns the hidden card, the first exposed card, and the distance
+    """
+    
