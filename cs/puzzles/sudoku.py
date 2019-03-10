@@ -134,3 +134,16 @@ def solveSudokuOpt(grid, i = 0, j = 0):
             undoImplications(grid, impl)
 
     return False
+
+
+def printSudoku(grid):
+    """
+    Print it.
+    """
+    numrow = 0
+    for row in grid:
+        if numrow % 3 == 0 and numrow != 0:
+            print (' ')
+        print (row[0:3], ' ', row[3:6], ' ', row[6:9])
+        numrow += 1
+    return
