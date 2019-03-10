@@ -39,4 +39,12 @@ def outputFirstCard(numbers, oneTwo, cards):
     between the two cards that have the same suit.
     It returns the hidden card, the first exposed card, and the distance
     """
-    
+
+    encode = (numbers[oneTwo[0]] - numbers[oneTwo[1]]) % 13
+    if encode > 0 and encode <= 6:
+        hidden = oneTwo[0]
+        other = oneTwo[1]
+    else:
+        hidden = oneTwo[1]
+        other = oneTwo[0]
+        encode = (numbers[oneTwo[1]] - numbers[oneTwo[0]]) % 13
