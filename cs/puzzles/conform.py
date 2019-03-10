@@ -56,3 +56,4 @@ def pleaseConform(caps):
                 print ('Person at position', t[0], 'flip your cap!')
             else:
                 print ('People in positions', t[0], 'through', t[1], 'flip your caps!')
+
