@@ -132,3 +132,5 @@ def solveSudokuOpt(grid, i = 0, j = 0):
             #Undo the current cell for backtracking
             backtracks += 1
             undoImplications(grid, impl)
+
+    return False
