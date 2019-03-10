@@ -74,3 +74,9 @@ def outputNext3Cards(code, ind):
     print ('Second card is:', deck[second])
     print ('Third card is:', deck[third])
     print ('Fourth card is:', deck[fourth])
+
+def sortList(tlist):
+    """
+    Implement sorting list elements in ascending order.
+    """
+    for index in range(0, len(tlist)-1):
