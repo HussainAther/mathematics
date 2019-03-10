@@ -12,4 +12,13 @@ problem for N up to say 20, you would have to write functions to solve 4-queens 
 nested loops), 5-queens (with 5 nested loops), all the way to 20-queens (with 20 nested
 loops!), and invoke the appropriate function depending on the actual value of N when the
 code is run. What happens if you then want a solution to the 21-queens problem?
+
+We will need to use recursion to solve the general N-queens problem. Recursion occurs
+when something is defined in terms of itself. The most common application of recursion
+in programming is where a function being defined is applied within its own definition.
+
+In Python a function can call itself. If a function calls itself, it is called a recursive
+function. Recursion may also correspond to a function A calling a function B, which in
+turn calls function A. We’ll focus on the simple case of recursion here, namely a function
+f calling f again. 
 """
