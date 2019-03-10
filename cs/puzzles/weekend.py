@@ -59,3 +59,17 @@ dgraph3 = {'A': ['B'],
            'G': ['F'],
            'H': ['F'],
            'I': ['F']}
+
+def bipartiteGraphColor(graph, start, coloring, color):
+    """
+    Color the graph.
+    """
+    if start not in graph:
+        return False, {}
+    
+    if start not in coloring:
+        coloring[start] = color
+    elif coloring[start] != color:
+        return False, {}
+    else:
+        return True, coloring
