@@ -95,3 +95,6 @@ def colorDisconnectedGraph(graph, coloring):
             success, coloring = bipartiteGraphColor(graph, g, coloring, 'Sha')
             if not success:
                 return False, {}
+
+    return True, coloring
+        
