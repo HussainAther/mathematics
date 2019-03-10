@@ -84,5 +84,18 @@ algorithm to our specific 128-floor problem.
 def howHardIsTheCrystal(n, d):
     """
     If d is too large in the setting the first digit to 1
-    exceeds the number of floors.
+    exceeds the number of floors. We can figure out some function here.
     """
+
+    r = 1
+    while (r**d <= n):
+        r = r + 1
+    print('Radix chosen is', r)
+
+    newd = d
+    while (r**(newd-1) > n):
+        newd -= 1
+    if newd < d:
+        print ('Using only', newd, 'balls')
+    d = newd
+
