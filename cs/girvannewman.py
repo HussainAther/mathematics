@@ -91,4 +91,9 @@ def gnRun(g, orig, m):
         if g.number_of_edges() == 0:
             break # break the loop when we get to this part of the algorithm
     if best > 0:
-        
+        print("Modularity (Q): %f " % best)
+        print("Graph communities:", bestcom)
+    else:
+        print("Modularity (Q): %f" % best)
+
+
