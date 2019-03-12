@@ -78,8 +78,14 @@ def Deg(a, nodes):
     return dicto
 
 def gnRun(g, orig, m):
+    """
+    Run the Girvan-Newman algorithm.
+    """
     best = 0 # best graph split
-    q = 0
     while True:
-        
-
+        gnStep(g)
+        q = gnModularity(g, orig, m)
+        if q > best: # if the modularity of this method of partitioning is better
+            best = q
+            bestcom = nx.connected_components(g) # best way of partitioning the graph
+            
