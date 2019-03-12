@@ -52,3 +52,4 @@ def gnModularity(g, deg, m):
     """
     Compute modularity of the part of the matrix
     """
+    new = nx.adj_matrix(g) # get the adjacency matrix
