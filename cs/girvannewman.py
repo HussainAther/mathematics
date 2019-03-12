@@ -5,6 +5,12 @@ import random as rand
 import sys
 
 """
+Run using:
+
+"python girvannewman.py cgraph.dat"
+
+or replace "cgraph.dat" with whatever graph file you want.
+
 The Girvan–Newman algorithm (named after Michelle Girvan and Mark Newman) is a hierarchical
 method used to detect communities in complex systems. It constructs a graph by detecting communities
 in the network.
@@ -17,7 +23,9 @@ The steps are generally:
 """
 
 def buildG(G, file_, delimiter_):
-    # read the graph from cgraph.dat file
+    """
+    Build a graph from the cgraph.dat file or whatever input file is given.
+    """
     reader = csv.reader(open(file_), delimiter=delimiter_)
     for line in reader:
         if len(line) > 2:  # for the format of cgraph.dat
@@ -25,3 +33,10 @@ def buildG(G, file_, delimiter_):
                 G.add_edge(int(line[0]),int(line[1]),weight=float(line[2]))
         else: # 2 edges
             G.add_edge(int(line[0]),int(line[1]),weight=1.0)
+
+def gnStep(g):
+    """
+    Perform the steps of the algorithm
+    """
+    init_ncomp = nx.number_connected_components(g)    #no of components
+    ncomp = init_ncomp
