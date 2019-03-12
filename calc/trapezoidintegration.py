@@ -16,6 +16,9 @@ B = 3
 N = 4
 
 def f(y):
+    """
+    Some function
+    """
     print("y f(y) =", y, y*y)
     return y*y
 
