@@ -16,5 +16,15 @@ def kr(p, t, q):
     t = 0    # hash value for txt
     h = 1
 
-    for i in range(len(pat)-1):
+    for i in range(len(p)-1):
         h = (h * d)% q
+    
+    for i in range(len(p)):
+        p = (d * p + ord(p[i]))% q
+        t = (d * t + ord(t[i]))% q
+
+    for i in range(len(t) - len(p) + 1):
+        if p == t:
+            for j in range(len(p)):
+                if t[i + j] != p[j]:
+                    break
