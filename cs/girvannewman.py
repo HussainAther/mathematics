@@ -54,6 +54,7 @@ def gnModularity(g, deg, m):
     """
     new = nx.adj_matrix(g) # get the adjacency matrix
     deg = Deg(new, g.nodes()) # degree of the matrix
+    comps = nx.connected_components(g)
 
 def Deg(a, nodes):
     """
