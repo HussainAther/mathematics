@@ -2,7 +2,8 @@
 """
 The Karp-Rabin algorithm matches a pattern to a string, the basic principle of database search.
 
-It computes scores of the substrings against the main string
+It computes scores of the substrings against the main string. It compares each position of the
+substrings against the main string.
 """
 
 
