@@ -19,7 +19,10 @@ zero = label(pos=(-85, -48), text="0", box=0)
 five = label(pos=(-85, 50), text="5", box=0)
 twopi = label(pos=(90, -48), text="2pi", box=0)
 
-def fx(x): # Integrand
+def fx(x): 
+    """
+    Integrand over which we integrate.
+    """
     return x*sin(x)*sin(x)
 
 def plotfunction(): # Plot hte function and the box
