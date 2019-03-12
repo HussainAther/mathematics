@@ -20,11 +20,16 @@ def kr(p, t, q):
         h = (h * d)% q
     
     for i in range(len(p)):
-        p = (d * p + ord(p[i]))% q
-        t = (d * t + ord(t[i]))% q
+        a = (d * p + ord(p[i]))% q
+        b = (d * t + ord(t[i]))% q
 
     for i in range(len(t) - len(p) + 1):
-        if p == t:
+        if a == b:
             for j in range(len(p)):
-                if t[i + j] != p[j]:
+                if b[i + j] != a[j]:
                     break
+            j+= 1
+            if j == len(a):
+                print("Pattern found at index : %f"  % str(i))
+
+        
