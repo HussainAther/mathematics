@@ -106,4 +106,5 @@ m = 0 # number of edges
 for i in range(n):
     for j in range(n):
         m += a[i, j]
-
+m = m / 2 # normalize
+orig = {} # weighted degree for each node 
