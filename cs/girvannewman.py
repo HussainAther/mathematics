@@ -77,3 +77,9 @@ def Deg(a, nodes):
         dicto[nodes[i]] = b[i, 0]
     return dicto
 
+def gnRun(g, orig, m):
+    best = 0 # best graph split
+    q = 0
+    while True:
+        
+
