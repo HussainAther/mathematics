@@ -22,7 +22,7 @@ The steps are generally:
 4. Steps 2 and 3 are repeated until no edges remain.
 """
 
-def buildG(G, file_, delimiter_):
+def buildGraph(G, file_, delimiter_):
     """
     Build a graph from the cgraph.dat file or whatever input file is given.
     """
@@ -96,4 +96,6 @@ def gnRun(g, orig, m):
     else:
         print("Modularity (Q): %f" % best)
 
-
+gr = sys.argv[1] # read input graph file
+g = nx.graph() # initialize is using networkx
+buildGraph(g, gr, ",") # build the graph
