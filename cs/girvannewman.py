@@ -48,3 +48,7 @@ def gnStep(g):
                 g.remove_edge(k[0], k[1]) # remove that edge
         ncomp = nx.number_connected_components(g) # recalcualte and perform the algorithm again
 
+def gnModularity(g, deg, m):
+    """
+    Compute modularity of the part of the matrix
+    """
