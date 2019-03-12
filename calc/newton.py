@@ -13,7 +13,10 @@ dx = 3e-1 # differential step
 eps = 0.2 # precision
 imax = 100 # number of iterations
 
-def f(x)
+def f(x):
+    """
+    Some function.
+    """
     return 2*cos(x) - x
 
 for i in range(0, imax + 1):
