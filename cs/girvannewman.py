@@ -38,5 +38,5 @@ def gnStep(g):
     """
     Perform the steps of the algorithm
     """
-    init_ncomp = nx.number_connected_components(g)    #no of components
-    ncomp = init_ncomp
+    init_ncomp = nx.number_connected_components(g) # get the number of components
+    ncomp = init_ncomp # initialize with the initial number of components
