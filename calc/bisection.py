@@ -10,7 +10,10 @@ xminus = 0 # must contain zero
 xplus = 7 # what we add to x as we determine the sign of the product
 imax = 100 # number of iterations
 
-def f(x): # a simple function
+def f(x):
+    """
+    Some function.
+    """
     return 2*cos(x) -x
 
 for i in range(0, imax):
