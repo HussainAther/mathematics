@@ -1,7 +1,9 @@
-
 """
 Differentiation as one of the primary methods of calculus for error analysis,
 approximation, and many other mathematical and statistical techniques.
+
+Not sure if this will be useful for anything but at the very least it's 
+documented.
 """
 
 # forward differentiation
