@@ -59,3 +59,5 @@ def Deg(a, nodes):
     """
     Update the degrees of the matrix.
     """
+    dicto = {}
+    
