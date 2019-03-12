@@ -53,12 +53,17 @@ def gnModularity(g, deg, m):
     Compute modularity of the part of the matrix
     """
     new = nx.adj_matrix(g) # get the adjacency matrix
-    deg = Deg(new, g.nodes()) # degree of the matrix
+    dego = Deg(new, g.nodes()) # degree of the matrix
     comps = nx.connected_components(g)
     mod = 0 # modularity of the partition
     for c in comps:
         ewc = 0 # edges in a community
         re = 0 # random edges
+        for i in c:
+            ewc += dego[i]
+            re += deg
+        mod += (float(ewc) - float(re**2) / float(2*m)) # modularity of the matrix
+    mod = mod/float(2*m)
 
 def Deg(a, nodes):
     """
