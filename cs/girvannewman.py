@@ -42,5 +42,9 @@ def gnStep(g):
     ncomp = init_ncomp # initialize with the initial number of components
     while ncomp <= init_ncomp: # loop through the steps as the algorithm dictates
         w = nx.edge_betweenness_centrality(g, weight="weight") # centrality of the edges
-        max_ = max(bw.values()) # max
+        themax = max(bw.values()) # max
+        for k, v in bw.iteritems():
+            if float(v) == themax: # if that edge is the maximum
+                g.remove_edge(k[0], k[1]) # remove that edge
+        ncomp = nx.number_connected_components(g) # recalcualte and perform the algorithm again
 
