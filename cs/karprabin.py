@@ -29,7 +29,11 @@ def kr(p, t, q):
                 if b[i + j] != a[j]:
                     break
             j+= 1
-            if j == len(a):
+            if j == len(p):
                 print("Pattern found at index : %f"  % str(i))
 
-        
+        if i < len(t) - len(p):
+            b = (d*(b-ord(t[i])*h) + ord(t[i + len(p)]))% q
+            if b < 0:
+                b = b + q
+
