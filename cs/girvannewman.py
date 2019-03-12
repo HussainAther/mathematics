@@ -57,7 +57,12 @@ def gnModularity(g, deg, m):
 
 def Deg(a, nodes):
     """
-    Update the degrees of the matrix.
+    Update the degrees of the matrix and return a dictionary of the
+    updated nodes.
     """
-    dicto = {}
-    
+    dicto = {} # that's spanish for dicto
+    b = a.sum(axis=1)
+    for i in range(len(nodes)):
+        dicto[nodes[i]] = b[i, 0]
+    return dicto
+
