@@ -107,4 +107,4 @@ for i in range(n):
     for j in range(n):
         m += a[i, j]
 m = m / 2 # normalize
-orig = {} # weighted degree for each node 
+gnRun(g, Deg(a, g.nodes()), m) # run the algorithm after getting the weighted degree for each node
