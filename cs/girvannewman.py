@@ -20,6 +20,8 @@ def buildG(G, file_, delimiter_):
     # read the graph from cgraph.dat file
     reader = csv.reader(open(file_), delimiter=delimiter_)
     for line in reader:
-        if len(line) > 2:
-            if float(line[2]) != 0.0: # for the format of cgraph.dat
+        if len(line) > 2:  # for the format of cgraph.dat
+            if float(line[2]) != 0.0: # if there are 3 edges
                 G.add_edge(int(line[0]),int(line[1]),weight=float(line[2]))
+        else: # 2 edges
+            G.add_edge(int(line[0]),int(line[1]),weight=1.0)
