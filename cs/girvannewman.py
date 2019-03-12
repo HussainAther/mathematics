@@ -6,7 +6,14 @@ import sys
 
 """
 The Girvan–Newman algorithm (named after Michelle Girvan and Mark Newman) is a hierarchical
-method used to detect communities in complex systems.
+method used to detect communities in complex systems. It constructs a graph by detecting communities
+in the network.
+
+The steps are generally:
+1. The betweenness of all existing edges in the network is calculated first.
+2. The edge with the highest betweenness is removed.
+3. The betweenness of all edges affected by the removal is recalculated.
+4. Steps 2 and 3 are repeated until no edges remain.
 """
 
 def buildG(G, file_, delimiter_):
