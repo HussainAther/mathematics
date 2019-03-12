@@ -88,4 +88,7 @@ def gnRun(g, orig, m):
         if q > best: # if the modularity of this method of partitioning is better
             best = q
             bestcom = nx.connected_components(g) # best way of partitioning the graph
-            
+        if g.number_of_edges() == 0:
+            break # break the loop when we get to this part of the algorithm
+    if best > 0:
+        
