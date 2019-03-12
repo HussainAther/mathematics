@@ -99,3 +99,11 @@ def gnRun(g, orig, m):
 gr = sys.argv[1] # read input graph file
 g = nx.graph() # initialize is using networkx
 buildGraph(g, gr, ",") # build the graph
+
+n = g.number_of_nodes()
+a = nx.adj_matrix(g) # adjacency matrix
+m = 0 # number of edges
+for i in range(n):
+    for j in range(n):
+        m += a[i, j]
+
