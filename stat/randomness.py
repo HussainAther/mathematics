@@ -1,4 +1,3 @@
-
 """
 We can define a sequence of numbers as random if there are no correlations among the numbers.
 If all the number in a sequence are equally likely to occur, it is uniform.
