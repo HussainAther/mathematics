@@ -11,6 +11,7 @@ the function.
 if int(version[0])>2: # raw_input is depcrated in Python 3 :O
     raw_input=input
 
+# define some constants
 A = 0
 B = 3
 N = 4
