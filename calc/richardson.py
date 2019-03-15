@@ -31,10 +31,12 @@ for i in range(ts, te):
     integratearray.append(f(i))
 
 # initialize with the first matrix value
-a(1, 1) = np.trapz(integratearray, dx = h)
+a[1, 1] = np.trapz(integratearray, dx = h)
 
 # Each row of the matrix requires one call to the trapz method
 for i in range(1, maxRows):
     h = h/ 2
-    a(i+1, 1) = np.trapz(integratearray, dx = h) # use the smaller step size h
+    a[i+1, 1] = np.trapz(integratearray, dx = h) # use the smaller step size h
+    for j in range(1, i+1):
+        a[i + 1, j + 1] = [(4^j).*a[i + 1, j] - a[i, j])/(4^j - 1) # Richardson extrapolate
     
