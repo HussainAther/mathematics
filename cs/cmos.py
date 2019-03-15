@@ -13,11 +13,14 @@ Vmeter = 0 # 1st voltage source
 Vds = 0 # 2nd voltage source
 Vgs = 0 # 3rd voltage source
 
+result = []
+
 m1 = 1.2e-6 # mosfet length itself in microns
 
 for i in range(0, 6, .1):
     Vds = i
     if i % 1 == 0:
         Vgs = i
-    plt.(Vds)
-    plt.(Vgs)
+    result.append(Vgs - Vds - m1*600) # Vmeter voltage
+
+plt(result)
