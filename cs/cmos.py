@@ -1,3 +1,4 @@
+import numpy as np
 
 """
 We can use complementary metal–oxide–semiconductor (CMOS) circuits to implement
