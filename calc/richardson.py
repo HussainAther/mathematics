@@ -19,7 +19,6 @@ def f(y):
 
 maxRows = 20
 initialH = ts - te # step size
-foundSolution = False # to check if we have a solution
 
 h = initialH
 
@@ -40,3 +39,5 @@ for i in range(1, maxRows):
     for j in range(1, i+1):
         a[i + 1, j + 1] = ((4^j).*a[i + 1, j] - a[i, j])/(4^j - 1) # Richardson extrapolate
     if abs(a[i+1, i+1] - a[i, i]) < eps # if the result is within our standards of accuracy
+        print(y[5])
+        print(a[i+1, i+1])
