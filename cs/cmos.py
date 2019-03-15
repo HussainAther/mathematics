@@ -6,5 +6,7 @@ functions using logic gates. We can also use metal-oxide-semiconductor field-eff
 transistor (MOSFET) as a type of field-effect transistor to generate different voltages.
 """
 
-Vds = 0 # first voltage source
-Vgs = 0 # voltage gate
+Vmeter = 0 # 1st voltage source
+Vds = 0 # 2nd voltage source
+Vgs = 0 # 3rd voltage source
+
