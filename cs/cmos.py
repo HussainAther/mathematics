@@ -1,4 +1,7 @@
 
 """
-We can use complementary metal–oxide–semiconductor (CMOS) circuits 
+We can use complementary metal–oxide–semiconductor (CMOS) circuits to implement
+functions using logic gates. We can also use metal-oxide-semiconductor field-effect
+transistor (MOSFET) as a type of field-effect transistor to generate different voltages.
 """
+
