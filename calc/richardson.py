@@ -38,5 +38,5 @@ for i in range(1, maxRows):
     h = h/ 2
     a[i+1, 1] = np.trapz(integratearray, dx = h) # use the smaller step size h
     for j in range(1, i+1):
-        a[i + 1, j + 1] = [(4^j).*a[i + 1, j] - a[i, j])/(4^j - 1) # Richardson extrapolate
-    
+        a[i + 1, j + 1] = ((4^j).*a[i + 1, j] - a[i, j])/(4^j - 1) # Richardson extrapolate
+    if abs(a[i+1, i+1] - a[i, i]) < eps # if the result is within our standards of accuracy
