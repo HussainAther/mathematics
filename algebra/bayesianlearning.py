@@ -70,24 +70,31 @@ def beta_binom(alpha, beta, y):
     p_y = np.exp(betaln(alpha + h, beta+n-h) - betaln(alpha, beta))
     return p_y
 
-def C(phi, alpha, beta):
+def C(phi, alpha, beta, i):
     """
     Covariance matrix of the marginal likelihood.
     """
-    phiT = np.transpose(phi)
+    phiT = np.transpose(phi[i])
     I = np.identity(len(alpha))
     beta_in = np.linalg.inv(beta)
     imax = range(len(alpha))
     summed = 0
-    for i in range(len(alpha)):
-        summed += np.transpoe(alpha[i])*phi[i]*phiT[i] + np.linalg.inv(alpha[imax])*phi[imax]*phiT[imax]
+    for j in range(len(alpha)):
+        if j != i:
+            summed += np.linalg.inv(alpha[j])*phi[j]*np.tranpose(phi[j]) + np.linalg.inv(alpha[i])*phi[i]*phiT[i]
     return beta_in*I + summed
 
-def qi(phi, alpha, beta, t1, t2):
+def qi(phi, alpha, beta, t1, t2, i):
     """
     Quality of phi_i.
     """
-    return np.transpose(phi)*C(phi, alpha, beta)*np.transpose(t1, t2)
+    return np.transpose(phi[i])*np.linalg.inv(C(phi[-i], alpha, beta, i))*np.transpose(t1, t2)
+
+def si(phi, alpha, beta)
+    """
+    Sparsity of phi_i.
+    """
+    return np.tranpose(phi)*C(phi)
 
 def ssbla(alpha, beta, phi):
     """
