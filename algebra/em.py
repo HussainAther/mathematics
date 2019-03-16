@@ -21,7 +21,7 @@ We implement an example for coin flipping.
 def neg_loglik(thetas, n, xs, zs):
     """
     Use the negative log likelihood function to minimize it as part of
-    a binomial theorem to get the maximum expectation.
+    a multinomoial binomial log likelihood function to get the maximum expectation.
     """
     return -np.sum([binom(n, thetas[z]).logpmf(x) for (x, z) in zip(xs, zs)])
 
@@ -30,7 +30,8 @@ theta_A = 0.8 # probability of condition A (heads in a coin flip)
 theta_B = 0.3 # probability of condition B (tails)
 theta_0 = [theta_A, theta_B] # combine into list
 
-coin_A = bernoulli(theta_A)
+coin_A = bernoulli(theta_A) # Bernoulli discrete random variable generated using
+                            # the probability mass function for bernoulli
 coin_B = bernoulli(theta_B)
 
 xs = map(sum, [coin_A.rvs(m), coin_A.rvs(m), coin_B.rvs(m), coin_A.rvs(m), coin_B.rvs(m)])
@@ -80,14 +81,15 @@ def em():
             # update complete log likelihood
             ll_new += w_A * ll_A + w_B * ll_B
 
-        # M-step: update values for parameters given current distribution
-        # [EQN 2]
+        """
+        M-step: update values for parameters given current distribution
+        """
         thetas[0] = np.sum(vs_A, 0)/np.sum(vs_A)
         thetas[1] = np.sum(vs_B, 0)/np.sum(vs_B)
         # print distribution of z for each x and current parameter estimate
 
-        print "Iteration: %d" % (i+1)
-        print "theta_A = %.2f, theta_B = %.2f, ll = %.2f" % (thetas[0,0], thetas[1,0], ll_new)
+        print("Iteration: %d" % (i+1))
+        print("theta_A = %.2f, theta_B = %.2f, ll = %.2f" % (thetas[0,0], thetas[1,0], ll_new))
 
         if np.abs(ll_new - ll_old) < tol:
             break
