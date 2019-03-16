@@ -18,6 +18,18 @@ for models affected by unobserved latent variables.
 
 def neg_loglik(thetas, n, xs, zs):
     """
-    Negative
+    Use the negative log likelihood function to minimize it as part of
+    a binomial theorem to get the maximum expectation.
     """
     return -np.sum([binom(n, thetas[z]).logpmf(x) for (x, z) in zip(xs, zs)])
+
+m = 10
+theta_A = 0.8
+theta_B = 0.3
+theta_0 = [theta_A, theta_B]
+
+coin_A = bernoulli(theta_A)
+coin_B = bernoulli(theta_B)
+
+xs = map(sum, [coin_A.rvs(m), coin_A.rvs(m), coin_B.rvs(m), coin_A.rvs(m), coin_B.rvs(m)])
+zs = [0, 0, 1, 0, 1]
