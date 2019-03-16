@@ -51,13 +51,14 @@ def prior(alpha, beta):
     """
     return np.random.normal(beta, alpha)
 
-def alphai(s, q):
+def alphai(i, t1, t2):
     """
     Sparsity s and quality of phi q can be computed from the converse
-    matrix and the function phi and then used to alphai.
+    matrix and the function phi and then used to alphai. This is used
+    to update alpha as needed
     """
-    num = s**2
-    den = q**2 - s
+    num = si(phi, alpha, beta,i)**2
+    den = qi(phi, alpha, beta, t1, t2, i)**2 - si(phi, alpha, beta,i)
     return num/den
 
 def beta_binom(alpha, beta, y):
@@ -90,18 +91,22 @@ def qi(phi, alpha, beta, t1, t2, i):
     """
     return np.transpose(phi[i])*np.linalg.inv(C(phi[-i], alpha, beta, i))*np.transpose(t1, t2)
 
-def si(phi, alpha, beta,i)
+def si(phi, alpha, beta, i):
     """
     Sparsity of phi_i.
     """
     return np.tranpose(phi[i])*C(phi[-i], alpha, beta, i)*phi[i]
 
-def ssbla(alpha, beta, phi):
+def ssbla(alpha, beta, phi, t1, t2):
     """
     Sequential Sparse Bayesian Learning Algorithm, as described above.
     """
     dist = prior(alpha, beta)
-    if
+    for i in range(len(alpha)):
+        if qi(phi, alpha, beta, i, t1, t2)**2 > s(phi, alpha, beta,i) and alpha[i] < np.inf:
+            alpha[i] = alphai(i, t1, t2) # update alpha[i] using the alphai function
+        if qi(phi, alpha, beta, i, t1, t2)**2 > (phi, alpha, beta,i) and alpha[i] == np.inf:
+            
 
 """
 Sequential Monte Carlo progresses with successive interpolated
