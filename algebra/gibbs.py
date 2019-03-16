@@ -31,7 +31,7 @@ def samplebeta0(y, x, beta_1, tau, mu_0, tau_0):
 def beta1(y, x, beta_0, tau, mu_1, tau_1):
     """
     We can calculate the coefficient fo Beta1 (tau1mu1 + tau * summation(yi-beta0) and the coefficient
-    of Beta1^2 is -tau/2-tau/2*summation(xi^2). 
+    of Beta1^2 is -tau/2-tau/2*summation(xi^2).
     """
     N = len(y)
     assert len(x) == N
@@ -39,3 +39,13 @@ def beta1(y, x, beta_0, tau, mu_1, tau_1):
     mean = tau_1 * mu_1 + tau * np.sum( (y - beta_0) * x)
     mean /= precision
     return np.random.normal(mean, 1 / np.sqrt(precision))
+
+def tau(y, x, beta_0, beta_1, alpha, beta):
+    """
+    Update tau using the Gamma distribution.
+    """
+    N = len(y)
+    alpha_new = alpha + N / 2
+    resid = y - beta_0 - beta_1 * x
+    beta_new = beta + np.sum(resid * resid) / 2
+    return np.random.gamma(alpha_new, 1 / beta_new)
