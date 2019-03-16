@@ -97,19 +97,22 @@ def si(phi, alpha, beta, i):
     """
     return np.tranpose(phi[i])*C(phi[-i], alpha, beta, i)*phi[i]
 
-def ssbla(alpha, beta, phi, t1, t2):
+def ssbla(model, alpha, beta, phi, t1, t2, regression=True):
     """
     Sequential Sparse Bayesian Learning Algorithm, as described above.
+    model is a list of our model functions.
     """
-    model = []
     dist = prior(alpha, beta)
     for i in range(len(alpha)):
         if qi(phi, alpha, beta, i, t1, t2)**2 > s(phi, alpha, beta,i) and alpha[i] < np.inf:
             alpha[i] = alphai(i, t1, t2) # update alpha[i] using the alphai function
-        if qi(phi, alpha, beta, i, t1, t2)**2 > (phi, alpha, beta,i) and alpha[i] == np.inf:
+        elif qi(phi, alpha, beta, i, t1, t2)**2 > (phi, alpha, beta,i) and alpha[i] == np.inf:
             model.append([phi[i], alphai(i, t1, t2)]) # add phi_i to the model and evaluate alphai hyperparameter
-        
-
+        elif qi(phi, alpha, beta, i, t1, t2)**2 <= s(phi, alpha, beta,i) and alpha[i] < np.inf:
+            model.pop(phi[i])
+    if regression:
+        dist = prior(alpha, beta)
+    return models, dist
 
 """
 Sequential Monte Carlo progresses with successive interpolated
