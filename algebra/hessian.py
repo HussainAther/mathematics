@@ -42,12 +42,12 @@ def hessian ( x, f, d=1e-8):
         step size
     """
     N = x.size
-    h = np.zeros((N,N))
+    h = np.zeros((N,N)) # output Hessian matrix
     df_0 = f(x)[1]
     for i in xrange(N):
-        xx0 = 1.*x[i]
-        x[i] = xx0 + d
-        df_1 = f(x)[1]
-        h[i,:] = (df_1 - df_0)/d
-        x[i] = xx0
+        xx0 = 1.*x[i] # first element of our data array
+        x[i] = xx0 + d # add the step size
+        df_1 = f(x)[1] #evaluate the function for this value
+        h[i,:] = (df_1 - df_0)/d # update the Hessian matrix
+        x[i] = xx0 # re-update the array
     return h
