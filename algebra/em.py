@@ -22,6 +22,8 @@ def neg_loglik(thetas, n, xs, zs):
     """
     Use the negative log likelihood function to minimize it as part of
     a multinomoial binomial log likelihood function to get the maximum expectation.
+    xs and zs are the data, n is number of coin tosses in each sample, and
+    thetas are the list of the conditions (heads, tails).
     """
     return -np.sum([binom(n, thetas[z]).logpmf(x) for (x, z) in zip(xs, zs)])
 
@@ -34,6 +36,7 @@ coin_A = bernoulli(theta_A) # Bernoulli discrete random variable generated using
                             # the probability mass function for bernoulli
 coin_B = bernoulli(theta_B)
 
+# Create a map the sum of the random variates for m number of samples from the Bernoulli discrete random variable
 xs = map(sum, [coin_A.rvs(m), coin_A.rvs(m), coin_B.rvs(m), coin_A.rvs(m), coin_B.rvs(m)])
 zs = [0, 0, 1, 0, 1]
 
