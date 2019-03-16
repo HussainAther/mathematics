@@ -74,5 +74,4 @@ def exactHessian(x, f):
     Compute the exact Hessian as outlined by Barak Pearlmutter in
     "Fast Exact Multiplication by the Hessian" (1993).
     """
-
-    
+    return np.gradient(np.gradient(x))
