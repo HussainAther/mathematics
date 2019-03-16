@@ -38,10 +38,18 @@ def mlf(x):
     and the probability of a data point being a member of class c is returned.
     """
     num = np.exp(x) # numerator
-    den = # denominator
+    den = 0 # denominator
+    for i in range(x):
+        den += np.exp(x)
+    return num/den
 
-def prior():
-    np.random.normal()
+def prior(beta, alpha):
+    """
+    Prior distribution over the parameters being inferred. The preferred choice
+    is a non-informative prior that implies that before the inferecne operation
+    we hae no knowledge of what the parameters are likely to be.
+    """
+    np.random.normal(beta, alpha)
 
 def ssbla():
     """
