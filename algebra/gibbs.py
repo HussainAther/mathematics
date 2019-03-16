@@ -49,3 +49,15 @@ def tau(y, x, beta_0, beta_1, alpha, beta):
     resid = y - beta_0 - beta_1 * x
     beta_new = beta + np.sum(resid * resid) / 2
     return np.random.gamma(alpha_new, 1 / beta_new)
+
+beta_0_true = -1
+beta_1_true = 2
+tau_true = 1
+
+N = 50
+x = np.random.uniform(low = 0, high = 4, size = N)
+y = np.random.normal(beta_0_true + beta_1_true * x, 1 / np.sqrt(tau_true))
+
+synth_plot = plt.plot(x, y, "o")
+plt.xlabel("x")
+plt.ylabel("y")
