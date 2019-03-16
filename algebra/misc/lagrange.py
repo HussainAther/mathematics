@@ -1,18 +1,19 @@
+import numpy as np
+import matplotlib as mpl
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+
+"""
 # Suppose we seek to maximize the function f(x,y)=x+y subject
 # to the constraint that x2+y2=1. The function we seek to maximize
 # is an unbounded plane, while the constraint is a unit circle.
 # We want the maximum value of the circle, on the plane.
 # We plot these two functions here.
-
-import numpy as np
+"""
 
 x = np.linspace(-1.5, 1.5)
 
 [X, Y] = np.meshgrid(x, x)
-
-import matplotlib as mpl
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')

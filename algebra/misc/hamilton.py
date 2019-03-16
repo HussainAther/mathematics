@@ -69,7 +69,6 @@ a= find_cycle(graph)
 
 print "Number of Hamiltonian Cycles=", len(a)
 #Visualize
-# http://ashitani.jp/gv/
 G=graph
 f = open('dotgraph.txt','w')
 f.writelines('digraph G {\nnode [width=.3,height=.3,shape=octagon,style=filled,color=skyblue];\noverlap="false";\nrankdir="LR";\n')
