@@ -16,4 +16,7 @@ function phi from teh model and set alphai = infinity.
 Then, ff solving regression problem, update beta. If converged terminate repeat the steps of the previous paragraph.
 """
 
-
+def ssbla():
+    """
+    Sequential Sparse Bayesian Learning Algorithm.
+    """
