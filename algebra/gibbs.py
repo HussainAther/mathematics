@@ -18,11 +18,24 @@ def samplebeta0(y, x, beta_1, tau, mu_0, tau_0):
     """
     Find the posterior distributions as described above. Use the log-posterior conditional density
     in a quadratic form such that the coefficient of x^2 will be tau mu and the coefficient of x^2 will be -tau/2.
-    We can find a log-dependence on beta0
+    We can find a log-dependence on beta0. We can find the conditional sampling distribution of Beta0.
     """
     N = len(y)
     assert len(x) == N
     precision = tau_0 + tau * N
     mean = tau_0 * mu_0 + tau * np.sum(y - beta_1 * x)
+    mean /= precision
+    return np.random.normal(mean, 1 / np.sqrt(precision))
+
+
+def beta1(y, x, beta_0, tau, mu_1, tau_1):
+    """
+    We can calculate the coefficient fo Beta1 (tau1mu1 + tau * summation(yi-beta0) and the coefficient
+    of Beta1^2 is -tau/2-tau/2*summation(xi^2). 
+    """
+    N = len(y)
+    assert len(x) == N
+    precision = tau_1 + tau * np.sum(x * x)
+    mean = tau_1 * mu_1 + tau * np.sum( (y - beta_0) * x)
     mean /= precision
     return np.random.normal(mean, 1 / np.sqrt(precision))
