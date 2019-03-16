@@ -1,4 +1,8 @@
 import numpy as np
+import pymc3 as pm
+
+from scipy.special import betaln
+from scipy.stats import beta
 
 """
 Sequential Sparse Bayesian Learning Algorithm
@@ -125,8 +129,8 @@ models = []
 traces = []
 for alpha, beta in priors:
     with pm.Model() as model:
-        a = pm.Beta('a', alpha, beta)
-        yl = pm.Bernoulli('yl', a, observed=y)
+        a = pm.Beta("a", alpha, beta)
+        yl = pm.Bernoulli("yl", a, observed=y)
         trace = pm.sample(1000,
                           step=pm.SMC(),
                           random_seed=42)
