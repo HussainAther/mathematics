@@ -71,24 +71,12 @@ def train_weights(train, l_rate, n_epoch):
     for epoch in range(n_epoch):
         sum_error = 0.0
         for row in train:
-            prediction = predict(row, weights)
-            error = row[-1] - prediction
-            sum_error += error**2
+            prediction = predict(row, weights) # scoring for a summation of the prediction
+            error = row[-1] - prediction # this is the perceptron criterion
+            sum_error += error**2 # sum the error
             weights[0] = weights[0] + l_rate * error
             for i in range(len(row)-1):
                 weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
         print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, l_rate, sum_error))
     return weights
 
-"""
-We use an alternative error function known as the perceptron criterion.
-"""
-
-def pcrit(w, phi, t):
-    """
-    Using the t of {-1, +1} target codign scheme we want all patterns to satisfy
-    w^T*phi(x_n)*t_n > 0 .
-    """
-    result = 0
-    for n in range(M):
-        
