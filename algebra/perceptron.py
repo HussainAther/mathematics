@@ -13,6 +13,17 @@ with a nonlinear activation function f(.) with as a step function:
 
 f(a) 1 when a >=0 and -1 when a < 0.
 """
+
+def predict(row, weights):
+    """
+    Make predcitions by evaluating candidate weight values in stoachastic
+    gradient descent. After the model is finalized we start making predictions on test data.
+    """
+    activation = weights[0]
+    for i in range(len(row)-1):
+        activation += weights[i + 1] * row[i]
+    return 1.0 if activation >= 0.0 else 0.0
+
 data =[ # example data in the format [X1, X2, Y]
 [2.7810836, 2.550537003, 0]
 [1.465489372, 2.362125076, 0]
@@ -25,13 +36,10 @@ data =[ # example data in the format [X1, X2, Y]
 [8.675418651, -0.242068655,1]
 [7.673756466,3.508563011,1]]
 
-def predict(row, weights):
-    """
-    Make predcitions by evaluating candidate weight values in stoachastic
-    gradient descent. After the model is finalized we start making predictions on test data.
-    """
-    activation = weights[0]
-    for i in range(len(row)-1):
-        activation += weights[i + 1] * row[i]
-    return 1.0 if activation >= 0.0 else 0.0
+weights = [-0.1, 0.20653640140000007, -0.23418117710000003]
+for row in data:
+    prediction = predict(row, weights)
+    print("Expected=%d, Predicted=%d" % (row[-1], prediction))
 
+# model an activation equation
+activation = (w1 * X1) + (w2 * X2) + bias
