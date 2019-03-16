@@ -57,7 +57,7 @@ def train_weights(train, l_rate, n_epoch):
             weights[0] = weights[0] + l_rate * error
             for i in range(len(row)-1):
                 weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
-        print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, l_rate, sum_error))
+        print(">epoch=%d, lrate=%.3f, error=%.3f" % (epoch, l_rate, sum_error))
     return weights
 
 def train_weights(train, l_rate, n_epoch):
@@ -77,6 +77,6 @@ def train_weights(train, l_rate, n_epoch):
             weights[0] = weights[0] + l_rate * error
             for i in range(len(row)-1):
                 weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
-        print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, l_rate, sum_error))
+        print(">epoch=%d, lrate=%.3f, error=%.3f" % (epoch, l_rate, sum_error))
     return weights
 
