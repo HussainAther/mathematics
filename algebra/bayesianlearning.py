@@ -60,7 +60,17 @@ def alphai(s, q):
     den = q**2 - s
     return num/den
 
-def ssbla(alpha, beta):
+def beta_binom(alpha, beta, y):
+    """
+    Compute the marginal likelihood, analytically, for a beta-binomial model.
+    y is an array with "1" and "0" corresponding to the success and fails respectively
+    """
+    h = np.sum(y)
+    n = len(y)
+    p_y = np.exp(betaln(alpha + h, beta+n-h) - betaln(alpha, beta))
+    return p_y
+
+def ssbla(alpha, beta, phi):
     """
     Sequential Sparse Bayesian Learning Algorithm.
     """
