@@ -54,8 +54,18 @@ def hessian(x, f, d=1e-8):
 
 def hessianDiag(x, f, d=1e-8):
     """
-    Diagonal approximatino to the Hessian replaces the off-diagonal elements with zeros.
+    Diagonal approximation to the Hessian replaces the off-diagonal elements with zeros.
     """
     N = x.size
-    h = np.fill_diagonal(x, N)
+    h = np.zeros((N,N)) # Hessian matrix
+    df_0 = f(x)[1]
+    for i in xrange(N):
+        xx0 = 1.*x[i] # first element of our data array
+        x[i] = xx0 + d # add the step size
+        df_1 = f(x)[1] #evaluate the function for this value
+        h[i,:] = (df_1 - df_0)/d # update the Hessian matrix
+        x[i] = xx0 # re-update the array
+    ho = np.zeros((N, N), int)
+    ho = npfill_diagonal(ho, h)
+    return ho
 
