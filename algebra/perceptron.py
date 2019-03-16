@@ -43,3 +43,39 @@ for row in data:
 
 # model an activation equation
 activation = (w1 * X1) + (w2 * X2) + bias
+
+
+# Estimate Perceptron weights using stochastic gradient descent
+def train_weights(train, l_rate, n_epoch):
+    weights = [0.0 for i in range(len(train[0]))]
+    for epoch in range(n_epoch):
+        sum_error = 0.0
+        for row in train:
+            prediction = predict(row, weights)
+            error = row[-1] - prediction
+            sum_error += error**2
+            weights[0] = weights[0] + l_rate * error
+            for i in range(len(row)-1):
+                weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
+        print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, l_rate, sum_error))
+    return weights
+
+def train_weights(train, l_rate, n_epoch):
+    """
+    Use stochastic gradient descent to estimate weights.
+    First we loop over each epoch. Then we loop over each row in the training
+    data for an epoch. Then we loop over each weight and update it for a
+    rwo in an epoch.
+    """
+    weights = [0.0 for i in range(len(train[0]))]
+    for epoch in range(n_epoch):
+        sum_error = 0.0
+        for row in train:
+            prediction = predict(row, weights)
+            error = row[-1] - prediction
+            sum_error += error**2
+            weights[0] = weights[0] + l_rate * error
+            for i in range(len(row)-1):
+                weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
+        print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, l_rate, sum_error))
+    return weights
