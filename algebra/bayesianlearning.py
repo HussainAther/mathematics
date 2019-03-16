@@ -43,16 +43,27 @@ def mlf(x):
         den += np.exp(x)
     return num/den
 
-def prior(beta, alpha):
+def prior(alpha, beta):
     """
     Prior distribution over the parameters being inferred. The preferred choice
     is a non-informative prior that implies that before the inferecne operation
     we hae no knowledge of what the parameters are likely to be.
     """
-    np.random.normal(beta, alpha)
+    return np.random.normal(beta, alpha)
 
-def ssbla():
+def alphai(s, q):
+    """
+    Sparsity s and quality of phi q can be computed from the converse
+    matrix and the function phi and then used to alphai.
+    """
+    num = s**2
+    den = q**2 - s
+    return num/den
+
+def ssbla(alpha, beta):
     """
     Sequential Sparse Bayesian Learning Algorithm.
     """
+    dist = prior(alpha, beta)
+
 
