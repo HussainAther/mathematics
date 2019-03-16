@@ -83,6 +83,12 @@ def C(phi, alpha, beta):
         summed += np.transpoe(alpha[i])*phi[i]*phiT[i] + np.linalg.inv(alpha[imax])*phi[imax]*phiT[imax]
     return beta_in*I + summed
 
+def qi(phi, alpha, beta, t1, t2):
+    """
+    Quality of phi_i.
+    """
+    return np.transpose(phi)*C(phi, alpha, beta)*np.transpose(t1, t2)
+
 def ssbla(alpha, beta, phi):
     """
     Sequential Sparse Bayesian Learning Algorithm, as described above.
