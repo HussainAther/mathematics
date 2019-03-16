@@ -93,3 +93,13 @@ def gibbs(y, x, iters, init, hypers):
     trace.columns = ['beta_0', 'beta_1', 'tau']
     
     return trace
+
+iters = 1000
+trace = gibbs(y, x, iters, init, hypers)
+
+traceplot = trace.plot()
+traceplot.set_xlabel("Iteration")
+traceplot.set_ylabel("Parameter value")
+
+trace_burnt = trace[500:999]
+hist_plot = trace_burnt.hist(bins = 30, layout = (1,3))
