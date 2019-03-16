@@ -70,12 +70,25 @@ def beta_binom(alpha, beta, y):
     p_y = np.exp(betaln(alpha + h, beta+n-h) - betaln(alpha, beta))
     return p_y
 
+def C(phi, alpha, beta):
+    """
+    Covariance matrix of the marginal likelihood.
+    """
+    phiT = np.transpose(phi)
+    I = np.identity(len(alpha))
+    beta_in = np.linalg.inv(beta)
+    imax = range(len(alpha))
+    summed = 0
+    for i in range(len(alpha)):
+        summed += np.transpoe(alpha[i])*phi[i]*phiT[i] + np.linalg.inv(alpha[imax])*phi[imax]*phiT[imax]
+    return beta_in*I + summed
+
 def ssbla(alpha, beta, phi):
     """
-    Sequential Sparse Bayesian Learning Algorithm.
+    Sequential Sparse Bayesian Learning Algorithm, as described above.
     """
     dist = prior(alpha, beta)
-
+    if
 
 """
 Sequential Monte Carlo progresses with successive interpolated
