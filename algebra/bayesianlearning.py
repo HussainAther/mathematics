@@ -101,12 +101,15 @@ def ssbla(alpha, beta, phi, t1, t2):
     """
     Sequential Sparse Bayesian Learning Algorithm, as described above.
     """
+    model = []
     dist = prior(alpha, beta)
     for i in range(len(alpha)):
         if qi(phi, alpha, beta, i, t1, t2)**2 > s(phi, alpha, beta,i) and alpha[i] < np.inf:
             alpha[i] = alphai(i, t1, t2) # update alpha[i] using the alphai function
         if qi(phi, alpha, beta, i, t1, t2)**2 > (phi, alpha, beta,i) and alpha[i] == np.inf:
-            
+            model.append([phi[i], alphai(i, t1, t2)]) # add phi_i to the model and evaluate alphai hyperparameter
+        
+
 
 """
 Sequential Monte Carlo progresses with successive interpolated
