@@ -61,3 +61,35 @@ y = np.random.normal(beta_0_true + beta_1_true * x, 1 / np.sqrt(tau_true))
 synth_plot = plt.plot(x, y, "o")
 plt.xlabel("x")
 plt.ylabel("y")
+
+## specify initial values
+init = {"beta_0": 0,
+        "beta_1": 0,
+        "tau": 2}
+
+## specify hyper parameters
+hypers = {"mu_0": 0,
+         "tau_0": 1,
+         "mu_1": 0,
+         "tau_1": 1,
+         "alpha": 2,
+         "beta": 1}
+
+def gibbs(y, x, iters, init, hypers):
+    assert len(y) == len(x)
+    beta_0 = init["beta_0"]
+    beta_1 = init["beta_1"]
+    tau = init["tau"]
+    
+    trace = np.zeros((iters, 3)) ## trace to store values of beta_0, beta_1, tau
+    
+    for it in range(iters):
+        beta_0 = sample_beta_0(y, x, beta_1, tau, hypers["mu_0"], hypers["tau_0"])
+        beta_1 = sample_beta_1(y, x, beta_0, tau, hypers["mu_1"], hypers["tau_1"])
+        tau = sample_tau(y, x, beta_0, beta_1, hypers["alpha"], hypers["beta"])
+        trace[it,:] = np.array((beta_0, beta_1, tau))
+
+    trace = pd.DataFrame(trace)
+    trace.columns = ['beta_0', 'beta_1', 'tau']
+    
+    return trace
