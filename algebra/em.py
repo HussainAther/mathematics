@@ -69,15 +69,15 @@ def em():
             ll_A = np.sum([x*np.log(thetas[0])])
             ll_B = np.sum([x*np.log(thetas[1])])
 
-            # [EQN 1]
-            denom = np.exp(ll_A) + np.exp(ll_B)
+            denom = np.exp(ll_A) + np.exp(ll_B) # denominator used for normalizing the
+                                                # multinomial log likelihood function
             w_A = np.exp(ll_A)/denom
             w_B = np.exp(ll_B)/denom
 
             ws_A.append(w_A)
             ws_B.append(w_B)
 
-            # used for calculating theta
+            # dot product used for calculating theta
             vs_A.append(np.dot(w_A, x))
             vs_B.append(np.dot(w_B, x))
 
