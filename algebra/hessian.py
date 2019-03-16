@@ -22,24 +22,32 @@ its eigenvalues determine the values of hyperparameters, and its determinant is 
 the model evidence.
 """
 
-def hessian ( x, the_func, epsilon=1e-8):
+def f(x):
+    """
+    Some function f.
+    """
+    result = []
+    for i in range(5):
+        result.append(i*5)
+    return result
+
+def hessian ( x, f, d=1e-8):
     """Numerical approximation to the Hessian matrix
     x: array-like
         The evaluation point
-    the_func: function
+    f: function
         The function. We assume that the function returns the function value and
         the associated gradient as the second return element
-    epsilon: float
-        The size of the step
+    d: float
+        step size
     """
-
     N = x.size
     h = np.zeros((N,N))
-    df_0 = the_func ( x )[1]
+    df_0 = f(x)[1]
     for i in xrange(N):
         xx0 = 1.*x[i]
-        x[i] = xx0 + epsilon
-        df_1 = the_func ( x )[1]
-        h[i,:] = (df_1 - df_0)/epsilon
+        x[i] = xx0 + d
+        df_1 = f(x)[1]
+        h[i,:] = (df_1 - df_0)/d
         x[i] = xx0
     return h
