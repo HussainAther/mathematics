@@ -69,3 +69,10 @@ def hessianDiag(x, f, d=1e-8):
     ho = npfill_diagonal(ho, h)
     return ho
 
+def exactHessian(x, f):
+    """
+    Compute the exact Hessian as outlined by Barak Pearlmutter in
+    "Fast Exact Multiplication by the Hessian" (1993).
+    """
+
+    
