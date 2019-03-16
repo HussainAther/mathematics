@@ -31,7 +31,7 @@ def f(x):
         result.append(i*5)
     return result
 
-def hessian ( x, f, d=1e-8):
+def hessian(x, f, d=1e-8):
     """Numerical approximation to the Hessian matrix
     x: array-like
         The evaluation point
@@ -51,3 +51,11 @@ def hessian ( x, f, d=1e-8):
         h[i,:] = (df_1 - df_0)/d # update the Hessian matrix
         x[i] = xx0 # re-update the array
     return h
+
+def hessianDiag(x, f, d=1e-8):
+    """
+    Diagonal approximatino to the Hessian replaces the off-diagonal elements with zeros.
+    """
+    N = x.size
+    h = np.fill_diagonal(x, N)
+
