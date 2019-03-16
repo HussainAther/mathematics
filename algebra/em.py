@@ -17,4 +17,7 @@ for models affected by unobserved latent variables.
 """
 
 def neg_loglik(thetas, n, xs, zs):
+    """
+    Negative
+    """
     return -np.sum([binom(n, thetas[z]).logpmf(x) for (x, z) in zip(xs, zs)])
