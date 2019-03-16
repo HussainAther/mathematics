@@ -90,11 +90,11 @@ def qi(phi, alpha, beta, t1, t2, i):
     """
     return np.transpose(phi[i])*np.linalg.inv(C(phi[-i], alpha, beta, i))*np.transpose(t1, t2)
 
-def si(phi, alpha, beta)
+def si(phi, alpha, beta,i)
     """
     Sparsity of phi_i.
     """
-    return np.tranpose(phi)*C(phi)
+    return np.tranpose(phi[i])*C(phi[-i], alpha, beta, i)*phi[i]
 
 def ssbla(alpha, beta, phi):
     """
