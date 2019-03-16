@@ -77,3 +77,21 @@ def ssbla(alpha, beta, phi):
     dist = prior(alpha, beta)
 
 
+"""
+Sequential Monte Carlo progresses with successive interpolated
+sequences from the prior to the posterior. We get an estimation of the
+marginal likelihood.
+"""
+n_chains = 1000
+
+models = []
+traces = []
+for alpha, beta in priors:
+    with pm.Model() as model:
+        a = pm.Beta('a', alpha, beta)
+        yl = pm.Bernoulli('yl', a, observed=y)
+        trace = pm.sample(1000,
+                          step=pm.SMC(),
+                          random_seed=42)
+        models.append(model)
+        traces.append(trace)
