@@ -1,4 +1,3 @@
-import urllib2
 import numpy
 from sklearn import datasets, linear_model
 from math import sqrt
@@ -19,6 +18,14 @@ def S(z, gamma):
     return (z/abs(z))*(abs(z) - gamma)
 
 # read data
-target_url = ("http://archive.ics.uci.edu/ml/machine-learning-"
-"databases/wine-quality/winequality-red.csv")
-data = urllib2.urlopen(target_url)
+data = readlines(open("winequality-red", "r"))
+
+xList = []
+labels = []
+names = []
+firstLine = True
+
+for line in data:
+    if firstLine:
+        names = line.strip().split(";")
+        firstLine = False
