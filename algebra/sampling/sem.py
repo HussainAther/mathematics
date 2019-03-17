@@ -15,12 +15,11 @@ class GMM(object): # Gaussian mixture model
         """
         Initialize the Gaussian mixture model with a set of data X.
         """
-        # dimension
-        X = np.asarray(X)
-        self.m, self.n = X.shape
-        self.data = X.copy()
+        X = np.asarray(X) # make sure we're using a numpy array
+        self.m, self.n = X.shape # get the size
+        self.data = X.copy() # to refer to again later
         # number of mixtures
-        self.k = k
+        self.k = k # can be adjusted. haven't messed around so much
 
     def _init(self):
         """
