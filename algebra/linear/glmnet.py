@@ -112,3 +112,9 @@ for iStep in range(nSteps):
     while deltaBeta > eps:
         iterStep += 1
         if iterStep > 100: break
+
+        # cycle through attributes and update one-at-a-time
+        # record starting value for comparison
+        betaStart = list(betaInner)
+        for iCol in range(ncols):
+
