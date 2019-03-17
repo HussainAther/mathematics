@@ -132,3 +132,6 @@ for iStep in range(nSteps):
         sumDiff = sum([abs(betaInner[n] - betaStart[n]) for n in range(ncols)])
         sumBeta = sum([abs(betaInner[n]) for n in range(ncols)])
         deltaBeta = sumDiff/sumBeta
+
+print(iStep, iterStep)
+beta = betaInner
