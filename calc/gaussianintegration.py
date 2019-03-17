@@ -9,7 +9,7 @@ if int(version[0]) > 3: # Deprecated in Python 3
     raw_input = input
 
 max_in = 11 # number of intervals
-vmin = 0 # ranges of hte integral
+vmin = 0 # ranges of the integral
 vmax = 1
 euler = 0.5772156649 # euler's constant
 
