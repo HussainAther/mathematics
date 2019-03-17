@@ -62,3 +62,9 @@ while T>Tmin:
     r[i,1],r[j,1] = r[j,1],r[i,1]
     D = distance()
     deltaD = D - oldD
+
+    # If the move is rejected, swap them back again
+    if random()>exp(-deltaD/T):
+        r[i,0],r[j,0] = r[j,0],r[i,0]
+        r[i,1],r[j,1] = r[j,1],r[i,1]
+        D = oldD
