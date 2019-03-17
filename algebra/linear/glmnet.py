@@ -124,4 +124,7 @@ for iStep in range(nSteps):
                 labelHat = sum([xNormalized[i][k]*betaInner[k] for k in range(ncols)])
                 residual = labelNormalized[i] - labelHat
 
-    
+                xyj += xNormalized[i][iCol] * residual
+            
+            uncBeta = xyj/nrows + betaInner[iCol]
+            betaInner[iCol] = S(uncBeta, lam * alpha) / (1 + lam * (1 - alpha))
