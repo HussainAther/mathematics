@@ -1,5 +1,5 @@
 import numpy
-import matplotlib.pyplot as plot
+import matplotlib.pyplot as plt
 
 from sklearn import datasets, linear_model
 from math import sqrt
@@ -154,4 +154,9 @@ for i in range(ncols):
     # plot range of beta values for each attribute
     coefCurve = [betaMat[k][i] for k in range(nPts)]
     xaxis = range(nPts)
-    plot.plot(xaxis, coefCurve)
+    plt.plot(xaxis, coefCurve)
+
+
+plt.xlabel("Steps Taken")
+plt.ylabel(("Coefficient Values"))
+plt.show()
