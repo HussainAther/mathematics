@@ -3,11 +3,6 @@ import numpy as np
 """
 Functions to calculate integration points and weights for Gaussian quadrature.
 
-x,w = gaussxwab(N,a,b) returns integration points and weights
-    mapped to the interval [a,b], so that sum_i w[i]*f(x[i])
-    is the Nth-order Gaussian approximation to the integral
-    int_a^b f(x) dx
-
 This code finds the zeros of the nth Legendre polynomial using
 Newton's method, starting from the approximation given in Abramowitz
 and Stegun. The Legendre polynomial itself is evaluated
@@ -37,3 +32,18 @@ def gaussxw(N):
         dx = p1/dp
         x -= dx
         delta = max(abs(dx))
+
+    # Calculate the weights
+    w = 2*(N+1)*(N+1)/(N*N*(1-x*x)*dp*dp)
+
+    return x,w
+
+def gaussxwab(N,a,b):
+    """
+    x,w = gaussxwab(N,a,b) returns integration points and weights
+    mapped to the interval [a,b], so that sum_i w[i]*f(x[i])
+    is the Nth-order Gaussian approximation to the integral
+    int_a^b f(x) dx
+    """
+    x,w = gaussxw(N)
+    return 0.5*(b-a)*x+0.5*(b+a),0.5*(b-a)*w
