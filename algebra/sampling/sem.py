@@ -1,11 +1,14 @@
 import numpy as np
-import random
+import scipy as sp
+
+import seaborn as sns
+from matplotlib import pyplot as plt
 """
 With the supplemental expectation maximization algorithm, we get the covariance matrix by
 using only the code for computing the complete-data covariance matrix, the code for the expectation
 maximization itself, and the code for standard matrix operations.
 """
-class GMM(object):
+class GMM(object): # Gaussian mixture model
     def __init__(self, X, k=2):
         # dimension
         X = np.asarray(X)
@@ -22,4 +25,18 @@ class GMM(object):
         self.w = np.asmatrix(np.empty((self.m, self.k), dtype=float))
         #print(self.mean_arr)
         #print(self.sigma_arr)
+
+    def fit(self, tol=1e-4):
+        self._init()
+        num_iters = 0
+        ll = 1
+        previous_ll = 0
+        while(ll-previous_ll > tol):
+            previous_ll = self.loglikelihood()
+            self._fit()
+            num_iters += 1
+            ll = self.loglikelihood()
+            print("Iteration %d: log-likelihood is %.6f"%(num_iters, ll))
+        print("Terminate at %d-th iteration:log-likelihood is %.6f"%(num_iters, ll))
+
 
