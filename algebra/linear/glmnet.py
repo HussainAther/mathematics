@@ -67,6 +67,11 @@ labelNormalized = [(labels[i] - meanLabel)/sdLabel for i in range(nrows)]
 
 # select value for alpha parameter
 alpha = 1.0
+
 # make a pass through the data to determine value of lambda that
 # just suppresses all coefficients.
 # start with betas all equal to zero.
+xy = [0.0]*ncols
+for i in range(nrows):
+    for j in range(ncols):
+        xy[j] += xNormalized[i][j] * labelNormalized[i]
