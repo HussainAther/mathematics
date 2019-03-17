@@ -108,3 +108,7 @@ for iStep in range(nSteps):
     eps = 0.01
     iterStep = 0
     betaInner = list(beta)
+
+    while deltaBeta > eps:
+        iterStep += 1
+        if iterStep > 100: break
