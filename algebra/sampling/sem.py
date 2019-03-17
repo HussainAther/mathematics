@@ -63,3 +63,13 @@ class GMM(object): # Gaussian mixture model
                        self.phi[j]
             ll += np.log(tmp)
         return ll
+
+
+    def _fit(self):
+        """
+        Execute both the E (expectation) and M (maximization) steps.
+        """
+        self.e_step()
+        self.m_step()
+
+    
