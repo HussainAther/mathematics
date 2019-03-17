@@ -68,3 +68,13 @@ for t in tpoints:
         for i in range(n-1):
             r1 += h*f(r2)
             r2 += h*f(r1)
+
+        # Calculate extrapolation estimates.  Arrays R1 and R2
+        # hold the two most recent lines of the table
+        R2 = R1
+        R1 = empty([n,2],float)
+        R1[0] = 0.5*(r1 + r2 + 0.5*h*f(r2))
+        for m in range(1,n):
+            epsilon = (R1[m-1]-R2[m-1])/((n/(n-1))**(2*m)-1)
+            R1[m] = R1[m-1] + epsilon
+        error = abs(epsilon[0])
