@@ -16,3 +16,10 @@ tau = 1e4
 # Function to calculate the magnitude of a vector
 def mag(x):
     return sqrt(x[0]**2+x[1]**2)
+
+# Function to calculate the total length of the tour
+def distance():
+    s = 0.0
+    for i in range(N):
+        s += mag(r[i+1]-r[i])
+    return s
