@@ -148,3 +148,10 @@ for q in nzBeta:
 # print out the ordered list of betas
 nameList = [names[nzList[i]] for i in range(len(nzList))]
 print(nameList)
+
+nPts = len(betaMat)
+for i in range(ncols):
+    # plot range of beta values for each attribute
+    coefCurve = [betaMat[k][i] for k in range(nPts)]
+    xaxis = range(nPts)
+    plot.plot(xaxis, coefCurve)
