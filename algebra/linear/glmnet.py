@@ -103,3 +103,8 @@ nzList = []
 for iStep in range(nSteps):
     #make lambda smaller so that some coefficient becomes non-zero
     lam = lam * lamMult
+
+    deltaBeta = 100.0
+    eps = 0.01
+    iterStep = 0
+    betaInner = list(beta)
