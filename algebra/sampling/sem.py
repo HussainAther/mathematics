@@ -72,4 +72,37 @@ class GMM(object): # Gaussian mixture model
         self.e_step()
         self.m_step()
 
-    
+    def e_step(self):
+        """
+        Expectation step for each weight such that we get the tight lower bound.
+        Maximize the expectation value.
+        """
+        # calculate w_j^{(i)}
+        for i in range(self.m):
+            den = 0
+            for j in range(self.k):
+                num = sp.stats.multivariate_normal.pdf(self.data[i, :],
+                                                       self.mean_arr[j].A1,
+                                                       self.sigma_arr[j]) *\
+                      self.phi[j]
+                den += num
+                self.w[i, j] = num
+            self.w[i, :] /= den
+            assert self.w[i, :].sum() - 1 < 1e-4
+
+    def m_step(self):
+        """
+        Update the paramters such that we maximize the lower bound.
+        Don't forget to check out sigma and mean for the solution.
+        """
+        for j in range(self.k):
+            const = self.w[:, j].sum()
+            self.phi[j] = 1/self.m * const
+            _mu_j = np.zeros(self.n)
+            _sigma_j = np.zeros((self.n, self.n))
+            for i in range(self.m):
+                _mu_j += (self.data[i, :] * self.w[i, j])
+                _sigma_j += self.w[i, j] * ((self.data[i, :] - self.mean_arr[j, :]).T * (self.data[i, :] - self.mean_arr[j, :]))
+            self.mean_arr[j] = _mu_j / const
+            self.sigma_arr[j] = _sigma_j / const
+
