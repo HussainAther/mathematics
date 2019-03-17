@@ -17,13 +17,15 @@ g = 9.81 # gravitational acceleration
 l = 0.1 # length
 theta0 = 179*pi/180 #
 
-a = 0.0
-b = 10.0
-N = 100 # Number of "big steps"
-H = (b-a)/N # Size of "big steps"
-delta = 1e-8 # Required position accuracy per unit time
+a = 0.0 # beginning position
+b = 10.0 # ending position
+N = 100 # number of big steps
+H = (b-a)/N # size of big steps
+delta = 1e-8 # required position accuracy per unit time
 
 def f(r):
+    """
+    """
     theta = r[0]
     omega = r[1]
     ftheta = omega
