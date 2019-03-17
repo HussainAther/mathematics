@@ -13,8 +13,9 @@ because of the importance of a result about the error function of the modified m
 due to William B. Gragg.
 """
 
+# for an object under the force of gravity
 g = 9.81 # gravitational acceleration
-l = 0.1 # length
+l = 0.1 # initial acceleration
 theta0 = 179*pi/180 # angle at which we will test
 
 a = 0.0 # beginning position
@@ -27,8 +28,8 @@ def f(r):
     """
     Function which we will extrapolate.
     """
-    theta = r[0]
+    theta = r[0] # look at the first element of each array
     omega = r[1]
     ftheta = omega
-    fomega = -(g/l)*sin(theta)
+    fomega = -(g/l)*sin(theta) # get our version of omega by applying our force
     return array([ftheta,fomega],float)
