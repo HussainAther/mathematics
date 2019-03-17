@@ -135,3 +135,10 @@ for iStep in range(nSteps):
 
 print(iStep, iterStep)
 beta = betaInner
+
+# add newly determined beta to list
+betaMat.append(beta)
+
+# keep track of the order in which the betas become non-zero
+nzBeta = [index for index in range(ncols) if beta[index] != 0.0]
+for q in nzBeta:
