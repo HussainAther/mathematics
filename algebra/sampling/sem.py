@@ -39,7 +39,7 @@ class GMM(object): # Gaussian mixture model
         num_iters = 0
         ll = 1
         previous_ll = 0
-        while(ll-previous_ll > tol):
+        while(ll-previous_ll > tol): 
             previous_ll = self.loglikelihood()
             self._fit()
             num_iters += 1
