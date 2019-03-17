@@ -81,3 +81,12 @@ for i in range(ncols):
     val = abs(xy[i])/nrows
     if val > maxXY:
         maxXY = val
+
+# calculate starting value for lambda
+lam = maxXY/alpha
+
+
+# this value of lambda corresponds to beta = list of 0's
+# initialize a vector of coefficients beta
+beta = [0.0] * ncols
+# initialize matrix of betas at each step
