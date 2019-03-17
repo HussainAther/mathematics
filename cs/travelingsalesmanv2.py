@@ -31,3 +31,9 @@ for i in range(N):
     r[i,1] = random()
 r[N] = r[0]
 D = distance()
+
+# Set up the graphics
+display(center=[0.5,0.5])
+for i in range(N):
+    sphere(pos=r[i],radius=R)
+l = curve(pos=r,radius=R/2)
