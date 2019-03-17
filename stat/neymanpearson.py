@@ -1,6 +1,6 @@
 
 """
-Neyman-Pearson Lemma: Let L(theta|x) denote hte likelihood function for the random variable X corresponding to the
+Neyman-Pearson Lemma: Let L(theta|x) denote the likelihood function for the random variable X corresponding to the
 probability measure P_theta. If there exists a critical region C of size alpha and a nonnegative constant
 k such that
 
