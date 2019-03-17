@@ -37,3 +37,10 @@ def banded(Aa,va,up,down):
                 A[i,j] /= div
                 for k in range(1,down+1):
                     A[i+k,j] -= A[up+k,m]*A[i,j]
+
+    # Backsubstitution
+    for m in range(N-2,-1,-1):
+        for i in range(up):
+            j = m + up - i
+            if j<N:
+                v[m] -= A[i,j]*v[j]
