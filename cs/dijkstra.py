@@ -17,9 +17,15 @@ class Graph:
         self.distances = {}
     
     def add_node(self, value):
+	"""
+	Used to add each node to the graph.
+	"""
         self.nodes.add(value)
 
     def add_edge(self, from_node, to_node, distance):
+	"""
+	Keep track of edges.
+	"""
         self.edges[from_node].append(to_node)
         self.edges[to_node].append(from_node)
         self.distances[(from_node, to_node)] = distance
