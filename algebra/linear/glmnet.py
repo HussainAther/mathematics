@@ -39,3 +39,9 @@ for line in data:
         #convert row to floats
         floatRow = [float(num) for num in row]
         xList.append(floatRow)
+
+#Normalize columns in x and labels
+nrows = len(xList)
+ncols = len(xList[0])
+#calculate means and variances
+xMeans = []
