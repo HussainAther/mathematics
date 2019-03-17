@@ -59,3 +59,12 @@ class HelmholtzMachine:
         self.eps= 0.01       # default learning rate
         self.epsBottom= 0.15 # special learning rate for bottom layer
 
+    def generate( self ):
+        """
+        Generate a pattern d.
+        """
+        x= bernoulliSample( sigmoid( self.bG ) )
+        y= bernoulliSample( sigmoid( np.dot(self.wG, x+[1]) ) )
+        d= bernoulliSample( sigmoid( np.dot(self.vG, y+[1]) ) )
+        return d
+
