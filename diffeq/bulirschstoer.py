@@ -33,3 +33,8 @@ def f(r):
     ftheta = omega
     fomega = -(g/l)*sin(theta) # get our version of omega by applying our force
     return array([ftheta,fomega],float)
+
+tpoints = arange(a,b,H)
+thetapoints = []
+r = array([theta0,0.0],float)
+
