@@ -54,3 +54,7 @@ for t in tpoints:
     # end of the interval
     R1 = empty([1,2],float)
     R1[0] = 0.5*(r1 + r2 + 0.5*H*f(r2))
+
+    # Now increase n until the required accuracy is reached
+    error = 2*H*delta
+    while error>H*delta:
