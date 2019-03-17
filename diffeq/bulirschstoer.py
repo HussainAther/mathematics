@@ -15,7 +15,7 @@ due to William B. Gragg.
 
 g = 9.81 # gravitational acceleration
 l = 0.1 # length
-theta0 = 179*pi/180 #
+theta0 = 179*pi/180 # angle at which we will test
 
 a = 0.0 # beginning position
 b = 10.0 # ending position
