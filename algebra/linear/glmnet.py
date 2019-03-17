@@ -45,3 +45,8 @@ nrows = len(xList)
 ncols = len(xList[0])
 #calculate means and variances
 xMeans = []
+
+xSD = []
+    for i in range(ncols):
+        col = [xList[j][i] for j in range(nrows)]
+        mean = sum(col)/nrows
