@@ -145,3 +145,6 @@ for q in nzBeta:
     if (q in nzList) == False:
         nzList.append(q)
 
+# print out the ordered list of betas
+nameList = [names[nzList[i]] for i in range(len(nzList))]
+print(nameList)
