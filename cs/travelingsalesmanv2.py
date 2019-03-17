@@ -46,3 +46,7 @@ while T>Tmin:
     # Cooling
     t += 1
     T = Tmax*exp(-t/tau)
+
+    # Update the visualization every 100 moves
+    if t%100==0:
+        l.pos = r
