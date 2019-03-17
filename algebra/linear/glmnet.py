@@ -142,3 +142,6 @@ betaMat.append(beta)
 # keep track of the order in which the betas become non-zero
 nzBeta = [index for index in range(ncols) if beta[index] != 0.0]
 for q in nzBeta:
+    if (q in nzList) == False:
+        nzList.append(q)
+
