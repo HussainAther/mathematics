@@ -37,3 +37,8 @@ display(center=[0.5,0.5])
 for i in range(N):
     sphere(pos=r[i],radius=R)
 l = curve(pos=r,radius=R/2)
+
+# Main loop
+t = 0
+T = Tmax
+while T>Tmin:
