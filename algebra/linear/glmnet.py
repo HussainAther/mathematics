@@ -128,3 +128,7 @@ for iStep in range(nSteps):
             
             uncBeta = xyj/nrows + betaInner[iCol]
             betaInner[iCol] = S(uncBeta, lam * alpha) / (1 + lam * (1 - alpha))
+
+        sumDiff = sum([abs(betaInner[n] - betaStart[n]) for n in range(ncols)])
+        sumBeta = sum([abs(betaInner[n]) for n in range(ncols)])
+        deltaBeta = sumDiff/sumBeta
