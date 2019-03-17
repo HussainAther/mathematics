@@ -9,3 +9,11 @@ is an N by N banded matrix with "up" nonzero elements above the diagonal and "do
 elements below the diagonal. The matrix is specified as a 2-d array of (1+up+down) by N
 elements with the diagonals of the original matrix along its rows.
 """
+
+
+def banded(Aa,va,up,down):
+
+    # Copy the inputs and determine the size of the system
+    A = np.copy(Aa)
+    v = np.copy(va)
+    N = len(v)
