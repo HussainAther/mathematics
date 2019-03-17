@@ -78,3 +78,12 @@ for t in tpoints:
             epsilon = (R1[m-1]-R2[m-1])/((n/(n-1))**(2*m)-1)
             R1[m] = R1[m-1] + epsilon
         error = abs(epsilon[0])
+
+    # Set r equal to the most accurate estimate we have,
+    # before moving on to the next big step
+    r = R1[n-1]
+
+# Plot the results
+plot(tpoints,thetapoints)
+plot(tpoints,thetapoints,"b.")
+show()
