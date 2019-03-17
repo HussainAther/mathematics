@@ -38,4 +38,12 @@ def patternToString( d, clumpsize ):
         s += "1" if d[k]>0 else "0"
     return s
 
+class HelmholtzMachine:
+    def __init__( self, nTop, nMid, nBottom ):
+        """
+        Construct a 3-layer HM with the given number of neurons at each level.
+        """
+        # Dimension of pattern vector visible at the bottom.
+        self.dimension= nBottom
 
+        
