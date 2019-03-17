@@ -79,3 +79,12 @@ class HelmholtzMachine:
         y= bernoulliSample( sigmoid( np.dot(self.vR, d+[1]) ) )
         x= bernoulliSample( sigmoid( np.dot(self.wR, y+[1]) ) )
 
+        # Downward (generation) pass.
+        px= sigmoid( self.bG )
+        py= sigmoid( np.dot(self.wG, x+[1]) )
+        pd= sigmoid( np.dot(self.vG, y+[1]) )
+        
+        # Adjust generative weights by delta rule.
+        self.bG += self.eps * ( x - px )
+        self.wG += self.eps * np.outer( y - py, x+[1] )
+        self.vG += self.epsBottom * np.outer( d - pd, y+[1] )
