@@ -55,3 +55,10 @@ while T>Tmin:
     i,j = randrange(1,N),randrange(1,N)
     while i==j:
         i,j = randrange(1,N),randrange(1,N)
+
+    # Swap them and calculate the change in distance
+    oldD = D
+    r[i,0],r[j,0] = r[j,0],r[i,0]
+    r[i,1],r[j,1] = r[j,1],r[i,1]
+    D = distance()
+    deltaD = D - oldD
