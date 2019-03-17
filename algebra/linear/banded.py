@@ -27,3 +27,5 @@ def banded(Aa,va,up,down):
         # Update the vector first
         v[m] /= div
         for k in range(1,down+1):
+            if m+k<N:
+                v[m+k] -= A[up+k,m]*v[m]
