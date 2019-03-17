@@ -50,3 +50,8 @@ xSD = []
     for i in range(ncols):
         col = [xList[j][i] for j in range(nrows)]
         mean = sum(col)/nrows
+        xMeans.append(mean)
+        colDiff = [(xList[j][i] - mean) for j in range(nrows)]
+        sumSq = sum([colDiff[i] * colDiff[i] for i in range(nrows)])
+        stdDev = sqrt(sumSq/nrows)
+        xSD.append(stdDev)
