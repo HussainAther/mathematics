@@ -50,3 +50,8 @@ while T>Tmin:
     # Update the visualization every 100 moves
     if t%100==0:
         l.pos = r
+
+    # Choose two cities to swap and make sure they are distinct
+    i,j = randrange(1,N),randrange(1,N)
+    while i==j:
+        i,j = randrange(1,N),randrange(1,N)
