@@ -82,7 +82,7 @@ def gnRun(g, orig, m):
     Run the Girvan-Newman algorithm.
     """
     best = 0 # best graph split
-    while True:
+    while True: # iterate until we use all the number of edges
         gnStep(g)
         q = gnModularity(g, orig, m)
         if q > best: # if the modularity of this method of partitioning is better
