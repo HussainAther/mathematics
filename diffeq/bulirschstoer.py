@@ -25,6 +25,7 @@ delta = 1e-8 # required position accuracy per unit time
 
 def f(r):
     """
+    Function which we will extrapolate.
     """
     theta = r[0]
     omega = r[1]
