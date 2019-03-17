@@ -44,3 +44,5 @@ def banded(Aa,va,up,down):
             j = m + up - i
             if j<N:
                 v[m] -= A[i,j]*v[j]
+
+    return v
