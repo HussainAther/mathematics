@@ -47,3 +47,10 @@ for t in tpoints:
     n = 1
     r1 = r + 0.5*H*f(r)
     r2 = r + H*f(r1)
+
+    # array R1 stores the first row of the
+    # extrapolation table, which contains only the single
+    # modified midpoint estimate of the solution at the
+    # end of the interval
+    R1 = empty([1,2],float)
+    R1[0] = 0.5*(r1 + r2 + 0.5*H*f(r2))
