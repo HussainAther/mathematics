@@ -40,3 +40,10 @@ r = array([theta0,0.0],float)
 
 # big steps of size H
 for t in tpoints:
+
+    thetapoints.append(r[0])
+
+    # modified midpoint step to get things started
+    n = 1
+    r1 = r + 0.5*H*f(r)
+    r2 = r + H*f(r1)
