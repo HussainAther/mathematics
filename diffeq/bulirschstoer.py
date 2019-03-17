@@ -58,3 +58,13 @@ for t in tpoints:
     # Now increase n until the required accuracy is reached
     error = 2*H*delta
     while error>H*delta:
+
+        n += 1
+        h = H/n
+
+        # Modified midpoint method
+        r1 = r + 0.5*h*f(r)
+        r2 = r + h*f(r1)
+        for i in range(n-1):
+            r1 += h*f(r2)
+            r2 += h*f(r1)
