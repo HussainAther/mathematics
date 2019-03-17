@@ -23,3 +23,11 @@ def distance():
     for i in range(N):
         s += mag(r[i+1]-r[i])
     return s
+
+# Choose N city locations and calculate the initial distance
+r = empty([N+1,2],float)
+for i in range(N):
+    r[i,0] = random()
+    r[i,1] = random()
+r[N] = r[0]
+D = distance()
