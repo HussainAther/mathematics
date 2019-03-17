@@ -4,7 +4,10 @@ import numpy as np
 The Helmholtz machine was designed to accommodate hierarchical architectures that construct complex
 multilayer representations. The model in- volves two interacting networks, one with parameters G
 that is driven in the top-down direction to implement the generative model, and the other, with
-parameters W , driven bottom-up to implement the recogni- tion model.
+parameters W , driven bottom-up to implement the recognition model.
+
+It uses a cycle between waking and sleeping (as part of the Wake-Sleep algorithm) in which a stochastic
+multilayer neural network adjusts its own parameters to produce a good density estimator.
 
 The parameters are determined by a modified EM algorithm that results in roughly symmetric updates for the two networks.
 """
@@ -67,4 +70,12 @@ class HelmholtzMachine:
         y= bernoulliSample( sigmoid( np.dot(self.wG, x+[1]) ) )
         d= bernoulliSample( sigmoid( np.dot(self.vG, y+[1]) ) )
         return d
+    
+    def wake( self, d ):
+        """
+        One wake learning cycle, given pattern d applied at the bottom.
+        """
+        # Upward (recognition) pass.
+        y= bernoulliSample( sigmoid( np.dot(self.vR, d+[1]) ) )
+        x= bernoulliSample( sigmoid( np.dot(self.wR, y+[1]) ) )
 
