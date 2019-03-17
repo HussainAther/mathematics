@@ -98,3 +98,8 @@ betaMat.append(list(beta))
 nSteps = 100
 lamMult = 0.93 # 100 steps gives reduction by factor of 1000 in
                # lambda (recommended by authors)
+
+nzList = []
+for iStep in range(nSteps):
+    #make lambda smaller so that some coefficient becomes non-zero
+    lam = lam * lamMult
