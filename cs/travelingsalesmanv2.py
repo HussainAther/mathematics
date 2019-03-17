@@ -42,3 +42,7 @@ l = curve(pos=r,radius=R/2)
 t = 0
 T = Tmax
 while T>Tmin:
+
+    # Cooling
+    t += 1
+    T = Tmax*exp(-t/tau)
