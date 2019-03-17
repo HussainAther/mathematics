@@ -55,3 +55,8 @@ xSD = []
         sumSq = sum([colDiff[i] * colDiff[i] for i in range(nrows)])
         stdDev = sqrt(sumSq/nrows)
         xSD.append(stdDev)
+
+xNormalized = []
+    for i in range(nrows):
+        rowNormalized = [(xList[i][j] - xMeans[j])/xSD[j] for j in range(ncols)]
+        xNormalized.append(rowNormalized)
