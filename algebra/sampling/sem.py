@@ -8,8 +8,8 @@ from matplotlib import pyplot as plt
 With the supplemental expectation maximization algorithm, we get the covariance matrix by
 using only the code for computing the complete-data covariance matrix, the code for the expectation
 maximization itself, and the code for standard matrix operations.
-
 """
+
 class GMM(object): # Gaussian mixture model
     def __init__(self, X, k=2):
         """
@@ -26,12 +26,10 @@ class GMM(object): # Gaussian mixture model
         Initialize the various values pertaining to the data set.
         """
         # init mixture means/sigmas
-        self.mean_arr = np.asmatrix(np.random.random((self.k, self.n)))
-        self.sigma_arr = np.array([np.asmatrix(np.identity(self.n)) for i in range(self.k)])
-        self.phi = np.ones(self.k)/self.k
-        self.w = np.asmatrix(np.empty((self.m, self.k), dtype=float))
-        #print(self.mean_arr)
-        #print(self.sigma_arr)
+        self.mean_arr = np.asmatrix(np.random.random((self.k, self.n))) # mean (average) from the Gaussian distribution
+        self.sigma_arr = np.array([np.asmatrix(np.identity(self.n)) for i in range(self.k)]) # variance (sigma)
+        self.phi = np.ones(self.k)/self.k # phi function used in expectation maximization
+        self.w = np.asmatrix(np.empty((self.m, self.k), dtype=float)) # 
 
     def fit(self, tol=1e-4):
         """
