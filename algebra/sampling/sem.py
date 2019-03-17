@@ -14,3 +14,12 @@ class GMM(object):
         # number of mixtures
         self.k = k
 
+    def _init(self):
+        # init mixture means/sigmas
+        self.mean_arr = np.asmatrix(np.random.random((self.k, self.n)))
+        self.sigma_arr = np.array([np.asmatrix(np.identity(self.n)) for i in range(self.k)])
+        self.phi = np.ones(self.k)/self.k
+        self.w = np.asmatrix(np.empty((self.m, self.k), dtype=float))
+        #print(self.mean_arr)
+        #print(self.sigma_arr)
+
