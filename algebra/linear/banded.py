@@ -17,3 +17,13 @@ def banded(Aa,va,up,down):
     A = np.copy(Aa)
     v = np.copy(va)
     N = len(v)
+
+    # Gaussian elimination
+    for m in range(N):
+
+        # Normalization factor
+        div = A[up,m]
+
+        # Update the vector first
+        v[m] /= div
+        for k in range(1,down+1):
