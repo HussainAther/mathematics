@@ -106,6 +106,29 @@ class HelmholtzMachine:
         
         # Adjust recognition weights by delta rule.
         self.vR += self.epsBottom * np.outer(y - py, d+[1])
-        self.wR += self.eps       * np.outer(x - px, y+[1])
+        self.wR += self.eps * np.outer(x - px, y+[1])
 
-    
+
+   def learn(self, world, nCycles):
+        """
+        Run for a given number of wake-sleep cycles to learn this world.
+        """
+        for t in range(nCycles):
+            d = list(world.keys()[np.random.choice(len(world), p=world.values())])
+            self.wake(d)
+            self.sleep()
+
+    def estimateModel(self, nSamples):
+        """
+        Generate many samples in order to estimate pattern probabilities.
+        probG[d] will be the estimated probability that the HM generates pattern d.
+        """
+        dp= 1.0 / nSamples
+        probG= dict()
+        for count in range(nSamples):
+            d= tuple(self.generate())
+            if d in probG:
+                probG[d] += dp
+            else:
+                probG[d] = dp
+        return probG
