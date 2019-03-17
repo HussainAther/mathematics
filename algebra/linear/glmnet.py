@@ -40,12 +40,12 @@ for line in data:
         floatRow = [float(num) for num in row]
         xList.append(floatRow)
 
-#Normalize columns in x and labels
+# normalize columns in x and labels
 nrows = len(xList)
 ncols = len(xList[0])
-#calculate means and variances
-xMeans = []
 
+# calculate means and variances
+xMeans = []
 xSD = []
     for i in range(ncols):
         col = [xList[j][i] for j in range(nrows)]
@@ -56,6 +56,7 @@ xSD = []
         stdDev = sqrt(sumSq/nrows)
         xSD.append(stdDev)
 
+# calculate means and standard deviations to normalize xList
 xNormalized = []
     for i in range(nrows):
         rowNormalized = [(xList[i][j] - xMeans[j])/xSD[j] for j in range(ncols)]
