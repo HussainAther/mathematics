@@ -118,3 +118,8 @@ for iStep in range(nSteps):
         betaStart = list(betaInner)
         for iCol in range(ncols):
 
+            xyj = 0.0
+            for i in range(nrows):
+                #calculate residual with current value of beta
+                labelHat = sum([xNormalized[i][k]*betaInner[k] for k in range(ncols)])
+                residual = labelNormalized[i] - labelHat
