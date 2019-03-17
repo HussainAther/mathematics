@@ -2,7 +2,7 @@ from numpy import *
 from sys import version
 
 """
-Gaussian quadruture generator fo points and weights. This integrates a function using points and weights
+Gaussian quadrature generator fo points and weights. This integrates a function using points and weights
 generated using the method "gauss" that remains fixed for all applications.
 """
 if int(version[0]) > 3: # Deprecated in Python 3
