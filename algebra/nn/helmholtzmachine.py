@@ -46,4 +46,16 @@ class HelmholtzMachine:
         # Dimension of pattern vector visible at the bottom.
         self.dimension= nBottom
 
+        # Generative weights (top down)
+        self.bG= np.zeros( nTop )
+        self.wG= np.zeros( [nMid, nTop+1] )
+        self.vG= np.zeros( [nBottom, nMid+1] )
         
+        # Recognition weights (bottom up)
+        self.vR= np.zeros( [nMid, nBottom+1] )
+        self.wR= np.zeros( [nTop, nMid+1] )
+        
+        # Some default learning rates
+        self.eps= 0.01       # default learning rate
+        self.epsBottom= 0.15 # special learning rate for bottom layer
+
