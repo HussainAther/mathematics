@@ -61,3 +61,12 @@ xNormalized = []
     for i in range(nrows):
         rowNormalized = [(xList[i][j] - xMeans[j])/xSD[j] for j in range(ncols)]
         xNormalized.append(rowNormalized)
+
+
+labelNormalized = [(labels[i] - meanLabel)/sdLabel for i in range(nrows)]
+
+# select value for alpha parameter
+alpha = 1.0
+# make a pass through the data to determine value of lambda that
+# just suppresses all coefficients.
+# start with betas all equal to zero.
