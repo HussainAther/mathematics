@@ -1,3 +1,6 @@
+from math import sin,pi
+from numpy import empty,array,arange
+from pylab import plot,show
 
 """
 In numerical analysis, the Bulirsch–Stoer algorithm is a method for the numerical solution of
