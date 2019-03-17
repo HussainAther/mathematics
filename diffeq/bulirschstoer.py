@@ -38,3 +38,5 @@ tpoints = arange(a,b,H)
 thetapoints = []
 r = array([theta0,0.0],float)
 
+# big steps of size H
+for t in tpoints:
