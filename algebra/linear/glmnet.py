@@ -90,3 +90,6 @@ lam = maxXY/alpha
 # initialize a vector of coefficients beta
 beta = [0.0] * ncols
 # initialize matrix of betas at each step
+
+betaMat = []
+betaMat.append(list(beta))
