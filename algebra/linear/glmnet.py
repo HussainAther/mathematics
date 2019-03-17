@@ -75,3 +75,9 @@ xy = [0.0]*ncols
 for i in range(nrows):
     for j in range(ncols):
         xy[j] += xNormalized[i][j] * labelNormalized[i]
+
+maxXY = 0.0
+for i in range(ncols):
+    val = abs(xy[i])/nrows
+    if val > maxXY:
+        maxXY = val
