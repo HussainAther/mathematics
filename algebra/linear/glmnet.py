@@ -93,3 +93,8 @@ beta = [0.0] * ncols
 
 betaMat = []
 betaMat.append(list(beta))
+
+# begin iteration
+nSteps = 100
+lamMult = 0.93 # 100 steps gives reduction by factor of 1000 in
+               # lambda (recommended by authors)
