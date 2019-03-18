@@ -36,14 +36,14 @@ def csp_solver_tree(problem, checker):
     return search_tree.tree_to_string(search_tree)
 
 
-senate_people = read_congress_data("S110.ord")
-senate_votes = read_vote_data("S110desc.csv")
+senate_people = read_congress_data("data/S110.ord")
+senate_votes = read_vote_data("data/S110desc.csv")
 
-house_people = read_congress_data("H110.ord")
-house_votes = read_vote_data("H110desc.csv")
+house_people = read_congress_data("data/H110.ord")
+house_votes = read_vote_data("data/H110desc.csv")
 
-last_senate_people = read_congress_data("S109.ord")
-last_senate_votes = read_vote_data("S109desc.csv")
+last_senate_people = read_congress_data("data/S109.ord")
+last_senate_votes = read_vote_data("data/S109desc.csv")
 
 
 ### Nearest Neighbors
