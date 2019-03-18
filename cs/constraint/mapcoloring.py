@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Implementation of the Map coloring problem from 2006 Quiz 2
+Implementation of the Map coloring problem
 """
 import sys
 from csp import CSP, Variable, BinaryConstraint, solve_csp_problem, \
