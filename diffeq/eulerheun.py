@@ -10,9 +10,15 @@ such that x(t) is an exact solution of ẋ = f(x, t).
 
 We use a trapezoild approximation (in contrast to Euler's method of using a Riemann sum).
 It's a second-order (2nd) Runge-Kutta method. 
-In this example, we look at a one-dimensional oscillating model.
 """
 
+def heun(f, y0, x_vals, h):
+    """
+    Perform the Euler-Heun method for a function f in which y0 is the initial condition
+    of the function at y = 0, x_vals is the range of x values we use, h is the 
+    y-directional height of the step size we take as we proceed through the function. 
+    """
+     
 
 
 
