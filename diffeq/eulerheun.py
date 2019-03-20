@@ -14,6 +14,9 @@ In this example, we look at a one-dimensional oscillating model.
 omega = 4 # angular frequency
 P = 2*np.pi*omega # calculate period
 dt = P/50 # step size
+T = 4*P # time interval
+N = int(round(T/dt)) # number of steps
+t = np.linspace(0, N*dt, N+1) # initialize time range
 
 # Initialize arrays
 a = np.zeros(N)
