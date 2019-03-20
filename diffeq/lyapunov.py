@@ -13,7 +13,22 @@ then 0 is asymptotically stable. if dV/dt is negative semidefinite (e.g., dV/dt 
 then 0 is Lypunov stable.
 """
 
-def lyapunov(V):
+def lyapunov(V, x):
     """
-    Return Lyapunov stability.
+    Return Lyapunov stability for some function V and some list of numbers x.
+    You must also know dotV(x) = dV/dt = summation of i=1 to n of the partial differential 
+    of V with respect to x_i times f_i(x) <= 0 for all values of x != 0.
     """
+    if V(0) == 0:
+        for i in x:
+            if V(x) != 0 and x != 0:
+                pass
+            else:
+                return False
+            if V(x) > 0:
+                if x != 0:
+                    pass
+                else:
+                    return False
+    return True
+            
