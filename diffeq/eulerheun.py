@@ -18,7 +18,13 @@ def heun(f, y0, x_vals, h):
     of the function at y = 0, x_vals is the range of x values we use, h is the 
     y-directional height of the step size we take as we proceed through the function. 
     """
-     
+    m = len(y0) # length for range
+    n = int(x_vals[-1] - x_vals[0])/ h # size of range over x values
+    x = x_vals[0] 
+    y = y0
+    xreturn = np.empty(0)
+    xreturn = np.append(xreturn, x)
+         
 
 
 
