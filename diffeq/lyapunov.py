@@ -13,3 +13,7 @@ then 0 is asymptotically stable. if dV/dt is negative semidefinite (e.g., dV/dt 
 then 0 is Lypunov stable.
 """
 
+def lyapunov(V):
+    """
+    Return Lyapunov stability.
+    """
