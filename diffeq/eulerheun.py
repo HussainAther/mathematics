@@ -11,7 +11,9 @@ such that x(t) is an exact solution of ẋ = f(x, t).
 We use a trapezoild approximation (in contrast to Euler's method of using a Riemann sum).
 In this example, we look at a one-dimensional oscillating model.
 """
-
+omega = 4 # angular frequency
+P = 2*np.pi*omega # calculate period
+dt = P/50 # step size
 
 # Initialize arrays
 a = np.zeros(N)
