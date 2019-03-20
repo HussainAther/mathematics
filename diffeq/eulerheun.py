@@ -18,10 +18,10 @@ In this example, we look at a one-dimensional oscillating model.
 
 
 
-
-
-
-
+"""
+An example a simple harmonic oscillator model we solve using
+the forward euler method.
+"""
 
 omega = 4 # angular frequency
 P = 2*np.pi*omega # calculate period
