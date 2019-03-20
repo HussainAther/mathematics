@@ -12,6 +12,9 @@ We use a trapezoild approximation (in contrast to Euler's method of using a Riem
 It's a second-order (2nd) Runge-Kutta method. 
 """
 
+def feval(funcName, *args):
+    return eval(funcName)(*args)
+
 def heun(f, y0, x_vals, h):
     """
     Perform the Euler-Heun method for a function f in which y0 is the initial condition
@@ -22,13 +25,24 @@ def heun(f, y0, x_vals, h):
     n = int(x_vals[-1] - x_vals[0])/ h # size of range over x values
     x = x_vals[0] 
     y = y0
+    # solutions we return at the end
     xreturn = np.empty(0)
     xreturn = np.append(xreturn, x)
-         
-
-
-
-
+    yreturn = np.empty(0)
+    yreturn = np.append(yreturn, y) # I think this is faster than Python's built-in list append
+    # evaluate using our method
+    for i in range(n):
+         y0prime = feval(f, x, y) # y0', the differental at our starting position
+         k1 = y0prime * h # evaluate the step using the differential
+         ypred = y + k1 # prediction
+         y1prime = feval(f, x+h, ypred) # evaluate based on that prediction
+         for j in range(m): # continue to evaluate in accordance with our method
+             y[j] = y[j] + (h/2)*y0prime[j] + (h/2)*y1prime[j] 
+         x += h # steparoo 
+         xreturn = np.append(xreturn, x) # using numpy's method to append again
+         for r in range(len(y)):
+             yreturn = np.append(yreturn, y[r]) 
+    return [xreturn, yreturn]
 
 """
 An example a simple harmonic oscillator model we solve using
