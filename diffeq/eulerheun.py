@@ -20,7 +20,7 @@ In this example, we look at a one-dimensional oscillating model.
 
 """
 An example a simple harmonic oscillator model we solve using
-the forward euler method.
+the Forward Euler method.
 """
 
 omega = 4 # angular frequency
