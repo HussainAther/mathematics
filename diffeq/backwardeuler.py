@@ -20,3 +20,8 @@ def be(f, y0, x_vals, h):
     y = y0 # initialize y values
     for i in range(sub):
         yprime = feval(f, x+h, y)
+        yp = [0]*len(yprime) # used as the product with yprime
+        for j in range(len(yprime)):
+            yp[i] = yprime[i]*(1/(1+h)) # normalize each value using our stepsize as a product with yprime
+        for j in range(n): # Backward Euler method 
+            y[j] += h*yp[j] # run our step size on the yp product
