@@ -37,7 +37,7 @@ def nes(f, t, dim, alpha, xinit=None, eps=.05, num=False, deltax=.0005):
     lprev = 0 # previous lambda value
     lcurr = 1 # current lambda value
 
-    yprev = x
+    yprev = x # previous y value
     alpha = .025 # used in optimization
 
     # evaluate the gradient numerically
@@ -45,4 +45,4 @@ def nes(f, t, dim, alpha, xinit=None, eps=.05, num=False, deltax=.0005):
 
     # until we reach our tolerance epsilon value from our gradient
     while np.linalg.norm(grad) >= epsilon:
-        
+        ycurr = x - alpha * gradient # current y value
