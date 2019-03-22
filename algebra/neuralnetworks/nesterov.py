@@ -46,3 +46,12 @@ def nes(f, t, dim, alpha, xinit=None, eps=.05, num=False, deltax=.0005):
     # until we reach our tolerance epsilon value from our gradient
     while np.linalg.norm(grad) >= epsilon:
         ycurr = x - alpha * gradient # current y value
+        x = (1 - t) * ycurr + t * yprev # adjust our x value
+        yprev = ycurr # move to the previous y value
+        lmp = lcurr # temporarily save this lambda value
+        lcurr = (1 + np.sqrt(1 + 4 * lprev**2)) / 2 # calculate current lambda value
+        lprev = ltmp # move to the previous lambda value
+        t = (y - lprev) / lcurr
+        g = grad(f, x, deltax) # update our gradient
+
+    return x # return 
