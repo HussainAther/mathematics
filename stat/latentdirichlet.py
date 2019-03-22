@@ -7,3 +7,5 @@ text in a document about a specific topic. We build a topic-per-document model a
 words-per-topic model using Dirichlet distributions.
 """
 
+# read in the data of news headliens from the .csv file
+data = pd.read_csv('abcnews-date-text.csv', error_bad_lines=False)
