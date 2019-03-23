@@ -170,9 +170,9 @@ def ss(x):
     Stepped shaft problem for some vector x.
     [D1][θ] = c[D1][θ]
     """
-    l = 1e6 # lambda matrix value
+    c = 1e6 # constant (lambda) matrix value
     """
-    We obtain the lambda matrix value by approximating the constant functions that we pull
+    We obtain the constant matrix value by approximating the constant functions that we pull
     out in front of the right-hand-side of the equation. It includes the mass density of hte material,
     the circular frequency, and the modulus of elasticity.
     """
@@ -184,6 +184,6 @@ def ss(x):
     a = np.array([[4.0*(x[0]**4 + x[1]**4), 2.0*x[1]**4], [2.0*x[1]**4, 4.0*x[1]**4]])
     b = np.array([[4.0*(x[0]**2 + x[1]**2), -3.0*x[1]**2], [-3*x[1]**2, 4.0*x[1]**2]])
     h, t = stdForm(a, b)
-    return x[0]**2 + x[1]**2 + l*(max(0.0,eVal_min - eVal))**2
+    return x[0]**2 + x[1]**2 + c*(max(0.0,eVal_min - eVal))**2
 
 
