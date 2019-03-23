@@ -26,6 +26,7 @@ def dh(f, xinit, s=.1, eps=1e-6):
     with respect to the vector x.
     xinit is the initial x vector.
     s is the side length of the simplex.
+    eps (epsilon) is our tolerance.
     """
     n = len(xinit) # numbre of variables/dimensions
     x = np.zeros((n+1, n)) # initialize vector x array
@@ -36,7 +37,15 @@ def dh(f, xinit, s=.1, eps=1e-6):
         x[i, i-1] = xinit[i-1] + s # account for multidimensional input vectors along the simplex
     for i in range(n+1):
         o[i] = f(x[i]) # evaluate our function and save to output array
-    
+    for k in range(500):
+        ilo = np.argmin(f) # lowest vertex
+        ihi = np.argmax(f) # highest vertex
+        d = (-(n+1)*x[ihi] + np.sum(x, axis=0))/n # move vector d
+        if np.sqrt(np.dot(d,d)/n) < eps:
+            return x[ilo]
+        xnew = x[ihi] + 2*d # reflection method
+        fnew = f(xnew) # evaluate our function after reflecting the simplex
+        if fnew <= f[ilo] # should we accept the reflection?
 
 
 def nm():
