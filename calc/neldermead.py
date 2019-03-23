@@ -18,9 +18,10 @@ to minimize the volume of the material without violating the frequency constrain
 value of the fundamental frequency can be computed by solving the eigenvalue problem of
 the two corresponding matrices.
 
-D1 θ = c D2 θ
+[D1][θ] = c[D1][θ]
 
-in which D1 and D2 are the two corresponding matrices for the distances
+in which D1 and D2 are the two corresponding matrices for the distances between the two parts of the
+stepped shaft, and θ is the matrix of rotations at the simple supports of the stepped shaft.
 """
 
 def dh(f, xinit, s=.1, eps=1e-6):
@@ -164,10 +165,20 @@ def stdForm(a,b):
 
 def ss(x):
     """
-    Stepped shaft problem for some vector x
+    Stepped shaft problem for some vector x.
+    [D1][θ] = c[D1][θ]
     """
     l = 1e6 # lambda matrix value
+    """
+    We obtain the lambda matrix value by approximating the constant functions that we pull
+    out in front of the right-hand-side of the equation. It includes the mass density of hte material,
+    the circular frequency, and the modulus of elasticity.
+    """
     evalmin = .4
+    """
+    Initialize a and b with the appropriate constants we gain from setting the two parts
+    of the shaft equal to one another.
+    """
     a = np.array([[4.0*(x[0]**4 + x[1]**4), 2.0*x[1]**4], [2.0*x[1]**4, 4.0*x[1]**4]])
     b = np.array([[4.0*(x[0]**2 + x[1]**2), -3.0*x[1]**2], [-3*x[1]**2, 4.0*x[1]**2]])
     h, t = stdForm(a, b)
