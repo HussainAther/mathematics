@@ -125,6 +125,27 @@ def ip(a, s, eps=1e-6):
         if np.sqrt(np.dot(xold - x, xold-x)) < eps:
             return s + sign/xmag, x
 
+
+def stdForm(a,b):
+    """
+    Transform the eigenvalue problem [a]{x} = lam*[b]{x} to the
+    standard form [h]{z} = lam*{z} on the grounds that the eigenvectors
+    are related by {z} = [t]{z}.
+    """
+    def invert(L): # Inverts lower triangular matrix L
+        n = len(L)
+        for j in range(n-1):
+            L[j,j] = 1.0/L[j,j]
+            for i in range(j+1,n):
+                L[i,j] = -np.dot(L[i,j:i],L[j:i,j])/L[i,i]
+        L[n-1,n-1] = 1.0/L[n-1,n-1]
+    n = len(a)
+    L = choleski(b)
+    invert(L)
+    h = np.dot(b,np.inner(a,L))
+    return h,np.transpose(L)
+
+
 def ss():
     """
     Stepped shaft problem.
@@ -133,5 +154,6 @@ def ss():
     evalmin = .4
     a = np.array([[4.0*(x[0]**4 + x[1]**4), 2.0*x[1]**4], [2.0*x[1]**4, 4.0*x[1]**4]])
     b = np.array([[4.0*(x[0]**2 + x[1]**2), -3.0*x[1]**2], [-3*x[1]**2, 4.0*x[1]**2]])
+    h, t = stdform
 
 
