@@ -20,11 +20,14 @@ D1 θ = c D2 θ
 in which D1 and D2 are the two corresponding matrices for the distances
 """
 
-def dh():
+def dh(f, xinit, s=.1, eps=1e-6):
     """
     Downhill simplex (Nelder-Mead) method for minimizing the user-supplied scalar function f(x)
     with respect to the vector x.
+    xinit is the initial x value.
+    s is the side length of the simplex.
     """
+
 
 def nm():
     """
