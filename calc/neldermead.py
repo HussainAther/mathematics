@@ -24,13 +24,18 @@ def dh(f, xinit, s=.1, eps=1e-6):
     """
     Downhill simplex (Nelder-Mead) method for minimizing the user-supplied scalar function f(x)
     with respect to the vector x.
-    xinit is the initial x value.
+    xinit is the initial x vector.
     s is the side length of the simplex.
     """
     n = len(xinit) # numbre of variables/dimensions
     x = np.zeros((n+1, n)) # initialize vector x array
     o = np.zeros(n+1) # initialize output array
-    
+    x[0] = xinit # initiialize simplex
+    for i in range(1, n+1): # create the simplex
+        x[i] = xinit
+        x[i, i-1] = xinit[i-1] + s # account for multidimensional input vectors along the simplex
+
+
 
 def nm():
     """
