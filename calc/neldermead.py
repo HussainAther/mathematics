@@ -156,20 +156,21 @@ def stdForm(a,b):
                 L[i,j] = -np.dot(L[i,j:i],L[j:i,j])/L[i,i]
         L[n-1,n-1] = 1.0/L[n-1,n-1]
     n = len(a)
-    L = choleski(b)
+    L = choleski(b) # perform Choleski decomposition
     invert(L)
     h = np.dot(b,np.inner(a,L))
     return h,np.transpose(L)
 
 
-def ss():
+def ss(x):
     """
-    Stepped shaft problem.
+    Stepped shaft problem for some vector x
     """
-    l = 1e6
+    l = 1e6 # lambda matrix value
     evalmin = .4
     a = np.array([[4.0*(x[0]**4 + x[1]**4), 2.0*x[1]**4], [2.0*x[1]**4, 4.0*x[1]**4]])
     b = np.array([[4.0*(x[0]**2 + x[1]**2), -3.0*x[1]**2], [-3*x[1]**2, 4.0*x[1]**2]])
-    h, t = stdform
+    h, t = stdForm(a, b)
+    return x[0]**2 + x[1]**2 + l*(max(0.0,eVal_min - eVal))**2
 
 
