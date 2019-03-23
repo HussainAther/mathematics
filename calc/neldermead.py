@@ -45,7 +45,12 @@ def dh(f, xinit, s=.1, eps=1e-6):
             return x[ilo]
         xnew = x[ihi] + 2*d # reflection method
         fnew = f(xnew) # evaluate our function after reflecting the simplex
-        if fnew <= f[ilo] # should we accept the reflection?
+        if fnew <= f[ilo]: # should we accept the reflection?
+            x[ihi] = xnew # add to our input array
+            o[ihi] = fnew # add to our output array
+            xnew = x[ihi] + d # expand the reflection
+            fnew = f(xnew) # evaluate it at this expansion
+            if fnew <= o[ilo]: # should we accept the expansion?
 
 
 def nm():
