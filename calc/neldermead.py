@@ -74,6 +74,10 @@ def dh(f, xinit, s=.1, eps=1e-6):
                             o[i] = f(x[i])
         return x[ilo]
 
+def ip(a, s, eps=1e-6):
+    """
+    Use the inverse power method in solving the eigenvalue problem
+    """
 
 def ss():
     """
@@ -83,4 +87,5 @@ def ss():
     evalmin = .4
     a = np.array([[4.0*(x[0]**4 + x[1]**4), 2.0*x[1]**4], [2.0*x[1]**4, 4.0*x[1]**4]])
     b = np.array([[4.0*(x[0]**2 + x[1]**2), -3.0*x[1]**2], [-3*x[1]**2, 4.0*x[1]**2]])
+
 
