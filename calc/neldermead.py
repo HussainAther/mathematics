@@ -148,6 +148,8 @@ def stdForm(a,b):
     Transform the eigenvalue problem [a]{x} = lam*[b]{x} to the
     standard form [h]{z} = lam*{z} on the grounds that the eigenvectors
     are related by {z} = [t]{z}.
+    Given matrices a and b, return h and the transformation matrix t = (L^-1)^T
+    in which L is the solution from Cheoleski decomposition.
     """
     def invert(L): # Inverts lower triangular matrix L
         n = len(L)
@@ -160,7 +162,7 @@ def stdForm(a,b):
     L = choleski(b) # perform Choleski decomposition
     invert(L)
     h = np.dot(b,np.inner(a,L))
-    return h,np.transpose(L)
+    return h, np.transpose(L)
 
 
 def ss(x):
