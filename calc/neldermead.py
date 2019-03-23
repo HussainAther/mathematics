@@ -29,12 +29,14 @@ def dh(f, xinit, s=.1, eps=1e-6):
     """
     n = len(xinit) # numbre of variables/dimensions
     x = np.zeros((n+1, n)) # initialize vector x array
-    o = np.zeros(n+1) # initialize output array
+    o = np.zeros(n+1) # initialize output array for our function f
     x[0] = xinit # initiialize simplex
     for i in range(1, n+1): # create the simplex
         x[i] = xinit
         x[i, i-1] = xinit[i-1] + s # account for multidimensional input vectors along the simplex
-
+    for i in range(n+1):
+        o[i] = f(x[i]) # evaluate our function and save to output array
+    
 
 
 def nm():
