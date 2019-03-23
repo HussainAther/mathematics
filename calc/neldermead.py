@@ -27,7 +27,10 @@ def dh(f, xinit, s=.1, eps=1e-6):
     xinit is the initial x value.
     s is the side length of the simplex.
     """
-
+    n = len(xinit) # numbre of variables/dimensions
+    x = np.zeros((n+1, n)) # initialize vector x array
+    o = np.zeros(n+1) # initialize output array
+    
 
 def nm():
     """
