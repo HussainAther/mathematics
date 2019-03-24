@@ -3,6 +3,7 @@ import numpy as numpy
 """
 Powell's algorithm for finding local minima.
 """
+
 def gaussElim(a, b):
     """
     Compute linear solution of matrices a and b using Gaussian elimination.
