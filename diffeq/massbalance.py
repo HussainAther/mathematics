@@ -4,6 +4,11 @@ from gekko import GEKKO
 
 m = GEKKO()
 
+"""
+Sample integration problem for masses being balanced.
+"""
+
+
 # integration time points
 m.time = np.linspace(0,10)
 
