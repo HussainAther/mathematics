@@ -10,14 +10,14 @@ by Buffon's needle.)
 """
 
 def sample_cosine():
-  rr=2.
-  while rr > 1.:
-    u1=np.random.uniform(0,1.)
-    u2=np.random.uniform(0,1.)
-    v1=2*u1-1.
-    rr=v1*v1+u2*u2
-  cc=(v1*v1-u2*u2)/rr
-  return cc
+    rr = 2
+    while rr > 1.:
+      u1 = np.random.uniform(0,1.)
+      u2 = np.random.uniform(0,1.)
+      v1 = 2*u1-1.
+      rr = v1*v1+u2*u2
+    cc = (v1*v1-u2*u2)/rr
+    return cc
 
 class Buffon_needle_problem:
 
