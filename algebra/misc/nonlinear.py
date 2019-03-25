@@ -15,7 +15,7 @@ print([x.value[0],y.value[0]]) # print solution
 
 
 """
-Mixed-integer non-linear example
+Mixed-integer nonlinear example
 """
 
 m = GEKKO() # Initialize gekko
