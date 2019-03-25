@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from gekko import GEKKO
 
 """
-Solving non-linear equations
+Solving nonlinear equations
 """
 
 m = GEKKO()             # create GEKKO model
