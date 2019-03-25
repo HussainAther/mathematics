@@ -6,7 +6,7 @@ from scipy.integrate import odeint
 Predator-Prey Equations
 
 Also known as Lotka-Volterra equations, the predator-prey equations are a pair of first-order
-non-linear ordinary differential equations. They represent a simplified model of the change in
+nonlinear ordinary differential equations. They represent a simplified model of the change in
 populations of two species which interact via predation. For example, foxes (predators) and rabbits
 (prey). Let  x  and  y represent rabbit and fox populations, respectively. Then
 
