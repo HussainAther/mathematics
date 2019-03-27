@@ -22,3 +22,17 @@ def bezier_cubic(p1, p2, p3, p4):
     Cubic curve with four control points.
     """
     return Path([p1, p2, p3, p4], [Path.MOVETO, Path.CURVE4, Path.CURVE4, Path.CURVE4])
+
+# plot
+Xs, Ys = zip(*path.vertices)
+fig = plt.figure()
+ax  = fig.add_subplot(111, aspect="equal")
+ax.set_xlim(min(Xs)-0.2, max(Xs)+0.2)
+ax.set_ylim(min(Ys)-0.2, max(Ys)+0.2)
+patch = patch.PathPatch(path, facecolor='black', linewidth=2)
+ax.add_patch(patch)
+ax.plot(Xs, Ys, "o--", color="blue", linewidth=1)
+if labels:
+    for k in range(len(labels)):
+        ax.text(path.vertices[k][0]-0.1, path.vertices[k][1]-0.1, labels[k])
+plt.show()
