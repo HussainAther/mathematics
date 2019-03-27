@@ -11,4 +11,8 @@ r(t) = summation from i=0 to n of b_i*B_in(t) for 0<=t<=1
 """
 
 def bezier_parabola(P1, P2, P3):
+    """
+    The second-order curve is a parabolic segment. We can use patches from matplotlib to highlight the
+    the focus at the intersction of the axis and the line passing through the horizontal.
+    """
     return Path([P1, P2, P3], [Path.MOVETO, Path.CURVE3, Path.CURVE3])
