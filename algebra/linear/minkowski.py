@@ -9,3 +9,5 @@ def rootdist(a, root):
     """
     Calculate distance value to a given root value.
     """
+    rv = 1/float(root) # root value
+    return round(Decimal(v) ** Decimal(rv),3)
