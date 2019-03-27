@@ -10,16 +10,15 @@ of degree n using:
 r(t) = summation from i=0 to n of b_i*B_in(t) for 0<=t<=1  
 """
 
-def bezier_parabola(P1, P2, P3):
+def bezier_parabola(p1, p2, p3):
     """
     The second-order curve is a parabolic segment. We can use patches from matplotlib to highlight the
     the focus at the intersction of the axis and the line passing through the horizontal.
     """
-    return Path([P1, P2, P3], [Path.MOVETO, Path.CURVE3, Path.CURVE3])
+    return Path([p1, p2, p3], [Path.MOVETO, Path.CURVE3, Path.CURVE3])
 
-def bezier_cubic(P1, P2, P3, P4):
+def bezier_cubic(p1, p2, p3, p4):
     """
     Cubic curve with four control points.
     """
-    return Path([P1, P2, P3, P4],
-                [Path.MOVETO, Path.CURVE4, Path.CURVE4, Path.CURVE4])
+    return Path([p1, p2, p3, p4], [Path.MOVETO, Path.CURVE4, Path.CURVE4, Path.CURVE4])
