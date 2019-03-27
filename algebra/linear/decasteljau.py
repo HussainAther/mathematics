@@ -16,3 +16,10 @@ def bezier_parabola(P1, P2, P3):
     the focus at the intersction of the axis and the line passing through the horizontal.
     """
     return Path([P1, P2, P3], [Path.MOVETO, Path.CURVE3, Path.CURVE3])
+
+def bezier_cubic(P1, P2, P3, P4):
+    """
+    Cubic curve with four control points.
+    """
+    return Path([P1, P2, P3, P4],
+                [Path.MOVETO, Path.CURVE4, Path.CURVE4, Path.CURVE4])
