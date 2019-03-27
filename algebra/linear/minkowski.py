@@ -11,3 +11,9 @@ def rootdist(a, root):
     """
     rv = 1/float(root) # root value
     return round(Decimal(v) ** Decimal(rv),3)
+
+def min(x, y, p):
+    """
+    Return Minkowski (minkowski) distance for x, y, and a p-value p.
+    """
+    
