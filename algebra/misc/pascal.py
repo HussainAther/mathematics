@@ -11,5 +11,10 @@ def pascal(col, row):
 
 def tri(n):
     """
-    Create the triangle for each row.
+    Create the triangle for each row up to a number n.
     """
+    for i in range(n):
+        for j in range(i+1):
+           print(pascal(j, i)))
+        print("\n") 
+
