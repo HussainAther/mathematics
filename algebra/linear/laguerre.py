@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-Laguerre's polynomials are solutison to the second-order differential equation
+Laguerre's polynomials are solutions to the second-order differential equation
 
 xy'' + (1 - x)y' + ny = 0
 
