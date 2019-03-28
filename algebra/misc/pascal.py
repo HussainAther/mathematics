@@ -1,5 +1,9 @@
 import scipy as sp
 
+"""
+Pascal's (Pascal) triangle.
+"""
+
 def pascal(col, row):
     """
     Recursion to create series.
