@@ -1,7 +1,11 @@
-
 from gekko import GEKKO
 import numpy as np
 import matplotlib.pyplot as plt
+
+"""
+Model predictive control (mpc, MPC) lets us control a process while satisfying
+a set of constraints.
+"""
 
 m = GEKKO()
 m.time = np.linspace(0,20,41)
