@@ -25,7 +25,7 @@ def fx(x):
     """
     return x*sin(x)*sin(x)
 
-def plotfunction(): # Plot hte function and the box
+def plotfunction(): # Plot the function and the box
     inc = 2*pi/N
     for i in range(0, N):
         xx = i*incr
