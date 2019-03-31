@@ -7,7 +7,7 @@ direct search. It's often used in nonlinear optimization problems for which deri
 may not be known. It's a heuristic search method.
 
 We examine a two-dimensional simplex (n=2) that we perform actions upon (expansion, reflection,
-contraction, and shrinkage) such that we return hte vertex with the highest value
+contraction, and shrinkage) such that we return the vertex with the highest value
 of a function. We control the magnitude with a distance (d) measured from the function's vertex
 at the highest value to the centroid of the opposing face of the simplex.
 
@@ -173,7 +173,7 @@ def ss(x):
     c = 1e6 # constant (lambda) matrix value
     """
     We obtain the constant matrix value by approximating the constant functions that we pull
-    out in front of the right-hand-side of the equation. It includes the mass density of hte material,
+    out in front of the right-hand-side of the equation. It includes the mass density of the material,
     the circular frequency, and the modulus of elasticity.
     """
     evalmin = .4
