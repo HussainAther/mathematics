@@ -24,6 +24,7 @@ def logr(minn, maxn, f):
 def gp(a, d, tau):
     """
     Estimate correlation dimension of a set of points for an array a in d-dimensional space with tau time delay.
+    Return correlations and slope.
     """
     sd = np.std(a) # standard deviation
     o = embed(a, d, tau)
@@ -35,4 +36,17 @@ def gp(a, d, tau):
         for j in range(i, n):
             dists[i][j] = np.linalg.norm(o[i] - o[j])
             rbase[i][j] = 1
-    C = [] # correlation dimension
+    C = [] # correlation dimension values
+    for i in r: # logarithmic values
+        rmat = rbase * i # rmat is our matrix of log values for each iteration
+        hv = np.heaviside(rmat-dists, 0) # Heaviside step function
+        corr = (2/float(n*(n-1)))*np.sum(hv)
+        C.append(corr) # append the corrleation value
+    """
+    We may make a strong assumption that the log-log plot is a smooth monotonic function
+    such that the slope in the scaling region should be the maximum gradient
+    """
+    grads = np.gradient(np.log2(C), np.log2(r)).sort()
+    D = np.mean(grads[-5:]) # slope in the scaling region is the mean of the final five maximum gradients
+    return C, D
+
