@@ -50,7 +50,7 @@ def mlf(x):
 def prior(alpha, beta):
     """
     Prior distribution over the parameters being inferred. The preferred choice
-    is a non-informative prior that implies that before the inferecne operation
+    is a non-informative prior that implies that before the inference operation
     we hae no knowledge of what the parameters are likely to be.
     """
     return np.random.normal(beta, alpha)
