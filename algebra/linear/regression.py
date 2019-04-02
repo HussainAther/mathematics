@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 def estimate_coef(x,y):
     """
-    For variable arrays x and y, estimate the coefficients
+    For variable arrays x and y, estimate the coefficients of linear regression.
     """
     n = np.size(x) # size
   
@@ -18,33 +18,16 @@ def estimate_coef(x,y):
     return(b_0, b_1)
 
 def plot_regression_line(x, y, b):
-    # plotting the actual points as scatter plot
-    plt.scatter(x, y, color = "m",
-               marker = "o", s = 30)
+    """
+    Return the plotted regression line for data arrays x and y with coefficients b.
+    """
+    plt.scatter(x, y, color = "m", marker = "o", s = 30) # plot the scatterpoints of our data
   
-    # predicted response vector
-    y_pred = b[0] + b[1]*x
+    y_pred = b[0] + b[1]*x # predict the response
   
-    # plotting the regression line
-    plt.plot(x, y_pred, color = "g")
-  
-    # putting labels
+    plt.plot(x, y_pred, color = "g") # plot the line
     plt.xlabel('x')
     plt.ylabel('y')
-  
-    # function to show plot
     plt.show()
 
-def main():
-    # observations
-    x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    y = np.array([1, 3, 2, 5, 7, 8, 8, 9, 10, 12])
-  
-    # estimating coefficients
-    b = estimate_coef(x, y)
-    print("Estimated coefficients:\nb_0 = {}  \
-          \nb_1 = {}".format(b[0], b[1]))
-  
-    # plotting regression line
-    plot_regression_line(x, y, b)
 
