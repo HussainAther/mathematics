@@ -29,5 +29,10 @@ def gp(a, d, tau):
     o = embed(a, d, tau)
     n = len(o)
     r = logr(.1*sd, .7*sd, 1.03) 
-    dists = np.zeros(shape(n,n)) # initialize distance matrix
-    rbase =  
+    dists = np.zeros(shape=(n,n)) # initialize distance matrix
+    rbase = np.zeros(shape=(n,n)) # base matrix
+    for i in range(n):
+        for j in range(i, n):
+            dists[i][j] = np.linalg.norm(o[i] - o[j])
+            rbase[i][j] = 1
+    C = [] # correlation dimension
