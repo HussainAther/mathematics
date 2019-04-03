@@ -8,7 +8,6 @@ m = GEKKO()
 Sample integration problem for masses being balanced.
 """
 
-
 # integration time points
 m.time = np.linspace(0,10)
 
@@ -51,4 +50,3 @@ plt.xlabel('Time (hrs)')
 plt.ylabel('Height (m)')
 plt.legend(['height 1','height 2'])
 plt.show()
-
