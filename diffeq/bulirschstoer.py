@@ -1,6 +1,7 @@
 from math import sin, pi
-from numpy import empty, array, arange
 from pylab import plot, show
+
+import numpy as np
 
 """
 In numerical analysis, the Bulirsch–Stoer algorithm is a method for the numerical solution of
@@ -32,11 +33,11 @@ def f(r):
     omega = r[1]
     ftheta = omega
     fomega = -(g/l)*sin(theta) # get our version of omega by applying our force
-    return array([ftheta,fomega],float)
+    return np.array([ftheta,fomega],float)
 
-tpoints = arange(a,b,H)
+tpoints = np.arange(a,b,H)
 thetapoints = []
-r = array([theta0,0.0],float)
+r = np.array([theta0,0.0],float)
 
 # big steps of size H
 for t in tpoints:
@@ -52,7 +53,7 @@ for t in tpoints:
     # extrapolation table, which contains only the single
     # modified midpoint estimate of the solution at the
     # end of the interval
-    R1 = empty([1,2],float)
+    R1 = np.empty([1,2],float)
     R1[0] = 0.5*(r1 + r2 + 0.5*H*f(r2))
 
     # Now increase n until the required accuracy is reached
@@ -72,7 +73,7 @@ for t in tpoints:
         # Calculate extrapolation estimates.  Arrays R1 and R2
         # hold the two most recent lines of the table
         R2 = R1
-        R1 = empty([n,2],float)
+        R1 = np.empty([n,2],float)
         R1[0] = 0.5*(r1 + r2 + 0.5*h*f(r2))
         for m in range(1,n):
             epsilon = (R1[m-1]-R2[m-1])/((n/(n-1))**(2*m)-1)
