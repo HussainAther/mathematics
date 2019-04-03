@@ -88,8 +88,8 @@ for i in range(0, nn):
 
 fft(nn, isign)
 for i in range(0,nn):
+    # print the fast fourier results
     print(" %2d %9.5f %9.5f "%(i, dtr[i,0], dtr[i,1]))
 
 print("Enter and return any character to quit")
 s = raw_input()
-
