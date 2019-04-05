@@ -14,3 +14,13 @@ stationary, Gaussian, and Markov, so it can represent stationary random noise.
 sigma = 1 # standard deviation
 mu = 20 # average
 tau = .05 # time constant
+
+dt = .001  # Time step.
+T = 1.  # Total time.
+n = int(T / dt)  # Number of time steps.
+t = np.linspace(0., T, n)  # Vector of times.
+
+sigma_bis = sigma * np.sqrt(2. / tau)
+sqrtdt = np.sqrt(dt)
+
+x = np.zeros(n)
