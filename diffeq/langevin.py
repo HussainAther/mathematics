@@ -24,3 +24,10 @@ sigma_bis = sigma * np.sqrt(2. / tau)
 sqrtdt = np.sqrt(dt)
 
 x = np.zeros(n)
+
+for i in range(n - 1):
+    """
+    Simluate the process with the Euler-Maruyama method. It's the standard Euler method for ODOEs
+    but with an extra stochastic term (scaled normal random variable).
+    """
+    x[i + 1] = x[i] + dt * (-(x[i] - mu) / tau) + sigma_bis * sqrtdt * np.random.randn()
