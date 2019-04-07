@@ -13,13 +13,11 @@ sns.set()
 mu = 65
 sigma = 32
 
-
 def p(x):
     """
     Partial differential function of the standard normal distribution.
     """
     return st.norm.pdf(x, loc=mu, scale=sigma)
-
 
 def p_inv(y):
     """
@@ -27,7 +25,6 @@ def p_inv(y):
     """
     x = np.sqrt(-2*sigma**2 * np.log(y * sigma * np.sqrt(2*np.pi)))
     return mu-x, mu+x
-
 
 def slice_sampling(iter=1000):
     """
