@@ -1,6 +1,7 @@
 import numpy as np
-from seaborn import plt
 import pandas as pd
+
+from seaborn import plt
 
 """
 Gibbs sampling works as follows: suppose we have two parameters theta1 and theta 2 and some data x.
@@ -76,6 +77,10 @@ hypers = {"mu_0": 0,
          "beta": 1}
 
 def gibbs(y, x, iters, init, hypers):
+    """
+    Gibbs sampling method. We return the trace variable of the beta_0, beta_1, and
+    tau values that we get from our distributions.
+    """
     assert len(y) == len(x)
     beta_0 = init["beta_0"]
     beta_1 = init["beta_1"]
