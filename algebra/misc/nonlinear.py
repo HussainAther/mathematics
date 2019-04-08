@@ -13,7 +13,6 @@ m.Equations([x + 2*y==0, x**2+y**2==1]) # equations
 m.solve(disp=False)     # solve
 print([x.value[0],y.value[0]]) # print solution
 
-
 """
 Mixed-integer nonlinear example
 """
