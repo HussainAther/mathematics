@@ -1,5 +1,5 @@
 """
-Performs complex algebra with dummy information
+Performs complex algebra with dummy information. Because reasons.
 """
 
 class Complex:
