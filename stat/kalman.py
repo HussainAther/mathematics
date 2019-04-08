@@ -40,7 +40,7 @@ def gauss_pdf(x, m, s):
         e = 0.5 * np.dot(dx.T, np.dot(np.inv(s), dx))
         e = e + 0.5 * m.shape[0] * np.log(2 * np.pi) + 0.5 * np.log(np.det(s))
         p = exp(-e)
-    return (p[0], e[0])
+    return (p[0], e[0]) # p-value and probability
 
 def kf_update(x, p, y, h, r):
     """
@@ -51,3 +51,10 @@ def kf_update(x, p, y, h, r):
     or predictve mean of y, lh is the predictive probability (likelihood) of measurement which is 
     computed using the python function gauss_pdf.
     """ 
+    im = np.dot(h, x)
+    is = r + np.dot(h, np.dot(p, h.T))
+    k = np.dot(p, np.dot(h.T, np.inv(is)))
+    x = x + np.dot(k, (y-im))
+    p = p - np.dot(k, np.dot(is, k.T))
+    lh = gauss_pdf(y, im, is) 
+    return (x, p, k, im, is, lh)
