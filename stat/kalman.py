@@ -19,4 +19,35 @@ def kf_predict(x, p, a, q, b, u):
     """
     x = np.dot(a, x) + np.dot(b, u) # mean state variance of the previous step
     p = np.dot(a, np.dot(p, a.T)) + Q # state covariance of the previous step
-    return(x,p) 
+    return(x,p)
+
+def gauss_pdf(x, m, s):
+    """
+    Gaussian probability distribution function at point x, mean m, and variance s.
+    """
+    if m.shape[1] == 1:
+        dx = x - tile(m, x.shape[1])
+        e = 0.5 * sum(dx * (np.dot(np.inv(s), dx)), axis=0)
+        e - e + 0.5 * m.shape[0] * log(2 * np.pi) + 0.5 * np.log(np.det(s))
+        p = np.exp(-e)
+    elif x.shape[1] == 1:
+        dx = tile(x, m.shape[1] - m)
+        e = 0.5 * sum(dx * (np.dot(np.inv(s), dx)), axis =0)
+        e = e + 0.5 * m.shape[0] * np.log(2 * np.pi) + 0.5 * np.log(np.det(s))
+        p = np.exp(-e)
+    else:
+        dx = x - m
+        e = 0.5 * np.dot(dx.T, np.dot(np.inv(s), dx))
+        e = e + 0.5 * m.shape[0] * np.log(2 * np.pi) + 0.5 * np.log(np.det(s))
+        p = exp(-e)
+    return (p[0], e[0])
+
+def kf_update(x, p, y, h, r):
+    """
+    At time step k, update step computes posterior mean x and covariance p of the system state
+    given a new measurement y. Perform the update of x and p giving predicted x and p matrices,
+    the measurement vector y, the measurement matrix h, and the measurement covariance matrix r.
+    k is the Kalman Gain matrix, im, is the mean of predictive distribution of y, is is the covariance
+    or predictve mean of y, lh is the predictive probability (likelihood) of measurement which is 
+    computed using the python function gauss_pdf.
+    """ 
