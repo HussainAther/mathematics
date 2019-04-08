@@ -4,7 +4,7 @@ import scipy.signal as sig
 import scipy.stats.distributions as dist
 
 """
-We get power spectral functions from various types of fourier transforms on input signal data.
+We get power spectral functions from various types of Fourier transforms on input signal data.
 
 Multitaper methods use a principled approach to the trade-off between low leakage and minimizing
 variance of a power spectral density estimate. Minimizing leak can let you find the tail of a spectrum
