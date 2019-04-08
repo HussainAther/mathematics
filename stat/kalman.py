@@ -7,6 +7,9 @@ observed over time that has statistical noise and other inaccurates to produce
 estimates of unknown variables that tend to be more accurate than those based
 on a single measurement alone. It uses a joint probability distribution over the variables
 of each timeframe.
+
+We can use the Kalman filter for classical conditioning and apply it to cases of
+forwards and backwards blocking.
 """
 
 def kf_predict(x, p, a, q, b, u):
