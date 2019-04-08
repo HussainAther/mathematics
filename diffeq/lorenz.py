@@ -1,4 +1,6 @@
 import numpy as np
+
+from mpl_toolkits.mplot3d import Axes3D
 from scipy.integrate import odeint
 
 """
@@ -22,3 +24,18 @@ def Lorenz(s,t):
   
     # return the state derivatives
     return [sigma * (y-x), (rho-z)*x -y, x*y - beta*z]
+
+# run the function on some sample data
+state0 = [2.0, 3.0, 4.0]
+t = arange(0.0, 30.0, 0.01)
+
+state = odeint(Lorenz, state0, t)
+
+# plot
+fig = figure()
+ax = fig.gca(projection="3d")
+ax.plot(state[:,0], state[:,1], state[:,2])
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_zlabel("z")
+show()
