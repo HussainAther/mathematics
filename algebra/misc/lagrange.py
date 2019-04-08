@@ -3,6 +3,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 from mpl_toolkits.mplot3d import Axes3D
+from scipy.optimize import fsolve
 
 """
 Suppose we seek to maximize the function f(x,y)=x+y subject
@@ -44,14 +45,16 @@ def func(X):
     L = X[2] # this is the multiplier. lambda is a reserved keyword in python
     return x + y + L * (x**2 + y**2 - 1)
 
-# The minima/maxima of the augmented function are located where all of
-# the partial derivatives of the augmented function are equal to zero,
-# i.e. ∂Λ/∂x=0, ∂Λ/∂y=0, and ∂Λ/∂λ=0. the process for solving this is
-# usually to analytically evaluate the partial derivatives, and then
-# solve the unconstrained resulting equations, which may be nonlinear.
+"""
+The minima/maxima of the augmented function are located where all of
+the partial derivatives of the augmented function are equal to zero,
+i.e. ∂Λ/∂x=0, ∂Λ/∂y=0, and ∂Λ/∂λ=0. the process for solving this is
+usually to analytically evaluate the partial derivatives, and then
+solve the unconstrained resulting equations, which may be nonlinear.
 
-# Rather than perform the analytical differentiation,
-# here we develop a way to numerically approximate the partial derivatives.
+Rather than perform the analytical differentiation,
+here we develop a way to numerically approximate the partial derivatives.
+"""
 
 def dfunc(X):
     dLambda = np.zeros(len(X))
@@ -62,13 +65,13 @@ def dfunc(X):
         dLambda[i] = (func(X+dX)-func(X-dX))/(2*h);
     return dLambda
 
-# The function we defined above (dfunc) will equal zero
-# at a maximum or minimum. It turns out there are two solutions to
-# this problem, but only one of them is the maximum value.
-# Which solution you get depends on the initial guess provided to the solver.
-# Here we have to use some judgement to identify the maximum.
-
-from scipy.optimize import fsolve
+"""
+The function we defined above (dfunc) will equal zero
+at a maximum or minimum. It turns out there are two solutions to
+this problem, but only one of them is the maximum value.
+Which solution you get depends on the initial guess provided to the solver.
+Here we have to use some judgement to identify the maximum.
+"""
 
 # this is the max
 X1 = fsolve(dfunc, [1, 1, 0])
@@ -78,23 +81,25 @@ print X1, func(X1)
 X2 = fsolve(dfunc, [-1, -1, 0])
 print X2, func(X2)
 
-# Three dimensional plots in matplotlib are a little more difficult
-# than in Matlab (where the code is almost the same as 2D plots,
-# just different commands, e.g. plot vs plot3). In Matplotlib
-# you have to import additional modules in the right order, and
-# use the object oriented approach to plotting as shown here.
+"""
+Three dimensional plots in matplotlib are a little more difficult
+than in Matlab (where the code is almost the same as 2D plots,
+just different commands, e.g. plot vs plot3). In Matplotlib
+you have to import additional modules in the right order, and
+use the object oriented approach to plotting as shown here.
 
 
-# Lagrange interpolation takes equations and fits them to data to try
-# to understand how well they fit. Lagrange himself figured out that
-# a closed-form formula can directly fit the (n-1)-order polynomial given by:
-# g(x) ~ a0 + a1 * x + a2 * x**2 + ... + a_n-1 * x**n-1
-# We can re-write this as:
-# g(z) ~ g1*λ1 + g2λ2 + ... + gnλn
-# in which lambda is the product of each (x-xj) / (xi - xj) from j = 1 to j = n.
-# The difference between teh polynomial evaluated at some x and that of the actual function is
-# R_n ~ ((x-x1)(x-x2)...(x-xn))/(n!) * (g**n) * ζ in which ζ  is undetermined.
-# This shows that significantly high derivates can't be approximated well by a polynomial.
+Lagrange interpolation takes equations and fits them to data to try
+to understand how well they fit. Lagrange himself figured out that
+a closed-form formula can directly fit the (n-1)-order polynomial given by:
+g(x) ~ a0 + a1 * x + a2 * x**2 + ... + a_n-1 * x**n-1
+We can re-write this as:
+g(z) ~ g1*λ1 + g2λ2 + ... + gnλn
+in which lambda is the product of each (x-xj) / (xi - xj) from j = 1 to j = n.
+The difference between teh polynomial evaluated at some x and that of the actual function is
+R_n ~ ((x-x1)(x-x2)...(x-xn))/(n!) * (g**n) * ζ in which ζ  is undetermined.
+This shows that significantly high derivates can't be approximated well by a polynomial.
+"""
 
 #def lagrange_interpolation(g, x, m): # WORK IN PROGRESS!!!
 #    """
