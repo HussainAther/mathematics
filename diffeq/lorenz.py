@@ -20,7 +20,5 @@ def Lorenz(s,t):
     rho = 28.0
     beta = 8.0/3.0
   
-    # state derivatives
-    xd = sigma * (y-x)
-    yd = (rho-z)*x - y
-    zd = x*y - beta*z
+    # return the state derivatives
+    return [sigma * (y-x), (rho-z)*x -y, x*y - beta*z]
