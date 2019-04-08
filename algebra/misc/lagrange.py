@@ -1,14 +1,15 @@
 import numpy as np
 import matplotlib as mpl
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 
+from mpl_toolkits.mplot3d import Axes3D
+
 """
-# Suppose we seek to maximize the function f(x,y)=x+y subject
-# to the constraint that x2+y2=1. The function we seek to maximize
-# is an unbounded plane, while the constraint is a unit circle.
-# We want the maximum value of the circle, on the plane.
-# We plot these two functions here.
+Suppose we seek to maximize the function f(x,y)=x+y subject
+to the constraint that x2+y2=1. The function we seek to maximize
+is an unbounded plane, while the constraint is a unit circle.
+We want the maximum value of the circle, on the plane.
+We plot these two functions here.
 """
 
 x = np.linspace(-1.5, 1.5)
@@ -28,11 +29,12 @@ y1 = R * np.sin(theta)
 ax.plot(x1, y1, x1 + y1, 'r-')
 plt.savefig('images/lagrange-1.png')
 
-
-# To find the maximum, we construct the following function:
-# Λ(x,y;λ)=f(x,y)+λg(x,y) where g(x,y)=x2+y2−1=0, which is the constraint function.
-# Since g(x,y)=0, we are not really changing the original function, provided that
-# the constraint is met!
+"""
+To find the maximum, we construct the following function:
+Λ(x,y;λ)=f(x,y)+λg(x,y) where g(x,y)=x2+y2−1=0, which is the constraint function.
+Since g(x,y)=0, we are not really changing the original function, provided that
+the constraint is met!
+"""
 
 import numpy as np
 
