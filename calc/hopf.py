@@ -7,7 +7,7 @@ In the mathematical theory of bifurcations, a Hopf bifurcation is a critical poi
 switches and a periodic solution arises. More accurately, it is a local bifurcation in which a fixed point of
 a dynamical system loses stability, as a pair of complex conjugate eigenvalues - of the linearization around
 the fixed point - crosses the complex plane imaginary axis. Under reasonably generic assumptions about the
-dynamical system, a small-amplitude limit cycle branches from the fixed point.
+dynamical system, a small-amplitude limit cycle branches from the fixed point. It's also called a Poincaré-Andronov-Hopf bifurcation.
 """
 
 def make_A(tau):
