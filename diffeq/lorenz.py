@@ -39,3 +39,39 @@ ax.set_xlabel("x")
 ax.set_ylabel("y")
 ax.set_zlabel("z")
 show()
+
+"""
+We can show how sensitive these equations are to initial conditions.
+"""
+
+t = np.arange(0.0, 30, 0.01)
+
+state = [2.0001, 3.0, 4.0]
+state = odeint(Lorenz, state2_0, t)
+
+# animation
+figure()
+pb, = plot(state1[:,0],state1[:,1], "b-", alpha=0.2)
+xlabel("x")
+ylabel("y")
+
+p, = plot(state1[0:10,0], state1[0:10,1], "b-'"
+pp, = plot(state1[10,0], state1[10,1], "b.", markersize=10)
+p2, = plot(state2[0:10,0], state2[0:10,1], "r-")
+pp2, = plot(state2[10,0], state2[10,1], "r.", markersize=10)
+tt = title("%4.2f sec" % 0.00)
+
+# animate
+step = 3
+for i in xrange(1,shape(state1)[0]-10,step):
+    p.set_xdata(state1[10+i:20+i,0])
+    p.set_ydata(state1[10+i:20+i,1])
+    pp.set_xdata(state1[19+i,0])
+    pp.set_ydata(state1[19+i,1])
+    p2.set_xdata(state2[10+i:20+i,0])
+    p2.set_ydata(state2[10+i:20+i,1])
+    pp2.set_xdata(state2[19+i,0])
+    pp2.set_ydata(state2[19+i,1])
+    tt.set_text("%4.2f sec" % (i*0.01))
+    draw()
+
