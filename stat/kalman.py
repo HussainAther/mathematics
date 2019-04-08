@@ -14,7 +14,8 @@ forwards and backwards blocking.
 
 def kf_predict(x, p, a, q, b, u):
     """
-    Form a prediction based on prior knowledge.
+    Form a prediction based on prior knowledge. a is the transition matrix (n x n), q is the process noise 
+    covariance matrix, b is the input effect matrix, and u is the control input.
     """
     x = np.dot(a, x) + np.dot(b, u) # mean state variance of the previous step
     p = np.dot(a, np.dot(p, a.T)) + Q # state covariance of the previous step
