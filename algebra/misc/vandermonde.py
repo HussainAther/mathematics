@@ -2,7 +2,7 @@ from sympy import Matrix, pprint, Rational, sqrt, symbols, Symbol, zeros
 from sympy.core.compatibility import range
 
 """
-Interpolation using the Vandermode function.
+Interpolation using the Vandermode function algorithm (vandermonde).
 
 The Vandermonde matrix is an n × n matrix where the first row is the first point evaluated at
 each of the n monomials, the second row is the second point x2 evaluated at each of the n monomials,
