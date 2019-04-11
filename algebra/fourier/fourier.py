@@ -13,8 +13,8 @@ def DFT(fnList):
     for m in range(N):
         Fm = 0.0
         for n in range(N):
-            Fm += fnList[n] * np.exp(- 1j * np.pi*2 * m * n / N)
-        FmList.append(Fm / N)
+            Fm += fnList[n] * np.exp(- 1j * np.pi*2 * m * n / N) # calculate the transform
+        FmList.append(Fm / N) # normalize with respect to our length
     return FmList
 
 def InverseDFT(FmList):
