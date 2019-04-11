@@ -14,6 +14,7 @@ the "smooth" vector of length n/2, then to the "smooth-smooth" vector of length 
 number of smooth components remain. It outputs the remaining components and all the "detail" components
 that were accumulated along the way.
 """
+
 def haarMatrix(n, normalized=False):
     """
     Haar matrix also used in some forms of DFT analysis.
