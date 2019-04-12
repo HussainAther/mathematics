@@ -1,7 +1,7 @@
 from vpython.graph import *
 
 """
-When we add two sine functions with nearly identical frequences, we obtain beats.
+When we add two sine functions with nearly identical frequences, we obtain beats. Sick!
 
 y(t) = A sin(30t) + A sin(33t)
 """
