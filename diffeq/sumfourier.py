@@ -1,9 +1,12 @@
-from vpython.graph import *
 import cmath
 import numpy as np
 
-# sumfourier.py: Summation of the Fourier series using two methods: sawtooth function
-# and half-wave function
+from vpython.graph import *
+
+"""
+Summation of the Fourier series using two methods: sawtooth function
+and half-wave function
+"""
 
 sgingr =  gdisplay(x=0, y=0, width=600, height=250, title ="Signal", \
                 xtitle="x", ytitle = "signal", xmax = 2.∗math.pi, xmin = 0,\
