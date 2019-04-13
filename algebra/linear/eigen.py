@@ -2,7 +2,7 @@ from numpy import *
 from numpy.linalg import eig
 
 """
-Solve the matrix eigenvalue problem
+Solve the matrix eigenvalue problem.
 """
 
 # change this to whatever matrix to solve.
