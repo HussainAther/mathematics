@@ -2,7 +2,9 @@ from vpython.graph import *
 import cmath # for complex math functions
 import numpy as np
 
-# Discrete Fourier Transform using built-in complex numbers
+"""
+Discrete Fourier Transform using built-in complex numbers
+"""
 
 sgingr =  gdisplay(x=0, y=0, width=600, height=250, title ="Signal", \
                 xtitle="x", ytitle = "signal", xmax = 2.∗math.pi, xmin = 0,\
@@ -41,7 +43,9 @@ def fouriercomplex(dftz): # fourier transform
 f(signal)
 fouriercomplex(dftz)
 
-# Discrete Fourier Transform using built-in real numbers
+"""
+Discrete Fourier Transform using built-in real numbers
+"""
 
 # for the original signal
 signgr = gdisplay(x=0,y=0,width=600,height=250, title="Original signal y(t)= 3 cos(wt)+2 cos(3wt)+ cos(5wt) ",\
@@ -56,6 +60,9 @@ imagr = gdisplay(x=0,y=250,width=600,height=250,\
 impart = gvbars(delta=0.05,color=color.red,display=imagr)
 
 def fourierreal(dftimag):
+    """
+    Calculate and plot the real Fourier transform from the imaginary component.
+    """
     for n in range (0 ,Np) :
         imag = 0.
         for k in range(0, N):
