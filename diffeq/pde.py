@@ -1,5 +1,6 @@
-from gekko import GEKKO
 import numpy as np
+
+from gekko import GEKKO
 
 """
 Partial differential equation example using GEKKO
