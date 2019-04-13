@@ -1,7 +1,7 @@
-# Import some modules to hit that yeet
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import odeint # scipy has some neato ordinary differnetial equation functions.
+
+from scipy.integrate import odeint # scipy has some neato ordinary differential equation functions.
 
 """
 First-order differential equations.
