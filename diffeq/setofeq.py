@@ -1,5 +1,9 @@
 from gekko import GEKKO
 
+"""
+Use GEKKO to solve a set of equations.
+"""
+
 # Initialize Model
 m = GEKKO(remote=True)
 
