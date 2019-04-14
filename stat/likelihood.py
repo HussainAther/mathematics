@@ -1,5 +1,9 @@
-# Compare the likelihood of the random samples to the two
-# distributions
+
+"""
+Compare the likelihood of the random samples to the two
+Gaussian distributions of them.
+"""
+
 def compare_data_to_dist(x, mu_1=5, mu_2=7, sd_1=3, sd_2=3):
     ll_1 = 0
     ll_2 = 0
