@@ -1,11 +1,9 @@
-# Helper libraries
 import numpy as np
 import matplotlib.pyplot as plt
 import math
 import random
-
-# TensorFlow and tf.keras
 import tensorflow as tf
+
 from tensorflow import keras
 
 """
