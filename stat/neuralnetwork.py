@@ -1,6 +1,11 @@
-from gekko import GEKKO
 import numpy as np
 import matplotlib.pyplot as plt
+
+from gekko import GEKKO
+
+"""
+Sample neural network in GEKKO.
+"""
 
 # generate training data
 x = np.linspace(0.0,2*np.pi,20)
