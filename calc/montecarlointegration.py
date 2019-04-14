@@ -14,13 +14,23 @@ integral from a to b of dx*f(x) = (b-a)<f> = (b-a)*(1/N)*summation from i equals
 """
 
 def x(i):
+    """
+    Some function x of i.
+    """
     return 5*i
 
 def f(x):
+    """
+    Some function f of x.
+    """
     return 10*x
     
 N = 10000
-def mc(f, a, b): # Monte Carlo integration of f(x) from a to b:
+
+def mc(f, a, b): 
+    """
+    Monte Carlo integration of f(x) from a to b.
+    """
     length = b - a
     outside = length * (1/N) # the value outside the summation
     summation = 0
