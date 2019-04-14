@@ -11,9 +11,9 @@ variable u and the discrete outcomes of the die. Each individual segment is assi
 if u ∈ [1/6, 2/6), then the outcome for the die is 2. Because the die is fair, all segments on the unit interval are the same
 length. Thus, our new random variable v is derived from u.
 
-The method is called the inverse CDF3 method because the CDF (namely,[0,1/12,2/12,3/12,2/4,3/4,1])
- has been inverted (using the pd.cut method) to generate the samples. The inversion is easier to
- see for continuous variables, which we consider next.
+The method is called the inverse CDF3 method because the CDF (namely,[0,1/12,2/12,3/12,2/4,3/4,1]) has 
+been inverted (using the pd.cut method) to generate the samples. The inversion is easier to see for 
+continuous variables, which we consider next.
 """
 
 u = np.random.rand(100)
