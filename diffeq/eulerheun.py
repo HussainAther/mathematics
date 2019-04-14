@@ -8,7 +8,7 @@ x(t_n+1) = x(t_n) + integral from t_n to t_n+1 of f(x(s), s)ds
 
 such that x(t) is an exact solution of ẋ = f(x, t).
 
-We use a trapezoild approximation (in contrast to Euler's method of using a Riemann sum).
+We use a trapezoid approximation (in contrast to Euler's method of using a Riemann sum).
 It's a second-order (2nd) Runge-Kutta method. 
 """
 
