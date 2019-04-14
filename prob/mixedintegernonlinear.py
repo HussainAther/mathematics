@@ -1,4 +1,9 @@
 from gekko import GEKKO
+
+"""
+Solving equations with iterations.
+"""
+
 m = GEKKO() # Initialize gekko
 m.options.SOLVER=1  # APOPT is an MINLP solver
 
