@@ -25,7 +25,7 @@ def f(y):
 
 def wTrap(i, h):
     if i == 1 or i == N:
-        wLocal = h/2.00 # determine the weight. We can call it the local weight
+        wLocal = h/2.00 # determine the weight. We can call it the local weight as it's locally defined.
     else:
         wLocal = h
     return wLocal
