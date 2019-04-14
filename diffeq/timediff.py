@@ -1,6 +1,7 @@
 import numpy as np
-from gekko import GEKKO
 import matplotlib.pyplot as plt
+
+from gekko import GEKKO
 
 """
 Simple GEKKO usage with an equation differentiated by time.
