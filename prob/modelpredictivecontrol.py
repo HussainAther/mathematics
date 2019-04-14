@@ -1,6 +1,7 @@
-from gekko import GEKKO
 import numpy as np
 import matplotlib.pyplot as plt
+
+from gekko import GEKKO
 
 """
 Model predictive control (mpc, MPC) lets us control a process while satisfying
@@ -40,6 +41,7 @@ import json
 with open(m.path+'//results.json') as f:
     results = json.load(f)
 
+# plot
 plt.figure()
 plt.subplot(2,1,1)
 plt.plot(m.time,p.value,'b-',label='MV Optimized')
