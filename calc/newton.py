@@ -1,5 +1,5 @@
 from sys import version
-from math import cos
+import numpy as np
 
 """
 Use Newton-Raphson method to find zero of a function.
@@ -17,7 +17,7 @@ def f(x):
     """
     Some function.
     """
-    return 2*cos(x) - x
+    return 2*np.cos(x) - x
 
 for i in range(0, imax + 1):
     F = f(x)
