@@ -1,8 +1,13 @@
-from scipy import stats
 import seaborn as sns
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+from scipy import stats
+
+"""
+Linear regression of salary data.
+"""
 
 url = "https://raw.github.com/neurospin/pystatsml/master/datasets/salary_table.csv"
 salary = pd.read_csv(url)
