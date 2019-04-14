@@ -1,4 +1,5 @@
-from numpy import *
+import numpy as np
+
 from sys import version
 
 """
@@ -27,7 +28,7 @@ def gauss(npts, job, a, b, x, w):
     m = i = j = t = t1 = pp = p1 = p2 = p3 = 0 # start all points at 0
     eps = 3e-14 # accuracy...not sure what will work at this point
     m = (npts + 1)/2
-    for i inrange(1, m+1):
+    for i in range(1, m+1):
         t = np.cos(np.pi*(float(i) - .25)/(float(npts)+.5))
         t1 = 1
         while((abs(t-t1))>=eps):
@@ -59,7 +60,7 @@ def gauss(npts, job, a, b, x, w):
             x[i] = (b*xi + b + a + a)/(1-xi)
             w[i] = (w[i]*2*(a+b))/((1-xi)*(1-xi))
 
-def gaussint(no, min, max):  # perform the integration by calculating the integral
+def gaussint(no, min, max):  
     """
     Perform Gaussian integration by calculating the integral from min to max.
     """
