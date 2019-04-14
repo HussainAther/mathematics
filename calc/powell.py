@@ -1,4 +1,4 @@
-import numpy as numpy
+import numpy as np
 
 """
 Powell's algorithm for finding local minima.
