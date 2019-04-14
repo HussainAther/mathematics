@@ -2,7 +2,7 @@ import sympy
 import simpy.stats as ss
 
 """
-Chebyshev’s Inequality drops out directly from the Markov Inequality. Let μ = E( X ) and σ2 = V(X). Then, we have
+Chebyshev’s Inequality (inequality) drops out directly from the Markov Inequality. Let μ = E( X ) and σ2 = V(X). Then, we have
 
 P(|X − μ| ≥ t) ≤ σ^2 / t^2
 
