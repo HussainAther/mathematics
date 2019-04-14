@@ -1,3 +1,4 @@
+import numpy as np
 
 """
 Neyman-Pearson Lemma: Let L(theta|x) denote the likelihood function for the random variable X corresponding to the
@@ -24,7 +25,7 @@ def neymanPearson(funct, k):
         for j in range(0, 1, .01):
             c = (i,j) # testing critical region
             if lf(i)/lf(j) >= k or lf(i)/lf(j) <= k:
-                brak
+                break
         cr.append(c)
     return cr
 
