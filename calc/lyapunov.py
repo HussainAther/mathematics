@@ -1,4 +1,4 @@
-from vpython.graph import *
+import matplotlib.pyplot as plt
 
 """
 Compute the Lyapunov exponents for the bifurcation plot of the logistic map as a
@@ -21,5 +21,6 @@ for m in range(m_min, m_max, step):
         y = m * y * (1-y)
         funct1.plot(pos=(m,y))
         suma = suma + log(abs(m*(1-2*y)))
-    funct2.plot(pos=(m, suma/401))
+    plt.plot((m, suma/401))
 
+plt.show()
