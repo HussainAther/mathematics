@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+
 from scipy.integrate import odeint
 
 """
@@ -14,9 +15,13 @@ dxdt=x(a−by) dydt=−y(c−dx)
 
 Here  a ,  b ,  c  and  d  are positive parameters.
 """
+
 a,b,c,d = 1,1,1,1
 
 def dP_dt(P, t):
+    """
+    Differential form of the equation.
+    """
     return [P[0]*(a - b*P[1]), -P[1]*(c - d*P[0])]
 
 ts = np.linspace(0, 12, 100)
