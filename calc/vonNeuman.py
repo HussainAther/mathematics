@@ -4,7 +4,9 @@ import numpy as np
 from vpython.graph import *
 
 """
-Monte Carlo integration via stone throwing.
+Monte Carlo integration via stone throwing. A classical example 
+of the Monte Carlo integration approach is to determine the area 
+of a circular "pond" by throwing stones into it. 
 """
 
 N = 100 # points to plot the function
