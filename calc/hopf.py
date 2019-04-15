@@ -12,7 +12,7 @@ dynamical system, a small-amplitude limit cycle branches from the fixed point. I
 
 def make_A(tau):
     """
-    Jacobian matrix
+    Jacobian matrix of the differentiated forms of our system of equations.
     """
     return array([[-1./20, 0, 0, -1./20],
                [1./tau, -1./tau, 0, 0],
@@ -46,7 +46,7 @@ for i, tau in enumerate(taus):
         im = imag(e)
         if re > 0 and not Hopf_found:
             # assumes that we know the eigenvalues started negative real part
-            print "Hopf found near tau = %.4f (index %i)" % (tau, i)
+            print("Hopf found near tau = %.4f (index %i)" % (tau, i))
             Hopf_found = True
         plt.plot(re, im, cols[j]+".")
         plt.xlim([-0.3, 0.01])
