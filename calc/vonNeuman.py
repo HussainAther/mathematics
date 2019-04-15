@@ -39,7 +39,7 @@ def plotfunction(): # Plot the function and the box
 
 plotfunction() # get to it!
 j = 0
-Npts = 3001 # poiints generated inside the box
+Npts = 3001 # points generated inside the box
 analyt = np.pi**2 # analytical integral
 areanal.text = "analytical=%8.5f"%analyt # output analytical integral
 genpts = points(size=2)
