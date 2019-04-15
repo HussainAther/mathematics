@@ -1,4 +1,3 @@
-from numpy import *
 from sys import version
 
 """
