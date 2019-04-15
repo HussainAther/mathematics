@@ -15,6 +15,9 @@ pb=np.zeros(200)
 ppb=np.zeros(200)
 
 def f(b):
+    """
+    Plot the staircase.
+    """
     i=0
     x=np.zeros(500)
     x[0]=0.1
