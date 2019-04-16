@@ -80,7 +80,6 @@ The solutions to the harmonic oscillator are Hermite polynomials.
 Harmonic oscillator states are given by:
 
 psi_n(x) = (1/sqrt(2^n * n)) * ((m*omega)/(pi*hbar))^(1/4) * exp((-m*omega*x^2)/(2*hbar)) * H_n(sqrt(m*omega/hbar)*x)
-
 """
 
 def hoHermite(x,n,m,ohm):
