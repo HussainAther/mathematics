@@ -9,7 +9,8 @@ parameters W , driven bottom-up to implement the recognition model.
 It uses a cycle between waking and sleeping (as part of the Wake-Sleep algorithm) in which a stochastic
 multilayer neural network adjusts its own parameters to produce a good density estimator.
 
-The parameters are determined by a modified EM algorithm that results in roughly symmetric updates for the two networks.
+The parameters are determined by a modified EM algorithm that results in roughly symmetric 
+updates for the two networks.
 """
 
 def sigmoid(u):
