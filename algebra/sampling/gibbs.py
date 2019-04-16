@@ -95,7 +95,7 @@ def gibbs(y, x, iters, init, hypers):
         trace[it,:] = np.array((beta_0, beta_1, tau))
 
     trace = pd.DataFrame(trace)
-    trace.columns = ['beta_0', 'beta_1', 'tau']
+    trace.columns = ["beta_0", "beta_1", "tau"]
     
     return trace
 
