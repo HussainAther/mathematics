@@ -27,7 +27,7 @@ There are two methods of interpolation: cubic and trapzeoidal. We can write a fu
 
 The program dftcor, below, implements the endpoint corrections for the cubic case. Given input values of omega, delta, a, b, and an array of endpoint corrections in equation for I(omega_n).
 
-it returns the real and imaginary parts of the endpoint corrections in equation (13.9.13), and the factor W.􏰌/. The code is turgid, but only because the formulas above are complicated. The formulas have cancellations to high powers of 􏰌. It is therefore necessary to compute the right-hand sides in double precision, even when the corrections are desired only to single precision. It is also necessary to use the series expansion for small values of 􏰌. The opti- mal cross-over value of 􏰌 depends on your machine’s wordlength, but you can always find it experimentally as the largest value where the two methods give identical results to machine precision.
+it returns the real and imaginary parts of the endpoint corrections in the equation above, and the factor W. The code is turgid, but only because the formulas above are complicated. The formulas have cancellations to high powers of W. It is therefore necessary to compute the right-hand sides in double precision, even when the corrections are desired only to single precision. It is also necessary to use the series expansion for small values of W The optimal cross-over value of W depends on your machine’s wordlength, but you can always find it experimentally as the largest value where the two methods give identical results to machine precision.
 """
 
 def DFTcor(w, delta, a, b, endpts):
