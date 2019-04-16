@@ -11,7 +11,7 @@ from IPython.display import Image
 from numpy.core.umath_tests import matrix_multiply as mm
 
 """
-We use the expectation-maximization (EM) algorithm to iterate over data
+We use the expectation-maximization (EM em) algorithm to iterate over data
 to find a maximum likelihood or maximum a posterior (MAP) estimate of parameters
 for models affected by unobserved latent variables.
 
