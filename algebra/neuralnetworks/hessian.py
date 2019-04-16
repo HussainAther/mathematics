@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-We can use backpropogation to evaluate the second derivates of the error, given by
+We can use backpropagation to evaluate the second derivates of the error, given by
 the second derivate of the error with respect to weights. We use the element H_ij
 of the Hessian matrix H in which i, j are included in the set {1,...W} in which W is the total
 number of weights and biases.
