@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.ndimage.interpolation import rotate
 
 """
-Jacobi's method is a way of computing eigenvalues and eigenvectors of a real symmetric matrix.
+Jacobi's (jacobi Jacobi) method is a way of computing eigenvalues and eigenvectors of a real symmetric matrix.
 
 We use a series of linear equations to multiple the elemnets of the matrix a.
 
