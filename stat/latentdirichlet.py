@@ -1,11 +1,8 @@
-import pandas as pd
 import numpy as np
-import nltk
 
 """
-In the area of topic modeling, we use latent dirichlet allocation (lda) to classify
-text in a document about a specific topic. We build a topic-per-document model and
-words-per-topic model using Dirichlet distributions.
+The Latent Dirichlet allocation (LDA lda) is a generative statistical model to 
+use unobserved groups that explain why parts of the data are similar to make 
+observations.
 """
-
-
+    
