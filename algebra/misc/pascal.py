@@ -1,7 +1,7 @@
 import scipy as sp
 
 """
-Pascal's (Pascal) triangle.
+Pascal's (Pascal pascal) triangle.
 """
 
 def pascal(col, row):
