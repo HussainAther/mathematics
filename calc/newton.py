@@ -1,5 +1,6 @@
-from sys import version
 import numpy as np
+
+from sys import version
 
 """
 Use Newton-Raphson method to find zero of a function.
