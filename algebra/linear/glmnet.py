@@ -2,9 +2,9 @@ import numpy
 import matplotlib.pyplot as plt
 
 from sklearn import datasets, linear_model
-from math import sqrt
-"""
 
+"""
+Generalized linear model (GLM glm) neural network. Use sklearn. 
 """
 
 def S(z, gamma):
@@ -53,7 +53,7 @@ xSD = []
         xMeans.append(mean)
         colDiff = [(xList[j][i] - mean) for j in range(nrows)]
         sumSq = sum([colDiff[i] * colDiff[i] for i in range(nrows)])
-        stdDev = sqrt(sumSq/nrows)
+        stdDev = np.sqrt(sumSq/nrows)
         xSD.append(stdDev)
 
 # calculate means and standard deviations to normalize xList
