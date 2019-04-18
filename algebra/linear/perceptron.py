@@ -1,5 +1,3 @@
-import numpy as np
-
 """
 Rosenblatt's pecreptron is an example of a linear discriminant model.
 
