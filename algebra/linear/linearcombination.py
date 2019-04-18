@@ -11,7 +11,7 @@ def factors_set():
 
 def memoize(f):
     """
-    Memorize calculation results of an input.
+    Memoize calculation results of an input.
     """
     results = {}
     def helper(n):
@@ -21,8 +21,10 @@ def memoize(f):
     return helper
 
 def linear_combination(n):
-    """ returns the tuple (i,j,k,l) satisfying
-        n = i*1 + j*3 + k*9 + l*27      """
+    """
+    Returns the tuple (i,j,k,l) satisfying
+        n = i*1 + j*3 + k*9 + l*27      
+    """
     weighs = (1,3,9,27)
     
     for factors in factors_set():
