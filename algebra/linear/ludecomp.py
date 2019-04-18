@@ -1,4 +1,4 @@
-import numpy as numpy
+import numpy as np
 
 """
 Lower-upper (LU) decomposition or factorization factors a matrix as the product of a lower triangular
