@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
+
 from sklearn import svm
 
 """
-Linear supper vector classification
+Linear supper vector classification (svc)
 """
 
 np.random.seed(0)
