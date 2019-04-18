@@ -26,8 +26,6 @@ J(w) = (m2-m1)^2 / (s1^2 + s2^2)
 in which sk^2 for some k is given by the summation of (yn - mk)^2
 
 for one-dimensional space y
-
-
 """
 
 def fisher_criterion(v1, v2):
