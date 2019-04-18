@@ -1,5 +1,9 @@
 import numpy as np
 
+"""
+Gaussian-Jordan (Gaussian gaussian Jordan jordan) elimination.
+"""
+
 def gj(a, n)
     """
     Gaussian-Jordan elimination on two input matrices represented by a and b.
