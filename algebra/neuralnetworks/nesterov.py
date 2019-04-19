@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-Nesterov's method for proximal gradient descent.
+Nesterov's (Nesterov) method for proximal gradient descent.
 """
 
 def grad(f, x, deltax):
@@ -17,7 +17,6 @@ def nes(f, t, dim, alpha, xinit=None, eps=.05, num=False, deltax=.0005):
     Use the Nesterov method for proximal gradient descent. We improve convergence
     and can add a momentum term such that we relax the descent property. We update our
     function with a momentum value that accounts for the step size.
-    
     f is our function that we evaluate.
     t is our learning rate.
     dim is the number of dimensions of x.
