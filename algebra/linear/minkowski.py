@@ -15,5 +15,6 @@ def rootdist(a, root):
 def mink(x, y, p):
     """
     Return Minkowski (minkowski) distance for x, y, and a p-value p.
+    Here the p-value should be reasonably low.
     """
     return p(sum(math(pow(abs(a-b), p) for a, b in zip(x, y)), p)) 
