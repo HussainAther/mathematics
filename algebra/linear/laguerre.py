@@ -5,7 +5,7 @@ Laguerre's polynomials are solutions to the second-order differential equation
 
 xy'' + (1 - x)y' + ny = 0
 
-or soutions of
+or solutions of
 
 xy'' + (alpha + 1 - x)y' + ny = 0
 
@@ -13,7 +13,7 @@ They arise in radial parts of solutions to the Schrödinger equation for a one-e
 They describe static Wigner functions of oscillator systems in quantum mechanics in phase space.
 """
 
-lp = { # Laguerre polynomials
+lp = { # Laguerre polynomials for each order
     0: 1,
     1: -x + 1,
     2: (-1/2)*(x-4* x +2),
