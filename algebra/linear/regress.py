@@ -3,6 +3,7 @@ from gekko import GEKKO
 import numpy as np
 import matplotlib.pyplot as plt
 
+# sample x and y data
 xm = np.array([0,1,2,3,4,5])
 ym = np.array([0.1,0.2,0.3,0.5,0.8,2.0])
 
@@ -10,7 +11,7 @@ ym = np.array([0.1,0.2,0.3,0.5,0.8,2.0])
 Linear regression using GEKKO.
 """
 
-#### Solution
+# solution
 m = GEKKO()
 m.options.IMODE=2
 # coefficients
