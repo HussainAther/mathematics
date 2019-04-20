@@ -32,6 +32,8 @@ ax.set_ylim(min(Ys)-0.2, max(Ys)+0.2)
 patch = patch.PathPatch(path, facecolor='black', linewidth=2)
 ax.add_patch(patch)
 ax.plot(Xs, Ys, "o--", color="blue", linewidth=1)
+
+# plot the text
 if labels:
     for k in range(len(labels)):
         ax.text(path.vertices[k][0]-0.1, path.vertices[k][1]-0.1, labels[k])
