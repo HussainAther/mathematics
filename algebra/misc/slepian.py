@@ -25,7 +25,7 @@ and off-diagonal elements
 
 (-1/2)j(N-j) for j in 1 to N - 1
 
-Multittaper methods also use the next few eigenvectors of this same matrix as good window functions.
+Multitaper methods also use the next few eigenvectors of this same matrix as good window functions.
 They're orthogonal to the first eigenvector and they give statistically independent estimates which can be
 averaged toegehter to decrease the variance of the final answer. In this case we use k_T (for "taper") to denoate
 the number of such estimates that are averaged. The functions are actually discrete sequences obtained
