@@ -50,17 +50,17 @@ def vandermonde(order, dim=1, syms="a b c d"):
     """
     syms = syms.split() # extract the symbols
     n = len(syms) # get the length of them
-    if n < dim:
+    if n < dim: # make sure we have enough symbols
         new_syms = []
         for i in range(dim - n):
             j, rem = divmod(i, n)
             new_syms.append(syms[rem] + str(j))
         syms.extend(new_syms)
-    terms = []
+    terms = [] # create this so we can iterate over each term
     for i in range(order + 1):
-        terms.extend(comb_w_rep(dim, i))
+        terms.extend(comb_w_rep(dim, i)) # use extend instead of append because we hve multiple combinations
     rank = len(terms)
-    V = np.zeros(rank)
+    V = np.zeros(rank) # final Vandermonde matrix
     generators = [symbol_gen(syms[i]) for i in range(dim)]
     all_syms = []
     for i in range(rank):
