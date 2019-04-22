@@ -1,4 +1,3 @@
-
 """
 We use the Möbius inversion formula (Mobius mobius).
 """
