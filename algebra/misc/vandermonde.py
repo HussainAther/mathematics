@@ -30,7 +30,7 @@ def comb_w_rep(n, k):
     Combinations with repetition
     Return the list of k combinations with repetition from n objects.
     """
-    if k == 0:
+    if k == 0: # empty array. no combinations.
         return [[]]
     combs = [[i] for i in range(n)]
     for i in range(k - 1):
@@ -58,7 +58,7 @@ def vandermonde(order, dim=1, syms="a b c d"):
         syms.extend(new_syms)
     terms = [] # create this so we can iterate over each term
     for i in range(order + 1):
-        terms.extend(comb_w_rep(dim, i)) # use extend instead of append because we hve multiple combinations
+        terms.extend(comb_w_rep(dim, i)) # use extend instead of append because we have multiple combinations
     rank = len(terms)
     V = np.zeros(rank) # final Vandermonde matrix
     generators = [symbol_gen(syms[i]) for i in range(dim)]
@@ -67,8 +67,8 @@ def vandermonde(order, dim=1, syms="a b c d"):
         row_syms = [next(g) for g in generators]
         all_syms.append(row_syms)
         for j, term in enumerate(terms):
-            v_entry = 1
-            for k in term:
+            v_entry = 1 # Vandermonde matrix entry
+            for k in term: # multiply (exponentiate) 
                 v_entry *= row_syms[k]
             V[i*rank + j] = v_entry
     return V, all_syms, terms
