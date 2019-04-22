@@ -11,8 +11,8 @@ If you plot this function, you get something called the Devil's Staircase. It is
 
 k=0.15
 
-pb=np.zeros(200)
-ppb=np.zeros(200)
+pb = np.zeros(200)
+ppb = np.zeros(200)
 
 def f(b):
     """
@@ -32,12 +32,9 @@ while j<200:
     ppb[j]=0.005*j
     j=j+1
 
+# plot
 plt.plot(ppb,pb/500.0, "k-", linewidth=2)
-
 plt.axis([-0.05,1.05,-0.05,1.05])
-
 plt.ylabel("Rotation number", fontsize=18)
 plt.xlabel("b", fontsize=18)
-
-
 plt.show()
