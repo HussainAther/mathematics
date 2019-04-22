@@ -8,8 +8,8 @@ def getRotationMatrix(axis, angle):
     """
     Return the rotated matrix R about the origin for some input angle and some matrix axis.
     """
-    vLen = np.sqrt(sum([xyz*xyz for xyz in axis]))
-    x, y, z, = [xyz/vLen for xyz in axis]
+    vLen = np.sqrt(sum([xyz*xyz for xyz in axis])) # get the length (distance) of the vector along axis
+    x, y, z, = [xyz/vLen for xyz in axis] # normalize with respect to our length
 
     x = np.cos(angle)
     d = 1 - c
