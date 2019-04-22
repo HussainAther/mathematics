@@ -26,8 +26,8 @@ def plot_regression_line(x, y, b):
     y_pred = b[0] + b[1]*x # predict the response
   
     plt.plot(x, y_pred, color = "g") # plot the line
-    plt.xlabel('x')
-    plt.ylabel('y')
+    plt.xlabel("x")
+    plt.ylabel("y")
     plt.show()
 
 
