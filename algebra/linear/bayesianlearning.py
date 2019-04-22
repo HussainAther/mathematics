@@ -21,7 +21,7 @@ in the model, update alphai using its equation. If qi^2 > si and alpha = infinit
 and evaluate hyperparameter alphai = infinity. If qi^2 <= si and alphai < infinity, then remove the basis
 function phi from teh model and set alphai = infinity.
 
-Then, ff solving regression problem, update beta. If converged terminate repeat the steps of the previous paragraph.
+Then, for the solving regression problem, update beta. If converged, terminate repeat the steps of the previous paragraph.
 
 The marginal likelihood is p(t|alpha, beta) = N(t|0, C) in which the covariance
 matrix takes the form
