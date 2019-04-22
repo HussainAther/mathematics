@@ -90,11 +90,10 @@ for i in G:
     for j in G[i]:
         s= "      "+ i
         s +=  " -- " +  j
-        s+=";\n"
+        s += ";\n"
         f.writelines(s)
         G[j].remove(i)
 
 
 f.writelines("}")
 f.close()
-print "done!"
