@@ -14,21 +14,17 @@ We plot these two functions here.
 """
 
 x = np.linspace(-1.5, 1.5)
-
 [X, Y] = np.meshgrid(x, x)
-
 fig = plt.figure()
-ax = fig.gca(projection='3d')
+ax = fig.gca(projection="3d")
 
 ax.plot_surface(X, Y, X + Y)
-
 theta = np.linspace(0,2*np.pi);
-R = 1.0
+R = 1.0 # used for the circle
 x1 = R * np.cos(theta)
 y1 = R * np.sin(theta)
-
-ax.plot(x1, y1, x1 + y1, 'r-')
-plt.savefig('images/lagrange-1.png')
+ax.plot(x1, y1, x1 + y1, "r-")
+plt.savefig("images/lagrange1.png")
 
 """
 To find the maximum, we construct the following function:
@@ -37,9 +33,10 @@ Since g(x,y)=0, we are not really changing the original function, provided that
 the constraint is met!
 """
 
-import numpy as np
-
 def func(X):
+    """
+    Constraint function used to evaluate the multipler for the Lagrange polynomials.
+    """
     x = X[0]
     y = X[1]
     L = X[2] # this is the multiplier. lambda is a reserved keyword in python
@@ -57,6 +54,9 @@ here we develop a way to numerically approximate the partial derivatives.
 """
 
 def dfunc(X):
+    """
+    Return partial derivatives of our function
+    """
     dLambda = np.zeros(len(X))
     h = 1e-3 # this is the step size used in the finite difference.
     for i in range(len(X)):
@@ -88,7 +88,6 @@ just different commands, e.g. plot vs plot3). In Matplotlib
 you have to import additional modules in the right order, and
 use the object oriented approach to plotting as shown here.
 
-
 Lagrange interpolation takes equations and fits them to data to try
 to understand how well they fit. Lagrange himself figured out that
 a closed-form formula can directly fit the (n-1)-order polynomial given by:
@@ -96,7 +95,7 @@ g(x) ~ a0 + a1 * x + a2 * x**2 + ... + a_n-1 * x**n-1
 We can re-write this as:
 g(z) ~ g1*λ1 + g2λ2 + ... + gnλn
 in which lambda is the product of each (x-xj) / (xi - xj) from j = 1 to j = n.
-The difference between teh polynomial evaluated at some x and that of the actual function is
+The difference between the polynomial evaluated at some x and that of the actual function is
 R_n ~ ((x-x1)(x-x2)...(x-xn))/(n!) * (g**n) * ζ in which ζ  is undetermined.
 This shows that significantly high derivates can't be approximated well by a polynomial.
 """
@@ -123,18 +122,18 @@ def lagrange (x ,i , xm ):
     Evaluates the i-th Lagrange polynomial at x
     based on grid data xm
     """
-    n=len( xm )-1
-    y=1
+    n = len(xm)-1
+    y = 1
     for j in range ( n+1 ):
-        if i!=j:
-            y*=( x-xm[j])/( xm[i]-xm[j])
+        if i != j:
+            y *= (x - xm[j]) / (xm[i] - xm[j])
     return y
 
 def interpolation (x , xm , ym ):
     """
-    Fit our lagrange function to actual data
+    Fit our Lagrange function to actual data
     """
-    n=len( xm )-1
-    lagrpoly = array ([ lagrange (x ,i , xm ) for i in range ( n+1 )])
-    y = dot( ym , lagrpoly )
+    n = len(xm)-1
+    lagrpoly = array ([lagrange (x, i, xm) for i in range (n+1)])
+    y = np.dot(ym , lagrpoly)
     return y
