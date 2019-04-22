@@ -1,5 +1,6 @@
-from sympy import Matrix, pprint, Rational, sqrt, symbols, Symbol, zeros
-from sympy.core.compatibility import range
+import numpy as np
+
+from sympy import Symbol
 
 """
 Interpolation using the Vandermode function algorithm (vandermonde).
@@ -13,9 +14,11 @@ to the left of the matrix as is shown below. Then evaluate the functions at the 
 """
 
 def symbol_gen(sym_str):
-    """Symbol generator
-    Generates sym_str_n where n is the number of times the generator
-    has been called.
+    """
+    Symbol generator
+    Generate sym_str_n where n is the number of times the generator
+    has been called. Used for evaluating the symbolic objects as
+    True, False, or None.
     """
     n = 0
     while True:
@@ -23,8 +26,9 @@ def symbol_gen(sym_str):
         n += 1
 
 def comb_w_rep(n, k):
-    """Combinations with repetition
-    Returns the list of k combinations with repetition from n objects.
+    """
+    Combinations with repetition
+    Return the list of k combinations with repetition from n objects.
     """
     if k == 0:
         return [[]]
@@ -37,14 +41,15 @@ def comb_w_rep(n, k):
         combs = curr
     return combs
 
-def vandermonde(order, dim=1, syms='a b c d'):
-    """Computes a Vandermonde matrix of given order and dimension.
+def vandermonde(order, dim=1, syms="a b c d"):
+    """
+    Compute a Vandermonde matrix of given order and dimension.
     Define syms to give beginning strings for temporary variables.
-    Returns the Matrix, the temporary variables, and the terms for the
+    Return the Matrix, the temporary variables, and the terms for the
     polynomials.
     """
-    syms = syms.split()
-    n = len(syms)
+    syms = syms.split() # extract the symbols
+    n = len(syms) # get the length of them
     if n < dim:
         new_syms = []
         for i in range(dim - n):
@@ -55,7 +60,7 @@ def vandermonde(order, dim=1, syms='a b c d'):
     for i in range(order + 1):
         terms.extend(comb_w_rep(dim, i))
     rank = len(terms)
-    V = zeros(rank)
+    V = np.zeros(rank)
     generators = [symbol_gen(syms[i]) for i in range(dim)]
     all_syms = []
     for i in range(rank):
