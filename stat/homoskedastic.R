@@ -8,3 +8,10 @@ sim.lm <- function(linfit, test.x) {
     sim.frame <- data.frame(sim.frame, y = y.sim)
     return(sim.frame)
 }
+"Differences in MSE (mean squared error) test statistic."
+calc.T <- function(data) {
+    MSE.p <- mean((lm(y ~ x, data = data)$residuals)^2)
+    MSE.np.bw <- npregbw(y ~ x, data = data)
+    MSE.np <- npreg(MSE.np.bw)$MSE
+    return(MSE.p - MSE.np)
+}
