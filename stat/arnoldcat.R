@@ -1,4 +1,6 @@
-"Arnold's (Arnold arnold) cat map."
+"Arnold's (Arnold arnold) cat map. In mathematics, Arnold's cat map is a 
+chaotic map from the torus into itself, named after Vladimir Arnold, who 
+demonstrated its effects in the 1960s using an image of a cat, hence the name."
 arnold.map <- function(v) {
   theta <- v[1]
   phi <- v[2]
