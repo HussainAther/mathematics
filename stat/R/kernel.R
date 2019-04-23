@@ -97,3 +97,23 @@ ksm = function(x, h, t = x){
     }
     return(K)
 }
+
+normalizeKM = function(K){
+    #normalize columns of K, sum to 1
+    l = apply(K, 2, function(x) x/sum(x))
+    return(l)
+}
+
+krgcv = function(x, y, hs){
+    #kernel regression GCV score
+    nh=length(hs)
+    cvScore=rep(0, nh)
+    for(i in 1:nh){
+        K = ksm(x, hs[i], x)
+        l = normalizeKM(K)
+        r = t(l) %*% y
+        W = dnorm(0, 0, hs[i])/colSums(K)
+        cvScore[i] = sum(((r - y)/(1 - W))^2)
+    }
+    return(cvScore)
+}
