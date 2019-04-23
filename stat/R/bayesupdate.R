@@ -14,3 +14,6 @@ pTheta = pTheta / sum( pTheta ) # Makes sure that beliefs sum to 1.
 
 # Specify the data.
 Data = c(1,1,1,0,0,0,0,0,0,0,0,0) 
+nHeads = sum( Data == 1 )
+nTails = sum( Data == 0 )
+
