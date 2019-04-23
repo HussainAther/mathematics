@@ -52,4 +52,4 @@ pThetaGivenData = dbeta(Theta , a+z , b+N-z)
 windows(7,10)
 layout(matrix(c(1, 2, 3), nrow=3, ncol=1, byrow=FALSE)) # 3x1 panels
 par(mar=c(3,3,1,0), mgp=c(2,1,0), mai=c(0.5,0.5,0.3,0.1)) # margin specs
-
+maxY = max(c(pTheta, pThetaGivenData)) # max y for plotting
