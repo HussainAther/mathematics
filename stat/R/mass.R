@@ -82,3 +82,27 @@ error = rep(0,m)
     out = knn.cv(train=stddata, cl=y, k=i)
         error[i] = sum(y != out)/n
 }
+
+# Plot 
+plot(1:m,error, type="l", xlab="k", ylab="error", main="KNN CV plot")
+out=knn(train=stddata, cl=y, test=stdtest, k=1)
+print(table(ty, out))
+print(sum(ty != out)/q)
+
+# Trees (trees)
+library(tree)
+y=as.factor(y)
+treedat=data.frame(x[,1:9], y)
+out=tree(y~., treedat)
+plot(out)
+text(out)
+cv=cv.tree(out, method="misclass")
+plot(cv)
+newtree = prune.tree(out, best=3, method="misclass")
+plot(newtree)
+text(newtree)
+yhat=predict.tree(newtree,tx)
+new=integer(q)
+new[yhat[,2]>.5]=1
+print(table(ty, new))
+print(sum(ty != new)/q)
