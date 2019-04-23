@@ -26,10 +26,41 @@ n=nrow(data)
 p=ncol(X)
 q=nrow(tx)
 
-# Linear
+# Linear (linear)
 lin = lm(Type~. ,data=data)
 predlin = predict(lin,tx)
 Typehat = rep(0,q)
 Typehat[predlin > .5]=1
 print(table(ty, Typehat))
 print(sum(ty != Typehat)/q)
+
+# Logistic (logistic)
+logit = glm(Type~. ,data=data, family=binomial)
+predlogit = predict(logit, newdata=tx, type="response")
+Typehat = rep(0,q)
+Typehat[predlogit > .5]=1
+print(table(ty, Typehat))
+print(sum(ty != Typehat)/q)
+
+# LDA (Linear discriminant analysis linear lda)
+lindisc= lda(x,y)
+predlda = predict(lindisc, newdata=tx)$class
+print(table(ty, predlda))
+print(sum(ty != predlda)/q)
+
+# QDA (Quadratic quadratic discriminant analysis)
+quadisc = qda(x,y)
+predqda = predict(quadisc, newdata=tx)$class
+print(table(ty, predqda))
+print(sum(ty != predqda)/q)
+
+# K-nearest neighbors (KNN knn) k nearest neighbors k-nearest
+library(class)
+stddata=matrix(rep(0,p*n),ncol=p)
+for(i in 1:p){
+    meany=mean(x[,i])
+    stdy=sd(x[,i])
+    for(j in 1:n){
+        stddata[j,i]=(x[j,i]-meany)/stdy
+    }
+}
