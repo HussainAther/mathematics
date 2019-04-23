@@ -82,3 +82,18 @@ for(j in 1:p){
 }
 risk=mean((output$r - mX)^2)
 print(risk)
+
+ksm = function(x, h, t = x){
+    #generate kernel smooth matrix
+    if(!is.matrix(x)) x = as.matrix(x)
+    if(!is.matrix(t)) t = as.matrix(t)
+    n = nrow(x)
+    d = ncol(x)
+    nt = nrow(t)
+    K = matrix(NA, n, nt)
+    for(i in 1:nt){
+        diff = matrix(t[i,], n, d, byrow = TRUE) - x
+        K[,i] = dnorm(sqrt(rowSums(diff^2)), 0, h)
+    }
+    return(K)
+}
