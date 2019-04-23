@@ -6,3 +6,6 @@
 nThetaVals = 3
 # Now make the vector of theta values:
 Theta = seq(from = 1/(nThetaVals+1), to = nThetaVals/(nThetaVals+1), by = 1/(nThetaVals+1))
+# pTheta is the vector of prior probabilities on the theta values.
+pTheta = pmin( Theta , 1-Theta ) # Makes a triangular belief distribution.
+pTheta = pTheta / sum( pTheta ) # Makes sure that beliefs sum to 1.
