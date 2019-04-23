@@ -131,3 +131,48 @@ tr = function(m){
     if(nrow(m) != ncol(m)) print("Error in tr(). matrix not square")
     return(sum(diag(m)))
 }
+
+# Sparse additive model (SpAM sparse)
+spam = function(x, y, h, lambda, maxIter=20, epsilon=1e-3){
+    n = nrow(x)
+    p = ncol(x)
+    fs=matrix(0, n, p) # components
+    Ss=list() # smooth matrices
+    ## print("generating smoothing matrices...")
+    for(j in 1:p) Ss[[j]] = t(normalizeKM(ksm(x[,j], h, x[,j])))
+    ## print("complete.")
+    ## center the response
+    alpha = mean(y)
+    y = y - alpha
+    oldErr = 1e30
+    newfs = fs
+    for(iter in 1:maxIter){
+        for(j in 1:p){
+            Rj = y - rowSums(newfs[,-j])
+	    Pj = Ss[[j]] %*% Rj
+	    sj = sqrt(mean(Pj^2))
+            fj = max(0, 1 - lambda/sj) * Pj
+            newfs[,j] = fj - mean(fj)
+         }
+
+         ## calculate the residual
+         r = rowSums(newfs)
+         residual = r - y
+         mse = mean(residual^2)
+         print(sprintf("Iteration %d: Residual=%f", iter, mse))
+         ## test termination
+         if(mse < epsilon || oldErr - mse < epsilon){
+             break
+         }else{
+             oldErr = mse
+             fs = newfs
+         }
+    } 
+    r = rowSums(fs) + alpha #regression result
+    fnorm = sqrt(colSums(fs^2)) #norm of components
+    df=0 #degree of freedom
+    for(j in 1:p) if(fnorm[j] > 0) df = df + tr(Ss[[j]])
+    #GCV score
+    cvScore = mean((y + alpha - r)^2)/max(0, 1 - df/n)^2
+    return(list(f=fs, fnorm=fnorm, S=Ss, r=r, df=df, cvScore=cvScore, alpha=alpha))
+} 
