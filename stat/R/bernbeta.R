@@ -12,4 +12,5 @@ if (any(priorShape <= 0)) {
     stop("priorShape components must be positive.") }
 if (any(dataVec != 1 & dataVec != 0)) {
     stop("dataVec must bea vector of 1s and 0s.") } 
-
+if (credMass <= 0 | credMass >= 1.0) {
+    stop("credMass must be between 0 and 1.") }
