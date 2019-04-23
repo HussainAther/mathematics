@@ -45,3 +45,13 @@ iterative.wls <- function(x, y, tol = 0.01, max.iter = 100) {
 }
     return(list(regression = regression, variance = variance, iterations = iteration))
 }
+"Squared residuals from a linear model plotted against duration along with the unconditional,
+homoskedastic variance implicit in OLS (ols) and a kernel-regression estimate of the conditional
+variance."
+library(MASS)
+data(geyser)
+geyser.ols <- lm(waiting ~ duration, data = geyser)
+plot(geyser$duration, residuals(geyser.ols)^2, cex = 0.5, pch = 16, xlab = "Duration (minutes)",
+ylab = expression(`Squared residuals of linear model `(minutes^2))) geyser.var <- npreg(residuals(geyser.ols)^2 ~ geyser$duration) duration.order <- order(geyser$duration) lines(geyser$duration[duration.order], fitted(geyser.var)[duration.order]) abline(h = summary(geyser.ols)$sigma^2, lty = "dashed")
+legend("topleft", legend = c("data", "kernel variance", "homoskedastic (OLS)"),
+    lty = c("blank", "solid", "dashed"), pch = c(16, NA, NA))
