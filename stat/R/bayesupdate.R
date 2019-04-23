@@ -23,3 +23,10 @@ pDataGivenTheta = ThetaˆnHeads * (1-Theta)^nTails
 # Compute the posterior:
 pData = sum( pDataGivenTheta * pTheta )
 pThetaGivenData = pDataGivenTheta * pTheta / pData # Bayes' rule
+
+# Plot the results.
+windows(7,10) # create window of specified width,height inches.
+layout( matrix( c( 1,2,3 ) ,nrow=3 ,ncol=1 ,byrow=FALSE ) ) # 3x1 panels
+par(mar=c(3,3,1,0)) # number of margin lines: bottom,left,top,right
+par(mgp=c(2,1,0)) # which margin lines to use for labels
+par(mai=c(0.5,0.5,0.3,0.1)) # margin size in inches: bottom,left,top,right
