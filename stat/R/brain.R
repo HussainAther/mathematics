@@ -1,8 +1,5 @@
 "Estimate joint probability density for the volumes of the amygdala and acc (anterior
 cingulate cotrtex)."
-# Load the np library
-library(np)
-
 # Read in the csv as a dataframe
 df <- read.csv(file="data/n90_pol.csv", header=TRUE, sep=",")
 
@@ -28,6 +25,10 @@ cdfy <- function(pdf) {
 
 # Or using npudens to find the Gaussian kernel estimate 
 # of the joint distribution 
+
+# Load the np library
+library(np)
+
 jpd <- npudens(~popgro+inv, data=df) # joint probability density
 fhat <- plot(jpd, plot.behavior="data")
 fhat <- fhat$orientation
@@ -36,3 +37,16 @@ fhat <- fhat$orientation
 library(lattice)
 contourplot(fhat$dens~fhat$eval$Var1*fhat$eval$Var2,cuts=20,
 xlab="popgro",ylab="inv",labels=list(cex=0.5))
+
+# Bootstrap with 95 % CI (confidence intervals Confidence) for regression coefficients
+# function to obtain regression weights 
+bs <- function(formula, data, indices) {
+  d <- data[indices,] # allows boot to select sample 
+  fit <- lm(formula, data=d)
+  return(coef(fit)) 
+} 
+
+# Bootstrap (bootstrap) with 1000 replications
+results <- boot(data=df, statistic=bs, 
+   R=1000, formula=mpg~wt+disp)
+
