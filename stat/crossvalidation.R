@@ -27,7 +27,7 @@ cv_bws_npreg <- function(x,y,bandwidths=(1:50)/50,nfolds=10) {
   return(list(best.bw=best.bw,CV_MSEs=CV_MSEs,fold_MSEs=fold_MSEs))
 }
 "k-fold cross-validation on lienar models given as a vector (or list) of model fomrulae. Return the
-CV MSE, not the parameter estimates on each fold."
+CV MSE (Mean mean squared error), not the parameter estimates on each fold."
 cv.lm <- function(data, formulae, nfolds = 5) {
     data <- na.omit(data)
     formulae <- sapply(formulae, as.formula)
