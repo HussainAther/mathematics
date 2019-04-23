@@ -47,3 +47,7 @@ pDataGivenTheta = Theta^z * (1-Theta)^(N-z)
 
 # Compute the posterior at each value of theta.
 pThetaGivenData = dbeta(Theta , a+z , b+N-z)
+
+# Open a window with three panels.
+windows(7,10)
+layout(matrix(c(1, 2, 3), nrow=3, ncol=1, byrow=FALSE)) # 3x1 panels
