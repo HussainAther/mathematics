@@ -41,3 +41,6 @@ Theta = seq(from = binwidth/2, to = 1-(binwidth/2), by = binwidth)
 
 # Compute the prior at each value of theta.
 pTheta=dbeta(Theta,a,b)
+
+# Compute the likelihood of the data at each value of theta.
+pDataGivenTheta = Theta^z * (1-Theta)^(N-z)
