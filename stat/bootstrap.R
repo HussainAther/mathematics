@@ -17,3 +17,9 @@ bootstrap <- function(tboots, summarizer, ...) {
 bootstrap.se <- function(statistic, simulator, B) {
     bootstrap(rboot(statistic, simulator, B), summarizer = sd)
 }
+"Bootstrap bias correction function. t.hat is the estimate on the original
+data."
+bootstrap.bias <- function(simulator, statistic, B, t.hat) {
+    expect <- bootstrap(rboot(statistic, simulator, B), summarizer = mean)
+    return(expect - t.hat)
+}
