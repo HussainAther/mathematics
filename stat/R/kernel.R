@@ -1,4 +1,15 @@
 "Kernel (kernel) regression."
+"Generate n = 100 observations from the model
+Yi = m(Xi) + ei 
+
+where ei iid∼ N(0, σ2), σ = 0.1,
+
+Xi ∼ U([0, 1]10) and m(x) = cos(5πxi) + 5x_2**2
+
+Note that x is 10-dimensional but m(x) only depends on x1 and x2. Estimate m using (i) multivariate
+kernel regression, (ii) an additive model, (iii) a sparse additive model. Be sure to include code and
+choose tuning parameters correctly. For each estimator, report."
+
 # Generate data
 n = 100
 p = 10
