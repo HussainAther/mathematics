@@ -22,3 +22,9 @@ b = priorShape[2]
 # Create summary values of the data.
 z = sum(dataVec==1) # Number of 1s in dataVec
 N = length(dataVec) # Number of flips in dataVec
+
+# Compute the posterior shape parameters.
+postShape = c(a+z, b+N-z)
+
+# Compute the evidence, p(D).
+pData = beta(z+a, N-z+b) / beta(a, b)
