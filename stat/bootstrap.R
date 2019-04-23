@@ -70,3 +70,14 @@ doubleboot.pvalue <- function(test, simulator, B1, B2, estimator, thetahat,
     p.adj <- (sum(pboot <= p) + 1)/(B1 + 1)
     return(p.adj)
 }
+"Basic block bootstrap for univariate time series."
+rblockboot <- function(ts, block.length, len.out = length(ts)) {
+    the.blocks <- as.matrix(design.matrix.from.ts(ts, block.length - 1, right.older = FALSE))
+    blocks.in.ts <- nrow(the.blocks)
+    stopifnot(blocks.in.ts == length(ts) - block.length + 1)
+    blocks.needed <- ceiling(len.out/block.length)
+    picked.blocks <- sample(1:blocks.in.ts, size = blocks.needed, replace = TRUE)
+    x <- the.blocks[picked.blocks, ]
+    x.vec <- as.vector(t(x))
+    return(x[1:len.out])
+} 
