@@ -28,3 +28,8 @@ postShape = c(a+z, b+N-z)
 
 # Compute the evidence, p(D).
 pData = beta(z+a, N-z+b) / beta(a, b)
+
+# Determine the limits of the highest density interval.
+# This uses a home-grown function called HDIofICDF.
+source("HDIofICDF.R")
+hpdLim = HDIofICDF(qbeta, shape1=postShape[1], shape2=postShape[2])
