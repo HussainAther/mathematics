@@ -74,3 +74,11 @@ for(i in 1:p){
         stdtest[j,i]=(tx[j,i]-meany)/stdy
     }
 }
+
+# Error error
+m=50
+error = rep(0,m)
+    for(i in 1:m){
+    out = knn.cv(train=stddata, cl=y, k=i)
+        error[i] = sum(y != out)/n
+}
