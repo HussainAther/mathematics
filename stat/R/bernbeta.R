@@ -33,3 +33,6 @@ pData = beta(z+a, N-z+b) / beta(a, b)
 # This uses a home-grown function called HDIofICDF.
 source("HDIofICDF.R")
 hpdLim = HDIofICDF(qbeta, shape1=postShape[1], shape2=postShape[2])
+
+# Plot 
+# Construct a grid of theta values, used for graphing
