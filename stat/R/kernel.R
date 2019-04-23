@@ -46,11 +46,28 @@ outputsEx[[i]] = spam(X, Y, h, lambdas[i], 10, 1e-3)
 cvScoresEx[i] = outputsEx[[i]]$cvScore
 }
 
-# Plot
-## plot(lambdas, cvScoresEx, "l");
-## record the best lambda for this bandwidth
-indexL[j]=which.min(cvScoresEx)
-cvScores[j] = cvScoresEx[indexL[j]]
-outputs[[j]] = outputsEx[[indexL[j]]]
-print(sprintf("*****H=%f", h))
+    # Plot
+    ## plot(lambdas, cvScoresEx, "l");
+    ## record the best lambda for this bandwidth
+    indexL[j]=which.min(cvScoresEx)
+    cvScores[j] = cvScoresEx[indexL[j]]
+    outputs[[j]] = outputsEx[[indexL[j]]]
+    print(sprintf("*****H=%f", h))
 }
+
+# Retrieve best paramters
+index=which.min(cvScores)
+output=outputs[[index]]
+print(sprintf("The optimum h=%f lambda=%f, with GCV=%f, DF=%f",
+    H[index], lambdas[indexL[index]], cvScores[index], outputs[[index]]$df))
+print(sprintf("%d out of %d components are selected.",sum(output$fnorm!= 0), p))
+#draw the curves
+ymin=min(Y) - 1
+ymax=max(Y)
+par(mfrow=c(2,5))
+for(j in 1:p){
+    plot(X[,j], Y, ylim=c(ymin, ymax), xlab="", ylab="")
+    points(X[,j], output$f[,j]+mean(Y), col="red")
+}
+risk=mean((output$r - mX)^2)
+print(risk)
