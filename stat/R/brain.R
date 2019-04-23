@@ -3,10 +3,6 @@ cingulate cotrtex)."
 # Read in the csv as a dataframe
 df <- read.csv(file="data/n90_pol.csv", header=TRUE, sep=",")
 
-# Calculate the bandwidth 
-bw <- npudensbw(df)
-    fhat <- npudens(bw)
-
 # Probability distribution function 
 pdfxy <- function(x, y) (x^2 * y + x * y^2)/2
 pdfxy(df$amygdala, df$acc)
@@ -29,7 +25,12 @@ cdfy <- function(pdf) {
 # Load the np library
 library(np)
 
-jpd <- npudens(~popgro+inv, data=df) # joint probability density
+# Calculate the bandwidth 
+bw <- npudensbw(df)
+    fhat <- npudens(bw)
+
+# Joint probability density
+jpd <- npudens(bw, data=df) 
 fhat <- plot(jpd, plot.behavior="data")
 fhat <- fhat$orientation
 
@@ -60,3 +61,6 @@ plot(results, index=3) # disp
 boot.ci(results, type="bca", index=1) # intercept 
 boot.ci(results, type="bca", index=2) # wt 
 boot.ci(results, type="bca", index=3) # disp
+
+# Kernel conditional density estimation
+npcdens(bw, data=df)
