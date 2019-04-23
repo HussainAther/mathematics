@@ -40,3 +40,9 @@ plot(Theta, pDataGivenTheta, type="h", lwd=3, main="Likelihood", xlim=c(0,1), xl
     ylim=c(0,1.1*max(pDataGivenTheta)), ylab=bquote(paste("p(D|",theta,")")),
     cex.axis=1.2 , cex.lab=1.5 , cex.main=1.5) 
 text(.55, .85*max(pDataGivenTheta), cex=2.0, bquote("D=" * .(nHeads) * "H," * .(nTails) * "T"), adj=c(0, .5))
+
+# Plot the posterior.
+plot(Theta, pThetaGivenData, type="h", lwd=3, main="Posterior", 
+    xlim=c(0, 1), xlab=bquote=(theta), ylim=c(0, 1.1*max(pThetaGivenData)), ylab=bquote(paste("p(", theta, "|D)")),
+    cex.axis=1.2, cex.lab=1.5, cex.main=1.5)
+text(.55, .85*max(pThetaGivenData), cex=2.0, bquote("p(D)="*.(signif(pData,3))), adj=c(0,.5))
