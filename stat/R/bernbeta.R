@@ -53,3 +53,10 @@ windows(7,10)
 layout(matrix(c(1, 2, 3), nrow=3, ncol=1, byrow=FALSE)) # 3x1 panels
 par(mar=c(3,3,1,0), mgp=c(2,1,0), mai=c(0.5,0.5,0.3,0.1)) # margin specs
 maxY = max(c(pTheta, pThetaGivenData)) # max y for plotting
+
+# Plot the prior.
+plot(Theta, pTheta, type="l", lwd=3, xlim=c(0,1), ylim=c(0,maxY), cex.axis=1.2,
+     xlab=bquote(theta), ylab=bquote(p(theta)), cex.lab=1.5, main="Prior", cex.main=1.5)
+
+
+
