@@ -44,3 +44,6 @@ pTheta=dbeta(Theta,a,b)
 
 # Compute the likelihood of the data at each value of theta.
 pDataGivenTheta = Theta^z * (1-Theta)^(N-z)
+
+# Compute the posterior at each value of theta.
+pThetaGivenData = dbeta(Theta , a+z , b+N-z)
