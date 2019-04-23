@@ -55,3 +55,16 @@ plot(geyser$duration, residuals(geyser.ols)^2, cex = 0.5, pch = 16, xlab = "Dura
 ylab = expression(`Squared residuals of linear model `(minutes^2))) geyser.var <- npreg(residuals(geyser.ols)^2 ~ geyser$duration) duration.order <- order(geyser$duration) lines(geyser$duration[duration.order], fitted(geyser.var)[duration.order]) abline(h = summary(geyser.ols)$sigma^2, lty = "dashed")
 legend("topleft", legend = c("data", "kernel variance", "homoskedastic (OLS)"),
     lty = c("blank", "solid", "dashed"), pch = c(16, NA, NA))
+"Conditional variance function in black plus results of applying the same procedure to simulations
+from the homoskedastic linear regression model."
+duration.grid <- seq(from = min(geyser$duration), to = max(geyser$duration),
+    length.out = 300)
+plot(duration.grid, predict(geyser.var, exdat = duration.grid), ylim = c(0,
+300), type = "l", xlab = "Duration (minutes)", ylab = expression(`Squared residuals of linear m
+abline(h = summary(geyser.ols)$sigma^2, lty = "dashed")
+one.var.func <- function() {
+    fit <- lm(waiting ~ duration, data = rgeyser())
+    var.func <- npreg(residuals(fit)^2 ~ geyser$duration)
+    lines(duration.grid, predict(var.func, exdat = duration.grid), col = "grey")
+}
+invisible(replicate(30, one.var.func()))
