@@ -117,3 +117,17 @@ krgcv = function(x, y, hs){
     }
     return(cvScore)
 }
+
+kr = function(x, y, h, t){
+    #kernel regression
+    K = ksm(x, h, t)
+    l = normalizeKM(K)
+    r = t(l) %*% y
+    return(r)
+}
+
+tr = function(m){
+    #matrix trace
+    if(nrow(m) != ncol(m)) print("Error in tr(). matrix not square")
+    return(sum(diag(m)))
+}
