@@ -14,3 +14,11 @@ if (any(dataVec != 1 & dataVec != 0)) {
     stop("dataVec must bea vector of 1s and 0s.") } 
 if (credMass <= 0 | credMass >= 1.0) {
     stop("credMass must be between 0 and 1.") }
+
+# Rename the prior shape parameters, for convenience.
+a = priorShape[1]
+b = priorShape[2]
+
+# Create summary values of the data.
+z = sum(dataVec==1) # Number of 1s in dataVec
+N = length(dataVec) # Number of flips in dataVec
