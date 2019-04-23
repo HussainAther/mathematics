@@ -63,4 +63,5 @@ boot.ci(results, type="bca", index=2) # wt
 boot.ci(results, type="bca", index=3) # disp
 
 # Kernel conditional density estimation
-npcdens(bw, data=df)
+npcdens(bw, data=array(c(df$amygdala), c(df$orientation)))
+npcdens(bw, data=array(c(df$acc), c(df$orientation)))
