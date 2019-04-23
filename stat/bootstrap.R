@@ -70,8 +70,3 @@ doubleboot.pvalue <- function(test, simulator, B1, B2, estimator, thetahat,
     p.adj <- (sum(pboot <= p) + 1)/(B1 + 1)
     return(p.adj)
 }
-"Simulator (simulator) and estimator for model-based bootstrapping of the Pareto distribution."
- }
-est.pareto <- function(data) {
-    pareto.fit(data, threshold = x0)$exponent
-}
