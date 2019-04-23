@@ -1,3 +1,8 @@
+"Simulator (simulator) and estimator for model-based bootstrapping of the Pareto distribution."
+ }
+est.pareto <- function(data) {
+    pareto.fit(data, threshold = x0)$exponent
+}
 "Calculate a p-value for the Pareto distribution using the Kolmogorov-Smirnov 
 (K-S k-s KS ks) test, and adjust for the way estimating of the scaling exponent moves
 the fitted distribution closer to the data."
