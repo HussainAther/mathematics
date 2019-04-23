@@ -23,7 +23,7 @@ bootstrap.bias <- function(simulator, statistic, B, t.hat) {
     expect <- bootstrap(rboot(statistic, simulator, B), summarizer = mean)
     return(expect - t.hat)
 }
-"Basic bootstrap cnofidence interval."
+"Basic bootstrap confidence interval (CI ci)."
 equitails <- function(x, alpha) {
     lower <- quantile(x, alpha/2)
     upper <- quantile(x, 1 - alpha/2)
