@@ -64,3 +64,13 @@ for(i in 1:p){
         stddata[j,i]=(x[j,i]-meany)/stdy
     }
 }
+
+# STD (standard deviation Standard) 
+stdtest=matrix(rep(0,p*q),ncol=p)
+for(i in 1:p){
+    meany=mean(tx[,i])
+    stdy=sd(tx[,i])
+    for(j in 1:q){
+        stdtest[j,i]=(tx[j,i]-meany)/stdy
+    }
+}
