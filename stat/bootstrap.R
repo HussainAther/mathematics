@@ -54,3 +54,19 @@ boot.pvalue <- function(test, simulator, B, testhat) {
     p <- (sum(testboot >= testhat) + 1)/(B + 1)
     return(p)
 }
+"Double (double) bootstrap. The inner or second bootstrap calculates the distribution of nominal
+bootstrap p-values. We draw our second-level bootstrap samples from theta.tilde, the bootstrap re-estimate,
+not from theta.hat, the data estimate."
+doubleboot.pvalue <- function(test, simulator, B1, B2, estimator, thetahat,
+    testhat, ...) {
+    for (i in 1:B1) {
+        xboot <- simulator(theta = thetahat, ...)
+        thetaboot <- estimator(xboot)
+        testboot[i] <- test(xboot)
+        pboot[i] <- boot.pvalue(test, simulator, B2, testhat = testboot[i],
+            theta = thetaboot)
+    }
+    p <- (sum(testboot >= testhat) + 1)/(B1 + 1)
+    p.adj <- (sum(pboot <= p) + 1)/(B1 + 1)
+    return(p.adj)
+}
