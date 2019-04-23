@@ -46,3 +46,9 @@ bootstrap.ci <- function(statistic = NULL, simulator = NULL, tboots = NULL,
     CIs <- cbind(lower = lower, upper = upper)
     return(CIs)
 }
+"Bootstrap p-value correction."
+boot.pvalue <- function(test, simulator, B, testhat) {
+    testboot <- rboot(B = B, statistic = test, simulator = simulator)
+    p <- (sum(testboot >= testhat) + 1)/(B + 1)
+    return(p)
+}
