@@ -26,3 +26,26 @@ cv_bws_npreg <- function(x,y,bandwidths=(1:50)/50,nfolds=10) {
   best.bw = bandwidths[which.min(CV_MSEs)]
   return(list(best.bw=best.bw,CV_MSEs=CV_MSEs,fold_MSEs=fold_MSEs))
 }
+"k-fold cross-validation on lienar models given as a vector (or list) of model fomrulae. Return the
+CV MSE, not the parameter estimates on each fold."
+cv.lm <- function(data, formulae, nfolds = 5) {
+    data <- na.omit(data)
+    formulae <- sapply(formulae, as.formula)
+    n <- nrow(data)
+    fold.labels <- sample(rep(1:nfolds, length.out = n))
+    mses <- matrix(NA, nrow = nfolds, ncol = length(formulae))
+    colnames <- as.character(formulae)
+    for (fold in 1:nfolds) {
+        test.rows <- which(fold.labels == fold)
+        train <- data[-test.rows, ]
+        test <- data[test.rows, ]
+        for (form in 1:length(formulae)) {
+            current.model <- lm(formula = formulae[[form]], data = train)
+            predictions <- predict(current.model, newdata = test)
+            test.responses <- eval(formulae[[form]][[2]], envir = test)
+            test.errors <- test.responses - predictions
+            mses[fold, form] <- mean(test.errors^2)
+        }
+}
+    return(colMeans(mses))
+}
