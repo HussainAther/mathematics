@@ -1,6 +1,4 @@
-"Linear regression of heteroskedastic data, using weighted least-squared regression."
 "Generate heteroskedastic data and fit ordinary least squares (OLS ols) regression."
-
 ols.heterosked.example = function(n) {
     y = 3 - 2 * x + rnorm(n, 0, sapply(x, function(x) {
         1 + 0.5 * x^2
@@ -14,7 +12,8 @@ ols.heterosked.error.stats = function(n, m = 10000) {
     slope.se = sd(ols.errors.raw[, "x"])
     return(c(intercept.se = intercept.se, slope.se = slope.se))
 }
-
+"Linear (linear) regression of heteroskedastic data using weight least-squared (wls)
+regression."
 wls.heterosked.example = function(n) {
     y = 3 - 2 * x + rnorm(n, 0, sapply(x, function(x) {
         1 + 0.5 * x^2
