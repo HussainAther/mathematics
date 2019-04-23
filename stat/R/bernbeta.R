@@ -36,3 +36,5 @@ hpdLim = HDIofICDF(qbeta, shape1=postShape[1], shape2=postShape[2])
 
 # Plot 
 # Construct a grid of theta values, used for graphing
+binwidth = 0.005 # Arbitrary small value for comb on Theta.
+Theta = seq(from = binwidth/2, to = 1-(binwidth/2), by = binwidth)
