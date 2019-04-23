@@ -30,3 +30,7 @@ layout( matrix( c( 1,2,3 ) ,nrow=3 ,ncol=1 ,byrow=FALSE ) ) # 3x1 panels
 par(mar=c(3,3,1,0)) # number of margin lines: bottom,left,top,right
 par(mgp=c(2,1,0)) # which margin lines to use for labels
 par(mai=c(0.5,0.5,0.3,0.1)) # margin size in inches: bottom,left,top,right
+
+# Plot the prior.
+plot(Theta, pTheta, type="h", lwd=3, main="Prior", xlim=c(0,1), xlab=bquote(theta),
+    ylim=c(0,1.1*max(pThetaGivenData)), ylab=bquote(p(theta)), cex.axis=1.2, cex.lab=1.5, cex.main=1.5)
