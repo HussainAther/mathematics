@@ -4,3 +4,5 @@
 # nThetaVals is the number of candidate theta values.
 # To produce the examples in the book, set nThetaVals to either 3 of 63.
 nThetaVals = 3
+# Now make the vector of theta values:
+Theta = seq(from = 1/(nThetaVals+1), to = nThetaVals/(nThetaVals+1), by = 1/(nThetaVals+1))
