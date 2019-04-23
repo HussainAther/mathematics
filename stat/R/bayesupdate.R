@@ -34,3 +34,9 @@ par(mai=c(0.5,0.5,0.3,0.1)) # margin size in inches: bottom,left,top,right
 # Plot the prior.
 plot(Theta, pTheta, type="h", lwd=3, main="Prior", xlim=c(0,1), xlab=bquote(theta),
     ylim=c(0,1.1*max(pThetaGivenData)), ylab=bquote(p(theta)), cex.axis=1.2, cex.lab=1.5, cex.main=1.5)
+
+# Plot the likelihood.
+plot(Theta, pDataGivenTheta, type="h", lwd=3, main="Likelihood", xlim=c(0,1), xlab=bquote(theta),
+    ylim=c(0,1.1*max(pDataGivenTheta)), ylab=bquote(paste("p(D|",theta,")")),
+    cex.axis=1.2 , cex.lab=1.5 , cex.main=1.5) 
+text(.55, .85*max(pDataGivenTheta), cex=2.0, bquote("D=" * .(nHeads) * "H," * .(nTails) * "T"), adj=c(0, .5))
