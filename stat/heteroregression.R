@@ -27,3 +27,21 @@ wls.heterosked.error.stats = function(n, m = 10000) {
     slope.se = sd(wls.errors.raw[, "x"])
     return(c(intercept.se = intercept.se, slope.se = slope.se))
 }
+"Iterate the regression function and estimate variance function.
+Use unweighted linear regression then alternate between wls for 
+getting the regression and kernel smoothing it for the variance."
+iterative.wls <- function(x, y, tol = 0.01, max.iter = 100) {
+    iteration <- 1
+    old.coefs <- NA
+    regression <- lm(y ~ x)
+    coefs <- coefficients(regression)
+    while (is.na(old.coefs) || ((max(coefs - old.coefs) > tol) && (iteration <
+        max.iter))) {
+        variance <- npreg(residuals(regression)^2 ~ x)
+        old.coefs <- coefs
+        iteration <- iteration + 1
+        regression <- lm(y ~ x, weights = 1/fitted(variance))
+        coefs <- coefficients(regression)
+}
+    return(list(regression = regression, variance = variance, iterations = iteration))
+}
