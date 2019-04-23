@@ -17,3 +17,10 @@ print(h)
 r = kr(X, Y, h, X)
 risk=mean((r - mX)^2)
 print(risk)
+
+# Generalized additive model (generalized gam GAM)
+require(gam)
+output = gam(Y~lo(x.1)+lo(x.2)+lo(x.3)+lo(x.4)+lo(x.5)+lo(x.6)
++lo(x.7)+lo(x.8)+lo(x.9)+lo(x.10), family = gaussian,
+data=data.frame(x=X, y=Y))
+summary(output)
