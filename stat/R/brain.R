@@ -50,3 +50,13 @@ bs <- function(formula, data, indices) {
 results <- boot(data=df, statistic=bs, 
    R=1000, formula=mpg~wt+disp)
 
+# Plot
+results
+plot(results, index=1) # intercept 
+plot(results, index=2) # wt 
+plot(results, index=3) # disp 
+
+# get 95% confidence intervals 
+boot.ci(results, type="bca", index=1) # intercept 
+boot.ci(results, type="bca", index=2) # wt 
+boot.ci(results, type="bca", index=3) # disp
