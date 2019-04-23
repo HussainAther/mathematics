@@ -46,7 +46,9 @@ bootstrap.ci <- function(statistic = NULL, simulator = NULL, tboots = NULL,
     CIs <- cbind(lower = lower, upper = upper)
     return(CIs)
 }
-"Bootstrap p-value correction."
+"Bootstrap p-value correction. testhat is the value of hte test statistic
+on the actual data. test is a function that takes in a data set and calculates
+the test statistic, presuming that large values indicate departure from the null hypothesis."
 boot.pvalue <- function(test, simulator, B, testhat) {
     testboot <- rboot(B = B, statistic = test, simulator = simulator)
     p <- (sum(testboot >= testhat) + 1)/(B + 1)
