@@ -19,3 +19,7 @@ nTails = sum( Data == 0 )
 
 # Compute the likelihood of the data for each value of theta:
 pDataGivenTheta = ThetaˆnHeads * (1-Theta)^nTails
+
+# Compute the posterior:
+pData = sum( pDataGivenTheta * pTheta )
+pThetaGivenData = pDataGivenTheta * pTheta / pData # Bayes' rule
