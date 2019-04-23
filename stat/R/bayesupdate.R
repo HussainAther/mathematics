@@ -17,3 +17,5 @@ Data = c(1,1,1,0,0,0,0,0,0,0,0,0)
 nHeads = sum( Data == 1 )
 nTails = sum( Data == 0 )
 
+# Compute the likelihood of the data for each value of theta:
+pDataGivenTheta = ThetaˆnHeads * (1-Theta)^nTails
