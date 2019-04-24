@@ -52,3 +52,10 @@ BernGrid = function(Theta, pTheta, Data, credib=.95, nToPlot=length(Theta)) {
         bquote("mean(" * theta * ")=" * .(signif(meanTheta,3))),
         cex=2.0 , adj=textadj)
 
+    # Plot the likelihood: p(Data|Theta)
+    plot(Theta[thinIdx], pDataGivenTheta[thinIdx], type="p", pch=".", cex=dotsize,
+        xlim=c(0,1), cex.axis=1.2, xlab=bquote(theta),
+        ylim=c(0,1.1*max(pDataGivenTheta)), ylab=bquote("p(D|" * theta * ")"), cex.lab=1.5 ,main="Likelihood" ,cex.main=1.5)
+   
+    if (z>.5*N){textx=0;textadj = c(0,1) }
+    else { textx = 1 ; textadj = c(1,1) }
