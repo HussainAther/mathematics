@@ -120,3 +120,5 @@ b = (1-meanTraj) * ((meanTraj*(1-meanTraj)/sdTrajˆ2) - 1)
 # i.e., not just relative probabilities. This computation also assumes that
 # the likelihood and prior functions were defined to accept a vector argument,
 # not just a single-component scalar argument.
+wtdEvid = dbeta( acceptedTraj , a , b ) / (likelihood( acceptedTraj , myData ) * prior( acceptedTraj ) )
+pData = 1 / mean( wtdEvid )
