@@ -12,3 +12,10 @@ if (is.null(cex)) cex=1.4
 if (is.null(xlim)) xlim=range( c( compVal , paramSampleVec ) ) if ( is.null(main) ) main=""
 if (is.null(yaxt)) yaxt="n"
 if (is.null(ylab)) ylab=""
+
+# Plot histogram.
+par(xpd=NA)
+
+histinfo = hist(paramSampleVec, xlab=xlab, yaxt=yaxt, ylab=ylab, freq=F,
+    col="lightgrey", border="white", xlim=xlim, main=main, cex=cex, cex.lab=cex.lab,
+    ... )
