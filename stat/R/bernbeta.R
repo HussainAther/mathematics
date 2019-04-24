@@ -84,3 +84,6 @@ text(textx, 0.75*max(pThetaGivenData), cex=2.0, bquote("p(D)=" *.(signif(pData, 
 
 # Mark the HDI in the posterior.
 hpdHt = mean(c(dbeta(hpdLim[1],a+z,b+N-z), dbeta(hpdLim[2],a+z,b+N-z)))
+
+lines(c(hpdLim[1], hpdLim[1]), c(-0.5,hpdHt), type="l", lty=2, lwd=1.5)
+lines(c(hpdLim[2], hpdLim[2]), c(-0.5,hpdHt), type="l", lty=2, lwd=1.5)
