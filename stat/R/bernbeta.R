@@ -65,3 +65,4 @@ text(textx, 1.0*max(pThetaGivenData), bquote("beta("*theta*"|"*.(a)*","*.(b)*")"
 # Plot the likelihood: p(data|theta)
 plot(Theta, pDataGivenTheta, type="l", lwd=3, xlim=c(0,1), cex.axis=1.2, xlab=bquote(theta),
     ylim=c(0,1.1*max(pDataGivenTheta)), ylab=bquote("p(D|" * theta * ")"),
+    cex.lab=1.5 , main="Likelihood" , cex.main=1.5)
