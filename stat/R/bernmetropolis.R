@@ -108,4 +108,15 @@ if (meanTraj > .5) {
 }
 
 # Evidence for model p(D)
+# Compute a,b parameters for beta distribution that has the same mean
+# and stdev as the sample from the posterior. This is a useful choice
+# when the likelihood function is Bernoulli.
+a = meanTraj * ((meanTraj*(1-meanTraj)/sdTrajˆ2) - 1)
+b = (1-meanTraj) * ((meanTraj*(1-meanTraj)/sdTrajˆ2) - 1)
 
+# For every theta value in the posterior sample, compute
+# dbeta(theta,a,b) / likelihood(theta)*prior(theta)
+# This computation assumes that likelihood and prior are proper densities,
+# i.e., not just relative probabilities. This computation also assumes that
+# the likelihood and prior functions were defined to accept a vector argument,
+# not just a single-component scalar argument.
