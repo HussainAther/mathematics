@@ -79,3 +79,11 @@ plotChains( "mu" , saveplots=F )
 plotChains( "kappa" , saveplots=F )
 plotChains( "theta[1]" , saveplots=F )
 
+# Extract the posterior sample from BUGS:
+muSample = samplesSample("mu") # BRugs gets sample from BUGS
+kappaSample = samplesSample("kappa") # BRugs gets sample from BUGS
+thetaSample = matrix(0, nrow=nCoins, ncol=nChains*nPerChain)
+for (coinIdx in 1:nCoins) {
+    nodeName = paste( "theta[" , coinIdx , "]" , sep="")
+    thetaSample[coinIdx,] = samplesSample(nodeName)
+}
