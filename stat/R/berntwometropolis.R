@@ -146,3 +146,15 @@ npts = dim(acceptedTraj)[1]; postProb = rep(0 , npts)
 for (ptIdx in 1:npts) {
     postProb[ptIdx] = targetRelProb(acceptedTraj[ptIdx,])
 }
+
+# Determine the level at which credmass points are above:
+credmass = 0.95
+waterline = quantile(postProb, probs=c(1-credmass))
+
+# Display highest density region in new graph
+windows()
+par(pty="s") # makes plots in square axes.
+plot(acceptedTraj[postProb < waterline, ] , type="p", pch="x", col="grey", xlim = c(0,1),
+    xlab = bquote(theta[1]), ylim = c(0,1) , ylab = bquote(theta[2]),
+    main=paste(100*credmass,"% HD region",sep=""))
+points( acceptedTraj[ postProb >= waterline , ] , pch="o" , col="black" )
