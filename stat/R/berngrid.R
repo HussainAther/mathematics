@@ -14,4 +14,5 @@ BernGrid = function(Theta, pTheta, Data, credib=.95, nToPlot=length(Theta)) {
     z = sum(Data==1) # number of 1's in Data
     N = length( Data ) # number of flips in Data
 
-    # Compute the likelihood of the Data for each value of Theta. 
+    # Compute the likelihood of the Data for each value of Theta.
+    pDataGivenTheta = Theta^z * (1-Theta)^(N-z) 
