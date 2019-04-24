@@ -33,3 +33,8 @@ modelString = "model {
 }
 "
 
+# Write the modelString to a file, using R commands.
+.temp = file("model.txt","w"); writeLines(modelString,con=.temp); close(.temp)
+
+# Check the model
+modelCheck( "model.txt" )
