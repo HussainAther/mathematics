@@ -116,6 +116,5 @@ contour(theta1[thindex1], theta2[thindex2],  posterior[thindex1, thindex2],
     main=bquote(.(100*credib)*"% HD region"), levels=signif(HDIheight,3), lwd=3,
     drawlabels=FALSE, xlab=bquote(theta[1]), ylab=bquote(theta[2]))
 
-
 # Save the graph.
 dev.copy2eps(file=plotFileName)
