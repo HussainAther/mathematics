@@ -66,3 +66,7 @@ text(textx, 1.0*max(pThetaGivenData), bquote("beta("*theta*"|"*.(a)*","*.(b)*")"
 plot(Theta, pDataGivenTheta, type="l", lwd=3, xlim=c(0,1), cex.axis=1.2, xlab=bquote(theta),
     ylim=c(0,1.1*max(pDataGivenTheta)), ylab=bquote("p(D|" * theta * ")"),
     cex.lab=1.5 , main="Likelihood" , cex.main=1.5)
+
+if(z>.5*N){textx=0;textadj=c(0,1)}
+else { textx = 1 ; textadj = c(1,1) }
+text(textx, 1.0*max(pDataGivenTheta), cex=2.0, bquote("Data: z=" * .(z) * ",N=" * .(N)), adj=textadj)
