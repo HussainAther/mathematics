@@ -16,4 +16,7 @@ likelihood = function(theta) {
 
 # Define the prior density function.
 # The input argument is a vector: theta = c(theta1, theta2)
-
+prior = function(theta) {
+    # Beta-beta prior.
+    a1 = 3; b1 = 3; a2 = 3; b2 = 3
+}
