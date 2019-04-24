@@ -46,4 +46,8 @@ for (sampleIdx in 1:nSimSamples) {
     sampleData = sample(x=c(0,1), prob=c(1-sampleTheta, sampleTheta),
         size=simSampleSize , replace=TRUE)
     # Store the number of heads in sampleData.
-    simSampleZrecord[sampleIdx] = sum(sampleData)	
+    simSampleZrecord[sampleIdx] = sum(sampleData)
+}
+
+# Make a histogram of the number of heads in the samples.
+hist(simSampleZrecord)	
