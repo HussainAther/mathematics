@@ -26,3 +26,15 @@ if (priorName == "Alt") {
     prior = matrix( 1 , nrow=length(theta1) , ncol=length(theta2) )
     prior = prior / sum( prior ) # convert to normalized mass
 }
+
+# Specify likelihood
+z1=5;N1=7;z2=2;N2=7#dataarespecifiedhere
+likeAtPoint = function( t1 , t2 ) {
+    p = t1^z1 * (1-t1)^(N1-z1) * t2^z2 * (1-t2)^(N2-z2)
+return( p )
+}
+likelihood = outer(theta1, theta2, likeAtPoint)
+
+# Compute posterior from point-by-point multiplication and normalizing:
+pData = sum(prior * likelihood)
+posterior = (prior * likelihood) / pData
