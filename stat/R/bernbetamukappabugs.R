@@ -104,7 +104,12 @@ plotPost(kappaSample , xlab="kappa", main="", breaks=20, HDItextPlace=.6)
 for (coinIdx in 1:nCoins) {
     plotPost(thetaSample[coinIdx,], xlab=paste("theta",coinIdx,sep=""),
         xlim=c(0,1), main="", breaks=20, HDItextPlace=.3)
-    plot(thetaSample[coinIdx,plotIdx], muSample[plotIdx], type="p",)
+    plot(thetaSample[coinIdx,plotIdx], muSample[plotIdx], type="p",
+        xlim=c(0,1), ylim=c(0,1), cex.lab=1.5,
+        xlab=bquote(theta[.(coinIdx)]), ylab=expression(mu))
+    plot(thetaSample[coinIdx,plotIdx], kappaSample[plotIdx], type="p",
+        xlim=c(0,1), ylim=kPltLim, cex.lab=1.5,
+        xlab=bquote(theta[.(coinIdx)]), ylab=expression(kappa))
     }
     dev.copy2eps(file=paste("BernBetaMuKappaBugs",paste(z,collapse=""),".eps",sep=""))
 }
