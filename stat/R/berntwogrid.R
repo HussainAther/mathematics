@@ -38,3 +38,43 @@ likelihood = outer(theta1, theta2, likeAtPoint)
 # Compute posterior from point-by-point multiplication and normalizing:
 pData = sum(prior * likelihood)
 posterior = (prior * likelihood) / pData
+
+# Display plots.
+
+# Specify the complete filename for saving the plot
+plotFileName = paste("BernTwoGrid",priorName,".eps" ,sep="")
+
+# Specify the probability mass for the HDI region
+credib = .95
+
+# Specify aspects of perspective and contour plots.
+rotate = (-25)
+tilt = 25
+parallelness = 5.0
+shadeval = 0.05
+perspcex = 0.7
+ncontours = 9
+zmax = max( c( max(posterior) , max(prior) ) )
+
+# Specify the indices to be used for plotting. The full arrays would be too
+# dense for perspective plots, so we plot only a thinned-out set of them.
+nteeth1 = length( theta1 )
+thindex1 = seq( 1, nteeth1 , by = round( nteeth1 / 30 ) )
+thindex1 = c( thindex1 , nteeth1 ) # makes sure last index is included
+thindex2 = thindex1
+
+windows(7,10)
+layout( matrix( c( 1,2,3,4,5,6 ) ,nrow=3 ,ncol=2 ,byrow=TRUE ) )
+par(mar=c(3,3,1,0)) # number of margin lines: bottom,left,top,right
+par(mgp=c(2,1,0)) # which margin lines to use for labels
+par(mai=c(0.4,0.4,0.2,0.05)) # margin size in inches: bottom,left,top,right
+par(pty="s") # makes contour plots in square axes.
+
+# prior
+persp( theta1[thindex1] , theta2[thindex2] , prior[thindex1,thindex2] ,
+xlab="theta1" , ylab="theta2" , main="Prior" , cex=perspcex , lwd=0.1 ,
+xlim=c(0,1) , ylim=c(0,1) , zlim=c(0,zmax) , zlab="p(t1,t2)" ,
+theta=rotate , phi=tilt , d=parallelness , shade=shadeval )
+contour( theta1[thindex1] , theta2[thindex2] , prior[thindex1,thindex2] ,
+main=bquote(" ") , levels=signif(seq(0,zmax,length=ncontours),3) ,
+drawlabels=FALSE , xlab=bquote(theta[1]) , ylab=bquote(theta[2]) )
