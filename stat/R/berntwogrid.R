@@ -71,10 +71,51 @@ par(mai=c(0.4,0.4,0.2,0.05)) # margin size in inches: bottom,left,top,right
 par(pty="s") # makes contour plots in square axes.
 
 # prior
-persp( theta1[thindex1] , theta2[thindex2] , prior[thindex1,thindex2] ,
-xlab="theta1" , ylab="theta2" , main="Prior" , cex=perspcex , lwd=0.1 ,
-xlim=c(0,1) , ylim=c(0,1) , zlim=c(0,zmax) , zlab="p(t1,t2)" ,
-theta=rotate , phi=tilt , d=parallelness , shade=shadeval )
-contour( theta1[thindex1] , theta2[thindex2] , prior[thindex1,thindex2] ,
-main=bquote(" ") , levels=signif(seq(0,zmax,length=ncontours),3) ,
-drawlabels=FALSE , xlab=bquote(theta[1]) , ylab=bquote(theta[2]) )
+persp(theta1[thindex1], theta2[thindex2], prior[thindex1,thindex2],
+    xlab="theta1", ylab="theta2", main="Prior", cex=perspcex, lwd=0.1,
+    xlim=c(0,1), ylim=c(0,1), zlim=c(0,zmax), zlab="p(t1,t2)",
+    theta=rotate, phi=tilt, d=parallelness, shade=shadeval)
+contour(theta1[thindex1], theta2[thindex2], prior[thindex1,thindex2],
+    main=bquote(" "), levels=signif(seq(0,zmax,length=ncontours),3),
+    drawlabels=FALSE, xlab=bquote(theta[1]), ylab=bquote(theta[2]))
+
+# likelihood
+persp(theta1[thindex1], theta2[thindex2], likelihood[thindex1,thindex2],
+    xlab="theta1", ylab="theta2", main="Likelihood" , lwd=0.1, xlim=c(0,1), ylim=c(0,1),
+    zlab="p(D|t1,t2)", cex=perspcex, theta=rotate, phi=tilt, d=parallelness, shade=shadeval)
+contour(theta1[thindex1], theta2[thindex2], likelihood[thindex1,thindex2] , main=bquote(" "), nlevels=(ncontours-1),
+    xlab=bquote(theta[1]), ylab=bquote(theta[2]), drawlabels=FALSE)
+
+# Include text for data
+maxlike = which( likelihood==max(likelihood) , arr.ind=TRUE )
+if (theta1[maxlike[1]] > 0.5) {textxpos = 0; xadj = 0
+}else{textxpos=1;xadj=1}
+if (theta2[maxlike[2]] > 0.5) {textypos = 0; yadj = 0
+}else{textypos=1;yadj=1}
+text(textxpos, textypos, cex=1.5, bquote( "z1="* .(z1) *",N1="* .(N1) *",z2="* .(z2) *
+    ",N2="* .(N2) adj=c(xadj,yadj))
+
+# posterior
+persp(theta1[thindex1], theta2[thindex2], posterior[thindex1,thindex2],
+    xlab="theta1", ylab="theta2", main="Posterior", cex=perspcex, lwd=0.1, xlim=c(0,1),
+    ylim=c(0,1), zlim=c(0,zmax), zlab="p(t1,t2|D)", theta=rotate , phi=tilt, d=parallelness, shade=shadeval)
+contour(theta1[thindex1], theta2[thindex2], posterior[thindex1,thindex2], main=bquote(" "),
+    levels=signif(seq(0,zmax,length=ncontours),3), drawlabels=FALSE, xlab=bquote(theta[1]), ylab=bquote(theta[2]))
+
+# Include text for p(D)
+maxpost = which(posterior==max(posterior), arr.ind=TRUE)
+if (theta1[maxpost[1]] > 0.5) {textxpos =
+} else {textxpos=1;xadj=1}
+if (theta2[maxpost[2]] > 0.5 ) {textypos =
+} else {textypos=1;yadj=1}
+text(textxpos, textypos, cex=1.5, bquote("p(D)=" * .(signif(pData,3)))
+
+# Mark the highest posterior density region source("HDIofGrid.R")
+HDIheight = HDIofGrid( posterior )$height par(new=TRUE) # don’t erase previous contour
+contour(theta1[thindex1], theta2[thindex2],  posterior[thindex1, thindex2],
+    main=bquote(.(100*credib)*"% HD region"), levels=signif(HDIheight,3), lwd=3,
+    drawlabels=FALSE, xlab=bquote(theta[1]), ylab=bquote(theta[2]))
+
+
+# Save the graph.
+dev.copy2eps(file=plotFileName)
