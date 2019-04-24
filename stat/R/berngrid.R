@@ -67,3 +67,20 @@ BernGrid = function(Theta, pTheta, Data, credib=.95, nToPlot=length(Theta)) {
          xlim=c(0,1), ylim=c(0,1.1*max(pThetaGivenData)), cex.axis=1.2,
          xlab=bquote(theta), ylab=bquote("p(" * theta * "|D)"),
          cex.lab=1.5, main="Posterior", cex.main=1.5)
+    if (meanThetaGivenData > .5) {textx = 0; textadj = c(0,1)}
+    else {textx = 1; textadj = c(1,1)}
+    text(textx, 1.00*max(pThetaGivenData), cex=2.0, bquote("mean(" * theta * "|D)=" * .(signif(meanThetaGivenData,3))), adj=textadj)
+    text(textx, 0.75*max(pThetaGivenData), cex=2.0, bquote("p(D)=" * .(signif(pData,3))),adj=textadj) 
+    
+    # Mark the highest density interval. HDI points are not thinned in the plot.
+    source("HDIofGrid.R") # source the function before we use it
+    HDIinfo = HDIofGrid(pThetaGivenData)
+    points(Theta[HDIinfo$indices], rep(HDIinfo$height, length(HDIinfo$indices)), pch="-", cex=1.0)
+    text(mean(Theta[HDIinfo$indices]), HDIinfo$height, bquote(.(100*signif(HDIinfo$mass,3)) * "% HDI"),
+        adj=c(0.5,-1.5) , cex=1.5)
+    
+    # Mark the left and right ends of the waterline. This does not mark
+    # internal divisions of an HDI waterline for multi-modal distributions.
+    lowLim = Theta[min(HDIinfo$indices)]
+
+
