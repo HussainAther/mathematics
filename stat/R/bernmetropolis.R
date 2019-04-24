@@ -69,4 +69,19 @@ for (t in 1:(trajLength-1)) {
     # Compute the probability of accepting the proposed jump.
     probAccept = min(1, targetRelProb(currentPosition + proposedJump, myData)
                         / targetRelProb(currentPosition, myData))
+    # Generate a random uniform value from the interval [0, 1] to
+    # decide whether or not to accept the proposed jump.
+    if (runif(1) < probAccept) {
+        # accept the proposed jump
+        trajectory[t+1] = currentPosition + proposedJump
+        # increment the accepted counter
+        if (t > burnIn) { nAccepted = nAccepted + 1}
+        } else {
+            # reject the proposed jump, stay at current position
+            trajectory[t+1] = currentPosition
+            # increment the rejected counter
+            if (t > burnIn) {nRejected = nRejected + 1}
+    }
 }
+
+# Extract the post-burnIn portion of the trajectory
