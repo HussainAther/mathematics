@@ -48,3 +48,12 @@ for (coinIdx in 1:length(N)) {
 coin = c(coin, rep(coinIdx,N[coinIdx]))
     y = c(y, rep(1,z[coinIdx]), rep(0,N[coinIdx]-z[coinIdx]))
 }
+
+nTrialTotal = length( y )
+    nCoins = length( unique( coin )
+    dataList = list(
+        y=y,
+    coin = coin ,
+    nTrialTotal = nTrialTotal ,
+    nCoins = nCoins
+)
