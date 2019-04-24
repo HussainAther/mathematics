@@ -32,3 +32,9 @@ plotPost = function(paramSampleVec, credMass=0.95, compVal=NULL,
     # Display the comparison value.
     if (!is.null(compVal)) {
         pcgtCompVal = round(100 * sum(paramSampleVec > compVal) / length(paramSampleVec), 1)
+        pcltCompVal = 100 - pcgtCompVal
+        lines(c(compVal,compVal), c(.5*max(histinfo$density), 0), lty="dashed", lwd=2)
+        text(compVal, .5*max(histinfo$density), bquote(.(pcltCompVal)*"% <= " *
+            .(signif(compVal,3)) * " < "*.(pcgtCompVal)*"%" ), adj=c(pcltCompVal/100,-0.2), cex=cex)
+        }
+        # Display the ROPE
