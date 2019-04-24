@@ -87,3 +87,24 @@ for (coinIdx in 1:nCoins) {
     nodeName = paste( "theta[" , coinIdx , "]" , sep="")
     thetaSample[coinIdx,] = samplesSample(nodeName)
 }
+
+# Make a graph using R commands:
+source("plotPost.R")
+if(nCoins<=5){
+windows(3.2*3,2.5*(1+nCoins))
+layout( matrix( 1:(3*(nCoins+1))
+par(mar=c(2.95,2.95,1.0,0),mgp=c(1.35,0.35,0),oma=c( 0.1, 0.1, 0.1, 0.1))
+nPtsToPlot = 500
+plotIdx = floor(seq(1,length(muSample),length=nPtsToPlot))
+kPltLim = signif( quantile( kappaSample , p=c(.01,.99) ) , 4 )
+plot(muSample[plotIdx], kappaSample[plotIdx], type="p", ylim=kPltLim,
+    xlim=c(0,1), xlab=expression(mu), ylab=expression(kappa), cex.lab=1.5)
+plotPost(muSample, xlab="mu", xlim=c(0,1), main="", breaks=20)
+plotPost(kappaSample , xlab="kappa", main="", breaks=20, HDItextPlace=.6)
+for (coinIdx in 1:nCoins) {
+    plotPost(thetaSample[coinIdx,], xlab=paste("theta",coinIdx,sep=""),
+        xlim=c(0,1), main="", breaks=20, HDItextPlace=.3)
+    plot(thetaSample[coinIdx,plotIdx], muSample[plotIdx], type="p",)
+    }
+    dev.copy2eps(file=paste("BernBetaMuKappaBugs",paste(z,collapse=""),".eps",sep=""))
+}
