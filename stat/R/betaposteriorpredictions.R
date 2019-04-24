@@ -17,7 +17,7 @@ as a summary of the sample.
 
 Finally, we determine whether the number of heads in a typical simulated sample is close to the 
 number of heads in our actual sample. The program below carries out these steps. 
-Study it, run it, and answer the questions that follow."
+Study it, run it, and answer the questions that follow. Bayes bayes Bayesian bayesian."
 
 # Specify known values of prior and actual data.
 priorA = 100
