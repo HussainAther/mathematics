@@ -37,4 +37,4 @@ FA1or2 = sum(((ZTmat <= loCritNT | ZTmat >= hiCritNT) # double dagger matrix
             | (Z1mat <= loCritN1 | Z1mat >= hiCritNT) # single dagger matrix
             ) * pZTmat)
 
-cat( "Two tier FA:" , FA1or2 , "\n" )
+cat("Two tier FA:", FA1or2, "\n")
