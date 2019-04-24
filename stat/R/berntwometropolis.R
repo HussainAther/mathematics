@@ -29,3 +29,10 @@ prior = function(theta) {
 targetRelProb = function(theta) {
     if (all(theta >= 0.0 ) & all(theta <= 1.0)) {
         targetRelProbVal = likelihood(theta) * prior(theta)
+    } else {
+        # This part is important so that the Metropolis algorithm
+        # never accepts a jump to an invalid parameter value.
+        targetRelProbVal = 0
+    }
+    return(targetRelProbVal)
+}
