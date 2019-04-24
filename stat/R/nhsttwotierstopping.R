@@ -10,3 +10,8 @@ N2 = 15 # Number of _additional_ flips for second test.
 
 theta = .5 # Hypothesized bias of coin.
 FAmax = .05 # False Alarm maximum for a single test.
+NT = N1 + N2 # Total number of flips.
+
+# Determine critical values for N1.
+loCritN1 = (0:N1)[max(which(cumsum(dbinom(0:N1,N1,theta)) <= FAmax/2))]
+hiCritN1 = (N1:0)[max(which(cumsum(dbinom(N1:0,N1,theta)) <= FAmax/2))]
