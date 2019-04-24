@@ -28,3 +28,4 @@ prior = function(theta) {
 # the value returned is the UNnormalized posterior prob.
 targetRelProb = function(theta) {
     if (all(theta >= 0.0 ) & all(theta <= 1.0)) {
+        targetRelProbVal = likelihood(theta) * prior(theta)
