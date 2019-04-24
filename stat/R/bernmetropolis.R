@@ -90,3 +90,20 @@ acceptedTraj = trajectory[(burnIn+1) : length(trajectory)]
 # Display the posterior
 source("plotPost.R")
 histInfo = plotPost(acceptedTraj, xlim=c(0, 1), breaks=30)
+
+# Display the rejected/accepted ratio in the plot
+# Get the highest point and mean of the plot for text
+densMax = max(histInfo$density)
+meanTraj = mean(acceptedTraj)
+sdTraj = sd(acceptedTraj)
+if (meanTraj > .5) {
+    xpos = 0
+    xadj = 0
+    } else {
+    xpos = 1
+    xadj = 1
+    }
+    text(xpos, .75*densMax, bquote(N[pro] * "=" * .(length(acceptedTraj)) * " " *
+        frac(N[acc],N[pro]) * "=" * .(signif( nAccepted/length(acceptedTraj) , 3 ))) , adj=c(xadj,0))
+}
+
