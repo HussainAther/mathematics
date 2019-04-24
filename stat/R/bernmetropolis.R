@@ -107,3 +107,5 @@ if (meanTraj > .5) {
         frac(N[acc],N[pro]) * "=" * .(signif( nAccepted/length(acceptedTraj) , 3 ))) , adj=c(xadj,0))
 }
 
+# Evidence for model p(D)
+
