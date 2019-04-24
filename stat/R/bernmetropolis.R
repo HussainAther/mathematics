@@ -36,4 +36,14 @@ prior = function(theta) {
 # as a function of vector theta. This target distribution is the 
 # unnormalized posterior distribution.
 targetRelProb = function(theta, data) {
-     targetRelProb = likelihood(theta, data) * prior(theta)
+    targetRelProb = likelihood(theta, data) * prior(theta)
+    return(targetRelProb)
+}
+
+# Specify the length of the trajectory, i.e., the number of jumps to try.
+trajLength = 11112 # arbitrary large number
+
+# Initialize the vector that will store the results.
+trajectory = rep(0, trajLength)
+
+# Specify where to start the trajectory. 
