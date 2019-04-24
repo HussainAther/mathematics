@@ -122,3 +122,12 @@ b = (1-meanTraj) * ((meanTraj*(1-meanTraj)/sdTrajˆ2) - 1)
 # not just a single-component scalar argument.
 wtdEvid = dbeta( acceptedTraj , a , b ) / (likelihood( acceptedTraj , myData ) * prior( acceptedTraj ) )
 pData = 1 / mean( wtdEvid )
+
+
+# Display p(D) in the graph
+if (meanTraj>.5) {xpos =0.0; xadj=0.0
+} else {xpos=1.0;xadj=1.0}
+text(xpos , 0.9*densMax , bquote(p(D)==.(signif(pData,3))), adj=c(xadj,0) , cex=1.5)
+
+# Save the graph
+dev.copy2eps(file="BernMetropolisTemplate.eps")
