@@ -31,3 +31,12 @@ postB = priorB + actualDataN - actualDataZ
 
 # Number of flips in a simulated sample should match the actual sample size.
 simSampleSize = actualDataN
+
+# Designate an arbitrarily large number of simulated samples.
+nSimSamples = 10000
+
+# Set aside a vector in which to store the simulation results.
+simSampleZrecord = vector(length=nSimSamples)
+
+# Now generate samples from the posterior.
+for (sampleIdx in 1:nSimSamples) {
