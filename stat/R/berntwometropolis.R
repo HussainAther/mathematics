@@ -119,3 +119,21 @@ text(xpos , ypos , bquote(
 # Compute a,b parameters for beta distribution that has the same mean
 # and stdev as the sample from the posterior. This is a useful choice
 # when the likelihood function is binomial.
+a = meanTraj * ((meanTraj*(1-meanTraj)/sdTraj^2) - rep(1,nDim))
+b = (1-meanTraj) * ((meanTraj*(1-meanTraj)/sdTraj^2) - rep(1,nDim))
+
+# For every theta value in the posterior sample, compute
+# dbeta(theta,a,b) / likelihood(theta)*prior(theta)
+# This computation assumes that likelihood and prior are properly normalized,
+# i.e., not just relative probabilities.
+wtd_evid = rep(0 , dim(acceptedTraj)[1])
+for (idx in 1 : dim(acceptedTraj)[1]) {
+    wtd_evid[idx] = (dbeta(acceptedTraj[idx,1],a[1],b[1])
+    * dbeta(acceptedTraj[idx,2],a[2],b[2]) /
+    (likelihood(acceptedTraj[idx,]) * prior(acceptedTraj[idx,])))
+}
+pdata = 1 / mean(wtd_evid)
+
+# Display p(D) in the graph
+text(xpos , ypos+(.12*(-1)^(ypos)), bquote("p(D) = " * .(signif(pdata,3))),
+    adj=c(xadj,yadj), cex=1.5)
