@@ -84,3 +84,5 @@ BernGrid = function(Theta, pTheta, Data, credib=.95, nToPlot=length(Theta)) {
     lowLim = Theta[min(HDIinfo$indices)]
     highLim = Theta[max(HDIinfo$indices)] 
     lines(c(lowLim,lowLim), c(-0.5,HDIinfo$height), type="l", lty=2, lwd=1.5)
+    lines(c(highLim,highLim), c(-0.5,HDIinfo$height), type="l", lty=2, lwd=1.5)
+    text(lowLim, HDIinfo$height, bquote(.(round(lowLim,3))), adj=c(1.1,-0.1), cex=1.2)
