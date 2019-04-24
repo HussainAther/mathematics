@@ -137,3 +137,6 @@ pdata = 1 / mean(wtd_evid)
 # Display p(D) in the graph
 text(xpos , ypos+(.12*(-1)^(ypos)), bquote("p(D) = " * .(signif(pdata,3))),
     adj=c(xadj,yadj), cex=1.5)
+
+# Save graph
+dev.copy2eps(file="BernTwoMetropolis.eps")
