@@ -19,4 +19,6 @@ likelihood = function(theta) {
 prior = function(theta) {
     # Beta-beta prior.
     a1 = 3; b1 = 3; a2 = 3; b2 = 3
+    prior = dbeta(theta[1], a1, b1) * dbeta(theta[2], a2, b2)
+    return(prior)
 }
