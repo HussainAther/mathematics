@@ -65,4 +65,8 @@ for (t in 1:(trajLength-1)) {
     # Use the proposal distribution to generate proposed jump.
     # The shape and variacne of the proposal distribution can be changed
     # to whatever you think is appropriate for the target distribution.
+    proposedJump = rnorm(1, mean=0, sd = .1)
+    # Compute the probability of accepting the proposed jump.
+    probAccept = min(1, targetRelProb(currentPosition + proposedJump, myData)
+                        / targetRelProb(currentPosition, myData))
 }
