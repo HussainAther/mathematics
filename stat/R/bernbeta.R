@@ -80,3 +80,7 @@ else { textx = 1 ; textadj = c(1,1) }
 
 text(textx, 1.00*max(pThetaGivenData), cex=2.0, bquote("beta(" * theta * "|" * .(a+z) * "," * .(b+N-z) * ")"),
     adj=text)
+text(textx, 0.75*max(pThetaGivenData), cex=2.0, bquote("p(D)=" *.(signif(pData, 3))), adj=textadj)
+
+# Mark the HDI in the posterior.
+hpdHt = mean(c(dbeta(hpdLim[1],a+z,b+N-z), dbeta(hpdLim[2],a+z,b+N-z)))
