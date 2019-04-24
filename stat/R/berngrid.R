@@ -19,3 +19,7 @@ BernGrid = function(Theta, pTheta, Data, credib=.95, nToPlot=length(Theta)) {
     
     # Compute the evidence and the posterior.
     pData = sum(pDataGivenTheta * pTheta) 
+    pThetaGivenData = pDataGivenTheta * pTheta / pData
+     
+    # Plot the results.
+    layout(matrix(c(1, 2, 3), nrow=3, ncol=1, byrow=FALSE)) # 3x1 panels
