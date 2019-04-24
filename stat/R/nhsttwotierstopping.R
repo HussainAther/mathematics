@@ -15,3 +15,8 @@ NT = N1 + N2 # Total number of flips.
 # Determine critical values for N1.
 loCritN1 = (0:N1)[max(which(cumsum(dbinom(0:N1,N1,theta)) <= FAmax/2))]
 hiCritN1 = (N1:0)[max(which(cumsum(dbinom(N1:0,N1,theta)) <= FAmax/2))]
+
+# Compute actual false alarm rate for those critical values.
+FA1 = sum((0:N1 <= loCritN1 | 0:N1 >= hiCritN1) * dbinom(0:N1,N1,theta))
+
+
