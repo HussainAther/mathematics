@@ -19,3 +19,8 @@ Finally, we determine whether the number of heads in a typical simulated sample 
 number of heads in our actual sample. The program below carries out these steps. 
 Study it, run it, and answer the questions that follow."
 
+# Specify known values of prior and actual data.
+priorA = 100
+priorB = 1
+actualDataZ = 8
+actualDataN = 12
