@@ -82,5 +82,5 @@ BernGrid = function(Theta, pTheta, Data, credib=.95, nToPlot=length(Theta)) {
     # Mark the left and right ends of the waterline. This does not mark
     # internal divisions of an HDI waterline for multi-modal distributions.
     lowLim = Theta[min(HDIinfo$indices)]
-
-
+    highLim = Theta[max(HDIinfo$indices)] 
+    lines(c(lowLim,lowLim), c(-0.5,HDIinfo$height), type="l", lty=2, lwd=1.5)
