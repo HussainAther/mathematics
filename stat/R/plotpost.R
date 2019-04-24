@@ -17,8 +17,7 @@ plotPost = function(paramSampleVec, credMass=0.95, compVal=NULL,
     par(xpd=NA)
 
     histinfo = hist(paramSampleVec, xlab=xlab, yaxt=yaxt, ylab=ylab, freq=F,
-        col="lightgrey", border="white", xlim=xlim, main=main, cex=cex, cex.lab=cex.lab,
-        ... )
+        col="lightgrey", border="white", xlim=xlim, main=main, cex=cex, cex.lab=cex.lab, ...)
 
     # Display mean or mode.
     if (showMode==F){
@@ -29,6 +28,7 @@ plotPost = function(paramSampleVec, credMass=0.95, compVal=NULL,
         dres = density(paramSampleVec)
         text(meanParam, .9*max(histinfo$density), bquote(mode==.(signif(modeParam,3))),adj=c(.5,0) , cex=cex))
     }
+
     # Display the comparison value.
     if (!is.null(compVal)) {
         pcgtCompVal = round(100 * sum(paramSampleVec > compVal) / length(paramSampleVec), 1)
@@ -37,4 +37,11 @@ plotPost = function(paramSampleVec, credMass=0.95, compVal=NULL,
         text(compVal, .5*max(histinfo$density), bquote(.(pcltCompVal)*"% <= " *
             .(signif(compVal,3)) * " < "*.(pcgtCompVal)*"%" ), adj=c(pcltCompVal/100,-0.2), cex=cex)
         }
+    
         # Display the ROPE
+        if (!is.null(ROPE)) {
+            pcInROPE = (sum(paramSampleVec > ROPE[1] & paramSampleVec < ROPE[2]) / length(paramSampleVec))
+            ROPEtextHt = .35*max(histinfo$density)
+            lines(c(ROPE[1], ROPE[1]), c(ROPEtextHt,0), lty="dotted", lwd=2)
+            lines(c(ROPE[2], ROPE[2]), c(ROPEtextHt,0), lty="dotted", lwd=2)
+            text(mean(ROPE), ROPEtextHt, bquote(.(round(100*pcInROPE))*"% in ROPE"), adj=c(.5,-0.2), cex=1)
