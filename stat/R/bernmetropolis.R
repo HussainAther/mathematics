@@ -58,3 +58,11 @@ nRejected = 0
 
 # Specify seed to reproduce same random walk
 set.seed(12345)
+
+# Generate the random walk. The "t" index is time or trial.
+for (t in 1:(trajLength-1)) {
+    currentPosition = trajectory[t]
+    # Use the proposal distribution to generate proposed jump.
+    # The shape and variacne of the proposal distribution can be changed
+    # to whatever you think is appropriate for the target distribution.
+}
