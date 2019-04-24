@@ -158,3 +158,6 @@ plot(acceptedTraj[postProb < waterline, ] , type="p", pch="x", col="grey", xlim 
     xlab = bquote(theta[1]), ylim = c(0,1) , ylab = bquote(theta[2]),
     main=paste(100*credmass,"% HD region",sep=""))
 points( acceptedTraj[ postProb >= waterline , ] , pch="o" , col="black" )
+
+# Save graph
+dev.copy2eps(file="BernTwoMetropolisHD.eps")
