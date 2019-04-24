@@ -62,3 +62,13 @@ nTrialTotal = length(y)
 nChains = 3
 modelCompile( numChains = nChains ) # BRugs tells BUGS to compile the model.
 modelGenInits() # BRugs tells BUGS to randomly initialize the chains.
+
+
+# Run some initial steps without recording them, to burn-in the chains:
+burninSteps = 1000
+modelUpdate(burninSteps)
+
+# BRugs tells BUGS to keep a record of the sampled values:
+samplesSet(c("mu" , "kappa" , "theta"))
+nPerChain = 1000
+modelUpdate(nPerChain, thin=10)
