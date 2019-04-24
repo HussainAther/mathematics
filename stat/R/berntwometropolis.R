@@ -6,4 +6,4 @@ library(MASS)
 
 # Define the likelihood function.
 # The input argument is a vector: theta = c(theta1, theta2)
-
+likelihood = function(theta) {
