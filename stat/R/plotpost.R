@@ -30,3 +30,5 @@ plotPost = function(paramSampleVec, credMass=0.95, compVal=NULL,
         text(meanParam, .9*max(histinfo$density), bquote(mode==.(signif(modeParam,3))),adj=c(.5,0) , cex=cex))
     }
     # Display the comparison value.
+    if (!is.null(compVal)) {
+        pcgtCompVal = round(100 * sum(paramSampleVec > compVal) / length(paramSampleVec), 1)
