@@ -62,3 +62,26 @@ covarMat = matrix(c(sd1^2 , 0.00 , 0.00 , sd2^2), nrow=nDim, ncol=nDim)
 
 # Now generate the random walk. stepIdx is the step in the walk.
 for (stepIdx in 1:(trajLength-1) ) {
+    currentPosition = trajectory[stepIdx,]
+    # Use the proposal distribution to generate a proposed jump.
+    # The shape and variance of the proposal distribution can be changed
+    # to whatever you think is appropriate for the target distribution.
+    proposedJump = mvrnorm(n=1 , mu=rep(0,nDim), Sigma=covarMat)
+    # Compute the probability of accepting the proposed jump.
+    probAccept = min(1,
+        targetRelProb( currentPosition + proposedJump )
+        / targetRelProb( currentPosition))
+    # Generate a random uniform value from the interval [0,1] to
+    # decide whether or not to accept the proposed jump.
+    if (runif(1) < probAccept) {
+        # accept the proposed jump
+        trajectory[stepIdx+1, ] = currentPosition + proposedJump
+        # increment the accepted counter, just to monitor performance
+        if (stepIdx > burnIn) { nAccepted = nAccepted + 1 }
+    } else {
+        # reject the proposed jump, stay at current position
+        trajectory[stepIdx+1 , ] = currentPosition
+        # increment the rejected counter, just to monitor performance
+        if ( stepIdx > burnIn ) { nRejected = nRejected + 1 }
+    }
+}
