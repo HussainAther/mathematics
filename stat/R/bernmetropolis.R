@@ -10,3 +10,4 @@ myData=c(1,1,1,1,1,1,1,1,1,1,1,0,0,0)
 likelihood = function( theta , data ) {
     z=sum(data==1)
     N = length(data)
+    pDataGivenTheta = theta^z * (1-theta)^(N-z)
