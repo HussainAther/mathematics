@@ -13,3 +13,7 @@ likelihood = function(theta) {
         * theta[2]^z2 * (1-theta[2])^(N2-z2))
     return(likelihood)
 }
+
+# Define the prior density function.
+# The input argument is a vector: theta = c(theta1, theta2)
+
