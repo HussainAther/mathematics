@@ -38,3 +38,13 @@ modelString = "model {
 
 # Check the model
 modelCheck( "model.txt" )
+
+# Therapeutic touch data
+z = c(1,2,3,3,3,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5,5,5,6,6,7,7,7,8)
+N = rep(10,length(z))
+coin=NULL;y=NULL
+
+for (coinIdx in 1:length(N)) {
+coin = c(coin, rep(coinIdx,N[coinIdx]))
+    y = c(y, rep(1,z[coinIdx]), rep(0,N[coinIdx]-z[coinIdx]))
+}
