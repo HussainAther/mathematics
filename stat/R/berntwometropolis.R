@@ -140,3 +140,9 @@ text(xpos , ypos+(.12*(-1)^(ypos)), bquote("p(D) = " * .(signif(pdata,3))),
 
 # Save graph
 dev.copy2eps(file="BernTwoMetropolis.eps")
+
+# Estimate highest density region by evaluating posterior at each point.
+npts = dim(acceptedTraj)[1]; postProb = rep(0 , npts)
+for (ptIdx in 1:npts) {
+    postProb[ptIdx] = targetRelProb(acceptedTraj[ptIdx,])
+}
