@@ -23,3 +23,12 @@ likelihood = function( theta , data ) {
 # The argument theta could be a vector, not just a scalar.
 prior = function(theta) {
     prior = rep(1, length(theta)) # uniform density over [0,1]
+    # For kicks, here’s a bimodal prior. To try it, uncomment the next line.
+    #prior = dbeta(pmin(2*theta, 2*(1-theta)), 2, 2)
+    # The theta values passed into this function are generated at random,
+    # and therefore might be inadvertently greater than 1 or less than 0.
+    # The prior for theta > 1 or for theta < 0 is zero:
+    prior[theta>1|theta<0]=0
+    return(prior)
+}
+
