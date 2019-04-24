@@ -8,3 +8,5 @@
 N1 = 30 # Number of flips for first test.
 N2 = 15 # Number of _additional_ flips for second test.
 
+theta = .5 # Hypothesized bias of coin.
+FAmax = .05 # False Alarm maximum for a single test.
