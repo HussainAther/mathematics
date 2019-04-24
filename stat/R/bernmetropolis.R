@@ -32,3 +32,6 @@ prior = function(theta) {
     return(prior)
 }
 
+# Define the relative probability of the target distribution,
+# as a function of vector theta. This target distribution is the 
+# unnormalized posterior distribution.
