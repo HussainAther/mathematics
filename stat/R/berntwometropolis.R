@@ -22,3 +22,7 @@ prior = function(theta) {
     prior = dbeta(theta[1], a1, b1) * dbeta(theta[2], a2, b2)
     return(prior)
 }
+
+# Define the relative probability of the target distribution, as a function of theta.
+# The input argument is a vector: theta = c( theta1 , theta2 ). For our purposes,
+# the value returned is the UNnormalized posterior prob.
