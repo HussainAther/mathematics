@@ -46,4 +46,15 @@ trajLength = 11112 # arbitrary large number
 # Initialize the vector that will store the results.
 trajectory = rep(0, trajLength)
 
-# Specify where to start the trajectory. 
+# Specify where to start the trajectory.
+trajectory[1] = 0.50 # arbitrary value
+
+# Specify the burn-in period.
+burnIn = ceiling( .1 * trajLength ) # arbitrary number, less than trajLength
+
+# Initialize accepted, rejected counters, just to monitor performance.
+nAccepted = 0
+nRejected = 0 
+
+# Specify seed to reproduce same random walk
+set.seed(12345)
