@@ -18,5 +18,5 @@ hiCritN1 = (N1:0)[max(which(cumsum(dbinom(N1:0,N1,theta)) <= FAmax/2))]
 
 # Compute actual false alarm rate for those critical values.
 FA1 = sum((0:N1 <= loCritN1 | 0:N1 >= hiCritN1) * dbinom(0:N1,N1,theta))
-
+cat("N1:", N1, ", lo:", loCritN1, ", hi:",hiCritN1, ", FA:", FA1, "\n")
 
