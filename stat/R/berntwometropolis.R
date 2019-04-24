@@ -36,3 +36,29 @@ targetRelProb = function(theta) {
     }
     return(targetRelProbVal)
 }
+
+# Specify the length of the trajectory, i.e., the number of jumps to try.
+trajLength = ceiling(1000 / .9) # arbitrary large number
+
+# Initialize the vector that will store the results.
+trajectory = matrix(0 , nrow=trajLength , ncol=2 )
+
+# Specify where to start the trajectory
+trajectory[1,] = c(0.50 , 0.50) # arbitrary start values of the two param’s
+
+# Specify the burn-in period.
+burnIn = ceiling(.1 * trajLength) # arbitrary number
+
+# Initialize accepted, rejected counters, just to monitor performance.
+nAccepted = 0
+nRejected = 0
+
+# Specify the seed, so the trajectory can be reproduced.
+set.seed(12345)
+
+# Specify the covariance matrix for multivariate normal proposal distribution.
+nDim=2;sd1=0.2;sd2=0.2
+covarMat = matrix(c(sd1^2 , 0.00 , 0.00 , sd2^2), nrow=nDim, ncol=nDim)
+
+# Now generate the random walk. stepIdx is the step in the walk.
+for (stepIdx in 1:(trajLength-1) ) {
