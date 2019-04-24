@@ -24,3 +24,21 @@ BernGrid = function(Theta, pTheta, Data, credib=.95, nToPlot=length(Theta)) {
     # Plot the results.
     layout(matrix(c(1, 2, 3), nrow=3, ncol=1, byrow=FALSE)) # 3x1 panels
     par(mar=c(3, 3, 1, 0), mgp=c(2, 1, 0), mai=c(0.5, 0.5, 0.3, 0.1)) # margin settings
+    dotsize = 4 # how big to make the plotted dots
+    
+    # If the comb has a zillion teeth, it’s too many to plot, so plot only a
+    # thinned out subset of the teeth.
+    nteeth = length(Theta)
+    if (nteeth > nToPlot) {
+        thinIdx = seq(1, nteeth, round(nteeth / nToPlot))
+        if (length(thinIdx) < length(Theta)) {
+            thinIdx = c( thinIdx , nteeth ) # makes sure last tooth is included
+        }
+    } else {thinIdx = 1:nteeth} 
+    
+    # Plot the prior.
+    meanTheta = sum(Theta * pTheta) # mean of prior, for plotting
+    plot(Theta[thinIdx], pTheta[thinIdx], type="p", pch=".", cex=dotsize,
+         xlim=c(0,1), ylim=c(0,1.1*max(pThetaGivenData)), cex.axis=1.2,
+         xlab=bquote(theta), ylab=bquote(p(theta)), cex.lab=1.5,
+         main="Prior" , cex.main=1.5)
