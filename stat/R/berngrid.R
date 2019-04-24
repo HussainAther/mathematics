@@ -60,3 +60,10 @@ BernGrid = function(Theta, pTheta, Data, credib=.95, nToPlot=length(Theta)) {
     if (z>.5*N){textx=0;textadj = c(0,1) }
     else { textx = 1 ; textadj = c(1,1) }
     text(textx, 1.0*max(pDataGivenTheta), cex=2.0, bquote("Data: z=" * .(z) * ",N=" * .(N)) ,adj=textadj)
+
+    # Plot the posterior.
+    meanThetaGivenData = sum(Theta * pThetaGivenData)
+    plot(Theta[thinIdx], pThetaGivenData[thinIdx], type="p", pch=".", cex=dotsize,
+         xlim=c(0,1), ylim=c(0,1.1*max(pThetaGivenData)), cex.axis=1.2,
+         xlab=bquote(theta), ylab=bquote("p(" * theta * "|D)"),
+         cex.lab=1.5, main="Posterior", cex.main=1.5)
