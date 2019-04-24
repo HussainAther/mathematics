@@ -68,7 +68,7 @@ plot(Theta, pDataGivenTheta, type="l", lwd=3, xlim=c(0,1), cex.axis=1.2, xlab=bq
     cex.lab=1.5 , main="Likelihood" , cex.main=1.5)
 
 if(z>.5*N){textx=0;textadj=c(0,1)}
-else { textx = 1 ; textadj = c(1,1) }
+else {textx = 1; textadj = c(1,1)}
 text(textx, 1.0*max(pDataGivenTheta), cex=2.0, bquote("Data: z=" * .(z) * ",N=" * .(N)), adj=textadj)
 
 # Plot the posterior
@@ -76,7 +76,7 @@ plot(Theta, pThetaGivenData, type="l", lwd=3, xlim=c(0,1), ylim=c(0,maxY), cex.a
     xlab=bquote(theta), ylab=bquote("p(" * theta * "|D)"), cex.lab=1.5, main="Posterior", cex.main=1.5)
 
 if(a+z>b+N-z){textx=0;textadj=c(0,1)}
-else { textx = 1 ; textadj = c(1,1) }
+else {textx = 1 ; textadj = c(1,1)}
 
 text(textx, 1.00*max(pThetaGivenData), cex=2.0, bquote("beta(" * theta * "|" * .(a+z) * "," * .(b+N-z) * ")"),
     adj=text)
@@ -92,3 +92,11 @@ text(mean(hpdLim), hpdHt, bquote(.(100*credMass)*"% HDI"),
     adj=c(.5, -1.0), cex=2.0)
 text(hpdLim[1], hpdHt, bquote(.(round(hpdLim[1], 3))), adj=c(1.1, -.1) cex=1.2)
 text(hpdLim[2], hpdHt, bquote(.(round(hpdLim[2], 3))), adj=c(-0.1, -0.1) cex=1.2)
+
+# Construct file name for saved graph, and save the graph.
+if (saveGraph) {
+    filename = paste( "BernBeta_",a,"_",b,"_",z,"_",N,".eps" ,sep="")
+    dev.cop2eps(file=filename)
+}
+return(postshape)
+}
