@@ -26,3 +26,5 @@ prior = function(theta) {
 # Define the relative probability of the target distribution, as a function of theta.
 # The input argument is a vector: theta = c( theta1 , theta2 ). For our purposes,
 # the value returned is the UNnormalized posterior prob.
+targetRelProb = function(theta) {
+    if (all(theta >= 0.0 ) & all(theta <= 1.0)) {
