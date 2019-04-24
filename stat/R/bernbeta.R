@@ -61,3 +61,6 @@ if(a>b){textx=0;textadj=c(0,1)}
 else {textx = 1 ; textadj = c(1,1)}
 text(textx, 1.0*max(pThetaGivenData), bquote("beta("*theta*"|"*.(a)*","*.(b)*")"),
     cex=2.0, adj=textadj)
+
+# Plot the likelihood: p(data|theta)
+plot(Theta, pDataGivenTheta, type="l", lwd=3, xlim=c(0,1), cex.axis=1.2, xlab=bquote(theta),
