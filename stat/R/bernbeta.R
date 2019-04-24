@@ -74,3 +74,9 @@ text(textx, 1.0*max(pDataGivenTheta), cex=2.0, bquote("Data: z=" * .(z) * ",N=" 
 # Plot the posterior
 plot(Theta, pThetaGivenData, type="l", lwd=3, xlim=c(0,1), ylim=c(0,maxY), cex.axis=1.2,
     xlab=bquote(theta), ylab=bquote("p(" * theta * "|D)"), cex.lab=1.5, main="Posterior", cex.main=1.5)
+
+if(a+z>b+N-z){textx=0;textadj=c(0,1)}
+else { textx = 1 ; textadj = c(1,1) }
+
+text(textx, 1.00*max(pThetaGivenData), cex=2.0, bquote("beta(" * theta * "|" * .(a+z) * "," * .(b+N-z) * ")"),
+    adj=text)
