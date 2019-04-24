@@ -36,3 +36,4 @@ prior = function(theta) {
 # as a function of vector theta. This target distribution is the 
 # unnormalized posterior distribution.
 targetRelProb = function(theta, data) {
+     targetRelProb = likelihood(theta, data) * prior(theta)
