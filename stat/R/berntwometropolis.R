@@ -1,3 +1,4 @@
+
 # Use this program as a template for experimenting with the Metropolis
 # algorithm applied to two parameters called theta1,theta2 defined on the
 
@@ -113,3 +114,8 @@ text(xpos , ypos , bquote(
     * ", " * frac(N[acc],N[pro]) * "="
     * .(signif(nAccepted/dim(acceptedTraj)[1],3))),
     adj=c(xadj,yadj), cex=1.5)
+
+# Evidence for model, p(D).
+# Compute a,b parameters for beta distribution that has the same mean
+# and stdev as the sample from the posterior. This is a useful choice
+# when the likelihood function is binomial.
