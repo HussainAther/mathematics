@@ -72,3 +72,10 @@ modelUpdate(burninSteps)
 samplesSet(c("mu" , "kappa" , "theta"))
 nPerChain = 1000
 modelUpdate(nPerChain, thin=10)
+
+# Check for mixing and autocorrelation:
+source("plotChains.R")
+plotChains( "mu" , saveplots=F )
+plotChains( "kappa" , saveplots=F )
+plotChains( "theta[1]" , saveplots=F )
+
