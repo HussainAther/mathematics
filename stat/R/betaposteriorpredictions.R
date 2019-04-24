@@ -24,3 +24,10 @@ priorA = 100
 priorB = 1
 actualDataZ = 8
 actualDataN = 12
+
+# Compute posterior parameter values.
+postA = priorA + actualDataZ
+postB = priorB + actualDataN - actualDataZ
+
+# Number of flips in a simulated sample should match the actual sample size.
+simSampleSize = actualDataN
