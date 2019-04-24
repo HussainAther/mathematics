@@ -85,3 +85,8 @@ for (t in 1:(trajLength-1)) {
 }
 
 # Extract the post-burnIn portion of the trajectory
+acceptedTraj = trajectory[(burnIn+1) : length(trajectory)]
+
+# Display the posterior
+source("plotPost.R")
+histInfo = plotPost(acceptedTraj, xlim=c(0, 1), breaks=30)
