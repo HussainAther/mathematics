@@ -1,4 +1,14 @@
+"Plot a histogram of a sample, with various useful annotations. You need to source it in R before calling it, of course. Here are the annotations that the program can add to the histogram"
 plotPost = function(paramSampleVec, credMass=0.95, compVal=NULL,
     HDItextPlace=0.7, ROPE=NULL, yaxt=NULL, ylab=NULL,
     xlab=NULL, cex.lab=NULL, cex=NULL, xlim=NULL, main=NULL,
     showMode=F, ... ) {
+
+# Override defaults of hist function, if not specified by user:
+# (additional arguments "..." are passed to the hist function)
+if (is.null(xlab)) xlab="Parameter"
+if (is.null(cex.lab)) cex.lab=1.5
+if (is.null(cex)) cex=1.4
+if (is.null(xlim)) xlim=range( c( compVal , paramSampleVec ) ) if ( is.null(main) ) main=""
+if (is.null(yaxt)) yaxt="n"
+if (is.null(ylab)) ylab=""
