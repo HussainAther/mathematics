@@ -42,3 +42,13 @@ BernGrid = function(Theta, pTheta, Data, credib=.95, nToPlot=length(Theta)) {
          xlim=c(0,1), ylim=c(0,1.1*max(pThetaGivenData)), cex.axis=1.2,
          xlab=bquote(theta), ylab=bquote(p(theta)), cex.lab=1.5,
          main="Prior" , cex.main=1.5)
+
+    if(meanTheta>.5){
+        textx = 0; textadj = c(0,1)
+    }else{
+        textx = 1 ; textadj = c(1,1)
+    }
+    text(textx, 1.0*max(pThetaGivenData),
+        bquote("mean(" * theta * ")=" * .(signif(meanTheta,3))),
+        cex=2.0 , adj=textadj)
+
