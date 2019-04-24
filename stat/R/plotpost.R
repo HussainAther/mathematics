@@ -45,3 +45,7 @@ plotPost = function(paramSampleVec, credMass=0.95, compVal=NULL,
             lines(c(ROPE[1], ROPE[1]), c(ROPEtextHt,0), lty="dotted", lwd=2)
             lines(c(ROPE[2], ROPE[2]), c(ROPEtextHt,0), lty="dotted", lwd=2)
             text(mean(ROPE), ROPEtextHt, bquote(.(round(100*pcInROPE))*"% in ROPE"), adj=c(.5,-0.2), cex=1)
+        }
+        # Display the HDI.
+        source("HDIofMCMC.R")
+        HDI = HDIofMCMC( paramSampleVec , credMass )
