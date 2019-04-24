@@ -30,3 +30,5 @@ cat("NT:", NT, ", lo:", loCritNT, ", hi:", hiCritNT, ", FA:", FAT, "\n")
 
 # Determine actual false alarm rate for the two-tier test.
 Z1mat = matrix(0:N1, nrow=N2+1, ncol=N1+1, byrow=TRUE)
+ZTmat = outer(0:N2, 0:N1, "+")
+pZTmat = outer(dbinom(0:N2, N2, theta), dbinom(0:N1, N1, theta))
