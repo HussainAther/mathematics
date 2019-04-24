@@ -27,3 +27,5 @@ hiCritNT = (NT:0)[max(which(cumsum(dbinom(NT:0,NT,theta)) <= FAmax/2))]
 # Compute actual false alarm rate for those critical values.
 FAT = sum((0:NT <= loCritNT | 0:NT >= hiCritNT) * dbinom(0:NT, NT,theta))
 cat("NT:", NT, ", lo:", loCritNT, ", hi:", hiCritNT, ", FA:", FAT, "\n")
+
+# Determine actual false alarm rate for the two-tier test.
