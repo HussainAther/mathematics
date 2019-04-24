@@ -48,4 +48,12 @@ plotPost = function(paramSampleVec, credMass=0.95, compVal=NULL,
         }
         # Display the HDI.
         source("HDIofMCMC.R")
-        HDI = HDIofMCMC( paramSampleVec , credMass )
+        HDI = HDIofMCMC(paramSampleVec, credMass)
+        lines(HDI, c(0,0), lwd=4)
+        text(mean(HDI), 0, bquote(.(100*credMass) * "% HDI" ), adj=c(.5,-1.9), cex=cex)
+        text(HDI[1], 0 , bquote(.(signif(HDI[1],3))), adj=c(HDItextPlace,-0.5), cex=cex)
+        text(HDI[2], 0 , bquote(.(signif(HDI[2],3))),
+            adj=c(1.0-HDItextPlace,-0.5) , cex=cex)
+        par(xpd=F)
+        return(histinfo)
+}
