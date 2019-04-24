@@ -88,3 +88,7 @@ hpdHt = mean(c(dbeta(hpdLim[1],a+z,b+N-z), dbeta(hpdLim[2],a+z,b+N-z)))
 lines(c(hpdLim[1], hpdLim[1]), c(-0.5,hpdHt), type="l", lty=2, lwd=1.5)
 lines(c(hpdLim[2], hpdLim[2]), c(-0.5,hpdHt), type="l", lty=2, lwd=1.5)
 lines(hpdLim, c(hpdHt,hpdHt), type="l", lwd=2)
+text(mean(hpdLim), hpdHt, bquote(.(100*credMass)*"% HDI"),
+    adj=c(.5, -1.0), cex=2.0)
+text(hpdLim[1], hpdHt, bquote(.(round(hpdLim[1], 3))), adj=c(1.1, -.1) cex=1.2)
+text(hpdLim[2], hpdHt, bquote(.(round(hpdLim[2], 3))), adj=c(-0.1, -0.1) cex=1.2)
