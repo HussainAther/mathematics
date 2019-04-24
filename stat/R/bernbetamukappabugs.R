@@ -14,9 +14,7 @@ rm(list=ls(all=TRUE))
 library(BRugs)
 
 # Model using BUGS
-modelString = "
-
-model {
+modelString = "model {
     # Likelihood:
     for ( t in 1:nTrialTotal ) {
         y[t]  ̃ dbern( theta[ coin[ t ] ] )
@@ -32,3 +30,6 @@ model {
     Amu <- 2.0
     Bmu <- 2.0
     Skappa <- pow(10, 2)/pow(10,2)
+}
+"
+
