@@ -178,5 +178,28 @@ def period(x, y, ofac=4, hifac):
     return px, py, prob
 
 """
-We can also use emcee and pystan packages to do a line of best fit to our data.
+We can also use emcee (MCMC Hammer) and pystan packages to do a line of best fit to our data.
 """
+
+def prior(theta):
+    """
+    Logarithmic prior used for the log likelihood and log posterior functions for some tuple
+    of (alpha, beta, sigma) to define our function as input theta. 
+    """
+    alpha, beta, sigma = theta
+    if sigma < 0:
+        return -np.inf  # log(0)
+    else:
+        return -1.5 * np.log(1 + beta ** 2) - np.log(sigma)
+
+def posterior(theta, x, y):
+    """
+    Logarithmic posterior using log likelihood and log prior.
+    """
+    alpha, beta, sigma = theta
+    y_model = alpha + beta * x
+    """
+    Calculate the logarithmic likelihood ll. 
+    """
+    ll = -0.5 * np.sum(np.log(2 * np.pi * sigma ** 2) + (y - y_model) ** 2 / sigma ** 2)
+    return prior(theta) + ll
