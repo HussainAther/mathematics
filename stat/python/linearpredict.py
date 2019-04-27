@@ -1,4 +1,8 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import emcee
+import pymc
+import pystan
 
 """
 Linear prediction uses data points equally spaced along a line such that we use
@@ -173,3 +177,6 @@ def period(x, y, ofac=4, hifac):
         prob = 1 - np.power(1 - expy, effm)
     return px, py, prob
 
+"""
+We can also use emcee and pystan packages to do a line of best fit to our data.
+"""
