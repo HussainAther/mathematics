@@ -11,3 +11,12 @@ alphabet of size r with codeword lengths (l1, l2,...ln).
 
 The sum of r^(-li) for all i=1,...n <= 1. 
 """
+
+def M(x):
+    """
+    Measure of probability M concentrated on the set of all binary sequences in list x. 
+    """
+    summ = 0
+    for i in x:
+         summ += 2**(-len(i))
+    return summ
