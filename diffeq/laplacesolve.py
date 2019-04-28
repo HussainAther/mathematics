@@ -36,13 +36,13 @@ for i in range(0, N):
 
 def lin1(x, x1, x2): 
     """
-    Return hat function
+    Return hat function for x in the direction of (x1, x2)  
     """
     return (x-x1)/(x2-x1)
 
 def lin2(x, x1, x2): 
     """
-    Return hat function in the opposite direction
+    Return hat function in the opposite direction of (x1, x2)
     """
     return (x2-x)/(x2-x1)
 
