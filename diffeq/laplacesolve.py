@@ -34,16 +34,28 @@ for i in range(0, N):
     for j in range(0, N):
         A[i][j] = 0
 
-def lin1(x, x1, x2): # hat function lol
+def lin1(x, x1, x2): 
+    """
+    Return hat function
+    """
     return (x-x1)/(x2-x1)
 
-def lin2(x, x1, x2): # hat function in the other direction
+def lin2(x, x1, x2): 
+    """
+    Return hat function in the opposite direction
+    """
     return (x2-x)/(x2-x1)
 
-def f(x): # RHS of Laplace equation
+def f(x): 
+    """
+    Right-hand side of the Laplace equation
+    """
     return 1
 
-def int1(min, max): # Simpson integration rule
+def int1(min, max): 
+    """
+    Simpson integration rule
+    """
     no = 1000
     sum = 0
     interval = ((max-min)/(no-1))
@@ -57,7 +69,10 @@ def int1(min, max): # Simpson integration rule
     sum *= interval/6
     return (sum)
 
-def int2(min, max): # Simpson integration rule in the opposite direction
+def int2(min, max): 
+    """
+    Simpson integration rule in the opposite direction
+    """
     no = 1000
     sum = 0
     interval = ((max - min) / (no - 1))
@@ -71,15 +86,21 @@ def int2(min, max): # Simpson integration rule in the opposite direction
     sum *= interval/6
     return (sum)
 
-def numerical(x, u, xp): # interpolate numerical solution
+def numerical(x, u, xp): 
+    """
+    Interpolate the numerical solution for the Laplace equation
+    """
     N = 11
     y = 0
     for i in range(0, N-1):
         if xp >= x[i] and xp <= x[i+1]:
-            y = line2(xp, x[i], x[i+1]) * u[i] + lin1(xp, x[i], x[i+1])*u[i+1]
+            y = line2(xp, x[i], x[i+1]) * u[i] + lin1(xp, x[i], x[i+1]) * u[i+1]
     return y
 
-def exact(x): # analytic solution
+def exact(x): 
+    """
+    Return analytic solution for the Laplace equation
+    """
     u = -x*(x-3)/2
     return u
 
