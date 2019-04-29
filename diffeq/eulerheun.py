@@ -13,6 +13,9 @@ It's a second-order (2nd) Runge-Kutta method.
 """
 
 def feval(funcName, *args):
+    """
+    Evaluate a function with its corresponding arguments. 
+    """
     return eval(funcName)(*args)
 
 def heun(f, y0, x_vals, h):
