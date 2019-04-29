@@ -14,6 +14,14 @@ wave solutions. These solutions would be of the form
 u(x,t) = v(x+/- ct) = v(z)
 
 such that v(z) approaches 0 as z approaches -infinity and v(z) approaches 1 as z approaches infinity.
+
+For the special wave speed c = +/- t * sqrt(6), we can find all solutions in the closed form of u(z) as:
 """
+C = 10
+z = 1
+u = (1 + C*np.exp(z/np.sqrt(6)))**-2
+r = 1
+D = 10 
+d2udx2 = C/np.sqrt(6) * np.exp(z
 
-
+dudt = r*u*(1-u) + D*d2udx2
