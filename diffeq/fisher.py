@@ -19,9 +19,12 @@ For the special wave speed c = +/- t * sqrt(6), we can find all solutions in the
 """
 C = 10
 z = 1
-u = (1 + C*np.exp(z/np.sqrt(6)))**-2
+u = (1 + C*np.exp(z/np.sqrt(6)))**-2 # there is also a solution with a minus sign in front of z
 r = 1
 D = 10 
-d2udx2 = C/np.sqrt(6) * np.exp(z
-
+d2udx2 = (-2*(1 + C*np.exp(z/np.sqrt(6)))**-3) * \
+         (6*(1 + C*np.exp(z/np.sqrt(6)))**-4) * \ 
+         ((C/np.sqrt(6))*np.exp(z/np.sqrt(6))) **2  
+ 
 dudt = r*u*(1-u) + D*d2udx2
+print(dudt)
