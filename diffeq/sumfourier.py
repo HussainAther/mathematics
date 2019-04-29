@@ -25,7 +25,10 @@ sq2pi = 1/sqrt(twopi)
 h = twopi/N
 dftz = np.zeros((Np), complex) # sequence complex elements
 
-def sawtooth(signal): # sawtooth function
+def sawtooth(signal): 
+    """
+    Sawtooth function
+    """
     T = len(signal)
     x = 0
     for i in range(0, N+1):
@@ -36,7 +39,10 @@ def sawtooth(signal): # sawtooth function
             signal[i] = ((i-T)/(T/2))
             sigfig.plot(x, signal[i]))
 
-def halfwave(signal): # half-wave function
+def halfwave(signal): 
+    """
+    Half-wave function
+    """
     T = len(signal)
     x = 0
     omega = .5
@@ -48,7 +54,10 @@ def halfwave(signal): # half-wave function
             signal[i] = 0
             sigfig.plot(x, signal[i]))
 
-def fourier(dftz): # fourier transform
+def fourier(dftz): 
+    """
+    Fourier transform
+    """
     for n in range(0, Np):
         zsum = complex(0, 0)
         for k in range(0, N):
