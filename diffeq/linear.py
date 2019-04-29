@@ -2,7 +2,7 @@ from PyDSTool import *
 from euler import euler_integrate
 
 """
-1D linear ODE for exploring time scales
+1D linear ODE (ode ordinary differential equation) for exploring time scales
 """
 
 icdict = {"v": -75}
@@ -72,4 +72,3 @@ test_tau_euler(3, 0.4, "mx")
 plt.legend(loc = "lower right")
 plt.xlabel("t")
 plt.xlim([-1,60])
-
