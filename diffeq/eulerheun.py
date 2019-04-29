@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-We use the second-order Euler-Heun method to approximate an integral through which we can
+We use the second-order Euler-Heun (euler Euler Heun heun) method to approximate an integral through which we can
 use in integrating an ordinary differential equation.
 
 x(t_n+1) = x(t_n) + integral from t_n to t_n+1 of f(x(s), s)ds
