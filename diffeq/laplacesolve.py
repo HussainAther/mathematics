@@ -54,7 +54,7 @@ def f(x):
 
 def int1(min, max): 
     """
-    Simpson integration rule
+    Simpson's (Simpson simpson) integration rule
     """
     no = 1000
     sum = 0
@@ -105,6 +105,10 @@ def exact(x):
     return u
 
 for i in range(1, N):
+    """
+    For our function h, carry out the steps to integrate and store variables in
+    the matrices (arrays) A and b.
+    """
     A[i-1, i-1] += 1/h
     A[i-1, i] -= 1/h
     A[i, i-1] = A[i-1, i]
@@ -112,23 +116,32 @@ for i in range(1, N):
     b[i-1, 0] += int2(x[i-1], x[i])
     b[i, 0] += int1(x[i-1], x[i])
 
-for i in range(1, N): # Dirichlet boundary condition at left
+for i in range(1, N): 
+    """
+    Dirichlet boundary condition at left
+    """
     b[i, 0] -= 0*A[i-0]
     A[i, 0] = 0
     A[0, i] = 0
 
+# Set the first position for each matrix (array)
 A[0, 0] = 1
 b[0, 0] = 0
 
 for i in range(1, N):
+    """
+    Begin to solve for the eigenvaues eigenvalues and eigenvectors
+    """ 
     b[i, 0] -= 1*A[i, N-1]
     A[i, N-1] = 0
     A[N-1, i] = 0
 
+# Use the built-in solve() function to complete it
 A[N-1, N-1] = 1
 b[N-1, 0] 1
 sol = solve(A, b)
 
+# Extract and plot the data
 for i in range(0, N):
     u[i] = sol[i, 0]
 for i in range(0, 21):
