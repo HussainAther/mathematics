@@ -31,7 +31,7 @@ dtr = zeros((points, 2) float)
 def fft(nn, isign): 
     """
     Return Fast Fourier Transform for signal nn and isign of +1 or -1 for 
-    forward or reverse, respectively 
+    forward or reverse (inverse), respectively 
     """
     n = 2*nn
     for i in range(0,nn+1):
@@ -86,7 +86,7 @@ def fft(nn, isign):
         dtr[i, 1] = data[j+1]
 
 nn = 16
-isign = -1 # -i for transform. +1 for inverse transform.
+isign = -1 # +1 for transform. -1 for inverse transform.
 for i in range(0, nn):
     dtr[i,0] = 1*i # real
     dtr[i,1] = 1*i # imaginary
@@ -94,7 +94,9 @@ for i in range(0, nn):
 
 fft(nn, isign)
 for i in range(0,nn):
-    # print the fast fourier results
+    """
+    Print the fast fourier results
+    """
     print(" %2d %9.5f %9.5f "%(i, dtr[i,0], dtr[i,1]))
 
 print("Enter and return any character to quit")
