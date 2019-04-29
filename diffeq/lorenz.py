@@ -8,7 +8,7 @@ We use the Lorenz system to discuss issues of dynamical systems. It illustrates 
 chaos theory (like with the butterfly effect). We can simulate this.
 """
 
-def Lorenz(s,t):
+def Lorenz(s):
     """
     For three coupled differential equations with three state variables (indicated by the three-member s),
     we have three constants (sigma, rho, beta) to demonstrate chaotic behavior.
@@ -27,7 +27,7 @@ def Lorenz(s,t):
 
 # run the function on some sample data
 state0 = [2.0, 3.0, 4.0]
-t = arange(0.0, 30.0, 0.01)
+t = np.arange(0.0, 30.0, 0.01) # Use numpy's arange function for a .01 step interval
 
 state = odeint(Lorenz, state0, t)
 
