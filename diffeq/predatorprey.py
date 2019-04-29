@@ -13,7 +13,7 @@ populations of two species which interact via predation. For example, foxes (pre
 
 dxdt=x(a−by) dydt=−y(c−dx)
 
-Here  a ,  b ,  c  and  d  are positive parameters.
+Here a, b, c, and are positive parameters.
 """
 
 a,b,c,d = 1,1,1,1
