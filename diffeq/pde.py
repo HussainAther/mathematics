@@ -28,9 +28,9 @@ m.Equations([v[i+1].dt()== c**2*(u[i+2]−2.0*u[i+1]+u[i])/dx**2 for i in range(
 m.Equation(v[npx−1].dt()== c**2 * (u[npx−2] − 2.0*u[npx−1] + u[0])/dx**2 )
 
 # set options
-m . options . imode = 4
-m . options . solver = 1
-m . options . nodes = 3
+m.options.imode = 4
+m.options.solver = 1
+m.options.nodes = 3
 
-#solve
+# solve
 m.solve()
