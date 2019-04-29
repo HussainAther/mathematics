@@ -30,7 +30,8 @@ dtr = zeros((points, 2) float)
 
 def fft(nn, isign): 
     """
-    Fast Fourier Transform
+    Return Fast Fourier Transform for signal nn and isign of +1 or -1 for 
+    forward or reverse, respectively 
     """
     n = 2*nn
     for i in range(0,nn+1):
@@ -83,6 +84,7 @@ def fft(nn, isign):
         j = 2*i+1
         dtr[i, 0] = data[j]
         dtr[i, 1] = data[j+1]
+
 nn = 16
 isign = -1 # -i for transform. +1 for inverse transform.
 for i in range(0, nn):
