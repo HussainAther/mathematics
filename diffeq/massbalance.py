@@ -1,11 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
+
 from gekko import GEKKO
 
 m = GEKKO()
 
 """
-Sample integration problem for masses being balanced.
+Sample integration problem for masses being balanced with GEKKO.
 """
 
 # integration time points
@@ -14,9 +15,10 @@ m.time = np.linspace(0,10)
 # constants
 c1 = 0.13
 c2 = 0.20
-Ac = 2       # m^2
+Ac = 2 # m^2
+
 # inflow
-qin1 = 0.5   # m^3/hr
+qin1 = 0.5 # m^3/hr
 
 # variables
 h1 = m.Var(value=0,lb=0,ub=1)
@@ -44,9 +46,9 @@ m.solve()
 
 # plot results
 plt.figure(1)
-plt.plot(m.time,h1,'b-')
-plt.plot(m.time,h2,'r--')
-plt.xlabel('Time (hrs)')
-plt.ylabel('Height (m)')
-plt.legend(['height 1','height 2'])
+plt.plot(m.time,h1, "b-")
+plt.plot(m.time,h2, "r--")
+plt.xlabel("Time (hrs)")
+plt.ylabel("Height (m)")
+plt.legend(["height 1", "height 2"])
 plt.show()
