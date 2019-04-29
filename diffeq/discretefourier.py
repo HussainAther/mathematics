@@ -1,9 +1,10 @@
-from vpython.graph import *
 import cmath # for complex math functions
 import numpy as np
 
+from vpython.graph import *
+
 """
-Discrete Fourier Transform using built-in complex numbers
+Discrete Fourier Transform (DFT) using built-in complex numbers
 """
 
 sgingr =  gdisplay(x=0, y=0, width=600, height=250, title ="Signal", \
@@ -18,16 +19,19 @@ impart = gvbars(delta = 0.05, color = color.red, display = imagr)
 N = 50 # number of points
 Np = N
 signal = np.zeros((N+1), float)
-twopi = 2*pi
-sq2pi = 1/sqrt(twopi)
+twopi = 2*np.pi
+sq2pi = 1/np.sqrt(twopi)
 h = twopi/N
 dftz = np.zeros((Np), complex) # sequence complex elements
 
-def f(signal): # signal function
+def f(signal): 
+    """
+    Signal function
+    """
     step = twopi/N
     x = 0
     for i in range(0, N+1):
-        signal[i] = 30*cos(x**4)
+        signal[i] = 30*np.cos(x**4)
         sigfig.plot(pos = (x, signal[i]))
 
 def fouriercomplex(dftz): # fourier transform
@@ -35,7 +39,7 @@ def fouriercomplex(dftz): # fourier transform
         zsum = complex(0, 0)
         for k in range(0, N):
             zexp = complex(0, twopi*k*n/N)
-            zsum += signal[k] * exp(-zexpo)
+            zsum += signal[k] * np.exp(-zexpo)
         dftz[n] = zsum * sq2pi
         if dftz[n].imag != 0:
             impart.plot(pos=(n, dftz[n].imag))
@@ -66,10 +70,10 @@ def fourierreal(dftimag):
     for n in range (0 ,Np) :
         imag = 0.
         for k in range(0, N):
-            imag += signal [k]∗ sin (( twopi∗k∗n) /N)
+            imag += signal [k]∗ np.sin (( twopi∗k∗n) /N)
         dftimag [n] = −imag∗sq2pi
         if dftimag[n] !=0:
-            impart.plot(pos=(n,dftimag[n]))
+            impart.plot(pos=(n, dftimag[n]))
 
 f(signal)
 fourierreal(dfimag)
