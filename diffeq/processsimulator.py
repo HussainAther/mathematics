@@ -19,7 +19,7 @@ u_meas[40:] = 3.0
 
 # simulation model
 p = GEKKO()
-p.time = np.linspace(0,10,nt)
+p.time = np.linspace(0, 10, nt)
 n = 1 #process model order
 
 # Parameters
@@ -49,9 +49,11 @@ y_meas = (np.random.rand(nt)-0.5)*0.2
 for i in range(nt):
     y_meas[i] += p.y.value[i]
 
-plt.plot(p.time,u_meas, "b:", label="Input (u) meas")
-plt.plot(p.time,y_meas, "ro", label="Output (y) meas")
-plt.plot(p.time,p.y.value, "k-", label="Output (y) actual")
+# plot our simulated input and output data
+plt.plot(p.time, u_meas, "b:", label="Input (u) measurement")
+plt.plot(p.time, y_meas, "ro", label="Output (y) measurement")
+
+# plot our optimized equation of output  
+plt.plot(p.time, p.y.value, "k-", label="Output (y) actual")
 plt.legend()
 plt.show()
-
