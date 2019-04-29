@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from gekko import GEKKO
 
 """
-Optimize some process.
+Optimize some process with GEKKO.
 """
 
 # Generate "data" with process simulation
@@ -31,8 +31,9 @@ p.tau = p.Param(value=5) #time constant
 
 # Intermediate
 p.x = [p.Intermediate(p.u)]
+
 # Variables
-p.x.extend([p.Var() for _ in range(n)])  #state variables
+p.x.extend([p.Var() for _ in range(n)]) #state variables
 p.y = p.SV() #measurement
 
 # Equations
@@ -47,9 +48,10 @@ p.solve(disp=False)
 y_meas = (np.random.rand(nt)-0.5)*0.2
 for i in range(nt):
     y_meas[i] += p.y.value[i]
-plt.plot(p.time,u_meas,'b:',label='Input (u) meas')
-plt.plot(p.time,y_meas,'ro',label='Output (y) meas')
-plt.plot(p.time,p.y.value,'k-',label='Output (y) actual')
+
+plt.plot(p.time,u_meas, "b:", label="Input (u) meas")
+plt.plot(p.time,y_meas, "ro", label="Output (y) meas")
+plt.plot(p.time,p.y.value, "k-", label="Output (y) actual")
 plt.legend()
 plt.show()
 
