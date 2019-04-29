@@ -7,8 +7,6 @@ Use GEKKO to solve a set of equations.
 # Initialize Model
 m = GEKKO(remote=True)
 
-#help(m)
-
 #define parameter
 eq = m.Param(value=40)
 
@@ -47,9 +45,9 @@ m.options.IMODE = 3 #steady state optimization
 m.solve() # solve on public server
 
 #Results
-print('')
-print('Results')
-print('x1: ' + str(x1.value))
-print('x2: ' + str(x2.value))
-print('x3: ' + str(x3.value))
-print('x4: ' + str(x4.value))
+print("")
+print("Results")
+print("x1: " + str(x1.value))
+print("x2: " + str(x2.value))
+print("x3: " + str(x3.value))
+print("x4: " + str(x4.value))
