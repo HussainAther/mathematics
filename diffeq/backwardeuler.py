@@ -3,7 +3,7 @@ import math
 import matplotlib.pyplot as plt
 
 """
-We use the Backward Euler method for evaluating differential equations.
+We use the Backward (backward) Euler (euler) method for evaluating differential equations.
 """
 
 def feval(funcName, *args):
