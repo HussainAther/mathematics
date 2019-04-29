@@ -17,14 +17,14 @@ c1 = 0.13
 c2 = 0.20
 Ac = 2 # m^2
 
-# inflow
+# inflow of volume per time
 qin1 = 0.5 # m^3/hr
 
 # variables
-h1 = m.Var(value=0,lb=0,ub=1)
-h2 = m.Var(value=0,lb=0,ub=1)
-overflow1 = m.Var(value=0,lb=0)
-overflow2 = m.Var(value=0,lb=0)
+h1 = m.Var(value=0, lb=0, ub=1)
+h2 = m.Var(value=0, lb=0, ub=1)
+overflow1 = m.Var(value=0, lb=0)
+overflow2 = m.Var(value=0, lb=0)
 
 # outflow equations
 qin2 = m.Intermediate(c1 * h1**0.5)
