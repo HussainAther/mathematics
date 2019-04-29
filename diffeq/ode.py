@@ -1,4 +1,4 @@
-from numpy import zeros, linspace
+import numpy as np
 
 """
 How can we verify that the programming of an ODE model is correct? The best method is to find a problem where
@@ -14,8 +14,8 @@ def ode_FE(f, U_0, dt, T):
     Verify our ODE model.
     """
     N_t = int(round(float(T)/dt))
-    u = zeros(N_t+1)
-    t = linspace(0, N_t*dt, len(u))
+    u = np.zeros(N_t+1)
+    t = np.linspace(0, N_t*dt, len(u))
     u[0] = U_0
     for n in range(N_t):
         u[n+1] = u[n] + dt*f(u[n], t[n])
