@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """
-In stoachstic differential equations we can model dynamical systems subject to noise for use
+In stochastic differential equations we can model dynamical systems subject to noise for use
 in physics, biology, and neuroscience. We will simlulate the Ornstein-Uhlenbeck process as a solution
 of the Langevin (langevin) equation to describe the stochastic evolution of a particle in a fluid
 under the influence of friction. We account for movement due ot collusions with the fluid (diffusion) 
