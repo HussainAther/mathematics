@@ -32,7 +32,7 @@ for i in range(ts, te):
 # initialize with the first matrix value
 a[1, 1] = np.trapz(integratearray, dx = h)
 
-# Each row of the matrix requires one call to the trapz method
+# Each row of the matrix requires one call to the trapezoid method
 for i in range(1, maxRows):
     h = h/ 2
     a[i+1, 1] = np.trapz(integratearray, dx = h) # use the smaller step size h
