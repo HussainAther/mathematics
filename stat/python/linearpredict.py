@@ -1,8 +1,8 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import emcee
 import pymc
 import pystan
+import numpy as np
+import matplotlib.pyplot as plt
 
 """
 Linear prediction uses data points equally spaced along a line such that we use
