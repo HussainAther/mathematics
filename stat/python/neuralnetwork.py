@@ -15,24 +15,24 @@ y = np.sin(x)
 select = False # True / False
 if select:
     # Size with cosine function
-    nin = 1  # inputs
-    n1 = 1   # hidden layer 1 (linear)
-    n2 = 1   # hidden layer 2 (nonlinear)
-    n3 = 1   # hidden layer 3 (linear)
+    nin = 1 # inputs
+    n1 = 1 # hidden layer 1 (linear)
+    n2 = 1 # hidden layer 2 (nonlinear)
+    n3 = 1 # hidden layer 3 (linear)
     nout = 1 # outputs
 else:
     # Size with hyperbolic tangent function
-    nin = 1  # inputs
-    n1 = 2   # hidden layer 1 (linear)
-    n2 = 2   # hidden layer 2 (nonlinear)
-    n3 = 2   # hidden layer 3 (linear)
+    nin = 1 # inputs
+    n1 = 2 # hidden layer 1 (linear)
+    n2 = 2 # hidden layer 2 (nonlinear)
+    n3 = 2 # hidden layer 3 (linear)
     nout = 1 # outputs
 
 # Initialize gekko
 train = GEKKO()
 test = GEKKO()
 
-model = [train,test]
+model = [train, test]
 
 for m in model:
     # input(s)
@@ -103,18 +103,18 @@ for i in range(len(m.w2a)):
     m.w2b[i].MEAS=train.w2b[i].NEWVAL
     m.w2a[i].FSTATUS = 1
     m.w2b[i].FSTATUS = 1
-    print('w2a['+str(i)+']: '+str(m.w2a[i].MEAS))
-    print('w2b['+str(i)+']: '+str(m.w2b[i].MEAS))
+    print("w2a[" + str(i) + "]: " + str(m.w2a[i].MEAS))
+    print("w2b[" + str(i) + "]: " + str(m.w2b[i].MEAS))
 for i in range(len(m.w3)):
     m.w3[i].MEAS=train.w3[i].NEWVAL
     m.w3[i].FSTATUS = 1
-    print('w3['+str(i)+']: '+str(m.w3[i].MEAS))
+    print("w3[" + str(i)+ "]: " + str(m.w3[i].MEAS))
 m.inpt.value=np.linspace(-2*np.pi,4*np.pi,100)
 m.options.IMODE = 2
 m.options.SOLVER = 3
 m.solve(disp=False)
 
 plt.figure()
-plt.plot(x,y,'bo')
-plt.plot(test.inpt.value,test.outpt.value,'r-')
+plt.plot(x, y, "bo")
+plt.plot(test.inpt.value, test.outpt.value, "r-")
 plt.show()
