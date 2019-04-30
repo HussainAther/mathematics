@@ -20,7 +20,8 @@ print("y = %f x + %f , r: %f , r-squared: %f ,\np-value: %f , std_err: %f "
 
 print("Regression line with the scatterplot")
 yhat = beta * x + beta0 # regression line
-plt.plot(x, yhat, 'r-', x, y,'o') plt.xlabel('Experience (years)') plt.ylabel('Salary')
+plt.plot(x, yhat, "r-", x, y, "o") 
+plt.xlabel("Experience (years)") 
+plt.ylabel("Salary")
 plt.show()
-print("Using seaborn")
 sns.regplot(x="experience", y="salary", data=salary)
