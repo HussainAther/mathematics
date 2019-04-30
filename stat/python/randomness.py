@@ -12,4 +12,4 @@ def lcg(prev): # generate the next number in the sequence. prev is the previous 
     return (a*prev+c) % M
 
 for i in range(10):
-    print lcg()
+    print(lcg(i))
