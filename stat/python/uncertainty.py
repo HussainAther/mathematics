@@ -38,7 +38,7 @@ ste1 = std1 / np.sqrt(N)
 ste2 = std2 / np.sqrt(N)
 
 fig, axs = plt.subplots(2, 1, sharex=True, sharey=True)
-for ax, err1, err2, nm in zip(axs, [std1, ste1], [std2, ste2], ['std', 'ste']):
+for ax, err1, err2, nm in zip(axs, [std1, ste1], [std2, ste2], ["std", "ste"]):
     ax.vlines([0, 1], [mn1 - err1, mn2 - err2], [mn1 + err1, mn2 + err2])
     _ = plt.setp(ax, xlim=[-1, 2], title='Error: {}'.format(nm))
 plt.tight_layout()
@@ -49,7 +49,7 @@ ax.hist(data1)
 ax.hist(data2)
 
 ymax = ax.get_ylim()[-1]
-for ii, (imn, iste, c) in enumerate([(mn1, ste1, 'b'), (mn2, ste2, 'g')]):
+for ii, (imn, iste, c) in enumerate([(mn1, ste1, "b"), (mn2, ste2, "g")]):
     ax.hlines(ymax + 1 + ii, imn - iste, imn + iste, lw=6, color=c)
 ax.set_ylim([None, ax.get_ylim()[-1] + 2])
 
@@ -74,6 +74,6 @@ for ii in range(n_boots):
 # Calculate confidence intervals
 clo, chi = np.percentile(means, [2.5, 97.5])
 fig, ax = plt.subplots()
-ax.hist(means, histtype='step', color='r')
-ax.hlines(ax.get_ylim()[-1] + 10, clo, chi, lw=10, color='r')
-ax.hlines(ax.get_ylim()[-1] + 20, mn - ste, mn + ste, lw=10, color='g')
+ax.hist(means, histtype="step", color="r")
+ax.hlines(ax.get_ylim()[-1] + 10, clo, chi, lw=10, color="r")
+ax.hlines(ax.get_ylim()[-1] + 20, mn - ste, mn + ste, lw=10, color="g")
