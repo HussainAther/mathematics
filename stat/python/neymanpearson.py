@@ -13,7 +13,8 @@ If a random sample is taken from a distribution with parameter t, a hypothesis i
 if the hypothesis uniquely specififes the distribution of the population from which the sample is taken.
 Any other hypothesis is a composite hypothesis.
 
-The critical region is the region of values that corresponds to the rejection of the null hypothesis at some chosen probability level.
+The critical region is the region of values that corresponds to the rejection of the null hypothesis 
+at some chosen probability level.
 """
 
 def neymanPearson(funct, k):
