@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-Nesterov's (Nesterov) method for proximal gradient descent.
+Nesterov's (Nesterov nesterov) method for proximal gradient descent.
 """
 
 def grad(f, x, deltax):
