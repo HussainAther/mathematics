@@ -8,11 +8,13 @@ from tensorflow import keras
 
 """
 Stochastic Gradient Boosting
+
 As mentioned in Friedman et al. (2000) ("Additive logistic regression: a statistical view of boosting")
 worked to provide statistical insight of the AdaBoost algorithm. For the classification problem, they
 showed that it could be interpreted as a forward stagewise additive model that minimizes an exponential
 loss function. This framework led to algorithmic generalizations such as Real AdaBoost, Gentle AdaBoost,
-and LogitBoost. Subsequently, these generalizations were put into a unifying framework called gradient boosting machines.
+and LogitBoost. Subsequently, these generalizations were put into a unifying framework called gradient 
+boosting machines.
 """
 
 # Simple gradient boosting for classification (2-class)
