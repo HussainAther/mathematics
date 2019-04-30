@@ -10,7 +10,8 @@ times the mean value of the function <f> over that interval. This average functi
 
 We can simplify these two by putting them together:
 
-integral from a to b of dx*f(x) = (b-a)<f> = (b-a)*(1/N)*summation from i equals 1 to N of f(x_i) in which x_i is the function at i.
+integral from a to b of dx*f(x) = (b-a)<f> = (b-a)*(1/N)*summation from i equals 1 to N of f(x_i) in which
+x_i is the function at i.
 """
 
 def x(i):
