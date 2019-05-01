@@ -1,8 +1,8 @@
 import numpy as np
 
 """
-The Neimarck-Sacker bifurcation (NSB nsb) is a closed invariant curve from a fixed point
-in dynamical systems with discrete time when the fixed point changes stability
+The Neimarck-Sacker bifurcation (neimarck sacker NSB nsb) is a closed invariant curve from a 
+fixed point in dynamical systems with discrete time when the fixed point changes stability
 via a pair of complex eigenvalues with unit modulus. This is the Hopf
 bifurcation equivalent for maps.
 
@@ -27,5 +27,5 @@ def ns(d):
         if d[key] = 1 and theta(key) < np.pi and theta(key) > 0:
              result.append(key)
     # These results output hold true if the following non-degeneracy conditions hold:
-    (1) dR/dd of (a) is != 0 and (2) exp(i*k*theta(a)) != 1 for k=1,2,3,4 
+    # (1) dR/dd of (a) is != 0 and (2) exp(i*k*theta(a)) != 1 for k=1,2,3,4 
     return result 
