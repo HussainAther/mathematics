@@ -19,7 +19,7 @@ To get the left side of the Chebyshev inequality, we have to write this out
 as the following conditional probability,
 """
 
-r = ss.P((x-1) > t,x>1)+ss.P(-(x-1) > t,x<1)
+r = ss.P((x-1) > t, x>1) + ss.P(-(x-1) > t, x<1)
 
 """
 Note that we cannot use vectorized inputs for the lambdify function because it contains embedded functions that are only
@@ -34,7 +34,7 @@ under the hood. In this situation, it’s better to use the built-in cumulative 
 (after some rearrangement of the terms),
 """
 
-w = (1 - ss.cdf(x)(t+1)) + ss.cdf(x)(1-t)
+w = (1 - ss.cdf(x)*(t+1)) + ss.cdf(x)*(1-t)
 fw = sympy.lambdify(t,w)
 
 """
