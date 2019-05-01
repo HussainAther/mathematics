@@ -56,12 +56,11 @@ m.solve(disp=False)
 
 # Plot results
 plt.subplot(2,1,1)
-plt.plot(m.time,u_meas,'b:',label='Input (u) meas')
+plt.plot(m.time,u_meas, "b:", label="Input (u) meas")
 plt.legend()
 plt.subplot(2,1,2)
-plt.plot(m.time,y_meas,'gx',label='Output (y) meas')
-plt.plot(p.time,p.y.value,'k-',label='Output (y) actual')
-plt.plot(m.time,m.y.value,'r--',label='Output (y) estimated')
+plt.plot(m.time,y_meas, "gx", label="Output (y) meas")
+plt.plot(p.time,p.y.value, "k-", label="Output (y) actual")
+plt.plot(m.time,m.y.value, "r--", label="Output (y) estimated")
 plt.legend()
 plt.show()
-
