@@ -9,7 +9,7 @@ e.g. when using a profile hidden Markov model to generate alignments. It is, how
 possess a lot more information than the most probable paths, as they allow the generation of an infinity of sequences, each by a multitude of paths.
 
 Thus, when comparing two profile hidden Markov models, one should look at the entire spectrum of sequences and probabilities.
-The probability two profile hidden Markov models independently generate the same sequence, we compute the co-emission probability:
+The probability two profile hidden Markov models independently generate the same sequence, we compute the coemission probability:
 
 the summation over PM1(s) * PM2 (s)
 
@@ -18,14 +18,14 @@ in which PM1 and PM2 are the probabilities for either model to produce a sequenc
 Co-emission probability depends on how alike they are and how self-confident they are (to what
 extent the probabilities are concentrated to a small subset of all possible sequences).
 
-Let M be a hidden Markov model and p = max{P_M(s) | s ∈ Σ∗}. The maximum co-emission probability with
-M attainable for any hidden Markov model is p. The hdiden Markov models attaining this co-emission probability
+Let M be a hidden Markov model and p = max{P_M(s) | s ∈ Σ∗}. The maximum coemission probability with
+M attainable for any hidden Markov model is p. The hdiden Markov models attaining this coemission probability
 with M are exactly those models, M', for which P_M'(s) > 0 <=>P_M(s) = p for all s ∈ Σ∗ .
 """
 
 def coemission(m1, m2):
     """
-    Return the co-emission probability for models m1 and m2.
+    Return the coemission probability for models m1 and m2.
     """
     return np.inner(m1, m2)
 
