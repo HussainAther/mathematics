@@ -26,9 +26,9 @@ p.DMAX = 20   # slow down change of gas pedal
 v = m.CV(value=0)
 v.STATUS = 1  # add the SP to the objective
 m.options.CV_TYPE = 2 # squared error
-v.SP = 40     # set point
+v.SP = 40 # set point
 v.TR_INIT = 1 # set point trajectory
-v.TAU = 5     # time constant of trajectory
+v.TAU = 5 # time constant of trajectory
 
 # Process model
 m.Equation(mass*v.dt() == -v*b + K*b*p)
@@ -44,13 +44,13 @@ with open(m.path+'//results.json') as f:
 # plot
 plt.figure()
 plt.subplot(2,1,1)
-plt.plot(m.time,p.value,'b-',label='MV Optimized')
+plt.plot(m.time, p.value, "b-", label="MV Optimized")
 plt.legend()
-plt.ylabel('Input')
+plt.ylabel("Input")
 plt.subplot(2,1,2)
-plt.plot(m.time,results['v1.tr'],'k-',label='Reference Trajectory')
-plt.plot(m.time,v.value,'r--',label='CV Response')
-plt.ylabel('Output')
-plt.xlabel('Time')
-plt.legend(loc='best')
+plt.plot(m.time, results["v1.tr"], "k-", label="Reference Trajectory")
+plt.plot(m.time, v.value, "r--", label="CV Response")
+plt.ylabel("Output")
+plt.xlabel("Time")
+plt.legend(loc="best")
 plt.show()
