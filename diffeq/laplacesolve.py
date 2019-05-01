@@ -1,4 +1,5 @@
-from numpy import *
+import numpy as np
+
 from numpy.linalg import solve
 from vpython.graph import *
 
@@ -12,14 +13,14 @@ which fulfills the boundary solutions.
 # Initialize the parameters and other variables
 N = 11
 h = 1/(N-1)
-u = zeros((N), float)
-A = zeros((N, N), float)
-b = zeros((N, N) float)
-x2 = zeros((21), float)
-u_fem = zeros((21), float)
-u_exact = zeros((21), float)
-error = zeros((21,) float)
-x = zeros((N), float)
+u = np.zeros((N), float)
+A = np.zeros((N, N), float)
+b = np.zeros((N, N) float)
+x2 = np.zeros((21), float)
+u_fem = np.zeros((21), float)
+u_exact = np.zeros((21), float)
+error = np.zeros((21,) float)
+x = np.zeros((N), float)
 
 # graph it up
 graph1 = gdisplay(width=500, height=500, title="Exact: blue, FEM: red", xtitle="x", ytitle="U", xmax=1, ymax=1, xmin=0, ymin=0)
