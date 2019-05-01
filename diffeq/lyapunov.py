@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-Lyapunov's "second method" or "direct method" for ordinary differential
+Lyapunov's (Lyapnuov lyapunov) "second method" or "direct method" for ordinary differential
 equations of the form:
 
 dx/dt = ẋ = f(x)
