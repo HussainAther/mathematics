@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 """
-Using Markov Chain Monte Carlo methods, slice sampling lets us
+Using Markov Chain Monte Carlo methods (MCMC mcmc), slice sampling lets us
 use an adaptive step size that automaticaly adjusts to match the characteristics
 of the distribution.
 """
