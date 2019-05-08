@@ -54,3 +54,13 @@ data.points <- 1:n
 data.points <- sample(data.points) # Permute randomly
 train <- data.points[1:floor(n/2)] # First random half is training
 test <- data.points[-(1:floor(n/2))] # 2nd random half is testing
+candidate.cluster.numbers <- 2:10
+loglikes <- vector(length=1+length(candidate.cluster.numbers))
+# k=1 needs special handling
+mu<-mean(snoq[train]) # MLE of mean
+sigma <- sd(snoq[train])*sqrt((n-1)/n) # MLE of standard deviation
+loglikes[1] <- sum(dnorm(snoq[test],mu,sigma,log=TRUE))
+for (k in candidate.cluster.numbers) {
+  mixture <- normalmixEM(snoq[train],k=k,maxit=400,epsilon=1e-2)
+  loglikes[k] <- loglike.normalmix(snoq[test],mixture=mixture)
+}
