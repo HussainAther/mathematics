@@ -3,7 +3,7 @@ function we're interested in. The true minimum is a fixed point of the equation
 
 θ(n+1) = θ(n) − f ′(θ(n)) / f ′′(θ(n))."
 
-my.newton = function(f,f.prime,f.prime2,beta0,tolerance=1e-3,max.iter=50) {
+my.newton = function(f, f.prime, f.prime2, beta0, tolerance=1e-3, max.iter=50) {
   beta = beta0
   old.f = f(beta)
   iterations = 0
@@ -17,4 +17,10 @@ my.newton = function(f,f.prime,f.prime2,beta0,tolerance=1e-3,max.iter=50) {
    made.changes = (relative.changes > tolerance)
    beta = new.beta
    old.f = new.f
-  }
+}
+if (made.changes) {
+  warning("Newton's method terminated before convergence") }
+return(list(minimum=beta, value=f(beta), deriv=f.prime(beta),
+    deriv2=f.prime2(beta), iterations=iterations,
+    converged=!made.changes))
+}
