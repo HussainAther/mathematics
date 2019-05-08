@@ -82,3 +82,9 @@ plot(density(snoq), lty=2, ylim=c(0,0.04),
                 "Kernel vs. Gaussian mixture"),
      xlab="Precipitation (1/100 inch)")
 curve(dnormalmix(x, snoq.k9), add=TRUE)
+snoqualmie.classes <- data.frame(precip=snoqualmie, class=0)
+years <- 1948:1983
+snoqualmie.classes$day <- rep(c(1:366, 1:365, 1:365, 1:365), times=length(years)/4)
+wet.days <- (snoqualmie > 0)
+snoqualmie.classes$class[wet.days] <- day.classes
+
