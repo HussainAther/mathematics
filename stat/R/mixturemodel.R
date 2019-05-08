@@ -49,3 +49,8 @@ loglike.normalmix <- function(x,mixture) {
   loglike <- dnormalmix(x,mixture,log=TRUE)
   return(sum(loglike))
 }
+n <- length(snoq)
+data.points <- 1:n
+data.points <- sample(data.points) # Permute randomly
+train <- data.points[1:floor(n/2)] # First random half is training
+test <- data.points[-(1:floor(n/2))] # 2nd random half is testing
