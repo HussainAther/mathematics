@@ -24,3 +24,9 @@ pnormmix <- function(x,mixture) {
   pnorms <- sapply(1:k, pnorm.from.mix, x=x)
   return(rowSums(pnorms))
 }
+distinct.snoq <- sort(unique(snoq))
+tcdfs <- pnormmix(distinct.snoq,mixture=snoq.k2)
+ecdfs <- ecdf(snoq)(distinct.snoq)
+plot(tcdfs, ecdfs, xlab="Theoretical CDF", ylab="Empirical CDF", xlim=c(0,1),
+     ylim=c(0,1))
+abline(0,1)
