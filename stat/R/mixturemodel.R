@@ -7,6 +7,11 @@ plot(hist(snoq, breaks=101), col="grey", border="grey", freq=FALSE,
     xlab="Precipitation (1/100 inch)", main="Precipitation in Snoqualmie Falls")
 lines(density(snoq), lty="dashed")
 plot.gaussian.clusters <- function(mixture, cluster.number,...) {
-  curve(mixture$lambda[cluster.number] *
-      dnorm(x, mean=mixture$mu[cluster.number],
-      sd = mixture$sigma[cluster.number]), add=TRUE, ...)}
+    curve(mixture$lambda[cluster.number] *
+        dnorm(x, mean=mixture$mu[cluster.number],
+        sd = mixture$sigma[cluster.number]), add=TRUE, ...)}
+plot(hist(snoq, breaks=101), col="grey", border="grey", freq=FALSE,
+    xlab="Precipitation (1/100 inch)", main="Precipitation in Snoqualmie Falls")
+    lines(density(snoq), lty=2)
+    invisible(sapply(1:2, plot.gaussian.clusters, mixture=snoq.k2))
+
