@@ -45,3 +45,7 @@ dnormalmix <- function(x,mixture,log=FALSE) {
   if (log) {
 d <- log(d) }
 return(d) }
+loglike.normalmix <- function(x,mixture) {
+  loglike <- dnormalmix(x,mixture,log=TRUE)
+  return(sum(loglike))
+}
