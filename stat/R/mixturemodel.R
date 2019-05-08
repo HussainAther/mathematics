@@ -74,6 +74,11 @@ invisible(sapply(1:9, plot.gaussian.clusters, mixture=snoq.k9))
 distinct.snoq <- sort(unique(snoq))
 tcdfs <- pnormmix(distinct.snoq, mixture=snoq.k9)
 ecdfs <- ecdf(snoq)(distinct.snoq)
-plot(tcdfs,ecdfs,xlab="Theoretical CDF", ylab="Empirical CDF", xlim=c(0,1),
+plot(tcdfs, ecdfs, xlab="Theoretical CDF", ylab="Empirical CDF", xlim=c(0,1),
      ylim=c(0,1))
 abline(0,1)
+plot(density(snoq), lty=2, ylim=c(0,0.04),
+     main=paste("Comparison of density estimates\n",
+                "Kernel vs. Gaussian mixture"),
+     xlab="Precipitation (1/100 inch)")
+curve(dnormalmix(x, snoq.k9), add=TRUE)
