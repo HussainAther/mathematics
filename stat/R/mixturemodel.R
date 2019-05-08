@@ -17,10 +17,10 @@ plot(hist(snoq, breaks=101), col="grey", border="grey", freq=FALSE,
 pnormmix <- function(x,mixture) {
   lambda <- mixture$lambda
   k <- length(lambda)
-  pnorm.from.mix <- function(x,cluster) {
-    lambda[cluster]*pnorm(x,mean=mixture$mu[cluster],
+  pnorm.from.mix <- function(x, cluster) {
+    lambda[cluster]*pnorm(x, mean=mixture$mu[cluster],
                             sd=mixture$sigma[cluster])
   }
-  pnorms <- sapply(1:k,pnorm.from.mix,x=x)
+  pnorms <- sapply(1:k, pnorm.from.mix, x=x)
   return(rowSums(pnorms))
 }
