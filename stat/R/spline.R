@@ -20,3 +20,10 @@ lines(smooth.spline(sp.today, sp.tomorrow, spar = 1.5), col = "blue")
 lines(smooth.spline(sp.today, sp.tomorrow, spar = 2), col = "blue", lty = 2)
 lines(smooth.spline(sp.today, sp.tomorrow, spar = 1.1), col = "red")
 lines(smooth.spline(sp.today, sp.tomorrow, spar = 0.5), col = "red", lty = 2)
+"Find confidence bands for the spline."
+sp.frame <- data.frame(today = sp.today, tomorrow = sp.tomorrow)
+sp.resampler <- function() {
+    n <- nrow(sp.frame)
+    resample.rows <- sample(1:n, size = n, replace = TRUE)
+    return(sp.frame[resample.rows, ])
+}
