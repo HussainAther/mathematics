@@ -87,4 +87,9 @@ years <- 1948:1983
 snoqualmie.classes$day <- rep(c(1:366, 1:365, 1:365, 1:365), times=length(years)/4)
 wet.days <- (snoqualmie > 0)
 snoqualmie.classes$class[wet.days] <- day.classes
-
+snoqualmie.classes$class[wet.days] <- snoq.k9$mu[day.classes]
+plot(x=snoqualmie.classes$day, y=snoqualmie.classes$class,
+     xlim=c(1,366), ylim=range(snoq.k9$mu), xaxt="n",
+     xlab="Day of year", ylab="Expected precipiation (1/100 inch)",
+     pch=16, cex=0.2)
+axis(1, at=1+(0:11)*30)
