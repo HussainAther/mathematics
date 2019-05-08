@@ -10,3 +10,4 @@ sp <- sp[-1]
 sp.today <- head(sp, -1)
 sp.tomorrow <- tail(sp, -1)
 coefficients(lm(sp.tomorrow ~ sp.today))
+predict(sp.spline, x = 0.01)
