@@ -5,3 +5,8 @@ minimizing the spline objective function."
 require(pdfetch)
 sp <- pdfetch_YAHOO("SPY", fields = "adjclose", from = as.Date("1993-02-09"),
     to = as.Date("2015-02-09"))
+sp <- diff(log(sp))
+sp <- sp[-1]
+sp.today <- head(sp, -1)
+sp.tomorrow <- tail(sp, -1)
+coefficients(lm(sp.tomorrow ~ sp.today))
