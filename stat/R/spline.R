@@ -27,3 +27,23 @@ sp.resampler <- function() {
     resample.rows <- sample(1:n, size = n, replace = TRUE)
     return(sp.frame[resample.rows, ])
 }
+grid.300 <- seq(from = min(sp.today), to = max(sp.today), length.out = 300)
+sp.spline.estimator <- function(data, eval.grid = grid.300) {
+    fit <- smooth.spline(x = data[, 1], y = data[, 2], cv = TRUE)
+    return(predict(fit, x = eval.grid)$y)
+}
+sp.spline.cis <- function(B, alpha, eval.grid = grid.300) {
+    spline.main <- sp.spline.estimator(sp.frame, eval.grid = eval.grid)
+    spline.boots <- replicate(B, sp.spline.estimator(sp.resampler(), eval.grid = eval.grid))
+    cis.lower <- 2 * spline.main - apply(spline.boots, 1, quantile, probs = 1 -
+        alpha/2)
+    cis.upper <- 2 * spline.main - apply(spline.boots, 1, quantile, probs = alpha/2)
+    return(list(main.curve = spline.main, lower.ci = cis.lower, upper.ci = cis.upper,
+        x = eval.grid))
+}
+sp.cis <- sp.spline.cis(B = 1000, alpha = 0.05)
+plot(as.vector(sp.today), as.vector(sp.tomorrow), xlab = "Today's log-return",
+ylab = "Tomorrow's log-return", pch = 16, cex = 0.5, col = "grey") abline(lm(sp.tomorrow ~ sp.today), col = "darkgrey")
+lines(x = sp.cis$x, y = sp.cis$main.curve, lwd = 2)
+lines(x = sp.cis$x, y = sp.cis$lower.ci)
+lines(x = sp.cis$x, y = sp.cis$upper.ci)
