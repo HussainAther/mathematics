@@ -14,4 +14,13 @@ plot(hist(snoq, breaks=101), col="grey", border="grey", freq=FALSE,
     xlab="Precipitation (1/100 inch)", main="Precipitation in Snoqualmie Falls")
     lines(density(snoq), lty=2)
     invisible(sapply(1:2, plot.gaussian.clusters, mixture=snoq.k2))
-
+pnormmix <- function(x,mixture) {
+  lambda <- mixture$lambda
+  k <- length(lambda)
+  pnorm.from.mix <- function(x,cluster) {
+    lambda[cluster]*pnorm(x,mean=mixture$mu[cluster],
+                            sd=mixture$sigma[cluster])
+  }
+  pnorms <- sapply(1:k,pnorm.from.mix,x=x)
+  return(rowSums(pnorms))
+}
