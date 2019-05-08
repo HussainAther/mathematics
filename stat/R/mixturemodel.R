@@ -30,3 +30,18 @@ ecdfs <- ecdf(snoq)(distinct.snoq)
 plot(tcdfs, ecdfs, xlab="Theoretical CDF", ylab="Empirical CDF", xlim=c(0,1),
      ylim=c(0,1))
 abline(0,1)
+dnormalmix <- function(x,mixture,log=FALSE) {
+  lambda <- mixture$lambda
+  k <- length(lambda)
+  # Calculate share of likelihood for all data for one cluster
+  like.cluster <- function(x,cluster) {
+    lambda[cluster]*dnorm(x,mean=mixture$mu[cluster],
+                            sd=mixture$sigma[cluster])
+  }
+  # Create array with likelihood shares from all clusters over all data
+  likes <- sapply(1:k,like.cluster,x=x)
+  # Add up contributions from clusters
+  d <- rowSums(likes)
+  if (log) {
+d <- log(d) }
+return(d) }
