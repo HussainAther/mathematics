@@ -64,10 +64,16 @@ for (k in candidate.cluster.numbers) {
     mixture <- normalmixEM(snoq[train],k=k,maxit=400,epsilon=1e-2)
     loglikes[k] <- loglike.normalmix(snoq[test],mixture=mixture)
 }
-plot(x=1:10, y=loglikes,xlab="Number of mixture clusters",
+plot(x=1:10, y=loglikes, xlab="Number of mixture clusters",
     ylab="Log-likelihood on testing data")
-snoq.k9 <- normalmixEM(snoq,k=9,maxit=400,epsilon=1e-2)
-plot(hist(snoq,breaks=101),col="grey",border="grey",freq=FALSE,
-    xlab="Precipitation (1/100 inch)",main="Precipitation in Snoqualmie Falls")
-lines(density(snoq),lty=2)
-invisible(sapply(1:9,plot.gaussian.clusters,mixture=snoq.k9))
+snoq.k9 <- normalmixEM(snoq, k=9, maxit=400, epsilon=1e-2)
+plot(hist(snoq,breaks=101), col="grey", border="grey", freq=FALSE,
+    xlab="Precipitation (1/100 inch)", main="Precipitation in Snoqualmie Falls")
+lines(density(snoq), lty=2)
+invisible(sapply(1:9, plot.gaussian.clusters, mixture=snoq.k9))
+distinct.snoq <- sort(unique(snoq))
+tcdfs <- pnormmix(distinct.snoq, mixture=snoq.k9)
+ecdfs <- ecdf(snoq)(distinct.snoq)
+plot(tcdfs,ecdfs,xlab="Theoretical CDF", ylab="Empirical CDF", xlim=c(0,1),
+     ylim=c(0,1))
+abline(0,1)
