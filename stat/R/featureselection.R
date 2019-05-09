@@ -42,3 +42,9 @@ ctrl <- rfeControl(method = "repeatedcv", repeats = 5, verbose = TRUE,
 rfRFE <- rfe(x = training[, predVars], y = training$Class, sizes = varSeq,
              metric = "ROC", rfeControl = ctrl, ntree = 1000)
 rfFRE
+predict(rfRFE, head(testing))
+"SVM svm"
+svmFuncs <- caretFuncs
+svmFuncs$summary <- fivestats
+ctrl <- rfeControl(method = "repeatedcv", repeats = 5, verbose = TRUE,
+                   functions = svmFuncs, index = index)
