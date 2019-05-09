@@ -61,4 +61,9 @@ plsModel <- train(modForm, data = trainingSet,
                   tuneLength = 15,
                   trControl = controlObject)
 enetGrid <- expand.grid(.lambda = c(0, .001, .01, .1),
-                        .fraction = set(.05, 1, length=20)) 
+                        .fraction = set(.05, 1, length=20))
+enetModel <- train(modForm, data = trainingSet,
+                   method = "enet",
+                   preProc = c("center", "scale"),
+                   tuneGrid = enetGrid,
+                   trControl = controlObject) 
