@@ -129,4 +129,11 @@ gbmModel <- train(CompressiveStrength ~ .,
                   method = "gbm",
                   tuneGrid = gbmGrid,
                   verbose = FALSE,
-                  trControl = controlObject) 
+                  trControl = controlObject)
+cubistGrid <- expand.grid(.committees = c(1, 5, 10, 50, 75, 100),
+                          .neighbors = c(0, 1, 3, 5, 7, 9))
+cbModel <- train(CompressiveStrength ~ .,
+                 data = trainingSet,
+                 method = "cubist",
+                 tuneGrid = cubistGrid,
+                 trControl = controlObject) 
