@@ -11,3 +11,7 @@ rfModel <- randomForest(class ~ X1 + X2,
                         ntree = 2000)
 library(MASS)
 qdaModel <- qda(class ~ X1 + X2, data = simulatedTrain)
+qdaTrainPred <- predict(qdaModel, simulatedTrain)
+qdaTestPred <- predict(qdaModel, simulatedTest)
+simulatedTrain$QDAprob <- qdaTrainPred$posterior[, "Class1"]
+simulatedTest$QDAprob <- qdaTestPred$posterior[, "Class1"]
