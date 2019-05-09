@@ -52,3 +52,13 @@ svmRFE <- rfe(x = training[, predVars], y = training$Class, sizes = varSeq, metr
               rfeControl = ctrl, method = "svmRadial", tuneLength = 12, preProc = c("center", "scale"),
               trControl = trainControl(method = "cv", verboseIter = FALSE, classProbs = TRUE))
 svmRFE
+"Filter filter methods."
+pSCore <- function(x, y) {
+    numX <- length(unique(x))
+    if(numX > 2) {
+        out <- t.test(x ~ y)$p.value 
+    } else {
+        out <- fisher.test(factor(x), y)$p.value 
+    }
+    out
+}
