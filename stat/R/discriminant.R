@@ -22,3 +22,7 @@ modelFit
 successProb <- 1 - predict(modelFit, newdata = data.frame(Day = c(10, 150, 300, 350)),
                            type = "response")
 successProb
+"Add nonlinear term for the day of the year."
+daySquaredModel <- glm(Class ~ Day + I(Day^2), data = training[pre2008,],
+                       family = binomial)
+daySquaredModel
