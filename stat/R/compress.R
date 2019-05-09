@@ -149,4 +149,11 @@ allResamples <- resamples(list("Linear Reg" = lmModel,
                                "Bagged Tree" = treebagModel,
                                "Boosted Tree" = gbmModel,
                                "Random Forest" = rfModel,
-                               Cubist = cbModel)) 
+                               Cubist = cbModel))
+"Plot the RMSE values"
+parallelPlot(allResamples)
+"Use R-squared"
+parallelplot(allResamples, metric = "Rsquared")
+nnetPredictions <- predict(nnetModel, testData)
+gbmPredictions <- predict(gbmModel, testData)
+cbPredictions <- predict(cbModel, testData) 
