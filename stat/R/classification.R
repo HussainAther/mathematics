@@ -71,3 +71,8 @@ sigmoidalCal <- glm(relevel(class, ref = "Class2") ~ QDAprob,
                     data = simulatedTrain,
                     family = binomial)
 coef(summary(sigmoidalCal))
+"Corrected probabilities using original model and an equation with slope and intercept."
+sigmoidProbs <- predict(sigmoidCal,
+                        newdata = simulatedTest[,"QDAprob", drop = FALSE],
+                        type = "response")
+simulatedTest$QDAsigmoid <- sigmoidProbs
