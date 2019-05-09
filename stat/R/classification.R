@@ -66,3 +66,8 @@ xyplot(liftCurve,
 calCurve <- calibration(class ~ RFprob + QDAprob, data = simulatedTest)
 calCurve
 xyplot(calCurve, auto.key = list(columns = 2))
+"Binomial distribution for generalized linear model (glm GLM binomial)."
+sigmoidalCal <- glm(relevel(class, ref = "Class2") ~ QDAprob,
+                    data = simulatedTrain,
+                    family = binomial)
+coef(summary(sigmoidalCal))
