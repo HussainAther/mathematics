@@ -88,4 +88,15 @@ nnetModel <- train(CompressiveStrength ~ .,
                    linout = TRUE,
                    trace = FALSE,
                    maxit = 1000,
-                   trControl = controlObject) 
+                   trControl = controlObject)
+rpartModel <- train(CompressiveStrength ~ .,
+                    data = trainingSet,
+                    method = "rpart",
+                    tuneLength = 30,
+                    trControl = controlObject)
+ctreeModel <- train(CompressiveStrength ~ .,
+                    data = trainingSet,
+                    method = "ctree",
+                    tuneLength = 10,
+                    trControl = controlObject)
+ 
