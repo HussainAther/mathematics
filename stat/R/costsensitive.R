@@ -80,3 +80,14 @@ rfThresh
 "Predict new classes."
 newValue <- factor(ifelse(evalResults$RF > rfThres, "insurance", "noinsurance"),
                    levels = levels(evalResults$CARAVAN))
+"Sampling methods."
+upSampledTrain <- upSample(x = training[, predictors], y = training$CARAVAN, yname = "CARAVAN")
+smoteTrain <- SMOTE(CARAVAN ~ ., data = training)
+"Cost-sensitive training."
+sigma <- sigest(CARAVAN ~ ., data = trainingInd[, noNZVSet], frac = .75)
+names(sigma) <- NULL
+svmGRid <- data.frame(.sigma = sigma[2], .C = 2^seq(-6, 1, length = 15))
+SVMwts <- train(CARAVAN ~ ., data = trainingInd[, noNZVSet], method = "svmRadial",
+                tuneGRid = svmGrid, preProc = c("center", "scale"), class.weights = c(insurance = 18, 
+                noinsurance = 1), metric = "Sens", trControl = ctrlNoProb)
+SVMwts
