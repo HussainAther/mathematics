@@ -64,3 +64,6 @@ lrFit <- train(CARAVAN ~ ., data = trainingInd[, noNZVSet], method = "glm",
 "Flexible discriminant analysis."	
 fdaFit <- train(CARAVAN ~ ., data = training, method = "fda", tuneGrid = data.frame(.degree = 1,
                 nprune = 1:25), metric = "ROC", trControl = ctrl)
+"House predictions."
+evalResults <- data.frame(CARAVAN = evaluations$CARAVAN)
+evalResults$RF <- predict(rfFit, newdata = evaluationInd, type = "prob")[, 1]
