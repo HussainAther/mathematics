@@ -26,3 +26,7 @@ successProb
 daySquaredModel <- glm(Class ~ Day + I(Day^2), data = training[pre2008,],
                        family = binomial)
 daySquaredModel
+"Regression modeling Strategies (regression strategies) package."
+library(rms)
+rcsFit <- lrm(Class ~ rcs(Day), data = training[pre2008,])
+rscFit
