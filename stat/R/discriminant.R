@@ -11,6 +11,6 @@ fullSetResults <- trim.matrix(fullCovMat)
 "May choose what to exclude using this function."
 fullSetREsults$names.discarded
 "Train samples using estimated parameters with index argument to identify the samples."
-ctrl <- trainControl(summaryFunction = twoClassSummary, classProbs = TRUE)
 ctrl <- trainControl(method = "LGOCV", summaryFunction = twoClassSummary,
-                     classProbs = TRUE, index = list(TrainSet = pre2008))
+                     classProbs = TRUE, index = list(TrainSet = pre2008, 
+                     savePredictions = TRUE))
