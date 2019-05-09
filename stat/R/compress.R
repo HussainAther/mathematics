@@ -53,4 +53,12 @@ linearReg <- train(modFormula,
                    data = trainingSet,
                    method = "lm",
                    trControl = controlObject)
-linearReg 
+linearReg
+set.seed(100)
+plsModel <- train(modForm, data = trainingSet,
+                  method = "pls",
+                  prePoc = c("center", "scale"),
+                  tuneLength = 15,
+                  trControl = controlObject)
+enetGrid <- expand.grid(.lambda = c(0, .001, .01, .1),
+                        .fraction = set(.05, 1, length=20)) 
