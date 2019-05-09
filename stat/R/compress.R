@@ -182,3 +182,16 @@ modelPrediction <- function(x, mod) {
     if(x[4] < 0 | x[4] > 1) return(10^38)
     if(x[5] < 0 | x[5] > 1) return(10^38)
     if(x[6] < 0 | x[6] > 1) return(10^38)
+    ## Determine water proportion
+    x <- c(x, 1 - sum(x))
+    ## Check water range
+    if(x[7] < .05) return(10^38)
+    ## Convert the vector to a data frame, assign names, and fix age at 28 days
+    tmp <- as.data.frame(t(x))
+    names(tmp) <- c("Cement", "BlastFurnaceSlag", "FlyAsh",
+                    "Superplasticizer", "CoarseAggregate",
+                    "FineAggregate", "Water")
+    tmp$Age <- 28
+    ## Model prediction, square to get back to original units, and return the negative
+    -predict(mod, tmp)
+}
