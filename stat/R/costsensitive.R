@@ -67,3 +67,10 @@ fdaFit <- train(CARAVAN ~ ., data = training, method = "fda", tuneGrid = data.fr
 "House predictions."
 evalResults <- data.frame(CARAVAN = evaluations$CARAVAN)
 evalResults$RF <- predict(rfFit, newdata = evaluationInd, type = "prob")[, 1]
+evalResults$FDA <- predict(fdaFit, newdata = evaluation[, predictors], type = "prob")[, 1]
+evalResults$LogReg <- predict(lrFit, newdata = evaluationInd[, noNZVSet], type = "prob")[, 1]
+"ROC roc and lift curves."
+rfROC <- roc(evalResults$CARAVAN, evalResults$RF, levels = rev(levels(evalResults$CARAVAN)))
+labs <- c(RF = "Random Forest", LogReg = "Logistic Regression", FDA = "FDA (MARS)")
+lift1 <- lift(CARAVAN ~ RF + LogReg + FDA, data = evalResults, labels = labs)
+rfROC 
