@@ -62,3 +62,7 @@ xyplot(liftCurve,
        auto.key = list(columns = 2,
                        lines = TRUE,
                        points = FALSE))
+"Calibration plots."
+calCurve <- calibration(class ~ RFprob + QDAprob, data = simulatedTest)
+calCurve
+xyplot(calCurve, auto.key = list(columns = 2))
