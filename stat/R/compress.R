@@ -207,3 +207,10 @@ for(i in 1:nrow(cbResults)) {
                      control=list(maxit=5000),
                      ## The next option is passed to the modelPrediction() function
                      mod = cbModel)
+    ## Save the predicted compressive strength
+    cbResults$Prediction[i] <- -results$value
+    ## Also save the final mixture values
+    cbResults[i, 1:6] <- results$par
+}
+"Calculate the water proportion."
+cbResults$Water <- 1 - apply(cbResults[, 1:6], 1, sum)
