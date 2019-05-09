@@ -37,4 +37,19 @@ costMatrix[2, 4] <- 5
 costMatrix[2, 4] <- 5
 rownames(costMatrix) <- levels(trainData$Class) 
 colnames(costMatrix) <- levels(trainData$Class)
-costMatrix 
+costMatrix
+"Model formula to log transform several of the predictors."
+modForm <- as.formula(Class ~ Protocol + log10(Compounds) + log10(InputFields) + 
+                      log10(Iterations) + log10(NumPending + Hour + Day)
+"Weighted model function." 
+rpFitCost <- train(x = trainData[, predictors], y = trainData$Class,
+                   method = "rpart", metric = "Cost", maximize = FALSE,
+                   tuneLength = 20, parms = list(loss = t(costMatrix)),
+                   trControl = ctrl)
+"C5.0)
+C50Cost <- train(x = trainData[, predictors], y = trainData$Class,
+                 method = "C5.0", metric = "Cost", mazimize = FALSE,
+                 costs = costMatrix, tuneGrid = expand.grid(.trials = c(1, (1:10*10),
+                                                            .model = "tree", 
+                                                            .winnow = c(TRUE, FALSE)),
+                 trControl = ctrl)
