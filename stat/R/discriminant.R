@@ -87,3 +87,7 @@ glmTuned <- train(training[, fullSet], y = training$Class,
                   method = "glmnet", tuneGrid = glmnGrid,
                   preProc = c("center", "scale"), metric = "ROC",
                   trControl = ctrl)
+"Sparse sparse LDA lda."
+library(sparseLDA)
+sparseLdaModel <- sda(x = as.matrix(training[, fullSet]),
+                      y = training$Class, lambda = .01, stop = -6)
