@@ -47,3 +47,10 @@ fourStats <- function(data, lev = levels(data$obs), model = NULL) {
     names(out)[3:4] <- c("Sens", "Spec")
     out
 }
+"Two control functions for scenarios in which class probabilities can be created
+and cannot."
+ctrl <- trainControl(method = "cv", classProbs = TRUE", summaryFunction = fiveStats,
+                     verboseIter = TRUE)
+ctrlNoProb <- ctrl
+ctrlNoProb$summaryFunction <- fourStats
+ctrlNoProb$classProbs <- FALSE
