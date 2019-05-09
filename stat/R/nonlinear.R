@@ -13,4 +13,6 @@ predict(mdaModel, newdata = head(training[-pre2008, reducedSet]))
 mdaFit <- train(training[, reducedSet], training$Class, method = "mda",
                 metric = "ROC", tuneGrid = expand.grid(.subclasses = 1:8),
                 trControl = ctrl)
-
+"Neural networks neural."
+nnetMod <- nnet(Class ~ NumCI + CI.1960, data = training[pre2008,],
+                size = 3, decay = .1)
