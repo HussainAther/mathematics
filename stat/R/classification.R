@@ -42,3 +42,8 @@ postPredValue(data = simulatedTest$RFclass,
 confusionMatrix(data = simulatedTest$RFclass,
                 reference = simulatedTest$class,
                 positive = "Class1")
+"Receiving operating characteristic curves (roc ROC receiving)."
+library(pROC)
+rocCurve <- roc(response = simulatedTest$class,
+                predictor = simulatedTest$RFprob,
+                lebels = rev(levels(simulatedTest$class)))
