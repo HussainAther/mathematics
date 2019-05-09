@@ -15,3 +15,7 @@ qdaTrainPred <- predict(qdaModel, simulatedTrain)
 qdaTestPred <- predict(qdaModel, simulatedTest)
 simulatedTrain$QDAprob <- qdaTrainPred$posterior[, "Class1"]
 simulatedTest$QDAprob <- qdaTestPred$posterior[, "Class1"]
+"Get the predicted classes and probabilities."
+rfTestPred <- predict(rfModel, simulatedTest, type = "prob")
+simulatedTest$RFprob <- rfTestPred[, "Class1"]
+simulatedTest$RFclass <- predict(rfModel, simulatedTest)
