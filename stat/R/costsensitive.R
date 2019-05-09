@@ -96,3 +96,8 @@ costMatric <- matrix(c(0, 1, 20, 0), ncol = 2)
 rownames(costMatrix) <- levels(training$CARAVAN)
 colnames(costMatrix) <- levels(training$CARAVAN)
 costMatrix
+"C5.0"
+c5Matrix <- matrix(c(0, 20, 1, 0), ncol = 2)
+rownames(c5matrix) <- levels(training$CARAVAN)
+colnames(c5matrix) <- levels(training$CARAVAN)
+c5Matrix
