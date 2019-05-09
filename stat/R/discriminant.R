@@ -69,3 +69,6 @@ plsPred <- predict(plsdaModel, newdata = training[-pre2008, reducedSet], type = 
 plsFit2 <- train(x = training[, reducedSet], y = training$Class,
                  method = "pls", tuneGrid = expand.grid(.ncomp = 1:10),
                  preProc = c("center", "scale"), metric = "ROC", trControl = ctrl)
+plsImpGrant <- varImp(plsFit2, scale = FALSE)
+plsImpGrant
+plot(plsImpGrant, top = 20, scales = list(y = list(cex = .05)))
