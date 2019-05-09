@@ -52,3 +52,8 @@ grantPreProcess <- preProcess(training[pre2008, reducedSet])
 grantPreProcess
 scaledPre2008 <- predict(grantPreProcess, newdata = training[pre2008, reducedSet])
 scaled2008HoldOut <- predict(grantPreProcess, newdata = training[-pre2008, reducedSet])
+ldaModel <- lda(x = scaledPre2008, grouping = training$Class[pre2008])
+ldaHoldOutPredictions <- predict(ldaModel, scaled2008HoldOut)
+ldaFit1 <- train(x = training[, reducedSet], y = training$Class,
+                 method = "lda", preProc = c("center", "scale"),
+                 metric = "ROC", trControl = ctrl)
