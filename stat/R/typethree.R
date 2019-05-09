@@ -14,3 +14,7 @@ ImportanceOrder <- order(rfTune$finalModel$importance[, 1], decreasing = TRUE)
 top20 <- rownames(rfTune$finalModel$importance[ImportanceOrder,])[1:20]
 solTrainXimp <- subset(solTrainX, select = top20)
 solTestXimp <- subset(solTestX, select = top20)
+"Tune the model on newly created classification data and predict."
+rfSolClass <- train(x = solSimX, y = groupY, method = "rf", tuneLength = 5, ntree = 1000,
+                    control = trainControl(method="LGOCV"))
+solTestGroupProbs <- predict(rfSolClass, solTestXimp, type = "prob")
