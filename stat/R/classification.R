@@ -57,3 +57,8 @@ labs <- c(RFprob = "Random Forest",
 liftCurve <- lift(class ~ RFprob + QDAprob, data = simulatedTest,
                   labels = labs)
 liftCurve
+"Plot two lift curves using a lattice plot."
+xyplot(liftCurve,
+       auto.key = list(columns = 2,
+                       lines = TRUE,
+                       points = FALSE))
