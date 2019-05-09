@@ -34,4 +34,7 @@ costMatrix <- ifelse(diag(4) == 1, 0, 1)
 costMatrix[1, 4] <- 10
 costMatrix[1, 3] <- 5
 costMatrix[2, 4] <- 5
-costMatrix[2, 4] <- 5 
+costMatrix[2, 4] <- 5
+rownames(costMatrix) <- levels(trainData$Class) 
+colnames(costMatrix) <- levels(trainData$Class)
+costMatrix 
