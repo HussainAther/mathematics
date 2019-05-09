@@ -30,3 +30,12 @@ featurePlot(x = concrete[, -9],
             between = list(x=1, y=1),
             ## Add background grid ('g') and a smoother ('smooth')
             type = c("g", "p", "smooth"))
+averaged <- ddply(mixtures,
+                .(Cement, BlastFurnaceSlag, FlyAsh, Water,
+                  Superplasticizer CoarseAggregate,
+                  FineAggregate, Age),
+                  function(x) c(CompressiveStrength = mean(x$CompressiveStrength)))
+set.seed(100)
+forTraining <- createDataPartition(averaged$CompressiveStrength,
+                                   p = 3/4)[[1]]
+ 
