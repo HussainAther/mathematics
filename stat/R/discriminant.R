@@ -79,3 +79,5 @@ glmnetModel < glmnet(x = as.matrix(training[, fullSet]),
 "Compute predictions for three difference levels of regularization."
 predict(glmnetModel, newx = as.matrix(training[1:5, fullSet]), s = c(.05, .1, .2), 
         type = "class")
+predict(glmnetModel, newx = as.matrix(training[1:5, fullSet]), s = c(.05, .1, .2), 
+        type = "nonzero")
