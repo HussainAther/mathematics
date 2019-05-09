@@ -44,4 +44,7 @@ modFormula <- paste("CompressiveStrength ~ (.)^2 + I(Comenet^2) + ",
                     "I(BlastFurnaceSlag^2) + I(FlyAsh^2) + I(Water^2) +",
                     "I(Superplasticizer^2) + I(CoarseAggregate^2) + ",
                     "I(FineAggregate^2) + I(Age^2)")
-modFormula <- as.formula(modFormula) 
+modFormula <- as.formula(modFormula)
+controlObject <- trainControl(method = "repeatedcv", 
+                              repeats = 5,
+                              number 10) 
