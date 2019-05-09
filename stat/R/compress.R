@@ -76,4 +76,16 @@ svmRModel <- train(CompressiveStrength ~ ., data = trainingSet,
                    method = "svmRadial",
                    tuneLength = 15,
                    preProc = c("center", "scale"),
+                   trControl = controlObject)
+nnetGrid <- expand.grid(.decay = c(.001, .01, .1),
+                        .size = seq(1, 27, by = 2),
+                        .bag = FALSE)
+nnetModel <- train(CompressiveStrength ~ .,
+                   data = trainingSet,
+                   method = "avNNet",
+                   tuneGrid = nnetGrid,
+                   preProc = c("center", "scale"),
+                   linout = TRUE,
+                   trace = FALSE,
+                   maxit = 1000,
                    trControl = controlObject) 
