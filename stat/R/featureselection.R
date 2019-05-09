@@ -33,3 +33,12 @@ initial <- glm(Class ~ tau + BEGF + E4 + IL_3, data = training, family = binomia
 stepAIC(initial, direction = "both")
 "Recursive feature elimination (recursive)."
 str(rfFuncs)
+newRF <- rfFuncs
+newRF$summary <- fiveStats
+"Control function."
+ctrl <- rfeControl(method = "repeatedcv", repeats = 5, verbose = TRUE,
+                   functions = newRF, index = index)
+"RFE procedure." 
+rfRFE <- rfe(x = training[, predVars], y = training$Class, sizes = varSeq,
+             metric = "ROC", rfeControl = ctrl, ntree = 1000)
+rfFRE
