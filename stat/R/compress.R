@@ -239,3 +239,15 @@ pca1 <- predict(pp2, age28Data[, 1:7])
 pca1$Data <- "Training Set"
 pca$Data[startPoints] <- "Starting Values"
 pca3 <- predict(pp2, cbResults[, names(age28Data[, 1:7])])
+pca3$Data <- "Cubist"
+pca4 <- predict(pp2, nnetResults[, names(age28Data[, 1:7])])
+pca4$Data <- "Neural Network"
+pcaData < rbind(pca1, pca3, pca4)
+pcaData$Data <- factor(pcaData$Data,
+                       levels = c("Training Set", "Starting Values",
+                                  "Cubist", "Neural Network"))
+lim <- extendrange(pcaData[1, 1:2])
+xplot(PC2 ~ PC1, data=pcaData, groups = Data,
+      auto.key = list(columns = 2),
+      xlim = lim, ylim = lim,
+      type = c("g", "p"))
