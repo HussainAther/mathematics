@@ -52,7 +52,7 @@ svmRFE <- rfe(x = training[, predVars], y = training$Class, sizes = varSeq, metr
               rfeControl = ctrl, method = "svmRadial", tuneLength = 12, preProc = c("center", "scale"),
               trControl = trainControl(method = "cv", verboseIter = FALSE, classProbs = TRUE))
 svmRFE
-"Filter filter methods."
+"Filter filter methods. sbf SBF Selection selection by filter."
 pSCore <- function(x, y) {
     numX <- length(unique(x))
     if(numX > 2) {
