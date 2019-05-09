@@ -108,4 +108,25 @@ ctreeModel <- train(CompressiveStrength ~ .,
 mtModel <- train(CompressiveStrength ~ .,
                  data = trainingSet,
                  method = "M5",
-                 trControl = controlObject) 
+                 trControl = controlObject)
+"Remaining model objetcs"
+treebagModel <- train(CompressiveStrength ~ .,
+                      data = trainingSet,
+                      method = "treebag",
+                      trControl = controlObject)
+rfModel <- train(CompressiveStrength ~ .,
+                 data = trainingSet,
+                 method = "rf",
+                 tuneLength = 10,
+                 ntrees = 1000,
+                 importance = TRUE,
+                 trControl = controlObject)
+gbmGrid <- expand.grid(.interaction.depth = seq(1, 7, by =2),
+                       .n.trees = seq(100, 1000, by = 50),
+                       .shrinkage = c(.01, .1))
+gbmModel <- train(CompressiveStrength ~ .,
+                  data = trainingSet,
+                  method = "gbm",
+                  tuneGrid = gbmGrid,
+                  verbose = FALSE,
+                  trControl = controlObject) 
