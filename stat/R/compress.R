@@ -38,4 +38,5 @@ averaged <- ddply(mixtures,
 set.seed(100)
 forTraining <- createDataPartition(averaged$CompressiveStrength,
                                    p = 3/4)[[1]]
- 
+trainingSet <- averaged[ forTraining,]
+testSet <- averaged[-forTraining,] 
