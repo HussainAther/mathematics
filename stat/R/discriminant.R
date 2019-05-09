@@ -10,3 +10,6 @@ fullCovMat <- cov(training[, fullSet])
 fullSetResults <- trim.matrix(fullCovMat)
 "May choose what to exclude using this function."
 fullSetREsults$names.discarded
+ctrl <- trainControl(summaryFunction = twoClassSummary, classProbs = TRUE)
+ctrl <- trainControl(method = "LGOCV", summaryFunction = twoClassSummary,
+                     classProbs = TRUE, index = list(TrainSet = pre2008))
