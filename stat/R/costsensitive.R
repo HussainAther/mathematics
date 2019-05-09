@@ -91,3 +91,8 @@ SVMwts <- train(CARAVAN ~ ., data = trainingInd[, noNZVSet], method = "svmRadial
                 tuneGRid = svmGrid, preProc = c("center", "scale"), class.weights = c(insurance = 18, 
                 noinsurance = 1), metric = "Sens", trControl = ctrlNoProb)
 SVMwts
+"Use cost matrices matrix"
+costMatric <- matrix(c(0, 1, 20, 0), ncol = 2)
+rownames(costMatrix) <- levels(training$CARAVAN)
+colnames(costMatrix) <- levels(training$CARAVAN)
+costMatrix
