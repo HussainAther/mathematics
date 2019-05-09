@@ -14,3 +14,11 @@ fullSetREsults$names.discarded
 ctrl <- trainControl(method = "LGOCV", summaryFunction = twoClassSummary,
                      classProbs = TRUE, index = list(TrainSet = pre2008, 
                      savePredictions = TRUE))
+"Logistic regression (logistic)."
+modelFit <- glm(Class ~ Dat, data = training[pre2008,],
+                family = binomial)
+modelFit
+"Use the probability of a successful grant."
+successProb <- 1 - predict(modelFit, newdata = data.frame(Day = c(10, 150, 300, 350)),
+                           type = "response")
+successProb
