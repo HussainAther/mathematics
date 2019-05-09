@@ -84,4 +84,8 @@ rpCostBag <- train(trainData[, predictors], trainData$Class,
                    "bag", B = 50, bagControl = bagControl(fit = rpCost,
                    predict = rpPredict, aggregate = rpAgg, downSample = FALSE), 
                    trControl = ctrl)
-
+"Weighted SVM svm"
+svmRFitCost <- train(modForm, data = trainData, method = "svmRadial",
+                     metric = "Cost", maximize = FALSE, preProc = c("center", "scale"),
+                     class.weights = c(VF = 1, F = 1, M = 5, L = 10), tuneLength = 15,
+                     trControl = ctrl)
