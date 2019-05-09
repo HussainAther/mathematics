@@ -42,3 +42,7 @@ set.seed(100)
 lrFull <- train(training[, fullSet], y = training$Class,
                 method = "glm", metric = "ROC", trControl = ctrl)
 lrFull
+"Use a smaler predictor set."
+lrReduced <- train(training[, reducedSet], y = training$Class,
+                   method = "glm", metric = "ROC", trcontrol = ctrl)
+lrReduced
