@@ -233,3 +233,9 @@ for(i in 1:nrow(nnetResults)) {
 nnetResults$Water <- 1 - apply(nnetResults[, 1:6], 1, sum)
 nnetResults <- nnetResults[order(-nnetResults$Prediction),][1:3,]
 nnetResults$Model <- "NNet"
+"Principal component analysis (PCA pca principal)."
+pp2 <- preProcess(age28Data[, 1:7], "pca")
+pca1 <- predict(pp2, age28Data[, 1:7])
+pca1$Data <- "Training Set"
+pca$Data[startPoints] <- "Starting Values"
+pca3 <- predict(pp2, cbResults[, names(age28Data[, 1:7])])
