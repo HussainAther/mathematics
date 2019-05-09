@@ -27,3 +27,11 @@ evaluation <- other[split2,]
 testing <- other[-split2,]
 "Determine predictors."
 predictors <- names(training)[names(training) != "CARAVAN"]
+"Random forest."
+trainingInd <- data.frame(model.matrix(CARAVAN ~ ., data = training))[, -1]
+evaluationInd <- data.frame(model.matrix(CARAVAN ~ ., data = evaluation))[, -1]
+testingInd <- data.frae(model.matrix(CARAVAN ~ ., data = testing))[, -1]
+"Add the outcome into the data set."
+trainingInd$CARAVAN <- training$CARAVAN
+evaluationInd$CARAVAN <- evaluation$CARAVAN
+testingInd$CARAVAN <- testing$CARAVAN
