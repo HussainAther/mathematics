@@ -170,3 +170,7 @@ pool <- scaledTrain
 index <- maxDissim(starters, pool, 14)
 startPoints <- c(startMixture, index)
 starters <- age28Data[startPoints, 1:7]
+"Remove water."
+startingValues <- starts[, -4]
+"Maximize compressive strength using optim to search the mixture space for optimal formulations.
+This minimzies a function so it returns the negative of the compress strength."
