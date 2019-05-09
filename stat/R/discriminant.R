@@ -81,3 +81,9 @@ predict(glmnetModel, newx = as.matrix(training[1:5, fullSet]), s = c(.05, .1, .2
         type = "class")
 predict(glmnetModel, newx = as.matrix(training[1:5, fullSet]), s = c(.05, .1, .2), 
         type = "nonzero")
+glmnGrid <- expand.grid(.alpha = c(0, .1, .2, .4, .6, .8, 1), 
+                        .lambda = seq(.01, .2, length = 40))
+glmTuned <- train(training[, fullSet], y = training$Class,
+                  method = "glmnet", tuneGrid = glmnGrid,
+                  preProc = c("center", "scale"), metric = "ROC",
+                  trControl = ctrl)
