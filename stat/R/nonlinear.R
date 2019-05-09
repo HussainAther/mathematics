@@ -40,3 +40,5 @@ svmRModel <- train(training[, reducedSet], training$Class,
                    tuneGrid = svmRGridReduced, fit = FALSE, 
                    trControl = ctrl)
 svmRModel
+library(kernlab)
+predict(svmRModel, newdata = head(training[-pre2008, reducedSet]))
