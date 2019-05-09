@@ -38,3 +38,7 @@ postPredValue(data = simulatedTest$RFclass,
               reference = simulatedTest$class,
               positive = "Class1",
               prevalence = .9) 
+"Create a confusion matrix."
+confusionMatrix(data = simulatedTest$RFclass,
+                reference = simulatedTest$class,
+                positive = "Class1")
