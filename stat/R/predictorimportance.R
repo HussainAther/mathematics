@@ -52,3 +52,6 @@ fisher.test(ciTable)
 "X2 test Chi squared chi."
 DayTable <- table(training[pre2008, "Weekday"], training[pre2008, "Class"])
 chisq.test(DayTable)
+"Model-based model importance scores."
+rfImp <- randomForest(Class ~ ., data = segTrain, ntree = 2000, importance = TRUE)
+
