@@ -101,3 +101,6 @@ c5Matrix <- matrix(c(0, 20, 1, 0), ncol = 2)
 rownames(c5matrix) <- levels(training$CARAVAN)
 colnames(c5matrix) <- levels(training$CARAVAN)
 c5Matrix
+C5Cost <- train(x = training[, predictors], y = training$CARAVAN,
+                method = "C5.0", metric = "Kappa", cost = c5Matrix,
+                trControl = ctrlNoProb)
