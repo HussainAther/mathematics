@@ -81,3 +81,5 @@ estimates of the probabilities Pr[X] and Pr[X|Y = C_l]. We use the NaiveBayes."
 BayesCal <- NaiveBayes(class ~ QDAprob, data = simulatedTrain, usekernel = TRUE)
 BayesProbs <- predict(BayesCal, newdata = simulatedTest[, "QDAprob", drop = FALSE])
 simulatedTest$QDABayes <- BayesProbs$posterior[, "Class1"]
+calCurve2 <- calibration(class ~ QDAprob + QDABayes + QDAsigmoid, data = simulatedTest)
+xyplot(calCurve2)
