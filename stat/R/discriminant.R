@@ -30,3 +30,6 @@ daySquaredModel
 library(rms)
 rcsFit <- lrm(Class ~ rcs(Day), data = training[pre2008,])
 rscFit
+"Predict."
+dayProfile <- Predict(rcsFit, Day = 0:365, fun = function(x) - x)
+plot(dayProfile, ylab = "Log Odds")
