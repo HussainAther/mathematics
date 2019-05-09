@@ -39,3 +39,7 @@ gbmPred
 gbmClass <- ifelse(gbmPred > .5, "successful", "unsuccessful")
 gbmClass <- factor(gbmClass, levels = levels(training$Class)
 gbmClass
+"Train boosted versions of C5.0."
+library(C50)
+C5boost <- C5.0(Class ~ NumCI + Weekday, data = training[pre2008,], trials = 10)
+C5boost
