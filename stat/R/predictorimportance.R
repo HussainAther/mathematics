@@ -12,3 +12,6 @@ numericPreds <- names(solTRainXtrans)[!fpCols]
 corrValues <- apply(solTrainXtrans[, numericPreds], MARGIN =2,
                     FUN = function(x, y) cor(x, y),
                     y = solTrainY)
+"LOESS smoother. loess Loess."
+smoother <- loess(solTrainY ~ solTrainXtrans$NumCarbon)
+smoother
