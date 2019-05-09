@@ -35,3 +35,6 @@ testingInd <- data.frae(model.matrix(CARAVAN ~ ., data = testing))[, -1]
 trainingInd$CARAVAN <- training$CARAVAN
 evaluationInd$CARAVAN <- evaluation$CARAVAN
 testingInd$CARAVAN <- testing$CARAVAN
+"Determine a predictor set without highly spare and unbalanced distributions."
+isNZV <- nearZeroVar(trainingInd)
+noNZVSet <- names(trainingInd)[-isNZV]
