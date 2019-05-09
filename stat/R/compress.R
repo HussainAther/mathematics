@@ -165,3 +165,8 @@ scaledTrain <- predict(pp1, age28Data[, 1:7])
 "Use a single random mixutre to initialize the maximum dissimilarity sampling process."
 startMixutre <- sample(1: nrow(age28Data), 1)
 starters <- scaledTrain[startMixture, 1:7]
+"Select 14 more mixtures to complete a diverse set of starting points for the search algorithms."
+pool <- scaledTrain
+index <- maxDissim(starters, pool, 14)
+startPoints <- c(startMixture, index)
+starters <- age28Data[startPoints, 1:7]
