@@ -26,3 +26,15 @@ sensitivity(data = simulatedTest$RFclass,
 specificity(data = simulatedTest$RFclass,
             reference = simulatedTest$class,
             negative = "Class2")
+"We can also predict using the prevalence or prior judgement."
+posPredValue(data = simulatedTest$RFclass,
+             reference = simulatedTest$class,
+             positive = "Class1")
+negPredValue(data = simulatedTest$RFclass,
+             reference = simulatedTest$class,
+             positive = "Class2")
+"Change the prevalence manually."
+postPredValue(data = simulatedTest$RFclass,
+              reference = simulatedTest$class,
+              positive = "Class1",
+              prevalence = .9) 
