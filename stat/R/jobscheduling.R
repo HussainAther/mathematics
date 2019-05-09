@@ -89,3 +89,5 @@ svmRFitCost <- train(modForm, data = trainData, method = "svmRadial",
                      metric = "Cost", maximize = FALSE, preProc = c("center", "scale"),
                      class.weights = c(VF = 1, F = 1, M = 5, L = 10), tuneLength = 15,
                      trControl = ctrl)
+"Confusion confusion matrix."
+confusionMatrix(rpFitCost, norm = "none")
