@@ -95,4 +95,8 @@ sparseLdaModel <- sda(x = as.matrix(training[, fullSet]),
 inputData <- list(x = t(training[, fullSet]), y = training$Class)
 library(pamr)
 nscModel <- pamr.train(data = inputData)
-
+exampleData <- t(training[1:5, fullSet])
+pamr.predict(nscModel, newx, exampleData, threshold = 5)
+thresh17Vars <- pamr.predict(nscModel, newx = exampleData,
+                             threshold = 17, type = "nonzero")
+fullSet[thresh17Vars]
