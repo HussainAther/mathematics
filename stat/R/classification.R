@@ -47,3 +47,7 @@ library(pROC)
 rocCurve <- roc(response = simulatedTest$class,
                 predictor = simulatedTest$RFprob,
                 lebels = rev(levels(simulatedTest$class)))
+auc(rocCurve)
+ci.roc(rocCurve)
+"Use plot for ROC curve."
+plot(rocCurve, legacy.axes = TRUE)
