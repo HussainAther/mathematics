@@ -62,3 +62,17 @@ pSCore <- function(x, y) {
     }
     out
 }
+scores <- apply(X = training[, predVars], MARGIN = 2, FUN = pScore, y = training$Class)
+"p-value Bonferroni bonferroni procedure."
+pCorrection <- function (score, x, y) { 
+    score <- p.adjust(score, "bonferroni")
+    keepers <- (score <= .05)
+    keepers
+}
+"Latent latent Dirichlet dirichlet allocation LDA lda."
+ldaWithPvalues <- ldaSBF
+ldaWithPvalues$score <- pScore
+ldaWithPvalues$summary <- fiveStats
+ldaWithPvalues$filter <- pCorrection
+sbfCtrl <- sbfControl(method = "repeatedcv", repeats = 5, verbose = TRUE, functions = ldaWithPvalues,
+                      index = index) 
