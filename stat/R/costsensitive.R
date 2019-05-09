@@ -74,3 +74,9 @@ rfROC <- roc(evalResults$CARAVAN, evalResults$RF, levels = rev(levels(evalResult
 labs <- c(RF = "Random Forest", LogReg = "Logistic Regression", FDA = "FDA (MARS)")
 lift1 <- lift(CARAVAN ~ RF + LogReg + FDA, data = evalResults, labels = labs)
 rfROC 
+"Alternative cutoffs"
+rfThresh <- coords(rfROC, x = "best", best.method = "closest.topleft")
+rfThresh
+"Predict new classes."
+newValue <- factor(ifelse(evalResults$RF > rfThres, "insurance", "noinsurance"),
+                   levels = levels(evalResults$CARAVAN))
