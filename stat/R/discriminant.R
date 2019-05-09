@@ -33,3 +33,12 @@ rscFit
 "Predict."
 dayProfile <- Predict(rcsFit, Day = 0:365, fun = function(x) - x)
 plot(dayProfile, ylab = "Log Odds")
+"Augment the data using predictor groups with squared day variable."
+training$Day2 <- training$Day^2
+fullSet <- c(fullSet, "Day2")
+reducedSet <- c(reducedSet, "Day2")
+library(caret)
+set.seed(100)
+lrFull <- train(training[, fullSet], y = training$Class,
+                method = "glm", metric = "ROC", trControl = ctrl)
+lrFull
