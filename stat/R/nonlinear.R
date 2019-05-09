@@ -24,3 +24,6 @@ numWts - 1*(maxSize * (length(reducedSet) + 1) + maxSize + 1)
 nnetFit <- train(x = training[, reducedSet], y = training$Class,
                  method = "nnet", metric = "ROC", preProc = c("center", "scale", "spatialSign"),
                  tuneGrid = nnetGrid, trace = FALSE, maxit = 2000, MaxNWts = numWts, trControl = ctrl)
+"Flexible flexible discriminant analysis."
+library(earth)
+fdaModel <- fda(Class ~ Dat + NumCI, data = training[pre2008,], method = earth)
