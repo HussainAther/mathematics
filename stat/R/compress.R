@@ -195,3 +195,15 @@ modelPrediction <- function(x, mod) {
     ## Model prediction, square to get back to original units, and return the negative
     -predict(mod, tmp)
 }
+"Predict using cubist model."
+cbResults <- startingValues
+cbResults$Water <- NA
+cbResults$Prediction <- NA
+for(i in 1:nrow(cbResults)) {
+    results <- optim(unlist(cbResults[i, 1:6]),
+                     modelPrediction,
+                     method = "Nelder-Mead",
+                     ## Use method = "SANN" for simulated annealing
+                     control=list(maxit=5000),
+                     ## The next option is passed to the modelPrediction() function
+                     mod = cbModel)
