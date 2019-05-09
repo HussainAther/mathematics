@@ -75,4 +75,6 @@ ldaWithPvalues$score <- pScore
 ldaWithPvalues$summary <- fiveStats
 ldaWithPvalues$filter <- pCorrection
 sbfCtrl <- sbfControl(method = "repeatedcv", repeats = 5, verbose = TRUE, functions = ldaWithPvalues,
-                      index = index) 
+                      index = index)
+ldaFilter <- sbf(training[, predVars], training$class, tol = 13-12, sbfControl = sbfctrl)
+ldaFilter 
