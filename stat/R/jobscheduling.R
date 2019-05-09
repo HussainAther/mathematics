@@ -26,4 +26,12 @@ costSummary <- function(data, lev = NULL, model = NULL) {
     if (is.character(data$obs)) data$obs <- factor(data$obs, levels = lev)
     c(postResample(data[, "pred"], data[, "obs"]),
       Cost = cost(data[, "pred"], data[, "obs"))
-} 
+}
+"Control object"
+ctrl <- trainControl(method = "repeatedcv", repeats = 5, summaryFunction = costSummary)
+"Matrix representation of the costs (matrix)."
+costMatrix <- ifelse(diag(4) == 1, 0, 1)
+costMatrix[1, 4] <- 10
+costMatrix[1, 3] <- 5
+costMatrix[2, 4] <- 5
+costMatrix[2, 4] <- 5 
