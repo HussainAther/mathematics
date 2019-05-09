@@ -99,4 +99,7 @@ ctreeModel <- train(CompressiveStrength ~ .,
                     method = "ctree",
                     tuneLength = 10,
                     trControl = controlObject)
- 
+mtModel <- train(CompressiveStrength ~ .,
+                 data = trainingSet,
+                 method = "M5",
+                 trControl = controlObject) 
