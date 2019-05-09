@@ -54,3 +54,13 @@ ctrl <- trainControl(method = "cv", classProbs = TRUE", summaryFunction = fiveSt
 ctrlNoProb <- ctrl
 ctrlNoProb$summaryFunction <- fourStats
 ctrlNoProb$classProbs <- FALSE
+"Three baseline models."
+"Random field specification."
+rfFit <- train(CARAVAN ~ ., data = trainingInd, method = "rf",
+               trControl = ctrl, ntree = 1500, tuneLength = 5, metric = "ROC")
+"Logistic regression."
+lrFit <- train(CARAVAN ~ ., data = trainingInd[, noNZVSet], method = "glm",
+               trControl = ctrl, metric = "ROC")
+"Flexible discriminant analysis."	
+fdaFit <- train(CARAVAN ~ ., data = training, method = "fda", tuneGrid = data.frame(.degree = 1,
+                nprune = 1:25), metric = "ROC", trControl = ctrl)
