@@ -214,3 +214,22 @@ for(i in 1:nrow(cbResults)) {
 }
 "Calculate the water proportion."
 cbResults$Water <- 1 - apply(cbResults[, 1:6], 1, sum)
+"Keep top three mixtures."
+cbResults <- cbResults[order(-cbResults$Prediction),][1:3,]
+cbResults$Model <- "Cubist"
+"For the neural network model."
+nnetResults <- startingValues
+nnetResults$Water <- NA
+nnetResults$Prediction <- NA
+for(i in 1:nrow(nnetResults)) {
+    results <- optim(unlist(nnetResults[i, 1:6,]),
+                     modelPrediction,
+                     method = "Nelder-Mead",
+                     control=list(maxit5000),
+                     mod = nnetModel)
+    nnetResults$Prediction[i] <- -results$value
+    nnetResults[i, 1:6] <- results$par
+}
+nnetResults$Water <- 1 - apply(nnetResults[, 1:6], 1, sum)
+nnetResults <- nnetResults[order(-nnetResults$Prediction),][1:3,]
+nnetResults$Model <- "NNet"
