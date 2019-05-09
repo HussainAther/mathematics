@@ -48,3 +48,7 @@ fisher.test(Sp62BTable)
 "p-value for assocation."
 ciTable <- table(training[pre2008, "CI.1950"], training[pre2008, "Class"])
 citable
+fisher.test(ciTable)
+"X2 test Chi squared chi."
+DayTable <- table(training[pre2008, "Weekday"], training[pre2008, "Class"])
+chisq.test(DayTable)
