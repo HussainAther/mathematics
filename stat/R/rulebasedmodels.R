@@ -17,3 +17,19 @@ summary(C5tree)
 rpartGrouped <- train(x = training[, factorPredictors], y = training$Class,
                       method = "rpart", tuneLength = 30, metric = "ROC",
                       trControl = ctrl)
+PART(Class ~ NumCI + Weekday, data = training[pre2008,])
+C5rules <- C5.0(Class ~ NumCI + Weekday, data = training[pre2008,], rules = TRUE)
+C5Rules
+summary(C5rules)
+"Bagged bagged trees."
+bagging(Class ~ Weekday + NumCI, data = training[pre2008,])
+"Random random forest."
+library(randomForest)
+randomForest(Class ~ NumCI + Weekday, data = training[pre2008,])
+"Boosted boosted trees."
+library(gbm)
+forGBM <- training
+forGBM$Class <- ifelse(forGBM$Class == "successful", 1, 0)
+gbmModel <- gbm(Class ~ NumCI + Weekday, data = forGBM[pre2008,],
+                distribution = "bernoulli", interaction.depth = 9,
+                n.trees = 1400, shrinkage = .01, verbose = FALSE)
