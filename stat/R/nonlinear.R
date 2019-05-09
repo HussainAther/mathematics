@@ -21,3 +21,6 @@ predict(nnetMod, newdata = head(testing), type = "class")
 nnetGrid <- expand.grid(.size = 1:10, .decay = c(0, .1, 1, 2))
 maxSize <- max(nnetGrid$.size)
 numWts - 1*(maxSize * (length(reducedSet) + 1) + maxSize + 1)
+nnetFit <- train(x = training[, reducedSet], y = training$Class,
+                 method = "nnet", metric = "ROC", preProc = c("center", "scale", "spatialSign"),
+                 tuneGrid = nnetGrid, trace = FALSE, maxit = 2000, MaxNWts = numWts, trControl = ctrl)
