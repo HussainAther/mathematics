@@ -47,3 +47,18 @@ knnFit <- train(training[, reducedSet[, training$Class,
                 method = "knn", metric = "ROC", preProc = c("center", "scale"),
                 tuneGrid = data.frame(.k = c(4*(0:5)+1, 20*(1:5)+1, 50*(2:9)+1)),
                 trControl = ctrl)
+"Naive naive bayes."
+"Some predictors are already stored as factors."
+factors <- c("SponsorCode", "ContractValueBand", "Month", "Weekday")
+nbPredictors <- factorPredictors[factorPredictors %in% reducedSet]
+nbPredictors <- c(nbPredictors, factors)
+"Leak the ones we need."
+nbTraining - training[, c("Class", nbPredictors)]
+nbTesting <- testing[, c("Class", nbPredictors)]
+for(i in nbPredictors) {
+    varLevels <- sort(unique(training[, i]))
+    if(length(varLevels) <= 15) {
+        nbTraining[, i] <- factor(nbTraining[, i], levels = paste(varLevels))
+        nbTesting[, i] <- factor(nbTesting[, i], levels = paste(varLevels))
+    }
+}
