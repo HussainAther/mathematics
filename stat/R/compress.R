@@ -136,4 +136,17 @@ cbModel <- train(CompressiveStrength ~ .,
                  data = trainingSet,
                  method = "cubist",
                  tuneGrid = cubistGrid,
-                 trControl = controlObject) 
+                 trControl = controlObject)
+"Resampling results"
+allResamples <- resamples(list("Linear Reg" = lmModel,
+                               "PLS" = plsModel,
+                               "Elastic Net" = enetModel,
+                               MARS = earthModel,
+                               SVM = svmRModel,
+                               "Neural Networks" = nnetModel,
+                               CART = rpartModel,
+                               "Cond Inf Tree" = ctreeModel,
+                               "Bagged Tree" = treebagModel,
+                               "Boosted Tree" = gbmModel,
+                               "Random Forest" = rfModel,
+                               Cubist = cbModel)) 
