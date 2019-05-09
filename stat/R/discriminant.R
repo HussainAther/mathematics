@@ -46,3 +46,9 @@ lrFull
 lrReduced <- train(training[, reducedSet], y = training$Class,
                    method = "glm", metric = "ROC", trcontrol = ctrl)
 lrReduced
+"Linear discriminant analysis."
+library(MASS)
+grantPreProcess <- preProcess(training[pre2008, reducedSet])
+grantPreProcess
+scaledPre2008 <- predict(grantPreProcess, newdata = training[pre2008, reducedSet])
+scaled2008HoldOut <- predict(grantPreProcess, newdata = training[-pre2008, reducedSet])
