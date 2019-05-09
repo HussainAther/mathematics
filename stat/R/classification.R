@@ -51,3 +51,9 @@ auc(rocCurve)
 ci.roc(rocCurve)
 "Use plot for ROC curve."
 plot(rocCurve, legacy.axes = TRUE)
+"Use the lift curve."
+labs <- c(RFprob = "Random Forest",
+          QDAprob = "Quadratic Discriminant Analysis")
+liftCurve <- lift(class ~ RFprob + QDAprob, data = simulatedTest,
+                  labels = labs)
+liftCurve
