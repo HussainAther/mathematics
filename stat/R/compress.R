@@ -40,21 +40,25 @@ forTraining <- createDataPartition(averaged$CompressiveStrength,
                                    p = 3/4)[[1]]
 trainingSet <- averaged[ forTraining,]
 testSet <- averaged[-forTraining,]
+"Formula we use for modeling"
 modFormula <- paste("CompressiveStrength ~ (.)^2 + I(Comenet^2) + ",
                     "I(BlastFurnaceSlag^2) + I(FlyAsh^2) + I(Water^2) +",
                     "I(Superplasticizer^2) + I(CoarseAggregate^2) + ",
                     "I(FineAggregate^2) + I(Age^2)")
 modFormula <- as.formula(modFormula)
+"10-fold cross-validation"
 controlObject <- trainControl(method = "repeatedcv", 
                               repeats = 5,
                               number 10)
 set.seed(100)
+"Linear regression to create same folds"
 linearReg <- train(modFormula,
                    data = trainingSet,
                    method = "lm",
                    trControl = controlObject)
 linearReg
 set.seed(100)
+"Other two linear models"
 plsModel <- train(modForm, data = trainingSet,
                   method = "pls",
                   prePoc = c("center", "scale"),
@@ -67,6 +71,7 @@ enetModel <- train(modForm, data = trainingSet,
                    preProc = c("center", "scale"),
                    tuneGrid = enetGrid,
                    trControl = controlObject)
+"MARS, neural networks and SVMs"
 earthModel <- train(CompressiveStrength ~ ., data = trainingSet,
                     method = "earth",
                     tuneGrid = expand.grid(.degree = 1,
@@ -89,6 +94,7 @@ nnetModel <- train(CompressiveStrength ~ .,
                    trace = FALSE,
                    maxit = 1000,
                    trControl = controlObject)
+"Regression and model trees"
 rpartModel <- train(CompressiveStrength ~ .,
                     data = trainingSet,
                     method = "rpart",
