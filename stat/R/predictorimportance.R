@@ -41,4 +41,10 @@ perm <- permuteRelief(x = cellData[, -1], y = cellData$Class, nperm = 500,
                       estimator = "ReliefFequalK", ReliefIterations = 50)
 histogram(~ value|Predictor, data = perm$permutations)
 "MIC statistic Maximal maximal information coefficient."
-micValues <- mine(x = cellData[, -1], y = ifelse(cellData$Class == "PS, 1, 0))
+micValues <- mine(x = cellData[, -1], y = ifelse(cellData$Class == "PS", 1, 0))
+"Odds ratio and fisher test of association."
+Sp62BTable <- table(training[pre2008, "Sponsor62B"], training[pre2008, "Class"])
+fisher.test(Sp62BTable)
+"p-value for assocation."
+ciTable <- table(training[pre2008, "CI.1950"], training[pre2008, "Class"])
+citable
