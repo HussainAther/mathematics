@@ -48,3 +48,7 @@ svmFuncs <- caretFuncs
 svmFuncs$summary <- fivestats
 ctrl <- rfeControl(method = "repeatedcv", repeats = 5, verbose = TRUE,
                    functions = svmFuncs, index = index)
+svmRFE <- rfe(x = training[, predVars], y = training$Class, sizes = varSeq, metric = "ROC",
+              rfeControl = ctrl, method = "svmRadial", tuneLength = 12, preProc = c("center", "scale"),
+              trControl = trainControl(method = "cv", verboseIter = FALSE, classProbs = TRUE))
+svmRFE
