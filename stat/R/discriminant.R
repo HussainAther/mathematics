@@ -60,7 +60,12 @@ ldaFit1 <- train(x = training[, reducedSet], y = training$Class,
 lidFit1
 ldaTestClasses <- predict(ldaFit1, newdata = testing[, reducedSet])
 ldaTestProbs <- predict(ldaFit1, newdata = testing[, reducedSet], type = "prob")
-"Partial least squares discriminant analysis (partial)."
+"Partial least squares discriminant analysis (partial) PLS pls."
 plsdaModel <- plsda(x = training[pre2008, reducedSet],
                     y = training[pre2008, "Class"],
                     scale = TRUE, probMethod = "Bayes", ncomp 4)
+plsPred <- predict(plsdaModel, newdata = training[-pre2008, reducedSet], type = "prob")
+"We evaluate the first ten PlS components."
+plsFit2 <- train(x = training[, reducedSet], y = training$Class,
+                 method = "pls", tuneGrid = expand.grid(.ncomp = 1:10),
+                 preProc = c("center", "scale"), metric = "ROC", trControl = ctrl)
