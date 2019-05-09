@@ -31,4 +31,5 @@ varSeq <- seq(1, length(predVars)-1, by = 2)
 "Logistic regression."
 initial <- glm(Class ~ tau + BEGF + E4 + IL_3, data = training, family = binomial)
 stepAIC(initial, direction = "both")
-
+"Recursive feature elimination (recursive)."
+str(rfFuncs)
