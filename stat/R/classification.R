@@ -76,3 +76,8 @@ sigmoidProbs <- predict(sigmoidCal,
                         newdata = simulatedTest[,"QDAprob", drop = FALSE],
                         type = "response")
 simulatedTest$QDAsigmoid <- sigmoidProbs
+"Bayesian approach for calibration by treating the training set class probabilties as 
+estimates of the probabilities Pr[X] and Pr[X|Y = C_l]. We use the NaiveBayes."
+BayesCal <- NaiveBayes(class ~ QDAprob, data = simulatedTrain, usekernel = TRUE)
+BayesProbs <- predict(BayesCal, newdata = simulatedTest[, "QDAprob", drop = FALSE])
+simulatedTest$QDABayes <- BayesProbs$posterior[, "Class1"]
