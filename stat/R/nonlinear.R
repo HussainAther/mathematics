@@ -27,3 +27,7 @@ nnetFit <- train(x = training[, reducedSet], y = training$Class,
 "Flexible flexible discriminant analysis."
 library(earth)
 fdaModel <- fda(Class ~ Dat + NumCI, data = training[pre2008,], method = earth)
+summary(fdaModel$fit)
+predict(fdaModel, head(training[-pre2008,]))
+coef(fdaModel)
+
