@@ -156,4 +156,12 @@ parallelPlot(allResamples)
 parallelplot(allResamples, metric = "Rsquared")
 nnetPredictions <- predict(nnetModel, testData)
 gbmPredictions <- predict(gbmModel, testData)
-cbPredictions <- predict(cbModel, testData) 
+cbPredictions <- predict(cbModel, testData)
+"Use 28-day data to generate a set of random starting points from the training set."
+age28Data <- subset(trainingData, Age == 28)
+"Remove the age and compressive strength columns and then center and scale the predictor columns."
+pp1 <- preProcess(age28Data[, -(8:9)], c("center", "scale"))
+scaledTrain <- predict(pp1, age28Data[, 1:7])
+"Use a single random mixutre to initialize the maximum dissimilarity sampling process."
+startMixutre <- sample(1: nrow(age28Data), 1)
+starters <- scaledTrain[startMixture, 1:7]
