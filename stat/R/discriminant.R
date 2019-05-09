@@ -106,3 +106,5 @@ nscTuned <- train(x = training[, fullSet], y = training$Class,
                   method = "pam", preProc = c("center", "scale")
                   tuneGRid = nscGrid, metirc = "ROC", trControl = ctrl)
 predictors(nscTuned)
+"Variable importance (variable) based on distance between the lcass centroid and overall centroid."
+varImp(nscTuned, scale = FALSE)
