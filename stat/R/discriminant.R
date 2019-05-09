@@ -72,3 +72,10 @@ plsFit2 <- train(x = training[, reducedSet], y = training$Class,
 plsImpGrant <- varImp(plsFit2, scale = FALSE)
 plsImpGrant
 plot(plsImpGrant, top = 20, scales = list(y = list(cex = .05)))
+"Penalized models (penalized)"
+library(glmnet)
+glmnetModel < glmnet(x = as.matrix(training[, fullSet]),
+                     y = training$Class, family = "binomial")
+"Compute predictions for three difference levels of regularization."
+predict(glmnetModel, newx = as.matrix(training[1:5, fullSet]), s = c(.05, .1, .2), 
+        type = "class")
