@@ -62,3 +62,7 @@ for(i in nbPredictors) {
         nbTesting[, i] <- factor(nbTesting[, i], levels = paste(varLevels))
     }
 }
+library(klaR)
+nBayesFit <- NaiveBayes(Class ~ ., data = nbTraining(pre2008,],
+                        usekernel = TRUE, fL = 2) 
+predict(nBayesFit, newdata = head(nbTesting))
