@@ -29,4 +29,8 @@ tVals <- apply(solTrainXtrans[, fpCols], MARGIN = 2, FUN = getTstats,
                y = solTrainY)
 "Switch the dimensions."
 tVals <- t(tVals)
+"Categorical outcomes using filterVarImp."
+data(segmentationData)
+cellData <- subset(segmentationData, Case == "Train")
+cellData$Case <- cellData$Cell <- NULL
 
