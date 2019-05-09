@@ -47,4 +47,10 @@ modFormula <- paste("CompressiveStrength ~ (.)^2 + I(Comenet^2) + ",
 modFormula <- as.formula(modFormula)
 controlObject <- trainControl(method = "repeatedcv", 
                               repeats = 5,
-                              number 10) 
+                              number 10)
+set.seed(100)
+linearReg <- train(modFormula,
+                   data = trainingSet,
+                   method = "lm",
+                   trControl = controlObject)
+linearReg 
