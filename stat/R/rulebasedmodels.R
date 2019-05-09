@@ -33,3 +33,9 @@ forGBM$Class <- ifelse(forGBM$Class == "successful", 1, 0)
 gbmModel <- gbm(Class ~ NumCI + Weekday, data = forGBM[pre2008,],
                 distribution = "bernoulli", interaction.depth = 9,
                 n.trees = 1400, shrinkage = .01, verbose = FALSE)
+gbmPred <- predict(gbmModel, newdata = head(training[-pre2008,]), 
+                   type = "response", n.trees = 1400)
+gbmPred
+gbmClass <- ifelse(gbmPred > .5, "successful", "unsuccessful")
+gbmClass <- factor(gbmClass, levels = levels(training$Class)
+gbmClass
