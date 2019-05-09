@@ -21,3 +21,6 @@ ingredients. The ingredients used in Yeh (2006) were cement (kg/m3),
 fly ash (kg/m3), small particles produced by burning coal, blast furnace 
 slag (kg/m3), and water (kg/m3)"
 library(AppliedPredictiveModeling)
+data(concrete)
+str(concrete)
+str(mixtures)
