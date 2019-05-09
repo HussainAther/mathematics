@@ -24,3 +24,9 @@ library(AppliedPredictiveModeling)
 data(concrete)
 str(concrete)
 str(mixtures)
+featurePlot(x = concrete[, -9],
+            y = concrete$CompressiveStrength,
+            ## Add space between panels
+            between = list(x=1, y=1),
+            ## Add background grid ('g') and a smoother ('smooth')
+            type = c("g", "p", "smooth"))
