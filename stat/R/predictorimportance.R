@@ -39,3 +39,6 @@ reliefValues <- attrEval(Class ~ ., data = cellData, estimator = "ReliefFequalK"
                          ReliefIterations = 50)
 perm <- permuteRelief(x = cellData[, -1], y = cellData$Class, nperm = 500, 
                       estimator = "ReliefFequalK", ReliefIterations = 50)
+histogram(~ value|Predictor, data = perm$permutations)
+"MIC statistic Maximal maximal information coefficient."
+micValues <- mine(x = cellData[, -1], y = ifelse(cellData$Class == "PS, 1, 0))
