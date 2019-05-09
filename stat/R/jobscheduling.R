@@ -21,4 +21,9 @@ cost <- function(pred, obs) {
             cost[pred == "VF" & obs == "M"] <- 5
         out <- mean(cost)
     } else out <- NA
+}
+costSummary <- function(data, lev = NULL, model = NULL) {
+    if (is.character(data$obs)) data$obs <- factor(data$obs, levels = lev)
+    c(postResample(data[, "pred"], data[, "obs"]),
+      Cost = cost(data[, "pred"], data[, "obs"))
 } 
