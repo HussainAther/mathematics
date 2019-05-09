@@ -91,3 +91,8 @@ glmTuned <- train(training[, fullSet], y = training$Class,
 library(sparseLDA)
 sparseLdaModel <- sda(x = as.matrix(training[, fullSet]),
                       y = training$Class, lambda = .01, stop = -6)
+"Nearest shrunken centroids nearest."
+inputData <- list(x = t(training[, fullSet]), y = training$Class)
+library(pamr)
+nscModel <- pamr.train(data = inputData)
+
