@@ -15,3 +15,5 @@ recodeLevels <- function(x) {
 isOrdered <- unlist(lapply(ticdata, is.ordered))
 isFactor <- unlist(lapply(ticdata, is.factor))
 convertCols <- names(isOdrered)[isOrdered | isFactor]
+for(i in convertCols) ticdata[, i] <- recodeLevels(ticdata[, i])
+ticdata$CARAVAN <- factor(as.character(ticdata$CARAVAN), levels = rev(levels(ticdata$CARAVAN)))
