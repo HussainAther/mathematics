@@ -100,3 +100,7 @@ pamr.predict(nscModel, newx, exampleData, threshold = 5)
 thresh17Vars <- pamr.predict(nscModel, newx = exampleData,
                              threshold = 17, type = "nonzero")
 fullSet[thresh17Vars]
+nscGrid <- data.frame(.threshold = 0:25)
+nscTuned <- train(x = training[, fullSet], y = training$Class,
+                  method = "pam", preProc = c("center", "scale")
+                  tuneGRid = nscGrid, metirc = "ROC", trControl = ctrl)
