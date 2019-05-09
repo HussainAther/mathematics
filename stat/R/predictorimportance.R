@@ -33,4 +33,9 @@ tVals <- t(tVals)
 data(segmentationData)
 cellData <- subset(segmentationData, Case == "Train")
 cellData$Case <- cellData$Cell <- NULL
-
+rocValues <- filterVarImp(x = cellData[, -1], y = cellData$Class)
+"Relief statistics."
+reliefValues <- attrEval(Class ~ ., data = cellData, estimator = "ReliefFequalK",
+                         ReliefIterations = 50)
+perm <- permuteRelief(x = cellData[, -1], y = cellData$Class, nperm = 500, 
+                      estimator = "ReliefFequalK", ReliefIterations = 50)
