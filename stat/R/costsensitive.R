@@ -7,3 +7,8 @@ library(kernlab)
 library(pROC)
 library(rpart)
 data(ticdata)
+recodeLevels <- function(x) {
+    x <- as.numeric(x)
+    x <- gsub(" ", "0", format(as.numeric(x)))
+    factor(x)
+}
