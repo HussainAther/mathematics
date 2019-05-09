@@ -53,3 +53,35 @@ C50Cost <- train(x = trainData[, predictors], y = trainData$Class,
                                                             .model = "tree", 
                                                             .winnow = c(TRUE, FALSE)),
                  trControl = ctrl)
+"Cost-sensitive bagged trees."
+rpCost <- function(x, y) {
+    costMatrix <- ifelse(diag(4) == 1, 0, 1)
+    costMatrix[4, 1] <- 10
+    costMatrix[3, 1] <- 5
+    costMatrix[4, 2] <- 5
+    costMatrix[3, 2] <- 5
+    tmp <- x
+    tmp$y <- y
+    rpart(y ~ data = tmp, control = rpart.control(cp = 0),
+          parms = list(loss = costMatrix))
+}
+rpPredict <- function(object, x) predict(object, x)
+rpAgg <- function(x, type = "class") { 
+    pooled <- x[[1]] * NA
+    n <- nrow(pooled)
+    classes <- colnames(pooled)
+    for (i in 1:ncol(pooled)) {
+        tmp <- lapply(x, function(y, col) y[, col], col = i)
+        tmp <- do.call("rbind", tmp)
+        pooled[, i] <- apply(tmp, 2, median) 
+    }
+    pooled <- apply(pooled, 1, functino(x) x/sum(x))
+    if (n != nrow(pooled)) pooled <- t(pooled)
+    out <- factor(classes[apply(pooled, 1, which.max)], levels = classes)
+    out
+}
+rpCostBag <- train(trainData[, predictors], trainData$Class,
+                   "bag", B = 50, bagControl = bagControl(fit = rpCost,
+                   predict = rpPredict, aggregate = rpAgg, downSample = FALSE), 
+                   trControl = ctrl)
+
