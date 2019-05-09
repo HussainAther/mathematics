@@ -66,4 +66,14 @@ enetModel <- train(modForm, data = trainingSet,
                    method = "enet",
                    preProc = c("center", "scale"),
                    tuneGrid = enetGrid,
+                   trControl = controlObject)
+earthModel <- train(CompressiveStrength ~ ., data = trainingSet,
+                    method = "earth",
+                    tuneGrid = expand.grid(.degree = 1,
+     		                           .prune = 2:25),
+                    trControl = controlObject)
+svmRModel <- train(CompressiveStrength ~ ., data = trainingSet,
+                   method = "svmRadial",
+                   tuneLength = 15,
+                   preProc = c("center", "scale"),
                    trControl = controlObject) 
