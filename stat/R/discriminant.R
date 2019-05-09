@@ -57,3 +57,10 @@ ldaHoldOutPredictions <- predict(ldaModel, scaled2008HoldOut)
 ldaFit1 <- train(x = training[, reducedSet], y = training$Class,
                  method = "lda", preProc = c("center", "scale"),
                  metric = "ROC", trControl = ctrl)
+lidFit1
+ldaTestClasses <- predict(ldaFit1, newdata = testing[, reducedSet])
+ldaTestProbs <- predict(ldaFit1, newdata = testing[, reducedSet], type = "prob")
+"Partial least squares discriminant analysis (partial)."
+plsdaModel <- plsda(x = training[pre2008, reducedSet],
+                    y = training[pre2008, "Class"],
+                    scale = TRUE, probMethod = "Bayes", ncomp 4)
