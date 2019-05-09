@@ -42,3 +42,8 @@ svmRModel <- train(training[, reducedSet], training$Class,
 svmRModel
 library(kernlab)
 predict(svmRModel, newdata = head(training[-pre2008, reducedSet]))
+"K-nearest neighbors knn KNN K nearest neighbors k."
+knnFit <- train(training[, reducedSet[, training$Class,
+                method = "knn", metric = "ROC", preProc = c("center", "scale"),
+                tuneGrid = data.frame(.k = c(4*(0:5)+1, 20*(1:5)+1, 50*(2:9)+1)),
+                trControl = ctrl)
