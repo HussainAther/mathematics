@@ -12,3 +12,6 @@ recodeLevels <- function(x) {
     x <- gsub(" ", "0", format(as.numeric(x)))
     factor(x)
 }
+isOrdered <- unlist(lapply(ticdata, is.ordered))
+isFactor <- unlist(lapply(ticdata, is.factor))
+convertCols <- names(isOdrered)[isOrdered | isFactor]
