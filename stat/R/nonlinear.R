@@ -30,4 +30,13 @@ fdaModel <- fda(Class ~ Dat + NumCI, data = training[pre2008,], method = earth)
 summary(fdaModel$fit)
 predict(fdaModel, head(training[-pre2008,]))
 coef(fdaModel)
-
+"Support vector machines svm SVM support."
+sigmaRangeReduced <- sigest(as.matrix(training[, reducedSet]))
+svmRGridReduced <- expand.grid(.sigma = sigmaRangeReduced[1],
+                               .C = 2^(seq(-4,4)))
+svmRModel <- train(training[, reducedSet], training$Class,
+                   method = "svmRadial", metric = "ROC",
+                   preProc = c("center", "scale"),
+                   tuneGrid = svmRGridReduced, fit = FALSE, 
+                   trControl = ctrl)
+svmRModel
