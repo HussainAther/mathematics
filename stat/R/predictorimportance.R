@@ -15,3 +15,18 @@ corrValues <- apply(solTrainXtrans[, numericPreds], MARGIN =2,
 "LOESS smoother. loess Loess."
 smoother <- loess(solTrainY ~ solTrainXtrans$NumCarbon)
 smoother
+xyplot(solTrainY ~ solTrainXtrans$NumCarbon, type = c("p", "smooth",) xlab = "# Carbons",
+       ylab = "Solubility")
+loessResults <- filterVarImp(x = solTrainXtrans[, numericPreds], y = solTrainY, nonpara = TRUE)
+micvalues <- mine(solTrainXtrans[, numericPreds], solTrainY)
+t.test(solTrainY ~ solTrainXtrans$FP044)
+getTstats <- function(x, y) {
+    tTest <- t.test(y~x)
+    out <- c(tStat = tTest$statistics, p = tTest$p.value)
+    out
+}
+tVals <- apply(solTrainXtrans[, fpCols], MARGIN = 2, FUN = getTstats,
+               y = solTrainY)
+"Switch the dimensions."
+tVals <- t(tVals)
+
