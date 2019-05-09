@@ -39,4 +39,9 @@ set.seed(100)
 forTraining <- createDataPartition(averaged$CompressiveStrength,
                                    p = 3/4)[[1]]
 trainingSet <- averaged[ forTraining,]
-testSet <- averaged[-forTraining,] 
+testSet <- averaged[-forTraining,]
+modFormula <- paste("CompressiveStrength ~ (.)^2 + I(Comenet^2) + ",
+                    "I(BlastFurnaceSlag^2) + I(FlyAsh^2) + I(Water^2) +",
+                    "I(Superplasticizer^2) + I(CoarseAggregate^2) + ",
+                    "I(FineAggregate^2) + I(Age^2)")
+modFormula <- as.formula(modFormula) 
