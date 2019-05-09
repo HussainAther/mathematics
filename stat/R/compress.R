@@ -174,3 +174,11 @@ starters <- age28Data[startPoints, 1:7]
 startingValues <- starts[, -4]
 "Maximize compressive strength using optim to search the mixture space for optimal formulations.
 This minimzies a function so it returns the negative of the compress strength."
+modelPrediction <- function(x, mod) {
+    ## Check to make sure mixture proportions are in the correct range
+    if(x[1] < 0 | x[1] > 1) return(10^38)
+    if(x[2] < 0 | x[2] > 1) return(10^38)
+    if(x[3] < 0 | x[3] > 1) return(10^38)
+    if(x[4] < 0 | x[4] > 1) return(10^38)
+    if(x[5] < 0 | x[5] > 1) return(10^38)
+    if(x[6] < 0 | x[6] > 1) return(10^38)
