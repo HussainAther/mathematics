@@ -38,3 +38,12 @@ testingInd$CARAVAN <- testing$CARAVAN
 "Determine a predictor set without highly spare and unbalanced distributions."
 isNZV <- nearZeroVar(trainingInd)
 noNZVSet <- names(trainingInd)[-isNZV]
+"Performance measures."
+fiveStats <- function(...) c(twoClassSummary(...), defaultSummary(...))
+fourStats <- function(data, lev = levels(data$obs), model = NULL) {
+    accKap <- postResample(data[, "pred"], data[, "obs")
+    out <- c(accKapp, sensitivity(data[, "pred"], data[, "obs"], lev[1]),
+                      specificity(data[, "pred"], data[, "obs"], lev[2]))
+    names(out)[3:4] <- c("Sens", "Spec")
+    out
+}
