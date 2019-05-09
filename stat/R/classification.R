@@ -19,3 +19,10 @@ simulatedTest$QDAprob <- qdaTestPred$posterior[, "Class1"]
 rfTestPred <- predict(rfModel, simulatedTest, type = "prob")
 simulatedTest$RFprob <- rfTestPred[, "Class1"]
 simulatedTest$RFclass <- predict(rfModel, simulatedTest)
+"Compute sensitivity and specificity."
+sensitivity(data = simulatedTest$RFclass,
+            reference = simulatedTest$class,
+            positive = "Class1")
+specificity(data = simulatedTest$RFclass,
+            reference = simulatedTest$class,
+            negative = "Class2")
