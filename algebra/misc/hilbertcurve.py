@@ -61,4 +61,18 @@ def hilbertPoints(w):
         return lambda xy, tree: go(xy, tree)
     d = w // 2
     return lambda tree: list(points(d)((d, d), tree))
-  
+ 
+def svgFromPoints(w):
+    """
+    Width of square canvas -> Point list -> SVG string.
+    svgFromPoints :: Int -> [(Int, Int)] -> SVG String
+    """
+    def go(w, xys):
+        xs = " ".join(map(lambda xy: str(xy[0]) + " " + str(xy[1]), xys))
+        return "\n".join(
+            ["<svg xmlns='http://www.w3.org/2000/svg'",
+             f"width='512' height='512' viewBox='5 5 {w} {w}'>",
+             f"<path d='M{xs}' ",
+             "stroke-width="2" stroke='red' fill='transparent'/>',
+             "</svg>"])
+    return lambda xys: go(w, xys) 
