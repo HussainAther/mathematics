@@ -6,6 +6,15 @@ repeatedly reversing its digits and adding the resulting numbers.
 3. Stop when n becomes palindromic - i.e. the digits of n in reverse order == n.
 """
 
+def find_lychrel(maxn, max_reversions):
+    """
+    Lychrel number generator for maxn maximum numbers and max_reversions maximum reversions.
+    """
+    series = [add_reverse(n, max_reversions*2) for n in range(1, maxn + 1)]
+    roots_and_relateds = [s for s in series if len(s) > max_reversions]
+    return split_roots_from_relateds(roots_and_relateds)
+ 
+
 if __name__ == "__main__":
     maxn, reversion_limit = 10000, 500
     print("Calculations using n = 1..%i and limiting each search to 2*%i reverse-digits-and-adds"
