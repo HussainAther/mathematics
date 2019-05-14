@@ -145,16 +145,7 @@ def p_adjust(*args):
     lp = len(pvalues)
     n = lp
     qvalues = []
-    if method == "hb": # Hochberg: already all lower case
-        o = order(pvalues, "TRUE")
-        cummin_input = []
-        for index in range(n):
-            cummin_input.insert(index, (index+1)*pvalues[o[index]])
-        cummin = cumminf(cummin_input)
-        pmin = pminf(cummin)
-        ro = order(o)
-        qvalues = [pmin[i] for i in ro]
-    elif method == "bhp": # Benjamin-Hochberg
+    if method == "bhp": # Benjamin-Hochberg
         o = order(pvalues, "TRUE")
         cummin_input = []
         for index in range(n):
@@ -174,4 +165,23 @@ def p_adjust(*args):
             cummin_input.insert(index, q * (n/(n-index)) * pvalues[o[index]])
         cummin = cumminf(cummin_input)
         pmin = pminf(cummin)
+        qvalues = [pmin[i] for i in ro]
+    elif method == "b": # Bonferroni
+        for index in range(n):
+            q = pvalues[index] * n
+            if (0 <= q) and (q < 1):
+                qvalues.insert(index, q)
+            elif q >= 1:
+                qvalues.insert(index, 1)
+            else:
+                print("%g won\'t give a Bonferroni adjusted p" % q)
+                sys.exit()
+    elif method == "hb": # Hochberg: already all lower case
+        o = order(pvalues, "TRUE")
+        cummin_input = []
+        for index in range(n):
+            cummin_input.insert(index, (index+1)*pvalues[o[index]])
+        cummin = cumminf(cummin_input)
+        pmin = pminf(cummin)
+        ro = order(o)
         qvalues = [pmin[i] for i in ro]
