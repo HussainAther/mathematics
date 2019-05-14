@@ -6,7 +6,8 @@ this to contorl the false positive (type 1 Type I) error rate or false discovery
 (FDR fdr). 
 """
 
-p = {4.533744e-01, 7.296024e-01, 9.936026e-02, 9.079658e-02, 1.801962e-01,
+# Benjamin-Hochberg (benjamin hochberg) p-values
+bhp = {4.533744e-01, 7.296024e-01, 9.936026e-02, 9.079658e-02, 1.801962e-01,
      8.752257e-01, 2.922222e-01, 9.115421e-01, 4.355806e-01, 5.324867e-01,
      4.926798e-01, 5.802978e-01, 3.485442e-01, 7.883130e-01, 2.729308e-01,
      8.502518e-01, 4.268138e-01, 6.442008e-01, 3.030266e-01, 5.001555e-02,
@@ -54,3 +55,18 @@ def cummaxf(a):
             cumulative_max = e
         cummax.append(cumulative_max)
     return cummax
+
+def order(*args):
+    """
+    Order the arguments.
+    """
+    if len(args) > 1:
+        if args[1].lower() == "false":# if ($string1 eq $string2) {
+            return sorted(range(len(args[0])), key = lambda k: args[0][k])
+        elif list(args[1].lower()) == list("true"):
+            return sorted(range(len(args[0])), key = lambda k: args[0][k], reverse = True)
+        else:
+            print "%s isn't a recognized parameter" % args[1]
+            sys.exit()
+    elif len(args) == 1:
+        return sorted(range(len(args[0])), key = lambda k: args[0][k])
