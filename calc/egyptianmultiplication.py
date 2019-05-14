@@ -17,3 +17,15 @@ We'll use lambda functions for defining these methods.
 halve  = lambda x: x // 2
 double = lambda x: x*2
 even   = lambda x: not x % 2
+
+def letsdoit(multiplier, multiplicand):
+    """
+    Carry out the method for the two numbers.
+    """
+    result = 0
+    while multiplier >= 1:
+        if not even(multiplier):
+            result += multiplicand
+        multiplier = halve(multiplier)
+        multiplicand = double(multiplicand)
+    return result
