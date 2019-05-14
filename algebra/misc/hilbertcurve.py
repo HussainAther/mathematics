@@ -33,4 +33,16 @@ def hilbertTree(n):
             map(go, xs) if xs else map(flip(Node)([]), rule[c]))
     seed = Node("a")([])
     return list(islice(iterate(go)(seed), n))[-1] if 0 < n else seed
+ 
+def hilbertPoints(w):
+    """
+    Serialization of a tree to a list of points bounded by a square of side w.
+    """
+    # vectors :: Dict Char [(Int, Int)]
+    vectors = {
+        "a": [(-1, 1), (-1, -1), (1, -1), (1, 1)],
+        "b": [(1, -1), (-1, -1), (-1, 1), (1, 1)],
+        "c": [(1, -1), (1, 1), (-1, 1), (-1, -1)],
+        "D": [(-1, 1), (1, 1), (1, -1), (-1, -1)]
+    }
   
