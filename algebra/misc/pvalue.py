@@ -163,3 +163,15 @@ def p_adjust(*args):
         cummin = cumminf(cummin_input)
         pmin = pminf(cummin)
         qvalues = [pmin[i] for i in ro]
+    elif method == "bhy": # Benjamin-Yekutieli
+        q = 0.0
+        o = order(pvalues, "TRUE")
+        ro = order(o)
+        for index in range(1, n+1):
+            q += 1.0 / index;
+        cummin_input = []
+        for index in range(n):
+            cummin_input.insert(index, q * (n/(n-index)) * pvalues[o[index]])
+        cummin = cumminf(cummin_input)
+        pmin = pminf(cummin)
+        qvalues = [pmin[i] for i in ro]
