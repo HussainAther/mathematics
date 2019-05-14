@@ -13,3 +13,7 @@ to produce the result of multiplying the original two numbers together.
 
 We'll use lambda functions for defining these methods.
 """
+
+halve  = lambda x: x // 2
+double = lambda x: x*2
+even   = lambda x: not x % 2
