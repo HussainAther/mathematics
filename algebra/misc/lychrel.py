@@ -6,6 +6,12 @@ repeatedly reversing its digits and adding the resulting numbers.
 3. Stop when n becomes palindromic - i.e. the digits of n in reverse order == n.
 """
 
+def reverse_int(num):
+    """
+    Simple reverse using built-in functionality.
+    """
+    return int(str(num)[::-1])
+
 def find_lychrel(maxn, max_reversions):
     """
     Lychrel number generator for maxn maximum numbers and max_reversions maximum reversions.
