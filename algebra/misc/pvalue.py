@@ -185,3 +185,12 @@ def p_adjust(*args):
         pmin = pminf(cummin)
         ro = order(o)
         qvalues = [pmin[i] for i in ro]
+    elif method == "hm":
+        o = order(pvalues)
+        cummax_input = []
+        for index in range(n):
+            cummax_input.insert(index, (n - index) * pvalues[o[index]])
+        ro = order(o)
+        cummax = cummaxf(cummax_input)
+        pmin = pminf(cummax)
+        qvalues = [pmin[i] for i in ro]
