@@ -23,3 +23,15 @@ def tri(n):
            print(pascal(j, i)))
         print("\n") 
 
+"""
+Catalan (catalan numbers.)
+"""
+
+def catalan_number(n):
+    """
+    Recursive counting numbers that form the basis for binomial coefficients up to n.
+    """
+    nm = dm = 1
+    for k in range(2, n+1):
+        nm, dm = (nm*(n+k), dm*k)
+    return nm/dm
