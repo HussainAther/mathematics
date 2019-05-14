@@ -1,3 +1,5 @@
+import sys
+
 """
 Given p-values (pvalue p value), we can adjust them for multiple comparisons. We do
 this to contorl the false positive (type 1 Type I) error rate or false discovery rate
@@ -15,3 +17,16 @@ p = {4.533744e-01, 7.296024e-01, 9.936026e-02, 9.079658e-02, 1.801962e-01,
      1.801145e-05, 2.504456e-07, 3.310253e-02, 9.427839e-03, 8.791153e-04,
      2.177831e-04, 9.693054e-04, 6.610250e-05, 2.900813e-02, 5.735490e-03}
 
+def pminf(a):
+    """
+    For an inupt array a, create a list of minimum vlaues.
+    """
+    x = 1
+    pmin_list = []
+    N = len(array)
+    for index in range(N):
+        if array[index] < x:
+            pmin_list.insert(index, array[index])
+        else:
+            pmin_list.insert(index, x)
+    return pmin_list
