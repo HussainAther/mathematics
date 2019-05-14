@@ -9,5 +9,7 @@ repeatedly halve the last number, discarding any remainders, and write the resul
 until you write a value of 1. In the right-hand column repeatedly double the last number and write the result below. 
 stop when you add a result in the same row as where the left hand column shows 1. Examine the table produced and 
 discard any row where the value in the left column is even. Sum the values in the right-hand column that remain 
-to produce the result of multiplying the original two numbers together.
+to produce the result of multiplying the original two numbers together. 
+
+We'll use lambda functions for defining these methods.
 """
