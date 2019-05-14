@@ -145,3 +145,12 @@ def p_adjust(*args):
     lp = len(pvalues)
     n = lp
     qvalues = []
+    if method == "hb": # Hochberg: already all lower case
+        o = order(pvalues, 'TRUE')
+        cummin_input = []
+        for index in range(n):
+            cummin_input.insert(index, (index+1)*pvalues[o[index]])
+        cummin = cumminf(cummin_input)
+        pmin = pminf(cummin)
+        ro = order(o)
+        qvalues = [pmin[i] for i in ro]
