@@ -230,3 +230,7 @@ def p_adjust(*args):
                 if pa[index] < q[index]:
                     pa[index] = q[index]
             qvalues = [pa[index] for index in ro]
+    else:
+        print("method %s isn't defined." % method)
+        sys.exit()
+    return qvalues
