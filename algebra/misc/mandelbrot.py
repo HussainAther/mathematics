@@ -1,0 +1,3 @@
+"""
+Mandelbrot (mandelbrot) set.
+"""
