@@ -13,7 +13,23 @@ def find_lychrel(maxn, max_reversions):
     series = [add_reverse(n, max_reversions*2) for n in range(1, maxn + 1)]
     roots_and_relateds = [s for s in series if len(s) > max_reversions]
     return split_roots_from_relateds(roots_and_relateds)
- 
+
+def split_roots_from_relateds(roots_and_relateds):
+    """
+    Split the roots from related numbers.
+    """
+    roots = roots_and_relateds[::]
+    i = 1
+    while i < len(roots):
+        this = roots[i]
+        if any(this.intersection(prev) for prev in roots[:i]):
+            del roots[i]
+        else:
+            i += 1
+    root = [min(each_set) for each_set in roots]
+    related = [min(each_set) for each_set in roots_and_relateds]
+    related = [n for n in related if n not in root]
+    return root, related
 
 if __name__ == "__main__":
     maxn, reversion_limit = 10000, 500
