@@ -6,6 +6,18 @@ repeatedly reversing its digits and adding the resulting numbers.
 3. Stop when n becomes palindromic - i.e. the digits of n in reverse order == n.
 """
 
+def add_reverse(num, max_iter=1000):
+    """
+    Add the numbers usng our reverse method.
+    """
+    i, nums = 0, {num}
+    while True:
+        i, num = i+1, num + reverse_int(num)
+        nums.add(num)
+        if reverse_int(num) == num or i >= max_iter:
+            break
+    return nums
+ 
 def reverse_int(num):
     """
     Simple reverse using built-in functionality.
