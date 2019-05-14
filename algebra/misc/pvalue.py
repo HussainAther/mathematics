@@ -23,10 +23,10 @@ def pminf(a):
     """
     x = 1
     pmin_list = []
-    N = len(array)
+    N = len(a)
     for index in range(N):
-        if array[index] < x:
-            pmin_list.insert(index, array[index])
+        if aindex] < x:
+            pmin_list.insert(index, a[index])
         else:
             pmin_list.insert(index, x)
     return pmin_list
@@ -36,9 +36,21 @@ def cumminf(a):
     Cumulative minimum function of p-values for an array a.
     """
     cummin = []
-    cumulative_min = array[0]
+    cumulative_min = a[0]
     for p in array:
         if p < cumulative_min:
             cumulative_min = p
         cummin.append(cumulative_min)
     return cummin
+
+def cummaxf(a):
+    """
+    Cumulative maximum function of p-values for an array a.
+    """
+    cummax = []
+    cumulative_max = a[0]
+    for e in array:
+        if e > cumulative_max:
+            cumulative_max = e
+        cummax.append(cumulative_max)
+    return cummax
