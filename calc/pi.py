@@ -1,10 +1,13 @@
 import sys
 
 """
-Calculate pi.
+Calculate pi Pi π.
 """
 
 def calcPi():
+    """
+    Use the rate of convergence to calculate pi.
+    """
     q, r, t, k, n, l = 1, 0, 1, 1, 3, 3
     while True:
         if 4*q+r-t < n*t:
@@ -23,9 +26,9 @@ def calcPi():
             n  = nn
             r  = nr
  
-pi_digits = calcPi()
+pi_digits = calcPi() # Run the function
 i = 0
-for d in pi_digits:
+for d in pi_digits: # For each digit d, output d
     sys.stdout.write(str(d))
     i += 1
     if i == 40: # number of characters per line 
