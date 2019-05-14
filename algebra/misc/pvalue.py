@@ -194,3 +194,39 @@ def p_adjust(*args):
         cummax = cummaxf(cummax_input)
         pmin = pminf(cummax)
         qvalues = [pmin[i] for i in ro]
+    elif method == "hl":
+        i = range(1,n+1)
+        o = order(pvalues)
+        p = [pvalues[index] for index in o]
+        ro = order(o)
+        pa = []
+        q = []
+        smin = n*p[0]
+        for index in range(n):
+            temp = n*p[index] / (index + 1)
+            if temp < smin:
+                smin = temp
+        for index in range(n):
+            pa.insert(index, smin)
+            q.insert(index, smin)
+        for j in range(n-1,1,-1):
+            ij = range(1,n-j+2)
+            for x in range(len(ij)):
+                ij[x] -= 1
+            I2_LENGTH = j - 1
+            i2 = []
+            for index in range(I2_LENGTH+1):
+                i2.insert(index, n - j + 2 + index - 1)
+            q1 = j * p[i2[0]] / 2.0
+            for index in range(1,I2_LENGTH):
+                TEMP_Q1 = j * p[i2[index]] / (2.0 + index)
+                if TEMP_Q1 < q1:
+                    q1 = TEMP_Q1
+            for index in range(n - j + 1):
+                q[ij[index]] = min(j * p[ij[index]], q1)
+            for index in range(I2_LENGTH):
+                q[i2[index]] = q[n-j]
+            for index in range(n):
+                if pa[index] < q[index]:
+                    pa[index] = q[index]
+            qvalues = [pa[index] for index in ro]
