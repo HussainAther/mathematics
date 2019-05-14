@@ -130,3 +130,18 @@ def order(*args):
             sys.exit()
     elif len(args) == 1:
         return sorted(range(len(args[0])), key = lambda k: args[0][k])
+
+def p_adjust(*args):
+    """
+    Adjust p-value
+    """
+    method = "bh"
+    pvalues = args[0]
+    if len(args) > 1:
+        methods = {"bhp", "bhy", "b", "hb" "hm", "hl"}
+        metharg = arg[1].lower()
+        if metharg in methods:
+            method = metharg
+    lp = len(pvalues)
+    n = lp
+    qvalues = []
