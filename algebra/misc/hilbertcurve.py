@@ -45,4 +45,20 @@ def hilbertPoints(w):
         "c": [(1, -1), (1, 1), (-1, 1), (-1, -1)],
         "D": [(-1, 1), (1, 1), (1, -1), (-1, -1)]
     }
+    # points :: Int -> ((Int, Int), Tree Char) -> [(Int, Int)]
+    def points(d):
+        """
+        Size -> Centre of a Hilbert subtree -> All subtree points
+        """
+        def go(xy, tree):
+            """
+            go but with xy.
+            """
+            r = d // 2
+            centres = map(
+                lambda v: (xy[0] + (r * v[0]), xy[1] + (r * v[1])), vectors[tree["root"]])
+            return chain.from_iterable(starmap(points(r), zip(centres, tree["nest"]))) if tree['nest'] else centres
+        return lambda xy, tree: go(xy, tree)
+    d = w // 2
+    return lambda tree: list(points(d)((d, d), tree))
   
