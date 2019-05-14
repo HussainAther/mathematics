@@ -30,3 +30,15 @@ def pminf(a):
         else:
             pmin_list.insert(index, x)
     return pmin_list
+
+def cumminf(a):
+    """
+    Cumulative minimum function of p-values for an array a.
+    """
+    cummin = []
+    cumulative_min = array[0]
+    for p in array:
+        if p < cumulative_min:
+            cumulative_min = p
+        cummin.append(cumulative_min)
+    return cummin
