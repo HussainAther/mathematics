@@ -24,3 +24,6 @@ lines(x, qnorm(x, 0, 1), type="l", col=c_light_highlight, lwd=2)
 
 text(x=0.9, y=250, labels="Cauchy", col=c_dark_highlight)
 text(x=0.9, y=-50, labels="Normal", col=c_light_highlight)
+
+"For the nominal implementation of the Cauchy density function, we can use a dynamic
+Hamiltonian (hamiltonian) Monte Carlo (monte carlo) method with Stan (stan)."
