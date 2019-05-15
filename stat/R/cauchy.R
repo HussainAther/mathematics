@@ -79,3 +79,19 @@ util$check_all_diagnostics(fit_1)
 "Recover Cauchy quantiles."
 
 util$plot_estimated_quantiles(fit_1, "First Alternative")
+
+"Our second alternative implementation is to use an inverse gamma function."
+
+x <- seq(-3, 3, 0.05)
+y <- seq(-1, 9, 0.05)
+
+n_x <- length(x)
+n_y <- length(y)
+z <- matrix(nrow=n_x, ncol=n_y)
+for (i in 1:n_x) for (j in 1:n_y)
+  z[i, j] <- dnorm(x[i], 0, 1) * dgamma(exp(-y[j]), 0.5, 1 / 0.5) * exp(-y[j])
+
+contour(x, y, z, levels=seq(0.05, 1, 0.05) * max(z), drawlabels=FALSE,
+        main="Second Alternative", xlab="x_a", ylab="log(x_b)",
+        col=c_dark_highlight, lwd=2)
+
