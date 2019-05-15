@@ -46,3 +46,7 @@ fit_nom <- stan(file="cauchy_nom.stan", seed=4938483,
                 warmup=1000, iter=11000, control=list(max_treedepth=20))
 
 util$check_all_diagnostics(fit_nom, max_depth=20)
+
+"We use Stan to recover 5%, 50%, and 95% quantiles of each parameter."
+
+util$plot_estimated_quantiles(fit_nom, "Nominal Parameterization")
