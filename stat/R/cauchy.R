@@ -109,3 +109,11 @@ util$check_all_diagnostics(fit_2)
 "Recover the quantiles."
 
 util$plot_estimated_quantiles(fit_2, "Second Alternative")
+
+"The third approach is to use the inverse cumulative distribution function (cdf) 
+of the Cauchy density."
+
+x <- seq(-10, 10, 0.001)
+plot(x, exp(-x) / (1 + exp(-x))**2, type="l", col=c_dark_highlight, lwd=2,
+     main="Third Alternative", xlab="logit(x_tilde)", 
+     ylab="Probability Density", yaxt="n")
