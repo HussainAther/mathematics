@@ -250,5 +250,5 @@ c_dark_trans <- c("#8F272780")
 c_dark_highlight_trans <- c("#7C000080")
 
 plot(p1, col=c_dark_trans, border=c_dark_highlight_trans,
-     main="", xlab="x[10]", yaxt='n', ylab="")
+     main="", xlab="x[10]", yaxt="n", ylab="")
 plot(p2, col=c_light_trans, border=c_light_highlight_trans, add=T)
