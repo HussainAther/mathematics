@@ -152,3 +152,5 @@ axis(1, at=1:4, labels=c("Nom", "Alt 1", "Alt 2", "Alt 3"))
 
 "Compare geometry of the implementations by using only the number of gradient
 evaluations per iteration and ignoring the actual evaluation cost."
+
+probs <- c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9)
