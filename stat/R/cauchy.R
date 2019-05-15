@@ -232,3 +232,23 @@ fit_half_reparam <- stan(file="half_cauchy_alt.stan", seed=4938483,
                          warmup=1000, iter=11000)
 
 util$check_all_diagnostics(fit_half_reparam)
+
+"Compare the tenth identical component of the model to find two equivalent
+results."
+
+x <- extract(fit_half_nom)$x[,10]
+p1 <- hist(x[x < 25], breaks=seq(0, 25, 0.25), plot=FALSE)
+p1$counts <- p1$counts / sum(p1$counts)
+
+x <- extract(fit_half_reparam)$x[,10]
+p2 <- hist(x[x < 25], breaks=seq(0, 25, 0.25), plot=FALSE)
+p2$counts <- p2$counts / sum(p2$counts)
+
+c_light_trans <- c("#DCBCBC80")
+c_light_highlight_trans <- c("#C7999980")
+c_dark_trans <- c("#8F272780")
+c_dark_highlight_trans <- c("#7C000080")
+
+plot(p1, col=c_dark_trans, border=c_dark_highlight_trans,
+     main="", xlab="x[10]", yaxt='n', ylab="")
+plot(p2, col=c_light_trans, border=c_light_highlight_trans, add=T)
