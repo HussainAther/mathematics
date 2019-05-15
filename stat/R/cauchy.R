@@ -121,3 +121,10 @@ plot(x, exp(-x) / (1 + exp(-x))**2, type="l", col=c_dark_highlight, lwd=2,
 "Read Stan file."
 
 writeLines(readLines("cauchy_alt_3.stan"))
+
+"Fit."
+
+fit_3 <- stan(file="cauchy_alt_3.stan", seed=4938483,
+              warmup=1000, iter=11000)
+
+util$check_all_diagnostics(fit_3)
