@@ -173,3 +173,6 @@ n_grad_3 <- quantile(do.call(rbind, sampler_params)[,'n_leapfrog__'],
 
 idx <- c(1, 1, 2, 2, 3, 3, 4, 4)
 x <- c(0.5, 1.5, 1.5, 2.5, 2.5, 3.5, 3.5, 4.5)
+
+cred <- data.frame(n_grad_nom, n_grad_1, n_grad_2, n_grad_3)
+pad_cred <- do.call(cbind, lapply(idx, function(n) cred[1:9,n]))
