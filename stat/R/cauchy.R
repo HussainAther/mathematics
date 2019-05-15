@@ -27,3 +27,6 @@ text(x=0.9, y=-50, labels="Normal", col=c_light_highlight)
 
 "For the nominal implementation of the Cauchy density function, we can use a dynamic
 Hamiltonian (hamiltonian) Monte Carlo (monte carlo) method with Stan (stan)."
+writeLines(readLines("cauchy_nom.stan"))
+
+
