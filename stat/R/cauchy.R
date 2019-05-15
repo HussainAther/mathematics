@@ -98,3 +98,10 @@ contour(x, y, z, levels=seq(0.05, 1, 0.05) * max(z), drawlabels=FALSE,
 "Read in second stan alt."
 
 writeLines(readLines("cauchy_alt_2.stan"))
+
+"Fit."
+
+fit_2 <- stan(file="cauchy_alt_2.stan", seed=4938483,
+              warmup=1000, iter=11000)
+
+util$check_all_diagnostics(fit_2)
