@@ -20,3 +20,10 @@ def fib():
     while True:
         yield a
         a, b = b, a+b
+
+def power_of_threes():
+    """
+    Powers of three as a test sequence
+    """
+    return (3**k for k in count(0))
+ 
