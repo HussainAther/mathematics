@@ -132,3 +132,20 @@ util$check_all_diagnostics(fit_3)
 "Recover quantiles."
 
 util$plot_estimated_quantiles(fit_3, "Third Alternative")
+
+"We consider the Markov chain Monte Carlo (markov monte carlo) performance metric of the number of effective
+sampels per computational cost. to compare the implementations."
+
+r_nom <- (summary(fit_nom, probs=NA)$summary)[51,5] /
+         sum(get_elapsed_time(fit_nom)[,2])
+r_1 <- (summary(fit_1, probs=NA)$summary)[151,5] /
+        sum(get_elapsed_time(fit_1)[,2])
+r_2 <- (summary(fit_2, probs=NA)$summary)[151,5] /
+         sum(get_elapsed_time(fit_2)[,2])
+r_3 <- (summary(fit_3, probs=NA)$summary)[101,5] /
+        sum(get_elapsed_time(fit_3)[,2])
+
+plot(1:4, c(r_nom, r_1, r_2, r_3), type="l", lwd=2, col=c_dark,
+     main="", xaxt = "n", xlab="", ylab="ESS / Time (s)",
+     xlim=c(0, 5), ylim=c(0, 4000))
+axis(1, at=1:4, labels=c("Nom", "Alt 1", "Alt 2", "Alt 3"))
