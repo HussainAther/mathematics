@@ -117,3 +117,7 @@ x <- seq(-10, 10, 0.001)
 plot(x, exp(-x) / (1 + exp(-x))**2, type="l", col=c_dark_highlight, lwd=2,
      main="Third Alternative", xlab="logit(x_tilde)", 
      ylab="Probability Density", yaxt="n")
+
+"Read Stan file."
+
+writeLines(readLines("cauchy_alt_3.stan"))
