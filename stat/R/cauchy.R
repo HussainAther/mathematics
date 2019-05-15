@@ -170,3 +170,6 @@ n_grad_2 <- quantile(do.call(rbind, sampler_params)[,'n_leapfrog__'],
 sampler_params <- get_sampler_params(fit_3, inc_warmup=FALSE)
 n_grad_3 <- quantile(do.call(rbind, sampler_params)[,'n_leapfrog__'],
                      probs = probs)
+
+idx <- c(1, 1, 2, 2, 3, 3, 4, 4)
+x <- c(0.5, 1.5, 1.5, 2.5, 2.5, 3.5, 3.5, 4.5)
