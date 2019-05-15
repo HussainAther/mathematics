@@ -49,3 +49,8 @@ def rand1000():
     Show a random integer up to 9999.
     """
     while True: yield randint(1,9999)
+
+if __name__ == "__main__":
+    show_dist("fibbed", islice(heads(fib()), 1000)) # for the Fibonnaci sequence
+    show_dist("threes", islice(heads(power_of_threes()), 1000)) # for Benford's law
+    show_dist("random", islice(heads(rand1000()), 10000)) # just to show that not all kind-of-random sets behave like that
