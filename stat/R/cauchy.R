@@ -191,3 +191,26 @@ polygon(c(x, rev(x)), c(pad_cred[3,], rev(pad_cred[7,])),
 polygon(c(x, rev(x)), c(pad_cred[4,], rev(pad_cred[6,])),
         col = c_mid_highlight, border = NA)
 lines(x, pad_cred[5,], col=c_dark, lwd=2)
+
+"Zoom in."
+
+idx <- c(1, 1, 2, 2, 3, 3)
+x <- c(0.5, 1.5, 1.5, 2.5, 2.5, 3.5)
+
+cred <- data.frame(n_grad_1, n_grad_2, n_grad_3)
+pad_cred <- do.call(cbind, lapply(idx, function(n) cred[1:9,n]))
+
+plot(1, type="n", main="", xaxt = "n", xlab="",
+     ylab="Gradient Evaluations Per Iteration",
+     xlim=c(0.5, 3.5), ylim=c(0, 50))
+axis(1, at=1:3, labels=c("Alt 1", "Alt 2", "Alt 3"))
+
+polygon(c(x, rev(x)), c(pad_cred[1,], rev(pad_cred[9,])),
+        col = c_light, border = NA)
+polygon(c(x, rev(x)), c(pad_cred[2,], rev(pad_cred[8,])),
+        col = c_light_highlight, border = NA)
+polygon(c(x, rev(x)), c(pad_cred[3,], rev(pad_cred[7,])),
+        col = c_mid, border = NA)
+polygon(c(x, rev(x)), c(pad_cred[4,], rev(pad_cred[6,])),
+        col = c_mid_highlight, border = NA)
+lines(x, pad_cred[5,], col=c_dark, lwd=2)
