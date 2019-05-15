@@ -66,3 +66,7 @@ for (i in 1:n_x) for (j in 1:n_y)
 contour(x, y, z, levels=seq(0.05, 1, 0.05) * max(z), drawlabels=FALSE,
         main="First Alternative", xlab="x_a", ylab="log(x_b)",
         col=c_dark_highlight, lwd=2)
+
+"Read in the Stan program."
+
+writeLines(readLines("cauchy_alt_1.stan"))
