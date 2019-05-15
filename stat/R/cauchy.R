@@ -215,7 +215,7 @@ polygon(c(x, rev(x)), c(pad_cred[4,], rev(pad_cred[6,])),
         col = c_mid_highlight, border = NA)
 lines(x, pad_cred[5,], col=c_dark, lwd=2)
 
-"Half-Cauchy (half cauchy) density function."
+"Half-Cauchy (half cauchy) density function nominal (Nominal)."
 
 writeLines(readLines("half_cauchy_nom.stan"))
 
@@ -223,3 +223,8 @@ fit_half_nom <- stan(file="half_cauchy_nom.stan", seed=4938483,
                      warmup=1000, iter=11000)
 
 util$check_all_diagnostics(fit_half_nom)
+
+"Compare to alternative."
+
+writeLines(readLines("half_cauchy_alt.stan"))
+
