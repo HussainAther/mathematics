@@ -16,3 +16,14 @@ on more frequently. Over time, it will use these observations to infer which art
 have the higher CTR. Then, once the estimation of the CTR becomes more precise, it will 
 preferentially display articles with the higher CTR.
 """
+
+class BetaBandit(object):
+    """
+    We need to figure out the most appropriate way to allocate resourecs.
+    """
+    def __init__(self, num_options=2, prior=(1.0,1.0)):
+        self.trials = zeros(shape=(num_options,), dtype=int)
+        self.successes = zeros(shape=(num_options,), dtype=int)
+        self.num_options = num_options
+        self.prior = prior
+
