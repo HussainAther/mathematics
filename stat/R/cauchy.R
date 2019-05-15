@@ -128,3 +128,7 @@ fit_3 <- stan(file="cauchy_alt_3.stan", seed=4938483,
               warmup=1000, iter=11000)
 
 util$check_all_diagnostics(fit_3)
+
+"Recover quantiles."
+
+util$plot_estimated_quantiles(fit_3, "Third Alternative")
