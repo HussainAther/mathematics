@@ -154,3 +154,19 @@ axis(1, at=1:4, labels=c("Nom", "Alt 1", "Alt 2", "Alt 3"))
 evaluations per iteration and ignoring the actual evaluation cost."
 
 probs <- c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9)
+
+sampler_params <- get_sampler_params(fit_nom, inc_warmup=FALSE)
+n_grad_nom <- quantile(do.call(rbind, sampler_params)[,'n_leapfrog__'],
+                       probs = probs)
+
+sampler_params <- get_sampler_params(fit_1, inc_warmup=FALSE)
+n_grad_1 <- quantile(do.call(rbind, sampler_params)[,'n_leapfrog__'],
+                     probs = probs)
+
+sampler_params <- get_sampler_params(fit_2, inc_warmup=FALSE)
+n_grad_2 <- quantile(do.call(rbind, sampler_params)[,'n_leapfrog__'],
+                     probs = probs)
+
+sampler_params <- get_sampler_params(fit_3, inc_warmup=FALSE)
+n_grad_3 <- quantile(do.call(rbind, sampler_params)[,'n_leapfrog__'],
+                     probs = probs)
