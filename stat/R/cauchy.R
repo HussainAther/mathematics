@@ -70,3 +70,8 @@ contour(x, y, z, levels=seq(0.05, 1, 0.05) * max(z), drawlabels=FALSE,
 "Read in the Stan program."
 
 writeLines(readLines("cauchy_alt_1.stan"))
+
+fit_1 <- stan(file="cauchy_alt_1.stan", seed=4938483,
+              warmup=1000, iter=11000)
+
+util$check_all_diagnostics(fit_1)
