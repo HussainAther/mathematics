@@ -12,4 +12,6 @@ c_dark_highlight <- c("#7C0000")
 
 x <- seq(-10, 10, 0.001)
 plot(x, dcauchy(x, location = 0, scale = 1), type="l", col=c_dark_highlight, lwd=2,
-     main="", xlab="x", ylab="Probability Density", yaxt='n')
+     main="", xlab="x", ylab="Probability Density", yaxt="n")
+
+"Looking at the quantile distribution we see the tails in high probabilty."
