@@ -228,3 +228,7 @@ util$check_all_diagnostics(fit_half_nom)
 
 writeLines(readLines("half_cauchy_alt.stan"))
 
+fit_half_reparam <- stan(file="half_cauchy_alt.stan", seed=4938483,
+                         warmup=1000, iter=11000)
+
+util$check_all_diagnostics(fit_half_reparam)
