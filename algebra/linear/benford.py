@@ -26,4 +26,9 @@ def power_of_threes():
     Powers of three as a test sequence
     """
     return (3**k for k in count(0))
- 
+
+def heads(s):
+    """
+    Yield the first entry for each in s.
+    """
+    for a in s: yield int(str(a)[0]) 
