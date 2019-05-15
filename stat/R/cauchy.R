@@ -50,3 +50,10 @@ util$check_all_diagnostics(fit_nom, max_depth=20)
 "We use Stan to recover 5%, 50%, and 95% quantiles of each parameter."
 
 util$plot_estimated_quantiles(fit_nom, "Nominal Parameterization")
+
+"We may use parameter expansion to implement the Cauchy distribution and derive x
+deterministically."
+
+x <- seq(-3, 3, 0.05)
+y <- seq(-9, 1, 0.05)
+
