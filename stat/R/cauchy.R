@@ -95,3 +95,6 @@ contour(x, y, z, levels=seq(0.05, 1, 0.05) * max(z), drawlabels=FALSE,
         main="Second Alternative", xlab="x_a", ylab="log(x_b)",
         col=c_dark_highlight, lwd=2)
 
+"Read in second stan alt."
+
+writeLines(readLines("cauchy_alt_2.stan"))
