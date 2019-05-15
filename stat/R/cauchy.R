@@ -149,3 +149,6 @@ plot(1:4, c(r_nom, r_1, r_2, r_3), type="l", lwd=2, col=c_dark,
      main="", xaxt = "n", xlab="", ylab="ESS / Time (s)",
      xlim=c(0, 5), ylim=c(0, 4000))
 axis(1, at=1:4, labels=c("Nom", "Alt 1", "Alt 2", "Alt 3"))
+
+"Compare geometry of the implementations by using only the number of gradient
+evaluations per iteration and ignoring the actual evaluation cost."
