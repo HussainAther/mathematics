@@ -22,8 +22,19 @@ class BetaBandit(object):
     We need to figure out the most appropriate way to allocate resourecs.
     """
     def __init__(self, num_options=2, prior=(1.0,1.0)):
+        """
+        Initialize the number of options, trials, successes, and a prior for 
+        how many users use the site features.
+        """
         self.trials = zeros(shape=(num_options,), dtype=int)
         self.successes = zeros(shape=(num_options,), dtype=int)
         self.num_options = num_options
         self.prior = prior
 
+    def add_result(self, trial_id, success):
+        """
+        Add the successes of our results.
+        """
+        self.trials[trial_id] = self.trials[trial_id] + 1
+        if (success):
+            self.successes[trial_id] = self.successes[trial_id] + 1
