@@ -43,3 +43,9 @@ def show_dist(title, s):
     print("\n%s Benfords deviation" % title)
     for r, e in zip(res, expected):
         print("%5.1f%% %5.1f%%  %5.1f%%" % (r*100., e*100., abs(r - e)*100.)) 
+
+def rand1000():
+    """
+    Show a random integer up to 9999.
+    """
+    while True: yield randint(1,9999)
