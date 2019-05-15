@@ -218,3 +218,8 @@ lines(x, pad_cred[5,], col=c_dark, lwd=2)
 "Half-Cauchy (half cauchy) density function."
 
 writeLines(readLines("half_cauchy_nom.stan"))
+
+fit_half_nom <- stan(file="half_cauchy_nom.stan", seed=4938483,
+                     warmup=1000, iter=11000)
+
+util$check_all_diagnostics(fit_half_nom)
