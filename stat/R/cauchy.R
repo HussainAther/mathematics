@@ -29,4 +29,20 @@ text(x=0.9, y=-50, labels="Normal", col=c_light_highlight)
 Hamiltonian (hamiltonian) Monte Carlo (monte carlo) method with Stan (stan)."
 writeLines(readLines("cauchy_nom.stan"))
 
+library(rstan)
 
+"Random Walk Metropolis (random walk metropolis), Metropolis-Adjusted Langevin (adjusted langevin),
+and Hamiltonian Monte Carlo don't give accurate estimates for the heavy tails of the Cauchy density
+function."
+
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+
+util <- new.env()
+source("stan_utility.R", local=util)
+source("plot_utility.R", local=util)
+
+fit_nom <- stan(file="cauchy_nom.stan", seed=4938483,
+                warmup=1000, iter=11000, control=list(max_treedepth=20))
+
+util$check_all_diagnostics(fit_nom, max_depth=20)
