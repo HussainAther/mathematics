@@ -214,3 +214,7 @@ polygon(c(x, rev(x)), c(pad_cred[3,], rev(pad_cred[7,])),
 polygon(c(x, rev(x)), c(pad_cred[4,], rev(pad_cred[6,])),
         col = c_mid_highlight, border = NA)
 lines(x, pad_cred[5,], col=c_dark, lwd=2)
+
+"Half-Cauchy (half cauchy) density function."
+
+writeLines(readLines("half_cauchy_nom.stan"))
