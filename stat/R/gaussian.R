@@ -18,3 +18,6 @@ simu_data <- list(alpha=alpha_true, rho=rho_true, sigma=sigma_true,
 the sampled function. Use nugget or jitter so the marginal covariance matrix before
 the Cholesky decomposition stabilizes the numerical calculations."
 writeLines(readLines("simu_gauss.stan"))
+"Fit."
+simu_fit <- stan(file='simu_gauss.stan', data=simu_data, iter=1,
+            chains=1, seed=494838, algorithm="Fixed_param")
