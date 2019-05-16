@@ -101,6 +101,14 @@ for i in range(n_iter):
 
     # Obtain next sampling point from the acquisition function (expected_improvement)
     X_next = propose_location(expected_improvement, X_sample, Y_sample, gpr, bounds)
-    
     # Obtain next noisy sample from the objective function
     Y_next = f(X_next, noise)
+    # Plot samples, surrogate function, noise-free objective and next sampling location
+    plt.subplot(n_iter, 2, 2 * i + 1)
+    plot_approximation(gpr, X, Y, X_sample, Y_sample, X_next, show_legend=i==0)
+    plt.title(f'Iteration {i+1}')
+    plt.subplot(n_iter, 2, 2 * i + 2)
+    plot_acquisition(X, expected_improvement(X, X_sample, Y_sample, gpr), X_next, show_legend=i==0)
+    # Add sample to previous samples
+    X_sample = np.vstack((X_sample, X_next))
+    Y_sample = np.vstack((Y_sample, Y_next))
