@@ -60,3 +60,6 @@ pred_data <- list(alpha=alpha_true, rho=rho_true, sigma=sigma_true, N=N, x=x, y=
                   N_predict=N_predict, x_predict=x_predict)
 pred_fit <- stan(file='predict_gauss.stan', data=pred_data, iter=1000, warmup=0,
                      chains=1, seed=5838298, refresh=1000, algorithm="Fixed_param")
+"Plot realizations."
+plot_gp_realizations(pred_fit, data, true_realization,
+                     "Posterior Realizations")
