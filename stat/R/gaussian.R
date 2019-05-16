@@ -70,3 +70,6 @@ plot_gp_realizations(pred_fit, data, true_realization,
                      "Posterior Predictive Realizations")
 plot_gp_pred_quantiles(pred_fit, data, true_realization,
                   "Posterior Predictive Quantiles")
+"Multivariate Gaussian distribution joint over all of the covariates within the model. 
+Let the fit occur to explore the conditional realizations."
+writeLines(readLines("simu_poisson.stan"))
