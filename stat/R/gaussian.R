@@ -47,3 +47,8 @@ stan_rdump(c("N", "x", "y",
              "sample_idx"), file="gp.data.R")
 data <- read_rdump("gp.data.R")
 stan_rdump(c("f_total", "x_total", "sigma_true"), file="gp.truth.R")
+"Construct the prior data generating process conditioned on the true realization of the 
+Gaussian process."
+f_data <- list(sigma=sigma_true, N=N_total, f=f_total)
+dgp_fit <- stan(file='simu_gauss_dgp.stan', data=f_data, iter=1000, warmup=0,
+                chains=1, seed=5838298, refresh=1000, algorithm="Fixed_param")
