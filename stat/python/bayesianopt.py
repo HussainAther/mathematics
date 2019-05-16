@@ -89,3 +89,8 @@ gpr = GaussianProcessRegressor(kernel=m52, alpha=noise**2)
 X_sample = X_init
 Y_sample = Y_init
 
+# Number of iterations
+n_iter = 10
+
+plt.figure(figsize=(12, n_iter * 3))
+plt.subplots_adjust(hspace=0.4)
