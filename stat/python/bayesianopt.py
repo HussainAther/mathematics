@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy.stats import norm
+from scipy.optimize import minimize
 
 """
 Bayesian optimization of objective function f, approximate iteratively with Gaussian process.
