@@ -126,3 +126,6 @@ plot_mc_evo <- function(iter, mc_stats, truth) {
 }
 
 plot_mc_evo(iter, mc_stats, poisson_prob(A1, l))
+"Probability of component."
+pushforward_samples = sapply(stan_samples, function(x) 1 - indicator(x, A1))
+compute_mc_stats(pushforward_samples)
