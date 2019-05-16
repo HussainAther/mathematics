@@ -89,3 +89,7 @@ welford_summary <- function(x) {
   summary[2] <- summary[2] / (length(x) - 1)
   return(summary)
 }
+compute_mc_stats <- function(x) {
+  summary <- welford_summary(x)
+  return(c(summary[1], sqrt(summary[2] / length(x))))
+}
