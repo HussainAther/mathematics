@@ -140,3 +140,7 @@ pushforward_samples = sapply(stan_samples, function(x) iota(x))
 iter <- 2:1000
 mc_stats <- sapply(iter, function(n) compute_mc_stats(pushforward_samples[0:n]))
 plot_mc_evo(iter, mc_stats, l)
+pushforward_samples = sapply(stan_samples, function(x) sqrt(x))
+compute_mc_stats(pushforward_samples)
+sum(sapply(0:100, function(x) sqrt(iota(x)) * dpois(x, l)))
+
