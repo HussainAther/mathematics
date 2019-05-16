@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 
 from scipy.stats import norm
 from scipy.optimize import minimize
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.gaussian_process.kernels import ConstantKernel, Matern
+from bayesian_optimization_util import plot_approximation, plot_acquisition
 
 """
 Bayesian optimization of objective function f, approximate iteratively with Gaussian process.
