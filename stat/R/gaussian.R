@@ -63,3 +63,6 @@ pred_fit <- stan(file='predict_gauss.stan', data=pred_data, iter=1000, warmup=0,
 "Plot realizations."
 plot_gp_realizations(pred_fit, data, true_realization,
                      "Posterior Realizations")
+"Plot quantiles."
+plot_gp_quantiles(pred_fit, data, true_realization,
+                  "Posterior Quantiles")
