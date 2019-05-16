@@ -50,3 +50,29 @@ rstan_options(auto_write = TRUE)
 fit <- stan(file="generate_poisson.stan", data=simu_data, 
             seed=194838, algorithm="Fixed_param",
             iter=1000, warmup=0, chains=1)
+
+stan_samples <- extract(fit)$x[]
+plot_poisson(l)
+hist(r_samples, breaks=0:21-0.5, 
+     col=c_dark_trans, border=c_mid_highlight_trans, probability=T, add=T)
+hist(stan_samples, breaks=0:21-0.5, 
+     col=c_mid_trans, border=c_light_highlight_trans, probability=T, add=T)
+"Empirical cumulative distribution function."
+B <- 21
+xs <- rep(0:B, each=2)
+
+cdfs <- sapply(1:length(xs), function(n) ifelse(n > 1, ppois(xs[n - 1], l), 0))
+
+par(mar = c(8, 6, 0, 0.5))
+plot(xs, cdfs, type="l", main="", col=c_dark_highlight, 
+     xlab="x", xlim=c(-0.5, 20.5), 
+     ylab="Cumulative Probability", ylim=c(0, 1), yaxt='n',
+     cex.lab=1.5, cex.axis=1.5, cex.main=1.5, cex.sub=1.5)
+
+ecdfs <- sapply(1:length(xs), function(n) 
+                ifelse(n > 1, length(r_samples[r_samples <= xs[n - 1]]), 0)) / length(r_samples)
+lines(xs, ecdfs, col=c_mid_highlight, lwd=2)
+
+ecdfs <- sapply(1:length(xs), function(n) 
+                ifelse(n > 1, length(stan_samples[stan_samples <= xs[n - 1]]), 0)) / length(stan_samples)
+lines(xs, ecdfs, col=c_light_highlight, lwd=2)
