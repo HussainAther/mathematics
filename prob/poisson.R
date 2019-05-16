@@ -98,3 +98,4 @@ indicator <- function(x, A) {
 }
 pushforward_samples = sapply(stan_samples, function(x) indicator(x, A1))
 compute_mc_stats(pushforward_samples)
+poisson_prob(A1, l)
