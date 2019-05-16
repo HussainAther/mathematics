@@ -46,3 +46,6 @@ plot_poisson_probs <- function(A, l) {
 plot_poisson(l)
 plot_poisson_probs(A1, l)
 sum(sapply(A1, function(x) dpois(x, l)))
+"Generate samples from distribution using Poisson probability mass function."
+set.seed(8675309)
+r_samples <- rpois(1000, l)
