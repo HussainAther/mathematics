@@ -79,3 +79,7 @@ def propose_location(acquisition, X_sample, Y_sample, gpr, bounds, n_restarts=25
             min_val = res.fun[0]
             min_x = res.x           
     return min_x.reshape(-1, 1)
+
+# Gaussian process with Matern kernel as surrogate model
+m52 = ConstantKernel(1.0) * Matern(length_scale=1.0, nu=2.5)
+gpr = GaussianProcessRegressor(kernel=m52, alpha=noise**2)
