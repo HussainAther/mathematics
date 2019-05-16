@@ -45,3 +45,4 @@ plot_poisson_probs <- function(A, l) {
 
 plot_poisson(l)
 plot_poisson_probs(A1, l)
+sum(sapply(A1, function(x) dpois(x, l)))
