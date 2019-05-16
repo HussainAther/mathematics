@@ -76,3 +76,16 @@ lines(xs, ecdfs, col=c_mid_highlight, lwd=2)
 ecdfs <- sapply(1:length(xs), function(n) 
                 ifelse(n > 1, length(stan_samples[stan_samples <= xs[n - 1]]), 0)) / length(stan_samples)
 lines(xs, ecdfs, col=c_light_highlight, lwd=2)
+
+"Facilitate Monte Carlo estimator computation using Welford accumulator to compute empirical
+means and variances of a sample."
+welford_summary <- function(x) {
+  summary = c(0, 0)
+  for (n in 1:length(x)) {
+    delta <- x[n] - summary[1]
+    summary[1] <- summary[1] + delta / (n + 1)
+    summary[2] <- summary[2] + delta * (x[n] - summary[1])
+  }
+  summary[2] <- summary[2] / (length(x) - 1)
+  return(summary)
+}
