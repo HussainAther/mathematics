@@ -19,7 +19,7 @@ the sampled function. Use nugget or jitter so the marginal covariance matrix bef
 the Cholesky decomposition stabilizes the numerical calculations."
 writeLines(readLines("simu_gauss.stan"))
 "Fit."
-simu_fit <- stan(file='simu_gauss.stan', data=simu_data, iter=1,
+simu_fit <- stan(file="simu_gauss.stan", data=simu_data, iter=1,
             chains=1, seed=494838, algorithm="Fixed_param")
 f_total <- extract(simu_fit)$f[1,]
 y_total <- extract(simu_fit)$y[1,]
@@ -50,7 +50,7 @@ stan_rdump(c("f_total", "x_total", "sigma_true"), file="gp.truth.R")
 "Construct the prior data generating process conditioned on the true realization of the 
 Gaussian process."
 f_data <- list(sigma=sigma_true, N=N_total, f=f_total)
-dgp_fit <- stan(file='simu_gauss_dgp.stan', data=f_data, iter=1000, warmup=0,
+dgp_fit <- stan(file="simu_gauss_dgp.stan", data=f_data, iter=1000, warmup=0,
                 chains=1, seed=5838298, refresh=1000, algorithm="Fixed_param")
 plot_gp_pred_quantiles(dgp_fit, data, true_realization,
                        "True Data Generating Process Quantiles")
@@ -58,7 +58,7 @@ plot_gp_pred_quantiles(dgp_fit, data, true_realization,
 writeLines(readLines("predict_gauss.stan"))
 pred_data <- list(alpha=alpha_true, rho=rho_true, sigma=sigma_true, N=N, x=x, y=y,
                   N_predict=N_predict, x_predict=x_predict)
-pred_fit <- stan(file='predict_gauss.stan', data=pred_data, iter=1000, warmup=0,
+pred_fit <- stan(file="predict_gauss.stan", data=pred_data, iter=1000, warmup=0,
                      chains=1, seed=5838298, refresh=1000, algorithm="Fixed_param")
 "Plot realizations."
 plot_gp_realizations(pred_fit, data, true_realization,
@@ -73,7 +73,7 @@ plot_gp_pred_quantiles(pred_fit, data, true_realization,
 "Multivariate Gaussian distribution joint over all of the covariates within the model. 
 Let the fit occur to explore the conditional realizations."
 writeLines(readLines("simu_poisson.stan"))
-simu_fit <- stan(file='simu_poisson.stan', data=simu_data, iter=1,
+simu_fit <- stan(file="simu_poisson.stan", data=simu_data, iter=1,
             chains=1, seed=494838, algorithm="Fixed_param")
 f_total <- extract(simu_fit)$f[1,]
 y_total <- extract(simu_fit)$y[1,]
@@ -99,3 +99,7 @@ points(x, y, col="black", pch=16, cex=0.8)
 to specify the observation model. Fit the latent Gaussian process with Markov chain 
 Monte Carlo (MCMC markov monte carlo Chain)."
 writeLines(readLines("predict_poisson.stan"))
+pred_data <- list(alpha=alpha_true, rho=rho_true,
+                  N_predict=N_predict, x_predict=x_predict,
+                  N_observed=N, y_observed=y, observed_idx=observed_idx)
+pred_fit <- stan(file="predict_poisson.stan", data=pred_data, seed=5838298, refresh=1000)
