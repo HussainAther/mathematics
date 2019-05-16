@@ -93,3 +93,6 @@ compute_mc_stats <- function(x) {
   summary <- welford_summary(x)
   return(c(summary[1], sqrt(summary[2] / length(x))))
 }
+indicator <- function(x, A) {
+  return(ifelse(A[1] <= x & x <= A[length(A)], 1, 0))
+}
