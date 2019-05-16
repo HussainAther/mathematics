@@ -20,3 +20,15 @@ plot_poisson <- function(l) {
 
 l <- 5
 plot_poisson(l)
+
+"Cumulative distribution function."
+
+B <- 21
+xs <- rep(0:B, each=2)
+cdfs <- sapply(1:length(xs), function(n) ifelse(n > 1, ppois(xs[n - 1], l), 0))
+
+par(mar = c(8, 6, 0, 0.5))
+plot(xs, cdfs, type="l", main="", col=c_dark_highlight, 
+     xlab="x", xlim=c(-0.5, 20.5), 
+     ylab="Cumulative Probability", ylim=c(0, 1), yaxt='n',
+     cex.lab=1.5, cex.axis=1.5, cex.main=1.5, cex.sub=1.5)
