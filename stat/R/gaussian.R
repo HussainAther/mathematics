@@ -38,3 +38,10 @@ points(x_total, y_total, col="white", pch=16, cex=0.6)
 points(x_total, y_total, col=c_mid_teal, pch=16, cex=0.4)
 points(x, y, col="white", pch=16, cex=1.2)
 points(x, y, col="black", pch=16, cex=0.8)
+"Predict."
+N_predict <- N_total
+x_predict <- x_total
+y_predict <- y_total
+stan_rdump(c("N", "x", "y",
+             "N_predict", "x_predict", "y_predict",
+             "sample_idx"), file="gp.data.R")
