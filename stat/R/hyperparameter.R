@@ -19,3 +19,6 @@ xgb_cv_bayes <- function(max_depth, min_child_weight, subsample) {
                data = dtrain, nround = 100,
                folds = cv_folds, prediction = TRUE, showsd = TRUE,
                early_stopping_rounds = 5, maximize = TRUE, verbose = 0)
+  list(Score = cv$evaluation_log$test_auc_mean[cv$best_iteration],
+       Pred = cv$pred)
+}
