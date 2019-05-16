@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from scipy.stats import norm
+
 """
 Bayesian optimization of objective function f, approximate iteratively with Gaussian process.
 """
