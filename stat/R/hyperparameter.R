@@ -22,3 +22,10 @@ xgb_cv_bayes <- function(max_depth, min_child_weight, subsample) {
   list(Score = cv$evaluation_log$test_auc_mean[cv$best_iteration],
        Pred = cv$pred)
 }
+OPT_Res <- BayesianOptimization(xgb_cv_bayes,
+                                bounds = list(max.depth = c(2L, 6L),
+                                              min_child_weight = c(1L, 10L),
+                                              subsample = c(0.5, 0.8)),
+                                init_grid_dt = NULL, init_points = 10, n_iter = 20,
+                                acq = "ucb", kappa = 2.576, eps = 0.0,
+                                verbose = TRUE)
