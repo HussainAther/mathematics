@@ -94,3 +94,13 @@ n_iter = 10
 
 plt.figure(figsize=(12, n_iter * 3))
 plt.subplots_adjust(hspace=0.4)
+
+for i in range(n_iter):
+    # Update Gaussian process with existing samples
+    gpr.fit(X_sample, Y_sample)
+
+    # Obtain next sampling point from the acquisition function (expected_improvement)
+    X_next = propose_location(expected_improvement, X_sample, Y_sample, gpr, bounds)
+    
+    # Obtain next noisy sample from the objective function
+    Y_next = f(X_next, noise)
