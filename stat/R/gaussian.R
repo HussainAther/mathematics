@@ -14,3 +14,7 @@ x_total <- 20 * (0:(N_total - 1)) / (N_total - 1) - 10
 
 simu_data <- list(alpha=alpha_true, rho=rho_true, sigma=sigma_true,
                   N=N_total, x=x_total)
+"Construct marginal covariance matrix. Simulate data using Gaussian variation around
+the sampled function. Use nugget or jitter so the marginal covariance matrix before
+the Cholesky decomposition stabilizes the numerical calculations."
+writeLines(readLines("simu_gauss.stan"))
