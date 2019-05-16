@@ -52,3 +52,5 @@ Gaussian process."
 f_data <- list(sigma=sigma_true, N=N_total, f=f_total)
 dgp_fit <- stan(file='simu_gauss_dgp.stan', data=f_data, iter=1000, warmup=0,
                 chains=1, seed=5838298, refresh=1000, algorithm="Fixed_param")
+plot_gp_pred_quantiles(dgp_fit, data, true_realization,
+                       "True Data Generating Process Quantiles")
