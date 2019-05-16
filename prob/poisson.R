@@ -14,7 +14,7 @@ plot_poisson <- function(l) {
   par(mar = c(8, 6, 0, 0.5))
   plot(p, main="", col="white", border=c_dark_highlight,
        xlab="x", xlim=c(-0.5, 20.5), 
-       ylab="Probability Mass", ylim=c(0, 0.2), yaxt='n',
+       ylab="Probability Mass", ylim=c(0, 0.2), yaxt="n",
        cex.lab=1.5, cex.axis=1.5, cex.main=1.5, cex.sub=1.5)
 }
 
@@ -30,5 +30,18 @@ cdfs <- sapply(1:length(xs), function(n) ifelse(n > 1, ppois(xs[n - 1], l), 0))
 par(mar = c(8, 6, 0, 0.5))
 plot(xs, cdfs, type="l", main="", col=c_dark_highlight, 
      xlab="x", xlim=c(-0.5, 20.5), 
-     ylab="Cumulative Probability", ylim=c(0, 1), yaxt='n',
+     ylab="Cumulative Probability", ylim=c(0, 1), yaxt="n",
      cex.lab=1.5, cex.axis=1.5, cex.main=1.5, cex.sub=1.5)
+
+"Compute probabilities."
+
+plot_poisson_probs <- function(A, l) {
+  bin_edges <- c(A, A[length(A)] + 1) - 0.5
+  p_sum <- hist(A[1], breaks=bin_edges, plot=FALSE)
+  p_sum$counts <- dpois(A, 5)
+
+  plot(p_sum, col=c_dark, border=c_dark_highlight, add=T)
+}
+
+plot_poisson(l)
+plot_poisson_probs(A1, l)
