@@ -96,3 +96,5 @@ compute_mc_stats <- function(x) {
 indicator <- function(x, A) {
   return(ifelse(A[1] <= x & x <= A[length(A)], 1, 0))
 }
+pushforward_samples = sapply(stan_samples, function(x) indicator(x, A1))
+compute_mc_stats(pushforward_samples)
