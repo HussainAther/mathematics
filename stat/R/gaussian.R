@@ -73,3 +73,25 @@ plot_gp_pred_quantiles(pred_fit, data, true_realization,
 "Multivariate Gaussian distribution joint over all of the covariates within the model. 
 Let the fit occur to explore the conditional realizations."
 writeLines(readLines("simu_poisson.stan"))
+simu_fit <- stan(file='simu_poisson.stan', data=simu_data, iter=1,
+            chains=1, seed=494838, algorithm="Fixed_param")
+f_total <- extract(simu_fit)$f[1,]
+y_total <- extract(simu_fit)$y[1,]
+
+true_realization <- data.frame(exp(f_total), x_total)
+names(true_realization) <- c("f_total", "x_total")
+
+sample_idx <- c(50*(0:10)+1)
+N = length(sample_idx)
+x <- x_total[sample_idx]
+y <- y_total[sample_idx]
+
+data = list("N"=N, "x"=x, "y"=y,
+             "N_predict"=N_predict, "x_predict"=x_total, "y_predict"=y_total)
+
+plot(x_total, exp(f_total), type="l", lwd=2, xlab="x", ylab="y",
+     xlim=c(-10, 10), ylim=c(0, 10))
+points(x_total, y_total, col="white", pch=16, cex=0.6)
+points(x_total, y_total, col=c_mid_teal, pch=16, cex=0.4)
+points(x, y, col="white", pch=16, cex=1.2)
+points(x, y, col="black", pch=16, cex=0.8)
