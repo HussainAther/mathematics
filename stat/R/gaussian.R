@@ -66,3 +66,7 @@ plot_gp_realizations(pred_fit, data, true_realization,
 "Plot quantiles."
 plot_gp_quantiles(pred_fit, data, true_realization,
                   "Posterior Quantiles")
+plot_gp_realizations(pred_fit, data, true_realization,
+                     "Posterior Predictive Realizations")
+plot_gp_pred_quantiles(pred_fit, data, true_realization,
+                  "Posterior Predictive Quantiles")
