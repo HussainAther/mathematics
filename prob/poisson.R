@@ -99,3 +99,30 @@ indicator <- function(x, A) {
 pushforward_samples = sapply(stan_samples, function(x) indicator(x, A1))
 compute_mc_stats(pushforward_samples)
 poisson_prob(A1, l)
+"Monte Carlo Central Limit Theorem."
+iter <- 2:1000
+mc_stats <- sapply(iter, function(n) compute_mc_stats(pushforward_samples[0:n]))
+     
+plot_mc_evo <- function(iter, mc_stats, truth) {
+  plot(1, type="n", main="", 
+       xlab="Iteration", xlim=c(0, max(iter)),
+       ylab="Monte Carlo Estimator",
+       ylim=c(min(mc_stats[1,] - 3 * mc_stats[2,]), max(mc_stats[1,] + 3 * mc_stats[2,])))
+  
+  polygon(c(iter, rev(iter)), 
+          c(mc_stats[1,] - 3 * mc_stats[2,], 
+            rev(mc_stats[1,] + 3 * mc_stats[2,])),
+          col = c_light_highlight, border = NA)
+  polygon(c(iter, rev(iter)),
+          c(mc_stats[1,] - 2 * mc_stats[2,], 
+            rev(mc_stats[1,] + 2 * mc_stats[2,])),
+          col = c_mid, border = NA)
+  polygon(c(iter, rev(iter)), 
+          c(mc_stats[1,] - 1 * mc_stats[2,], 
+            rev(mc_stats[1,] + 1 * mc_stats[2,])),
+          col = c_mid_highlight, border = NA)
+  lines(iter, mc_stats[1,], col=c_dark, lwd=2)
+  abline(h=truth, col="grey", lty="dashed", lw=2)
+}
+
+plot_mc_evo(iter, mc_stats, poisson_prob(A1, l))
