@@ -45,3 +45,5 @@ y_predict <- y_total
 stan_rdump(c("N", "x", "y",
              "N_predict", "x_predict", "y_predict",
              "sample_idx"), file="gp.data.R")
+data <- read_rdump("gp.data.R")
+stan_rdump(c("f_total", "x_total", "sigma_true"), file="gp.truth.R")
