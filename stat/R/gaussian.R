@@ -21,3 +21,20 @@ writeLines(readLines("simu_gauss.stan"))
 "Fit."
 simu_fit <- stan(file='simu_gauss.stan', data=simu_data, iter=1,
             chains=1, seed=494838, algorithm="Fixed_param")
+f_total <- extract(simu_fit)$f[1,]
+y_total <- extract(simu_fit)$y[1,]
+
+true_realization <- data.frame(f_total, x_total)
+names(true_realization) <- c("f_total", "x_total")
+
+observed_idx <- c(50*(0:10)+1)
+N = length(observed_idx)
+x <- x_total[observed_idx]
+y <- y_total[observed_idx]
+
+plot(x_total, f_total, type="l", lwd=2, xlab="x", ylab="y",
+     xlim=c(-10, 10), ylim=c(-10, 10))
+points(x_total, y_total, col="white", pch=16, cex=0.6)
+points(x_total, y_total, col=c_mid_teal, pch=16, cex=0.4)
+points(x, y, col="white", pch=16, cex=1.2)
+points(x, y, col="black", pch=16, cex=0.8)
