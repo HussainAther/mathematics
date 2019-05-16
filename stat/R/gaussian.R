@@ -8,10 +8,8 @@ source("gp_utility.R")
 alpha_true <- 3
 rho_true <- 5.5
 sigma_true <- 2
-
 N_total = 501
 x_total <- 20 * (0:(N_total - 1)) / (N_total - 1) - 10
-
 simu_data <- list(alpha=alpha_true, rho=rho_true, sigma=sigma_true,
                   N=N_total, x=x_total)
 "Construct marginal covariance matrix. Simulate data using Gaussian variation around
@@ -23,15 +21,12 @@ simu_fit <- stan(file="simu_gauss.stan", data=simu_data, iter=1,
             chains=1, seed=494838, algorithm="Fixed_param")
 f_total <- extract(simu_fit)$f[1,]
 y_total <- extract(simu_fit)$y[1,]
-
 true_realization <- data.frame(f_total, x_total)
 names(true_realization) <- c("f_total", "x_total")
-
 observed_idx <- c(50*(0:10)+1)
 N = length(observed_idx)
 x <- x_total[observed_idx]
 y <- y_total[observed_idx]
-
 plot(x_total, f_total, type="l", lwd=2, xlab="x", ylab="y",
      xlim=c(-10, 10), ylim=c(-10, 10))
 points(x_total, y_total, col="white", pch=16, cex=0.6)
@@ -77,18 +72,14 @@ simu_fit <- stan(file="simu_poisson.stan", data=simu_data, iter=1,
             chains=1, seed=494838, algorithm="Fixed_param")
 f_total <- extract(simu_fit)$f[1,]
 y_total <- extract(simu_fit)$y[1,]
-
 true_realization <- data.frame(exp(f_total), x_total)
 names(true_realization) <- c("f_total", "x_total")
-
 sample_idx <- c(50*(0:10)+1)
 N = length(sample_idx)
 x <- x_total[sample_idx]
 y <- y_total[sample_idx]
-
 data = list("N"=N, "x"=x, "y"=y,
              "N_predict"=N_predict, "x_predict"=x_total, "y_predict"=y_total)
-
 plot(x_total, exp(f_total), type="l", lwd=2, xlab="x", ylab="y",
      xlim=c(-10, 10), ylim=c(0, 10))
 points(x_total, y_total, col="white", pch=16, cex=0.6)
