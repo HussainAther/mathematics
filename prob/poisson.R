@@ -136,3 +136,7 @@ poisson_prob(A_union, l)
 pushforward_samples = sapply(stan_samples, function(x) indicator(x, A_inter))
 compute_mc_stats(pushforward_samples)
 poisson_prob(A_inter, l)
+pushforward_samples = sapply(stan_samples, function(x) iota(x))
+iter <- 2:1000
+mc_stats <- sapply(iter, function(n) compute_mc_stats(pushforward_samples[0:n]))
+plot_mc_evo(iter, mc_stats, l)
