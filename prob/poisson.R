@@ -143,4 +143,15 @@ plot_mc_evo(iter, mc_stats, l)
 pushforward_samples = sapply(stan_samples, function(x) sqrt(x))
 compute_mc_stats(pushforward_samples)
 sum(sapply(0:100, function(x) sqrt(iota(x)) * dpois(x, l)))
+"Pushforward probability mass function."
+bin_edges <- c(-0.5, sapply(1:21, function(x) sqrt(x - 0.5)))
 
+ps <- hist(pushforward_samples, breaks=bin_edges, plot=F)
+ps$density <- ps$counts / 1000
+plot(ps, col=c_mid_trans, border=c_mid_highlight_trans, 
+     main="", xlab="y = sqrt(x)", yaxt='n', ylab="Probability Mass",
+     cex.lab=1.5, cex.axis=1.5, cex.main=1.5, cex.sub=1.5)
+           
+p <- hist(0, breaks=bin_edges, plot=F)
+p$density <- dpois(0:20, l)
+plot(p, col=c_dark_trans, border=c_dark_highlight_trans, add=T)
