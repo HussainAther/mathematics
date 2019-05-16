@@ -103,3 +103,11 @@ pred_data <- list(alpha=alpha_true, rho=rho_true,
                   N_predict=N_predict, x_predict=x_predict,
                   N_observed=N, y_observed=y, observed_idx=observed_idx)
 pred_fit <- stan(file="predict_poisson.stan", data=pred_data, seed=5838298, refresh=1000)
+plot_gp_realizations(pred_fit, data, true_realization,
+                     "Posterior Realizations")
+plot_gp_quantiles(pred_fit, data, true_realization,
+                  "Posterior Quantiles")
+plot_gp_realizations(pred_fit, data, true_realization,
+                     "Posterior Predictive Realizations")
+plot_gp_pred_quantiles(pred_fit, data, true_realization,
+                  "Posterior Predictive Quantiles")
