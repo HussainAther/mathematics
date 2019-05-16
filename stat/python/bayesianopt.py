@@ -65,7 +65,8 @@ def propose_location(acquisition, X_sample, Y_sample, gpr, bounds, n_restarts=25
     Propose the next sampling point by optimizing the acquisition function. acquisition 
     is the acquisition function. X_sample are the sample locations (n x d). Y_sample are sample 
     values (n x 1). gpr is a GaussianProcessRegressor fitted to samples. Returns the location 
-    of the acquisition function maximum."""
+    of the acquisition function maximum.
+    """
     dim = X_sample.shape[1]
     min_val = 1
     min_x = None
@@ -74,7 +75,7 @@ def propose_location(acquisition, X_sample, Y_sample, gpr, bounds, n_restarts=25
         return -acquisition(X.reshape(-1, dim), X_sample, Y_sample, gpr)
     # Find the best optimum by starting from n_restart different random points.
     for x0 in np.random.uniform(bounds[:, 0], bounds[:, 1], size=(n_restarts, dim)):
-        res = minimize(min_obj, x0=x0, bounds=bounds, method='L-BFGS-B')        
+        res = minimize(min_obj, x0=x0, bounds=bounds, method="L-BFGS-B")        
         if res.fun < min_val:
             min_val = res.fun[0]
             min_x = res.x           
@@ -83,3 +84,8 @@ def propose_location(acquisition, X_sample, Y_sample, gpr, bounds, n_restarts=25
 # Gaussian process with Matern kernel as surrogate model
 m52 = ConstantKernel(1.0) * Matern(length_scale=1.0, nu=2.5)
 gpr = GaussianProcessRegressor(kernel=m52, alpha=noise**2)
+
+# Initialize samples
+X_sample = X_init
+Y_sample = Y_init
+
