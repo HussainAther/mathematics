@@ -56,3 +56,7 @@ plot_gp_pred_quantiles(dgp_fit, data, true_realization,
                        "True Data Generating Process Quantiles")
 "Simulate Gaussian process posterior with analytic manipulations."
 writeLines(readLines("predict_gauss.stan"))
+pred_data <- list(alpha=alpha_true, rho=rho_true, sigma=sigma_true, N=N, x=x, y=y,
+                  N_predict=N_predict, x_predict=x_predict)
+pred_fit <- stan(file='predict_gauss.stan', data=pred_data, iter=1000, warmup=0,
+                     chains=1, seed=5838298, refresh=1000, algorithm="Fixed_param")
