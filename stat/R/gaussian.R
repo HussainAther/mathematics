@@ -95,3 +95,7 @@ points(x_total, y_total, col="white", pch=16, cex=0.6)
 points(x_total, y_total, col=c_mid_teal, pch=16, cex=0.4)
 points(x, y, col="white", pch=16, cex=1.2)
 points(x, y, col="black", pch=16, cex=0.8)
+"Pull covariates with variate observations out of the vector of all the covariates
+to specify the observation model. Fit the latent Gaussian process with Markov chain 
+Monte Carlo (MCMC markov monte carlo Chain)."
+writeLines(readLines("predict_poisson.stan"))
