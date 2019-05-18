@@ -14,3 +14,4 @@ sms_dtm_train <- sms_dtm[1:4169, ] # Document term
 sms_dtm_test  <- sms_dtm[4170:5559, ]
 sms_corpus_train <- corpus_clean[1:4169] # Corpus
 sms_corpus_test  <- corpus_clean[4170:5559]
+ wordcloud(sms_corpus_train, min.freq = 40, random.order = FALSE) # Word cloud
