@@ -21,3 +21,8 @@ sindFreqTerms(sms_dtm_train, 5) # Create indicator features
 sms_dict <- Dictionary(findFreqTerms(sms_dtm_train, 5)) # Save as dictionary 
 sms_train <- DocumentTermMatrix(sms_corpus_train, list(dictionary = sms_dict))
 sms_test  <- DocumentTermMatrix(sms_corpus_test, list(dictionary = sms_dict))
+convert_counts <- function(x) { # function to convert counts to factors 
+    x <- ifelse(x > 0, 1, 0)
+    x <- factor(x, levels = c(0, 1), labels = c(""No"", ""Yes""))
+    return(x)
+ }
