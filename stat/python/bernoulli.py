@@ -10,6 +10,10 @@ from mpl_toolkits.mplot3d import Axes3D
 from scipy import stats
 from scipy.special import gamma
 from sympy.interactive import printing
+from libc.math cimport pow
+
+cimport numpy as np
+cimport cython
 
 """
 Bayesian estimation of Bernoulli trials.
@@ -104,10 +108,14 @@ prior_const = gamma(a1) * gamma(a2) / gamma(a1 + a2)
 mh_ll = lambda theta: _likelihood(theta, nobs, Y.sum())
 
 def mh_prior(theta):
+    """
+    Prior distribution for Metropolis-Hastings algorithm for a theta.
+    """
     prior = 0
     if theta >= 0 and theta <= 1:
         prior = prior_const*(theta**(a1-1))*((1-theta)**(a2-1))
     return prior
+
 mh_accept = lambda theta: mh_ll(theta) * mh_prior(theta)
 
 theta_prob = mh_accept(thetas[-1])
@@ -147,3 +155,18 @@ ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
 # Cleanup
 ax.set(title="Metropolis-Hastings via pure Python (10,000 Draws; 1,000 Burned)", ylim=(0,12))
 ax.legend(["Posterior (Analytic)", "Prior", "Posterior Draws (MH)"])
+
+# Metropolis-Hastings in Cython
+cdef double likelihood(double theta, int T, int s):
+    """
+    Calculate Metropolis-Hastings distribution samples using Cython functions.
+    """
+    return pow(theta, s)*pow(1-theta, T-s)
+
+cdef double prior(double theta, double a1, double a2, double prior_const):
+    """
+    Double of the prior distribution.
+    """
+    if theta < 0 or theta > 1:
+        return 0
+    return prior_const*pow(theta, a1-1)*pow(1-theta, a2-1)
