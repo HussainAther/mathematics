@@ -1,4 +1,6 @@
 "Filtering mobile phone spam with naive Bayes algorithm."
+install.packages("e1071")
+library(e1071) 
 sms_raw <- read.csv("spam.csv", stringsAsFactors = FALSE)
 sms_raw$type <- factor(sms_raw$type) # Convert to factor
 sms_corpus <- Corpus(VectorSource(sms_raw$text)) 
