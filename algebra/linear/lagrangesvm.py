@@ -41,4 +41,8 @@ We can calculate the Lagrangian functional for the primal problem.
 """
 
 def primalL(alpha, y, x, b, mu, w, C, eps):
-     
+    """
+    For parameters alpha, y, x, b, mu, with vector w, generalization constant C, and error epsilon,
+    calculate the Lagrange functional for the primal problem.
+    """ 
+    return .5*abs(w)**2 + C*(sum(eps)) - np.sum(alpha*(x.transpose()*w+b) -1 + eps, axis=0) - sum(mu*eps, axis=0)
