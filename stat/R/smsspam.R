@@ -6,3 +6,5 @@ corpus_clean <- tm_map(sms_corpus, tolower) # Convert to lowercase
 corpus_clean <- tm_map(corpus_clean, removeNumbers) # Remove numbers
 corpus_clean <- tm_map(corpus_clean, removeWords, stopwords()) # Remove stop words
 corpus_clean <- tm_map(corpus_clean, removePunctuation) # Remove punctuation
+corpus_clean <- tm_map(corpus_clean, stripWhitespace) # Remove whitespace
+
