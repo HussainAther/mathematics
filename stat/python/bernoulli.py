@@ -112,3 +112,17 @@ mh_accept = lambda theta: mh_ll(theta) * mh_prior(theta)
 
 theta_prob = mh_accept(thetas[-1])
 
+# Metropolis-Hastings iterations
+for i in range(G1+G):
+    # Draw theta
+    # Generate the proposal
+    theta = thetas[-1]
+    theta_star = theta + etas[i]
+    theta_star_prob = mh_accept(theta_star)
+    # Calculate the acceptance probability
+    accept_prob = theta_star_prob / theta_prob
+    # Append the new draw
+    if accept_prob > unif[i]:
+        theta = theta_star
+        theta_prob = theta_star_prob
+    thetas.append(theta)
