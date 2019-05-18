@@ -34,3 +34,6 @@ sms_classifier <- naiveBayes(sms_train, sms_raw_train$type) # Model
 sms_test_pred <- predict(sms_classifier, sms_test) # Evaluate
 library(gmodels) # Compare predictions to actual values
 CrossTable(sms_test_pred, sms_raw_test$type, prop.chisq = FALSE, prop.t = FALSE, dnn = c("predicted", "actual"))
+sms_classifier2 <- naiveBayes(sms_train, sms_raw_train$type, laplace = 1) # Improve the model with LaPlace estimator
+sms_test_pred2 <- predict(sms_classifier2, sms_test) # Predict
+CrossTable(sms_test_pred2, sms_raw_test$type, prop.chisq = FALSE, prop.t = FALSE, prop.r = FALSE, dnn = c("predicted", "actual"))
