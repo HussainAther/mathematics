@@ -170,3 +170,6 @@ cdef double prior(double theta, double a1, double a2, double prior_const):
     if theta < 0 or theta > 1:
         return 0
     return prior_const*pow(theta, a1-1)*pow(1-theta, a2-1)
+
+cdef np.ndarray[np.float64_t, ndim=1] draw_posterior(np.ndarray[np.float64_t, ndim=1] theta, double eta, double unif, int T, int s, double a1, double a2, double prior_const):
+
