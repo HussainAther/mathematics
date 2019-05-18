@@ -63,3 +63,25 @@ ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
 # Cleanup
 ax.set(title="Prior Distribution", ylim=(0,12))
 ax.legend(["Prior"])
+
+# Posterior
+# Find the hyperparameters of the posterior
+a1_hat = a1 + Y.sum()
+a2_hat = a2 + nobs - Y.sum()
+
+# Posterior Mean
+post_mean = a1_hat / (a1_hat + a2_hat)
+print("Posterior Mean (Analytic):", post_mean)
+
+# Plot the analytic posterior
+fig = plt.figure(figsize=(10,4))
+ax = fig.add_subplot(111)
+X = np.linspace(0,1, 1000)
+ax.plot(X, stats.beta(a1_hat, a2_hat).pdf(X), "r")
+
+# Plot the prior
+ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
+
+# Cleanup
+ax.set(title="Posterior Distribution (Analytic)", ylim=(0,12))
+ax.legend(["Posterior (Analytic)", "Prior"])
