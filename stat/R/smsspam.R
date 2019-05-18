@@ -1,6 +1,6 @@
 "Filtering mobile phone spam with naive Bayes algorithm."
-install.packages("e1071")
-library(e1071) 
+install.packages("e1071") # Install naive Bayes implementation package
+library(e1071)  # load package
 sms_raw <- read.csv("spam.csv", stringsAsFactors = FALSE)
 sms_raw$type <- factor(sms_raw$type) # Convert to factor
 sms_corpus <- Corpus(VectorSource(sms_raw$text)) 
@@ -30,3 +30,5 @@ convert_counts <- function(x) { # function to convert counts to factors
  }
 sms_train <- apply(sms_train, MARGIN = 2, convert_counts)
 sms_test  <- apply(sms_test, MARGIN = 2, convert_counts)
+sms_classifier <- naiveBayes(sms_train, sms_raw_train$type) # Model
+sms_test_pred <- predict(sms_classifier, sms_test) # Evaluate
