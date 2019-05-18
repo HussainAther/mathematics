@@ -95,6 +95,20 @@ G = 10000 # draws from the (converged) posterior
 
 # Model parameters
 sigma = 0.1
-thetas = [0.5]             # initial value for theta
+thetas = [0.5] # initial value for theta
 etas = np.random.normal(0, sigma, G1+G) # random walk errors
-unif = np.random.uniform(size=G1+G)     # comparators for accept_probs
+unif = np.random.uniform(size=G1+G) # comparators for accept_probs
+
+# Callable functions for likelihood and prior
+prior_const = gamma(a1) * gamma(a2) / gamma(a1 + a2)
+mh_ll = lambda theta: _likelihood(theta, nobs, Y.sum())
+
+def mh_prior(theta):
+    prior = 0
+    if theta >= 0 and theta <= 1:
+        prior = prior_const*(theta**(a1-1))*((1-theta)**(a2-1))
+    return prior
+mh_accept = lambda theta: mh_ll(theta) * mh_prior(theta)
+
+theta_prob = mh_accept(thetas[-1])
+
