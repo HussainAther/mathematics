@@ -126,3 +126,20 @@ for i in range(G1+G):
         theta = theta_star
         theta_prob = theta_star_prob
     thetas.append(theta)
+
+# Posterior Mean
+print("Posterior Mean (MH):", np.mean(thetas[G1:]))
+
+# Plot the posterior
+fig = plt.figure(figsize=(10,4))
+ax = fig.add_subplot(111)
+
+# Plot MH draws
+ax.hist(thetas[G1:], bins=50, normed=True)
+
+# Plot analytic posterior
+X = np.linspace(0,1, 1000)
+ax.plot(X, stats.beta(a1_hat, a2_hat).pdf(X), "r")
+
+# Plot prior
+ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
