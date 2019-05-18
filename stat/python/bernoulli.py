@@ -14,3 +14,10 @@ from sympy.interactive import printing
 """
 Bayesian estimation of Bernoulli trials.
 """
+
+np.random.seed(123)
+
+# Simulate
+nobs = 100
+theta = 0.3
+Y = np.random.binomial(1, theta, nobs)
