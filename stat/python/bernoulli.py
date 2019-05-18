@@ -240,3 +240,7 @@ ax.plot(X, stats.beta(a1_hat, a2_hat).pdf(X), "r")
 
 # Plot prior
 ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
+
+# Cleanup
+ax.set(title="Metropolis-Hastings via Cython (1,000,000 Draws; 100,000 Burned)", ylim=(0,12))
+ax.legend(["Posterior (Analytic)", "Prior", "Posterior Draws (MH)"])
