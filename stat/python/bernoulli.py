@@ -172,4 +172,29 @@ cdef double prior(double theta, double a1, double a2, double prior_const):
     return prior_const*pow(theta, a1-1)*pow(1-theta, a2-1)
 
 cdef np.ndarray[np.float64_t, ndim=1] draw_posterior(np.ndarray[np.float64_t, ndim=1] theta, double eta, double unif, int T, int s, double a1, double a2, double prior_const):
+    cdef double theta_star, theta_star_prob, accept_prob
+    theta_star = theta[0] + eta
+    theta_star_prob = likelihood(theta_star, T, s) * prior(theta_star, a1, a2, prior_const)
+    accept_prob = theta_star_prob / theta[1]
+    if accept_prob > unif:
+        theta[0] = theta_star
+        theta[1] = theta_star_prob
+    return theta
 
+def mh(double theta_init, int T, int s, double sigma, double a1, double a2, int G1, int G):
+    """
+    Metropolis-Hastings algorithm using Cython.
+    """ 
+    cdef np.ndarray[np.float64_t, ndim = 1] theta, thetas, etas, unif
+    cdef double prior_const, theta_prob
+    cdef int t
+    prior_const = gamma(a1) * gamma(a2) / gamma(a1 + a2)
+    theta_prob = likelihood(theta_init, T, s) * prior(theta_init, a1, a2, prior_const)
+    theta = np.array([theta_init, theta_prob])
+    thetas = np.zeros((G1+G,))
+    etas = np.random.normal(0, sigma, G1+G)
+    unif = np.random.uniform(size=G1+G)
+    for t in range(G1+G):
+        theta = draw_posterior(theta, etas[t], unif[t], T, s, a1, a2, prior_const)
+        thetas[t] = theta[0]
+    return thetas
