@@ -85,3 +85,16 @@ ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
 # Cleanup
 ax.set(title="Posterior Distribution (Analytic)", ylim=(0,12))
 ax.legend(["Posterior (Analytic)", "Prior"])
+
+# Metropolis-Hastings (metropolis hastings) using Markov chains 
+print("Timing: 1 loops, best of 3: 356 ms per loop")
+
+# Metropolis-Hastings parameters
+G1 = 1000 # burn-in period
+G = 10000 # draws from the (converged) posterior
+
+# Model parameters
+sigma = 0.1
+thetas = [0.5]             # initial value for theta
+etas = np.random.normal(0, sigma, G1+G) # random walk errors
+unif = np.random.uniform(size=G1+G)     # comparators for accept_probs
