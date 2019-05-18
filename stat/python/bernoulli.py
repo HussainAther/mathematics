@@ -253,3 +253,25 @@ model = pymc.MCMC([pymc_theta, pymc_Y])
 model.sample(iter=G+G1, burn=G1, progress_bar=False)
 model.summary()
 thetas = model.trace("pymc_theta")[:]
+
+# Posterior Mean
+# (use all of `thetas` b/c PyMC already removed the burn-in runs here)
+print"Posterior Mean (MH):", np.mean(thetas))
+
+# Plot the posterior
+fig = plt.figure(figsize=(10,4))
+ax = fig.add_subplot(111)
+
+# Plot MH draws
+ax.hist(thetas, bins=50, normed=True)
+
+# Plot analytic posterior
+X = np.linspace(0,1, 1000)
+ax.plot(X, stats.beta(a1_hat, a2_hat).pdf(X), "r")
+
+# Plot prior
+ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
+
+# Cleanup
+ax.set(title="Metropolis-Hastings via PyMC (10,000 Draws; 1,000 Burned)", ylim=(0,12))
+ax.legend(["Posterior (Analytic)", "Prior", "Posterior Draws (MH)"])
