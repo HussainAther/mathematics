@@ -26,3 +26,5 @@ convert_counts <- function(x) { # function to convert counts to factors
     x <- factor(x, levels = c(0, 1), labels = c(""No"", ""Yes""))
     return(x)
  }
+sms_train <- apply(sms_train, MARGIN = 2, convert_counts)
+sms_test  <- apply(sms_test, MARGIN = 2, convert_counts)
