@@ -198,3 +198,6 @@ def mh(double theta_init, int T, int s, double sigma, double a1, double a2, int 
         theta = draw_posterior(theta, etas[t], unif[t], T, s, a1, a2, prior_const)
         thetas[t] = theta[0]
     return thetas
+
+print("Timing: 10 loops, best of 3: 20.7 ms per loop")
+thetas = mh(0.5, nobs, Y.sum(), sigma, a1, a2, G1, G)
