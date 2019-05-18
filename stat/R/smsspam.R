@@ -32,3 +32,5 @@ sms_train <- apply(sms_train, MARGIN = 2, convert_counts)
 sms_test  <- apply(sms_test, MARGIN = 2, convert_counts)
 sms_classifier <- naiveBayes(sms_train, sms_raw_train$type) # Model
 sms_test_pred <- predict(sms_classifier, sms_test) # Evaluate
+library(gmodels) # Compare predictions to actual values
+CrossTable(sms_test_pred, sms_raw_test$type, prop.chisq = FALSE, prop.t = FALSE, dnn = c("predicted", "actual"))
