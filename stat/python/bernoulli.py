@@ -43,3 +43,23 @@ likelihood = (t**s)*(1-t)**(T-s)
 
 # Convert it to a Numpy-callable function
 _likelihood = sp.lambdify((t,T,s), likelihood, modules="numpy")
+
+# Prior
+# For alpha_1 = alpha_2 = 1, the Beta distribution
+# degenerates to a uniform distribution
+a1 = 1
+a2 = 1
+
+# Prior Mean
+prior_mean = a1 / (a1 + a2)
+print("Prior mean:", prior_mean)
+
+# Plot the prior
+fig = plt.figure(figsize=(10,4))
+ax = fig.add_subplot(111)
+X = np.linspace(0,1, 1000)
+ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
+
+# Cleanup
+ax.set(title="Prior Distribution", ylim=(0,12))
+ax.legend(["Prior"])
