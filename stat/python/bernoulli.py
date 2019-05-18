@@ -244,3 +244,12 @@ ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
 # Cleanup
 ax.set(title="Metropolis-Hastings via Cython (1,000,000 Draws; 100,000 Burned)", ylim=(0,12))
 ax.legend(["Posterior (Analytic)", "Prior", "Posterior Draws (MH)"])
+
+# Metropolis-Hastings using PyMC
+print("iming: 1 loops, best of 3: 590 ms per loop")
+pymc_theta = pymc.Beta('pymc_theta', a1, a2, value=0.5)
+pymc_Y = pymc.Bernoulli('pymc_Y', p=pymc_theta, value=Y, observed=True)
+model = pymc.MCMC([pymc_theta, pymc_Y])
+model.sample(iter=G+G1, burn=G1, progress_bar=False)
+model.summary()
+thetas = model.trace("pymc_theta")[:]
