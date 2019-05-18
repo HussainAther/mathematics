@@ -17,3 +17,5 @@ sms_corpus_test  <- corpus_clean[4170:5559]
 wordcloud(sms_corpus_train, min.freq = 40, random.order = FALSE) # Word cloud
 spam <- subset(sms_raw_train, type == "spam") # Subset of spam type
 ham <- subset(sms_raw_train, type == "ham") # ham type
+sindFreqTerms(sms_dtm_train, 5) # Create indicator features
+sms_dict <- Dictionary(findFreqTerms(sms_dtm_train, 5)) # Save as dictionary 
