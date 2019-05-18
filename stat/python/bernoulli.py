@@ -201,3 +201,21 @@ def mh(double theta_init, int T, int s, double sigma, double a1, double a2, int 
 
 print("Timing: 10 loops, best of 3: 20.7 ms per loop")
 thetas = mh(0.5, nobs, Y.sum(), sigma, a1, a2, G1, G)
+
+# Posterior Mean
+print"Posterior Mean (MH):", np.mean(thetas[G1:]))
+
+# Plot the posterior
+fig = plt.figure(figsize=(10,4))
+ax = fig.add_subplot(111)
+# Plot MH draws
+ax.hist(thetas[G1:], bins=50, normed=True);
+# Plot analytic posterior
+X = np.linspace(0,1, 1000)
+ax.plot(X, stats.beta(a1_hat, a2_hat).pdf(X), "r")
+# Plot prior
+ax.plot(X, stats.beta(a1, a2).pdf(X), "g")
+
+# Cleanup
+ax.set(title="Metropolis-Hastings via Cython (10,000 Draws; 1,000 Burned)", ylim=(0,12))
+ax.legend(["Posterior (Analytic)", "Prior", "Posterior Draws (MH)"])
