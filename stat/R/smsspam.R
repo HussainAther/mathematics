@@ -10,4 +10,5 @@ corpus_clean <- tm_map(corpus_clean, stripWhitespace) # Remove whitespace
 sms_dtm <- DocumentTermMatrix(corpus_clean) # Create spares matrix
 sms_raw_train <- sms_raw[1:4169, ] # Split to training and test
 sms_raw_test  <- sms_raw[4170:5559, ] 
-sms_dtm_train <- sms_dtm[1:4169, ]
+sms_dtm_train <- sms_dtm[1:4169, ] # Document term
+sms_dtm_test  <- sms_dtm[4170:5559, ]
