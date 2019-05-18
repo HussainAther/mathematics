@@ -19,3 +19,5 @@ spam <- subset(sms_raw_train, type == "spam") # Subset of spam type
 ham <- subset(sms_raw_train, type == "ham") # ham type
 sindFreqTerms(sms_dtm_train, 5) # Create indicator features
 sms_dict <- Dictionary(findFreqTerms(sms_dtm_train, 5)) # Save as dictionary 
+sms_train <- DocumentTermMatrix(sms_corpus_train, list(dictionary = sms_dict))
+sms_test  <- DocumentTermMatrix(sms_corpus_test, list(dictionary = sms_dict))
