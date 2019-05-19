@@ -39,3 +39,11 @@ def F(L):
 
 # Gradients of the Lagrange function
 dfdL = grad(F, 0)
+
+def obj(L):
+    """
+    Find L that returns all zeros for this function.
+    """
+    x, y, z, _lambda = L
+    dFdx, dFdy, dFdz, dFdlam = dfdL(L)
+    return [dFdx, dFdy, dFdz, eq([x, y, z])]
