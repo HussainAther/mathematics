@@ -29,3 +29,10 @@ sol = minimize(objective, [1, -0.5, 0.5], constraints={"type": "eq", "fun": eq})
 Construct the constrained optimization problem using Lagrange multipliers.
 Use an augmented unconstrained optimization problem with fsolve.
 """
+
+def F(L):
+    """
+    Augmented Lagrange function, similar to the objective function above.
+    """
+    x, y, z, _lambda = L
+    return objective([x, y, z]) - _lambda * eq([x, y, z])
