@@ -1,5 +1,4 @@
 import numpy as np
-import autograd.numpy as np
 
 from scipy.optimize import minimize
 from scipy.optimize import fsolve
@@ -39,7 +38,7 @@ def F(L):
     return objective([x, y, z]) - _lambda * eq([x, y, z])
 
 # Gradients of the Lagrange function
-dfdL = grad(F, 0)
+dfdL = np.gradient([F, 0])
 
 def obj(L):
     """
@@ -51,3 +50,28 @@ def obj(L):
 
 x, y, z, _lam = fsolve(obj, [0.0, 0.0, 0.0, 1.0])
 print(f"The answer is at {x, y, z}")
+
+"""
+Newton-Conjugate-Gradient algorithm uses a conjugate gradient algorithm to invert
+the local Hessian.
+"""
+
+def rosen_hess(x):
+    """
+    Hessian of Rosenbruck function.
+    """
+    x = np.asarray(x)
+    H = np.diag(-400*x[:-1],1) - np.diag(400*x[:-1],-1)
+    diagonal = np.zeros_like(x)
+    diagonal[0] = 1200*x[0]**2-400*x[1]+2
+    diagonal[-1] = 200
+    diagonal[1:-1] = 202 + 1200*x[1:-1]**2 - 400*x[2:]
+    H = H + np.diag(diagonal)
+    return H
+
+# Result
+res = minimize(rosen, x0, method="Newton-CG",
+               jac=rosen_der, hess=rosen_hess,
+               options={"xtol": 1e-8, "disp": True})
+
+res.x
