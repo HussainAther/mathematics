@@ -2,6 +2,7 @@ import numpy as np
 import autograd.numpy as np
 
 from scipy.optimize import minimize
+from scipy.optimize import fsolve
 from autograd import grad
 
 """
@@ -47,3 +48,6 @@ def obj(L):
     x, y, z, _lambda = L
     dFdx, dFdy, dFdz, dFdlam = dfdL(L)
     return [dFdx, dFdy, dFdz, eq([x, y, z])]
+
+x, y, z, _lam = fsolve(obj, [0.0, 0.0, 0.0, 1.0])
+print(f"The answer is at {x, y, z}")
