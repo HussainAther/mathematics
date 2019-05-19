@@ -36,3 +36,6 @@ def F(L):
     """
     x, y, z, _lambda = L
     return objective([x, y, z]) - _lambda * eq([x, y, z])
+
+# Gradients of the Lagrange function
+dfdL = grad(F, 0)
