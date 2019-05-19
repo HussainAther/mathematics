@@ -1,6 +1,8 @@
 import numpy as np
+import autograd.numpy as np
 
 from scipy.optimize import minimize
+from autograd import grad
 
 """
 We can find a point on a plane closest to the origin by minimizing a function along it.
