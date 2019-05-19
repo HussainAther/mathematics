@@ -24,3 +24,8 @@ def eq(X):
     return 2 * x - y + z - 3
 
 sol = minimize(objective, [1, -0.5, 0.5], constraints={"type": "eq", "fun": eq})
+
+"""
+Construct the constrained optimization problem using Lagrange multipliers.
+Use an augmented unconstrained optimization problem with fsolve.
+"""
