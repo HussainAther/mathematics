@@ -37,3 +37,7 @@ X = make_hello(1000)
 colorize = dict(c=X[:, 0], cmap=plt.cm.get_cmap("rainbow", 5))
 plt.scatter(X[:, 0], X[:, 1], **colorize)
 plt.axis("equal")
+
+"""
+Muldimensional scaling (MDS)
+"""
