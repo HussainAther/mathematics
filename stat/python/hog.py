@@ -6,6 +6,10 @@ import skimage.data
 from skimage import data, color, feature, transform
 from sklearn.datasets import fetch_lfw_people
 from sklearn.feature_extraction.image import PatchExtractor
+from sklearn.naive_bayes import GaussianNB
+from sklearn.cross_validation import cross_val_score
+from sklearn.svm import LinearSVC
+from sklearn.grid_search import GridSearchCV
 
 """
 Histogram of gradients (HOG) pipeline.
@@ -45,3 +49,26 @@ def extract_patches(img, N, scale=1.0, patch_size=positive_patches[0].shape):
 negative_patches = np.vstack([extract_patches(im, 1000, scale)
                               for im in images for scale in [0.5, 1.0, 2.0]])
 negative_patches.shape
+
+fig, ax = plt.subplots(6, 10)
+for i, axi in enumerate(ax.flat):
+    axi.imshow(negative_patches[500 * i], cmap='gray')
+    axi.axis("off")
+
+from itertools import chain
+X_train = np.array([feature.hog(im)
+                    for im in chain(positive_patches,
+                                    negative_patches)])
+y_train = np.zeros(X_train.shape[0])
+y_train[:positive_patches.shape[0]] = 1
+
+# Train SVM (Support vector machine)
+cross_val_score(GaussianNB(), X_train, y_train)
+grid = GridSearchCV(LinearSVC(), {'C': [1.0, 2.0, 4.0, 8.0]})
+grid.fit(X_train, y_train)
+grid.best_score_
+grid.best_params_
+
+# Predict
+model = grid.best_estimator_
+model.fit(X_train, y_train)
