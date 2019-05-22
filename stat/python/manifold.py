@@ -62,3 +62,15 @@ out = model.fit_transform(D)
 plt.scatter(out[:, 0], out[:, 1], **colorize)
 plt.axis("equal")
 
+def random_projection(X, dimension=3, rseed=42):
+    """
+    Project randomly.
+    """
+    assert dimension >= X.shape[1]
+    rng = np.random.RandomState(rseed)
+    C = rng.randn(dimension, dimension)
+    e, V = np.linalg.eigh(np.dot(C, C.T))
+    return np.dot(X, V[:X.shape[1]])
+   
+X3 = random_projection(X, 3)
+X3.shape 
