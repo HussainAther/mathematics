@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.linear_model import Lasso, LinearRegression, Ridge
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures
 
@@ -343,3 +343,10 @@ Ridge regression.
 
 model = make_pipeline(GaussianFeatures(30), Ridge(alpha=0.1))
 basis_plot(model, title="Ridge Regression")
+
+"""
+Lasso regression.
+"""
+
+model = make_pipeline(GaussianFeatures(30), Lasso(alpha=0.001))
+basis_plot(model, title="Lasso Regression")
