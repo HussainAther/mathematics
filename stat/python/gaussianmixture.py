@@ -68,4 +68,18 @@ def draw_ellipse(position, covariance, ax=None, **kwargs):
     for nsig in range(1, 4):
         ax.add_patch(Ellipse(position, nsig * width, nsig * height,
                              angle, **kwargs))
-        
+       
+def plot_gmm(gmm, X, label=True, ax=None):
+    """
+    Plot GMM.
+    """
+    ax = ax or plt.gca()
+    labels = gmm.fit(X).predict(X)
+    if label:
+        ax.scatter(X[:, 0], X[:, 1], c=labels, s=40, cmap="viridis", zorder=2)
+    else:
+        ax.scatter(X[:, 0], X[:, 1], s=40, zorder=2)
+    ax.axis("equal")
+    w_factor = 0.2 / gmm.weights_.max()
+    for pos, covar, w in zip(gmm.means_, gmm.covars_, gmm.weights_):
+        draw_ellipse(pos, covar, alpha=w * w_factor) 
