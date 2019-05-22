@@ -3,6 +3,9 @@ import pymc
 import pystan
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns; sns.set()
+
+from sklearn.linear_model import LinearRegression
 
 """
 Linear prediction uses data points equally spaced along a line such that we use
@@ -203,3 +206,22 @@ def posterior(theta, x, y):
     """
     ll = -0.5 * np.sum(np.log(2 * np.pi * sigma ** 2) + (y - y_model) ** 2 / sigma ** 2)
     return prior(theta) + ll
+
+"""
+Linear regression.
+"""
+
+rng = np.random.RandomState(1)
+x = 10 * rng.rand(50)
+y = 2 * x - 5 + rng.randn(50)
+plt.scatter(x, y)
+
+model = LinearRegression(fit_intercept=True)
+
+model.fit(x[:, np.newaxis], y)
+
+xfit = np.linspace(0, 10, 1000)
+yfit = model.predict(xfit[:, np.newaxis])
+
+plt.scatter(x, y)
+plt.plot(xfit, yfit)
