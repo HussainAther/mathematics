@@ -300,3 +300,17 @@ yfit = gauss_model.predict(xfit[:, np.newaxis])
 plt.scatter(x, y)
 plt.plot(xfit, yfit)
 plt.xlim(0, 10)
+
+"""
+Regularization.
+"""
+
+model = make_pipeline(GaussianFeatures(30),
+                      LinearRegression())
+model.fit(x[:, np.newaxis], y)
+
+plt.scatter(x, y)
+plt.plot(xfit, model.predict(xfit[:, np.newaxis]))
+
+plt.xlim(0, 10)
+plt.ylim(-1.5, 1.5)
