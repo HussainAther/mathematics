@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 import numpy as np
 
-from sklearn.manifold import MDS
+from sklearn.manifold import MDS, LocallyLinearEmbedding
 from mpl_toolkits import mplot3d
 
 """
@@ -79,3 +79,20 @@ ax = plt.axes(projection="3d")
 ax.scatter3D(X3[:, 0], X3[:, 1], X3[:, 2],
              **colorize)
 ax.view_init(azim=70, elev=50)
+
+model = MDS(n_components=2, random_state=1)
+out3 = model.fit_transform(X3)
+plt.scatter(out3[:, 0], out3[:, 1], **colorize)
+plt.axis("equal")
+
+"""
+Locally linear embedding.
+"""
+
+model = LocallyLinearEmbedding(n_neighbors=100, n_components=2, method="modified",
+                               eigen_solver='dense')
+out = model.fit_transform(XS)
+fig, ax = plt.subplots()
+ax.scatter(out[:, 0], out[:, 1], **colorize)
+ax.set_ylim(0.15, -0.15)
+
