@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures
 
@@ -333,3 +333,13 @@ def basis_plot(model, title=None):
     ax[1].set(xlabel="basis location",
               ylabel="coefficient",
               xlim=(0, 10))
+
+model = make_pipeline(GaussianFeatures(30), LinearRegression())
+basis_plot(model)
+
+"""
+Ridge regression.
+"""
+
+model = make_pipeline(GaussianFeatures(30), Ridge(alpha=0.1))
+basis_plot(model, title="Ridge Regression")
