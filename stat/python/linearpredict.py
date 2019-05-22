@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 
 from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures
 
 """
@@ -240,3 +241,5 @@ Polynomial basis functions.
 x = np.array([2, 3, 4])
 poly = PolynomialFeatures(3, include_bias=False)
 poly.fit_transform(x[:, None])
+
+poly_model = make_pipeline(PolynomialFeatures(7), LinearRegression())
