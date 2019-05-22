@@ -2,8 +2,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 import numpy as np
 
-from sklearn.datasets.samples_generator import make_blobs
 from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans
+from sklearn.datasets.samples_generator import make_blobs
+from scipy.spatial.distance import cdist
 
 """
 Gaussian mixture models (gmm).
@@ -16,3 +18,19 @@ X = X[:, ::-1] # flip axes for better plotting
 kmeans = KMeans(4, random_state=0)
 labels = kmeans.fit(X).predict(X)
 plt.scatter(X[:, 0], X[:, 1], c=labels, s=40, cmap="viridis")
+
+def plot_kmeans(kmeans, X, n_clusters=4, rseed=0, ax=None):
+    """
+    Plot.
+    """
+    labels = kmeans.fit_predict(X)
+    # Plot the input data
+    ax = ax or plt.gca()
+    ax.axis("equal")
+    ax.scatter(X[:, 0], X[:, 1], c=labels, s=40, cmap="viridis", zorder=2)
+    # Plot the representation of the KMeans model
+    centers = kmeans.cluster_centers_
+    radii = [cdist(X[labels == i], [center]).max()
+             for i, center in enumerate(centers)]
+    for c, r in zip(centers, radii):
+        ax.add_patch(plt.Circle(c, r, fc="#CCCCCC", lw=3, alpha=0.5, zorder=1))
