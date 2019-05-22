@@ -1,0 +1,3 @@
+"""
+Histogram of gradients pipeline.
+"""
