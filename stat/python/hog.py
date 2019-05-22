@@ -78,3 +78,20 @@ test_image = skimage.transform.rescale(test_image, 0.5)
 test_image = test_image[:160, 40:180]
 plt.imshow(test_image, cmap="gray")
 plt.axis("off")
+
+def sliding_window(img, patch_size=positive_patches[0].shape,
+                   istep=2, jstep=2, scale=1.0):
+    """
+    Iterate over patches and compute HOG features.
+    """
+    Ni, Nj = (int(scale * s) for s in patch_size)
+    for i in range(0, img.shape[0] - Ni, istep):
+        for j in range(0, img.shape[1] - Ni, jstep):
+            patch = img[i:i + Ni, j:j + Nj]
+            if scale != 1:
+                patch = transform.resize(patch, patch_size)
+            yield (i, j), patch
+            
+indices, patches = zip(*sliding_window(test_image))
+patches_hog = np.array([feature.hog(patch) for patch in patches])
+patches_hog.shape
