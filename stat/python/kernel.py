@@ -110,3 +110,24 @@ fig, ax = plt.subplots(1, 2)
 fig.subplots_adjust(left=0.05, right=0.95, wspace=0.05)
 species_names = ["Bradypus Variegatus", "Microryzomys Minutus"]
 cmaps = ["Purples", "Reds"]
+
+for i, axi in enumerate(ax):
+    axi.set_title(species_names[i])
+    # Plot coastlines with basemap
+    m = Basemap(projection="cyl", llcrnrlat=Y.min(),
+                urcrnrlat=Y.max(), llcrnrlon=X.min(),
+                urcrnrlon=X.max(), resolution="c", ax=axi)
+    m.drawmapboundary(fill_color="#DDEEFF")
+    m.drawcoastlines()
+    m.drawcountries()
+    # Construct a spherical kernel density estimate of the distribution
+    kde = KernelDensity(bandwidth=0.03, metric="haversine")
+    kde.fit(np.radians(latlon[species == i]))
+    # evaluate only on the land: -9999 indicates ocean
+    Z = np.full(land_mask.shape[0], -9999.0)
+    Z[land_mask] = np.exp(kde.score_samples(xy))
+    Z = Z.reshape(X.shape)
+    # Plot contours of the density
+    levels = np.linspace(0, Z.max(), 25)
+    axi.contourf(X, Y, Z, levels=levels, cmap=cmaps[i])
+
