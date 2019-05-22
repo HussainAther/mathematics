@@ -7,6 +7,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
+from sklearn.metrics import confusion_matrix
 
 """
 Naive Bayes classification.
@@ -36,3 +37,6 @@ categories = ["talk.religion.misc", "soc.religion.christian",
               "sci.space", "comp.graphics"]
 train = fetch_20newsgroups(subset="train", categories=categories)
 test = fetch_20newsgroups(subset="test", categories=categories)
+model = make_pipeline(TfidfVectorizer(), MultinomialNB())
+model.fit(train.data, train.target)
+labels = model.predict(test.data)
