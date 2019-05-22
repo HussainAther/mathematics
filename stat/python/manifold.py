@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 import numpy as np
 
+from sklearn.manifold import MDS
+
 """
 Manifold learning is a class of unsupervised estimators that seeks to describe datasets 
 as low-dimensional manifolds embedded in high-dimensional spaces. When you think of a 
@@ -43,6 +45,9 @@ Muldimensional scaling (MDS)
 """
 
 def rotate(X, angle):
+    """
+    Rotate matrix X along angle.
+    """
     theta = np.deg2rad(angle)
     R = [[np.cos(theta), np.sin(theta)],
          [-np.sin(theta), np.cos(theta)]]
@@ -51,3 +56,9 @@ def rotate(X, angle):
 X2 = rotate(X, 20) + 5
 plt.scatter(X2[:, 0], X2[:, 1], **colorize)
 plt.axis("equal")
+
+model = MDS(n_components=2, dissimilarity="precomputed", random_state=1)
+out = model.fit_transform(D)
+plt.scatter(out[:, 0], out[:, 1], **colorize)
+plt.axis("equal")
+
