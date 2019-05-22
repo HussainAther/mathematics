@@ -291,3 +291,12 @@ class GaussianFeatures(BaseEstimator, TransformerMixin):
         """
         return self._gauss_basis(X[:, :, np.newaxis], self.centers_,
                                  self.width_, axis=1)
+
+gauss_model = make_pipeline(GaussianFeatures(20),
+                            LinearRegression())
+gauss_model.fit(x[:, np.newaxis], y)
+yfit = gauss_model.predict(xfit[:, np.newaxis])
+
+plt.scatter(x, y)
+plt.plot(xfit, yfit)
+plt.xlim(0, 10)
