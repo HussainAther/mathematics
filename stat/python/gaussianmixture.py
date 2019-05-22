@@ -5,6 +5,7 @@ import numpy as np
 from matplotlib.patches import Ellipse
 from sklearn.cluster import KMeans
 from sklearn.cluster import KMeans
+from sklearn.datasets import make_moons
 from sklearn.datasets.samples_generator import make_blobs
 from sklearn.mixture import GMM
 from scipy.spatial.distance import cdist
@@ -83,3 +84,20 @@ def plot_gmm(gmm, X, label=True, ax=None):
     w_factor = 0.2 / gmm.weights_.max()
     for pos, covar, w in zip(gmm.means_, gmm.covars_, gmm.weights_):
         draw_ellipse(pos, covar, alpha=w * w_factor) 
+
+gmm = GMM(n_components=4, random_state=42)
+plot_gmm(gmm, X)
+
+gmm = GMM(n_components=4, covariance_type="full", random_state=42)
+plot_gmm(gmm, X_stretched)
+
+"""
+GMM as density estimation.
+"""
+
+Xmoon, ymoon = make_moons(200, noise=.05, random_state=0)
+plt.scatter(Xmoon[:, 0], Xmoon[:, 1])
+gmm2 = GMM(n_components=2, covariance_type='full', random_state=0)
+plot_gmm(gmm2, Xmoon)
+Xnew = gmm16.sample(400, random_state=42)
+plt.scatter(Xnew[:, 0], Xnew[:, 1]);
