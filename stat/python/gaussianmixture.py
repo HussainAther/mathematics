@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 import numpy as np
 
+from matplotlib.patches import Ellipse
 from sklearn.cluster import KMeans
 from sklearn.cluster import KMeans
 from sklearn.datasets.samples_generator import make_blobs
@@ -46,3 +47,25 @@ plot_kmeans(kmeans, X_stretched)
 gmm = GMM(n_components=4).fit(X)
 labels = gmm.predict(X)
 plt.scatter(X[:, 0], X[:, 1], c=labels, s=40, cmap="viridis")
+probs = gmm.predict_proba(X)
+size = 50 * probs.max(1) ** 2 # Square emphasizes differences
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap="viridis", s=size)
+
+def draw_ellipse(position, covariance, ax=None, **kwargs):
+    """
+    Draw an ellipse with a given position and covariance.
+    """
+    ax = ax or plt.gca()
+    # Convert covariance to principal axes
+    if covariance.shape == (2, 2):
+        U, s, Vt = np.linalg.svd(covariance)
+        angle = np.degrees(np.arctan2(U[1, 0], U[0, 0]))
+        width, height = 2 * np.sqrt(s)
+    else:
+        angle = 0
+        width, height = 2 * np.sqrt(covariance)
+    # Draw the Ellipse
+    for nsig in range(1, 4):
+        ax.add_patch(Ellipse(position, nsig * width, nsig * height,
+                             angle, **kwargs))
+        
