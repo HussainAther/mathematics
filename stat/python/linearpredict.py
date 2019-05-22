@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 
 from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
 
 """
 Linear prediction uses data points equally spaced along a line such that we use
@@ -225,3 +226,17 @@ yfit = model.predict(xfit[:, np.newaxis])
 
 plt.scatter(x, y)
 plt.plot(xfit, yfit)
+
+rng = np.random.RandomState(1)
+X = 10 * rng.rand(100, 3)
+y = 0.5 + np.dot(X, [1.5, -2., 1.])
+
+model.fit(X, y)
+
+"""
+Polynomial basis functions.
+"""
+
+x = np.array([2, 3, 4])
+poly = PolynomialFeatures(3, include_bias=False)
+poly.fit_transform(x[:, None])
