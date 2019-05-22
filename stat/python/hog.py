@@ -95,3 +95,17 @@ def sliding_window(img, patch_size=positive_patches[0].shape,
 indices, patches = zip(*sliding_window(test_image))
 patches_hog = np.array([feature.hog(patch) for patch in patches])
 patches_hog.shape
+labels = model.predict(patches_hog)
+labels.sum()
+
+fig, ax = plt.subplots()
+ax.imshow(test_image, cmap='gray')
+ax.axis('off')
+
+Ni, Nj = positive_patches[0].shape
+indices = np.array(indices)
+
+for i, j in indices[labels == 1]:
+    ax.add_patch(plt.Rectangle((j, i), Nj, Ni, edgecolor="red",
+                               alpha=0.3, lw=2, facecolor="none"))
+
