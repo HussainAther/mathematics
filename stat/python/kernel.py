@@ -2,7 +2,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 import numpy as np
 
+from mpl_toolkits.basemap import Basemap
 from scipy.stats import norm
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.datasets import fetch_species_distributions
+from sklearn.datasets.species_distributions import construct_grids
 from sklearn.neighbors import KernelDensity
 from sklearn.grid_search import GridSearchCV
 from sklearn.cross_validation import LeaveOneOut
@@ -65,3 +69,31 @@ grid = GridSearchCV(KernelDensity(kernel="gaussian"),
                     {"bandwidth": bandwidths},
                     cv=LeaveOneOut(len(x)))
 grid.fit(x[:, None])
+grid.best_params_
+
+"""
+KDE (Kernel desnity estimation) on sphere.
+"""
+
+data = fetch_species_distributions()
+
+# Get matrices/arrays of species IDs and locations
+latlon = np.vstack([data.train["dd lat"],
+                    data.train["dd long"]]).T
+species = np.array([d.decode("ascii").startswith("micro")
+                    for d in data.train["species"]], dtype="int")
+
+xgrid, ygrid = construct_grids(data)
+
+# Plot coastlines with basemap
+m = Basemap(projection="cyl", resolution="c",
+            llcrnrlat=ygrid.min(), urcrnrlat=ygrid.max(),
+            llcrnrlon=xgrid.min(), urcrnrlon=xgrid.max())
+m.drawmapboundary(fill_color="#DDEEFF")
+m.fillcontinents(color="#FFEEDD")
+m.drawcoastlines(color="gray", zorder=2)
+m.drawcountries(color="gray", zorder=2)
+
+# Plot locations
+m.scatter(latlon[:, 1], latlon[:, 0], zorder=3,
+          c=species, cmap="rainbow", latlon=True)
