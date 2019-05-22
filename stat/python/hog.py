@@ -72,3 +72,9 @@ grid.best_params_
 # Predict
 model = grid.best_estimator_
 model.fit(X_train, y_train)
+test_image = skimage.data.astronaut()
+test_image = skimage.color.rgb2gray(test_image)
+test_image = skimage.transform.rescale(test_image, 0.5)
+test_image = test_image[:160, 40:180]
+plt.imshow(test_image, cmap="gray")
+plt.axis("off")
