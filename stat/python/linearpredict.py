@@ -314,3 +314,22 @@ plt.plot(xfit, model.predict(xfit[:, np.newaxis]))
 
 plt.xlim(0, 10)
 plt.ylim(-1.5, 1.5)
+
+def basis_plot(model, title=None):
+    """
+    Plot the model basis.
+    """
+    fig, ax = plt.subplots(2, sharex=True)
+    model.fit(x[:, np.newaxis], y)
+    ax[0].scatter(x, y)
+    ax[0].plot(xfit, model.predict(xfit[:, np.newaxis]))
+    ax[0].set(xlabel="x", ylabel="y", ylim=(-1.5, 1.5))
+    
+    if title:
+        ax[0].set_title(title)
+
+    ax[1].plot(model.steps[0][1].centers_,
+               model.steps[1][1].coef_)
+    ax[1].set(xlabel="basis location",
+              ylabel="coefficient",
+              xlim=(0, 10))
