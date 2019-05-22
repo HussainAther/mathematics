@@ -45,3 +45,10 @@ sns.heatmap(mat.T, square=True, annot=True, fmt="d", cbar=False,
             xticklabels=train.target_names, yticklabels=train.target_names)
 plt.xlabel("true label")
 plt.ylabel("predicted label")
+
+def predict_category(s, train=train, model=model):
+    """
+    Feature engineering for finding categories.
+    """
+    pred = model.predict([s])
+    return train.target_names[pred[0]]
