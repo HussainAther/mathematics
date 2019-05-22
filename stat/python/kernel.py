@@ -97,3 +97,16 @@ m.drawcountries(color="gray", zorder=2)
 # Plot locations
 m.scatter(latlon[:, 1], latlon[:, 0], zorder=3,
           c=species, cmap="rainbow", latlon=True)
+
+# Set up the data grid for the contour plot
+X, Y = np.meshgrid(xgrid[::5], ygrid[::5][::-1])
+land_reference = data.coverages[6][::5, ::5]
+land_mask = (land_reference > -9999).ravel()
+xy = np.vstack([Y.ravel(), X.ravel()]).T
+xy = np.radians(xy[land_mask])
+
+# Create two side-by-side plots
+fig, ax = plt.subplots(1, 2)
+fig.subplots_adjust(left=0.05, right=0.95, wspace=0.05)
+species_names = ["Bradypus Variegatus", "Microryzomys Minutus"]
+cmaps = ["Purples", "Reds"]
