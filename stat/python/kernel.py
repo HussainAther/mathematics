@@ -4,6 +4,8 @@ import numpy as np
 
 from scipy.stats import norm
 from sklearn.neighbors import KernelDensity
+from sklearn.grid_search import GridSearchCV
+from sklearn.cross_validation import LeaveOneOut
 
 """
 Kernel density estimation with histograms.
@@ -55,3 +57,11 @@ logprob = kde.score_samples(x_d[:, None])
 plt.fill_between(x_d, np.exp(logprob), alpha=0.5)
 plt.plot(x, np.full_like(x, -0.01), "|k", markeredgewidth=1)
 plt.ylim(-0.02, 0.22)
+
+# Selecting the bandwidth via cross-validation
+
+bandwidths = 10 ** np.linspace(-1, 1, 100)
+grid = GridSearchCV(KernelDensity(kernel="gaussian"),
+                    {"bandwidth": bandwidths},
+                    cv=LeaveOneOut(len(x)))
+grid.fit(x[:, None])
