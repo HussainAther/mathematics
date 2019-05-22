@@ -100,4 +100,11 @@ plt.scatter(Xmoon[:, 0], Xmoon[:, 1])
 gmm2 = GMM(n_components=2, covariance_type='full', random_state=0)
 plot_gmm(gmm2, Xmoon)
 Xnew = gmm16.sample(400, random_state=42)
-plt.scatter(Xnew[:, 0], Xnew[:, 1]);
+plt.scatter(Xnew[:, 0], Xnew[:, 1])
+n_components = np.arange(1, 21)
+models = [GMM(n, covariance_type="full", random_state=0).fit(Xmoon)
+          for n in n_components]
+plt.plot(n_components, [m.bic(Xmoon) for m in models], label="BIC")
+plt.plot(n_components, [m.aic(Xmoon) for m in models], label="AIC")
+plt.legend(loc="best")
+plt.xlabel("n_components")
