@@ -32,3 +32,8 @@ def make_hello(N=1000, rseed=42):
     X[:, 0] *= (data.shape[0] / data.shape[1])
     X = X[:N]
     return X[np.argsort(X[:, 0])]
+
+X = make_hello(1000)
+colorize = dict(c=X[:, 0], cmap=plt.cm.get_cmap("rainbow", 5))
+plt.scatter(X[:, 0], X[:, 1], **colorize)
+plt.axis("equal")
