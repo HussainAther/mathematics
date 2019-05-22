@@ -41,3 +41,13 @@ plt.axis("equal")
 """
 Muldimensional scaling (MDS)
 """
+
+def rotate(X, angle):
+    theta = np.deg2rad(angle)
+    R = [[np.cos(theta), np.sin(theta)],
+         [-np.sin(theta), np.cos(theta)]]
+    return np.dot(X, R)
+    
+X2 = rotate(X, 20) + 5
+plt.scatter(X2[:, 0], X2[:, 1], **colorize)
+plt.axis("equal")
