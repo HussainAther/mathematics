@@ -3,6 +3,7 @@ import seaborn as sns; sns.set()
 import numpy as np
 
 from sklearn.manifold import MDS
+from mpl_toolkits import mplot3d
 
 """
 Manifold learning is a class of unsupervised estimators that seeks to describe datasets 
@@ -74,3 +75,7 @@ def random_projection(X, dimension=3, rseed=42):
    
 X3 = random_projection(X, 3)
 X3.shape 
+ax = plt.axes(projection="3d")
+ax.scatter3D(X3[:, 0], X3[:, 1], X3[:, 2],
+             **colorize)
+ax.view_init(azim=70, elev=50)
