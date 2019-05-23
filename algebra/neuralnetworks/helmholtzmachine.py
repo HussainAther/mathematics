@@ -49,16 +49,13 @@ class HelmholtzMachine:
         """
         # Dimension of pattern vector visible at the bottom.
         self.dimension= nBottom
-
         # Generative weights (top down)
         self.bG= np.zeros(nTop)
         self.wG= np.zeros([nMid, nTop+1])
         self.vG= np.zeros([nBottom, nMid+1])
-        
         # Recognition weights (bottom up)
         self.vR= np.zeros([nMid, nBottom+1])
         self.wR= np.zeros([nTop, nMid+1])
-        
         # Some default learning rates
         self.eps= 0.01       # default learning rate
         self.epsBottom= 0.15 # special learning rate for bottom layer
@@ -79,12 +76,10 @@ class HelmholtzMachine:
         # Upward (recognition) pass.
         y= bernoulliSample(sigmoid( np.dot(self.vR, d+[1])))
         x= bernoulliSample(sigmoid( np.dot(self.wR, y+[1])))
-
         # Downward (generation) pass.
         px= sigmoid(self.bG)
         py= sigmoid(np.dot(self.wG, x+[1]))
         pd= sigmoid(np.dot(self.vG, y+[1]))
-        
         # Adjust generative weights by delta rule.
         self.bG += self.eps * (x - px)
         self.wG += self.eps * np.outer(y - py, x+[1])
@@ -96,15 +91,12 @@ class HelmholtzMachine:
         """
         # Initiate a dream!
         x = bernoulliSample(sigmoid(self.bG))
-
         # Pass dream signal downward to generate a pattern.
         y = bernoulliSample(sigmoid( np.dot(self.wG, x+[1])))
         d = bernoulliSample(sigmoid( np.dot(self.vG, y+[1])))
-
         # Pass back up through recognition network, saving computed probabilities.
         py = sigmoid(np.dot(self.vR, d+[1]))
         px = sigmoid(np.dot(self.wR, y+[1]))
-        
         # Adjust recognition weights by delta rule.
         self.vR += self.epsBottom * np.outer(y - py, d+[1])
         self.wR += self.eps * np.outer(x - px, y+[1])
