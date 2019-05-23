@@ -11,3 +11,8 @@ def inverse(i, m):
     For integers i and m with m > 1, return t such that [t]_m = [i]_m^-1 if [i]_m is invertible.
     Return the empty sequence otherwise. 
     """
+    g, s, t = exntededcgd(m, i)
+    if g == 1:
+        return t # since 1 = sm + ti
+    elif g == -1:
+        return -t # since 1 = -sm - ti
