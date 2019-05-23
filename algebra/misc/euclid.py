@@ -18,3 +18,6 @@ def extendedcgd(a, b):
     """
     if b == 0:
         return (a, 1, 0)
+    else:
+        g, s, t = extendedgcd(b, a % b)
+        return g, t, s-t*(a/b)
