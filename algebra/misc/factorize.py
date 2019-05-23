@@ -20,3 +20,12 @@ def intfact(n):
     if n > 1:
         p.append(n)
     return p
+
+"""
+Determine if an integer n is prime. 
+"""
+
+def isprime(n):
+    """
+    For some integer n, return True if n is prime. False if not.
+    """
