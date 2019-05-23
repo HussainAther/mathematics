@@ -10,7 +10,8 @@ the product of these integers, under the condition that the divisors are pairwis
 def chinese_remainder(n, a):
     """
     Chinese remainder theorem to determine
-    the remainder of division of n by a.
+    the remainder of division of n by a in which
+    n and a are both arrays of the numbers to use.
     """
     sum = 0
     prod = reduce(lambda a, b: a*b, n)
