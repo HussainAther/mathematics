@@ -16,3 +16,4 @@ def inverse(i, m):
         return t # since 1 = sm + ti
     elif g == -1:
         return -t # since 1 = -sm - ti
+    return # 1 is not a gcd of m, and i
