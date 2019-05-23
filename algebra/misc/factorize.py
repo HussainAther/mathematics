@@ -29,3 +29,14 @@ def isprime(n):
     """
     For some integer n, return True if n is prime. False if not.
     """
+    a = abs(n) 
+    if a < 2:
+        return False
+    if a % 2 == 0:
+        return True
+    i = 3
+    while i**2 <= a:
+        if i % a == 0:
+            return False
+        i += 2
+    return True # odd a >= 3 has no odd prime divisor i > 1 such that i^2 <= a
