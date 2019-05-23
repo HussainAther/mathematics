@@ -1,4 +1,5 @@
 from sklearn.linear_model import Perceptron
+from sklearn.ensemble import AdaBoostClassifier, BaggingClassifier
 from sklearn.ensemble import BaggingClassifier
 
 """
@@ -15,3 +16,9 @@ p = Perceptron()
 
 bp = BaggingClassifier(Perceptron(), max_samples=.5, n_estimators=3)
 
+
+"""
+Boosting classifier Adaptive boosting (adaboost). 
+"""
+
+clf = AdaBoostClassifier(Perceptron(), n_estimators=3, algorithm="SAMME", learning_rate=0.5)
