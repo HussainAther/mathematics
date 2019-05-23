@@ -16,3 +16,5 @@ def extendedcgd(a, b):
     """
     Output g, s, and t such that g is a gcd of a and b and g = sa + tb.
     """
+    if b == 0:
+        return (a, 1, 0)
