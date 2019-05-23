@@ -1,0 +1,3 @@
+"""
+Greatest common divisor (gcd).
+"""
