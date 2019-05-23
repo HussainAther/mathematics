@@ -30,18 +30,14 @@ def nes(f, t, dim, alpha, xinit=None, eps=.05, num=False, deltax=.0005):
         x = np.zeros(dim)
     else:
         x = xinit
-    
     # lambda is the estimate sequence used to estimate the phi function used to
     # minimize our function f.
     lprev = 0 # previous lambda value
     lcurr = 1 # current lambda value
-
     yprev = x # previous y value
     alpha = .025 # used in optimization
-
     # evaluate the gradient numerically
     g = grad(f, x, deltax)
-
     # until we reach our tolerance epsilon value from our gradient
     while np.linalg.norm(grad) >= epsilon:
         ycurr = x - alpha * gradient # current y value
@@ -52,5 +48,4 @@ def nes(f, t, dim, alpha, xinit=None, eps=.05, num=False, deltax=.0005):
         lprev = ltmp # move to the previous lambda value
         t = (y - lprev) / lcurr
         g = grad(f, x, deltax) # update our gradient
-
     return x # return 
