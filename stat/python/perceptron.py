@@ -1,4 +1,5 @@
 from sklearn.linear_model import Perceptron
+from sklearn.ensemble import BaggingClassifier
 
 """
 The perceptron uses bagging. Bagging is bootstrap aggregating that uses
@@ -11,4 +12,6 @@ finds the line to separate the two categories.
 """
 
 p = Perceptron()
+
+bp = BaggingClassifier(Perceptron(), max_samples=.5, n_estimators=3)
 
