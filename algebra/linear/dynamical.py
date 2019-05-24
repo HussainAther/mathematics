@@ -84,6 +84,15 @@ def hmc(initial_pos, initial_vel, stepsize, n_steps, energy_fn):
             dict(initial=vel_half_step)],
         non_sequences=[stepsize],
         n_steps=n_steps - 1)
+    final_pos = all_pos[-1]
+    final_vel = all_vel[-1]
+    # The last velocity returned by scan is vel(t +
+    # (n_steps - 1 / 2) * stepsize) We therefore perform one more half-step
+    # to return vel(t + n_steps * stepsize)
+    energy = energy_fn(final_pos)
+    final_vel = final_vel - 0.5 * stepsize * TT.grad(energy.sum(), final_pos)
+    # return new proposal state
+    return final_pos, final_vel
 
 def liouville(z, r):
     """
