@@ -1,4 +1,9 @@
 import numpy as np
+import theano
+import theano.sandbox.rng_mrg
+
+from theano import function, shared
+from theano import tensor as TT
 
 """
 Dynamical approach to stochastic sampling based off physical systems that evolve with
@@ -52,6 +57,7 @@ def leapfrog(pos, vel, step):
     """
     Leapfrog update using Hamiltonian dynamics.
     """
+    
 
 def hmc(z, r):
     """
