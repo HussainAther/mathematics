@@ -126,3 +126,12 @@ def sample(s_rng, positions, energy_fn, stepsize, n_steps):
         n_steps=n_steps,
         energy_fn=energy_fn
     )
+    # end-snippet-3 start-snippet-4
+    # accept/reject the proposed move based on the joint distribution
+    accept = metropolis_hastings_accept(
+        energy_prev=hamiltonian(positions, initial_vel, energy_fn),
+        energy_next=hamiltonian(final_pos, final_vel, energy_fn),
+        s_rng=s_rng
+    )
+    # end-snippet-4
+    return accept, final_pos
