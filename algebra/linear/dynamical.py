@@ -39,3 +39,18 @@ Hybrid Monte Carlo combines Hamiltonian dynamics with Metropolis algorithm to re
 any bias with discretization. It uses a Markov chain of alternate stochastic updates
 of momentum variable r and Hamiltonian dynamical updates using the leapfrog algorithm.
 """
+
+def hmc(z, r):
+    """
+    Hybrid Monte Carlo with initial states (z, r) as we test potential states after
+    leapfrog integration.
+    """
+
+def liouville(z, r):
+    """
+    Liouville's Liouville theorem. For space of variables (z, r), as the region evolves
+    under Hamiltonian dynamics, the shape may change but volume remains constant.
+    """
+    dzdt = (max(z)-min(z))/len(z)
+    drdt = (max(r)-min(r))/len(r)
+    return dzdt, drdt
