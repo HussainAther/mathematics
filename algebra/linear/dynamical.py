@@ -119,7 +119,7 @@ def sample(s_rng, positions, energy_fn, stepsize, n_steps):
     initial_vel = s_rng.normal(size=positions.shape)
     # end-snippet-2 start-snippet-3
     # perform simulation of particles subject to Hamiltonian dynamics
-    final_pos, final_vel = simulate_dynamics(
+    final_pos, final_vel = hmc(
         initial_pos=positions,
         initial_vel=initial_vel,
         stepsize=stepsize,
@@ -128,7 +128,7 @@ def sample(s_rng, positions, energy_fn, stepsize, n_steps):
     )
     # end-snippet-3 start-snippet-4
     # accept/reject the proposed move based on the joint distribution
-    accept = metropolis_hastings_accept(
+    accept = mha(
         energy_prev=hamiltonian(positions, initial_vel, energy_fn),
         energy_next=hamiltonian(final_pos, final_vel, energy_fn),
         s_rng=s_rng
@@ -142,3 +142,16 @@ def hmc_updates(positions, stepsize, avg_acceptance_rate, final_pos, accept,
     """
     Return dictionarty of updates used by the simulate function.
     """
+    accept_matrix = accept.dimshuffle(0, *(('x',) * (final_pos.ndim - 1)))
+    new_positions = TT.switch(accept_matrix, final_pos, positions)
+    _new_stepsize = TT.switch(avg_acceptance_rate > target_acceptance_rate,
+                              stepsize * stepsize_inc, stepsize * stepsize_dec)
+    new_stepsize = TT.clip(_new_stepsize, stepsize_min, stepsize_max)
+    mean_dtype = theano.scalar.upcast(accept.dtype, avg_acceptance_rate.dtype)
+    new_acceptance_rate = TT.add(
+        avg_acceptance_slowness * avg_acceptance_rate,
+        (1.0 - avg_acceptance_slowness) * accept.mean(dtype=mean_dtype))
+    return [(positions, new_positions),
+            (stepsize, new_stepsize),
+            (avg_acceptance_rate, new_acceptance_rate)]
+
