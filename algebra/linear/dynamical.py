@@ -75,6 +75,15 @@ def hmc(initial_pos, initial_vel, stepsize, n_steps, energy_fn):
     vel_half_step = initial_vel - 0.5 * stepsize * dE_dpos
     # compute position at time-step: t + stepsize
     pos_full_step = initial_pos + stepsize * vel_half_step
+    # perform leapfrog updates: the scan op is used to repeatedly compute
+    # vel(t + (m-1/2)*stepsize) and pos(t + m*stepsize) for m in [2,n_steps].
+    (all_pos, all_vel), scan_updates = theano.scan(
+        leapfrog,
+        outputs_info=[
+            dict(initial=pos_full_step),
+            dict(initial=vel_half_step)],
+        non_sequences=[stepsize],
+        n_steps=n_steps - 1)
 
 def liouville(z, r):
     """
