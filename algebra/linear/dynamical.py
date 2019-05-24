@@ -23,4 +23,13 @@ def E(z):
     distribution p. For this example, we assume the probability distribution
     is Gaussian (normal). 	
     """
-    return -np.random.normal(z) * np.exp(z)
+    summ = 0
+    for i in z:
+        summ += -np.random.normal(z) * np.exp(z)
+    return summ 
+
+def H(z, r):
+    """
+    Hamiltonian, total, energy.
+    """
+    return E(z) + K(r)
