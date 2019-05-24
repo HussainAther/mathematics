@@ -48,6 +48,11 @@ def logprob(x, ivar):
     grad = -ivar * x
     return logp, grad
 
+def leapfrog(pos, vel, step):
+    """
+    Leapfrog update using Hamiltonian dynamics.
+    """
+
 def hmc(z, r):
     """
     Hybrid (or Hamiltonian) Monte Carlo with initial states (z, r) as we test potential states after
