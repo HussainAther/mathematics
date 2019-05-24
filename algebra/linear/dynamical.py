@@ -40,11 +40,22 @@ any bias with discretization. It uses a Markov chain of alternate stochastic upd
 of momentum variable r and Hamiltonian dynamical updates using the leapfrog algorithm.
 """
 
+def logprob(x, ivar):
+    """
+    Logarithmic probability distribution.
+    """
+    logp = -0.5 * np.sum(ivar * x**2)
+    grad = -ivar * x
+    return logp, grad
+
 def hmc(z, r):
     """
-    Hybrid Monte Carlo with initial states (z, r) as we test potential states after
+    Hybrid (or Hamiltonian) Monte Carlo with initial states (z, r) as we test potential states after
     leapfrog integration.
     """
+    minn = 0 
+    zs = z[0] # z*
+    if min(1, exp(H(z, r)
 
 def liouville(z, r):
     """
