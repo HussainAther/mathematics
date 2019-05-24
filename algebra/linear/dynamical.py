@@ -9,7 +9,7 @@ from theano import tensor as TT
 Dynamical approach to stochastic sampling based off physical systems that evolve with
 Hamiltonian dynamics. In a Markov chain Monte Carlo simulation, we sample from a given 
 probabilitry distribution. Hamiltonian dynamics uses the probabilistic simulation in the
-form of a Hamiltonian system. 
+form of a Hamiltonian system. Use theano matrices. 
 """
 
 def K(r):
@@ -64,14 +64,15 @@ def leapfrog(pos, vel, step):
     new_pos = pos + step * new_vel
     return [new_pos, new_vel], {}
     
-def hmc(z, r):
+def hmc(initial_pos, initial_vel, stepsize, n_steps, energy_fn):
     """
     Hybrid (or Hamiltonian) Monte Carlo with initial states (z, r) as we test potential states after
     leapfrog integration.
     """
-    minn = 0 
-    zs = z[0] # z*
-    if min(1, exp(H(z, r)
+    # compute velocity at time-step: t + stepsize//2
+    initial_energy = energy_fn(initial_pos)
+    dE_dpos = TT.grad(initial_energy.sum(), initial_pos)
+    vel_half_step = initial_vel - 0.5 * stepsize * dE_dpos
 
 def liouville(z, r):
     """
