@@ -73,6 +73,8 @@ def hmc(initial_pos, initial_vel, stepsize, n_steps, energy_fn):
     initial_energy = energy_fn(initial_pos)
     dE_dpos = TT.grad(initial_energy.sum(), initial_pos)
     vel_half_step = initial_vel - 0.5 * stepsize * dE_dpos
+    # compute position at time-step: t + stepsize
+    pos_full_step = initial_pos + stepsize * vel_half_step
 
 def liouville(z, r):
     """
