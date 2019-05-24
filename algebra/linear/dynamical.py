@@ -135,3 +135,10 @@ def sample(s_rng, positions, energy_fn, stepsize, n_steps):
     )
     # end-snippet-4
     return accept, final_pos
+
+def hmc_updates(positions, stepsize, avg_acceptance_rate, final_pos, accept,
+                target_acceptance_rate, stepsize_inc, stepsize_dec,
+                stepsize_min, stepsize_max, avg_acceptance_slowness):
+    """
+    Return dictionarty of updates used by the simulate function.
+    """
