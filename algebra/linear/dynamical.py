@@ -33,3 +33,9 @@ def H(z, r):
     Hamiltonian, total, energy.
     """
     return E(z) + K(r)
+
+"""
+Hybrid Monte Carlo combines Hamiltonian dynamics with Metropolis algorithm to remove
+any bias with discretization. It uses a Markov chain of alternate stochastic updates
+of momentum variable r and Hamiltonian dynamical updates using the leapfrog algorithm.
+"""
