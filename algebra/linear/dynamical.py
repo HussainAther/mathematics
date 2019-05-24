@@ -109,3 +109,8 @@ def mha(energy_prev, energy_next, s_rng):
     """
     ediff = energy_prev - energy_next
     return (TT.exp(ediff) - s_rng.uniform(size=energy_prev.shape)) >= 0
+
+def sample(s_rng, positions, energy_fn, stepsize, n_steps):
+    """
+    Perform one step of Hybrid (Hamiltonian) Monte Carlo sampling. 
+    """
