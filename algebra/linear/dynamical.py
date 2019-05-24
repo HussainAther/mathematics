@@ -114,3 +114,15 @@ def sample(s_rng, positions, energy_fn, stepsize, n_steps):
     """
     Perform one step of Hybrid (Hamiltonian) Monte Carlo sampling. 
     """
+    # end-snippet-1 start-snippet-2
+    # sample random velocity
+    initial_vel = s_rng.normal(size=positions.shape)
+    # end-snippet-2 start-snippet-3
+    # perform simulation of particles subject to Hamiltonian dynamics
+    final_pos, final_vel = simulate_dynamics(
+        initial_pos=positions,
+        initial_vel=initial_vel,
+        stepsize=stepsize,
+        n_steps=n_steps,
+        energy_fn=energy_fn
+    )
