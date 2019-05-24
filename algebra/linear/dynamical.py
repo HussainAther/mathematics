@@ -102,3 +102,10 @@ def liouville(z, r):
     dzdt = (max(z)-min(z))/len(z)
     drdt = (max(r)-min(r))/len(r)
     return dzdt, drdt
+
+def mha(energy_prev, energy_next, s_rng):
+    """
+    Metropolis-Hastings (metropolis hastings) accept or reject boolean.
+    """
+    ediff = energy_prev - energy_next
+    return (TT.exp(ediff) - s_rng.uniform(size=energy_prev.shape)) >= 0
