@@ -57,8 +57,13 @@ def leapfrog(pos, vel, step):
     """
     Leapfrog update using Hamiltonian dynamics.
     """
+    # from pos(t) and vel(t-stepsize//2), compute vel(t+stepsize//2)
+    dE_dpos = TT.grad(energy_fn(pos).sum(), pos)
+    new_vel = vel - step * dE_dpos
+    # from vel(t+stepsize//2) compute pos(t+stepsize)
+    new_pos = pos + step * new_vel
+    return [new_pos, new_vel], {}
     
-
 def hmc(z, r):
     """
     Hybrid (or Hamiltonian) Monte Carlo with initial states (z, r) as we test potential states after
