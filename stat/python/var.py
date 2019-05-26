@@ -28,3 +28,7 @@ results.plot_acorr() # autocorrelation function
 # Lag order selection
 model.select_order(15) # Choice of lag order
 results = model.fit(maxlags=15, ic="aic") # Fit to AIC
+
+# Forecasting using linear predictor
+lag_order = results.k_ar
+results.forecast(data.values[-lag_order:], 5)
