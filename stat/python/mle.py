@@ -28,3 +28,11 @@ def plot_ll(x):
         ll_array.append(temp_mm) # Temporary mu
     if max_val is None: 
         max_val = max(ll_array) # Get the maximum likelihood value
+    elif max(ll_array) > max_val:
+        max_val = max(ll_array)
+        max_val_location = j 
+    # Plot the results
+    plt.plot(mu_set, ll_array, label="sd: %.1f" % i)
+    print("The max LL for sd %.2f is %.2f" % (i, max(ll_array))) 
+    plt.axvline(x=max_val_location, color="black", ls="-.")
+    plt.legend(loc="lower left")
