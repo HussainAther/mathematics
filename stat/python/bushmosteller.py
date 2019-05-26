@@ -15,7 +15,9 @@ a = np.linspace(0, 100, 10)
 
 def Q(n):
     """
-    Apply operator Q to our event probabilities n times. 
+    Apply operator Q to our event probabilities n times. We may use the Monte Carlo
+    method of making approximate calculations using a random number table for making
+    decisions about which operator Q1 or Q2 to apply to the probability.
     """
     lamd = [] # asymptotic values of the operator Q as n gets very large 
     for i in a:
