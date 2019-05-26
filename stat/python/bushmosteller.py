@@ -19,5 +19,9 @@ def Q(n):
     """
     lamd = [] # asymptotic values of the operator Q as n gets very large 
     for i in a:
-        lamd.append(i/(1-i))
-    Qout = [] 
+        lamd.append(i /(1-i))
+    Qout = []
+    p = 2 # Number of alternatives 
+    for l in range(len(lamd)):
+        Qout.append(lamd[i] - (lamd[i] - p)*a[i]**n)
+    return Qout
