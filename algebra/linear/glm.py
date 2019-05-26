@@ -7,3 +7,12 @@ from matplotlib import pyplot as plt
 """
 Generalized linear model (glm GLM)
 """
+
+# Load data
+data = sm.datasets.star98.load(as_pandas=False)
+data.exog = sm.add_constant(data.exog, prepend=False)
+
+# Fit and summary
+glm_binom = sm.GLM(data.endog, data.exog, family=sm.families.Binomial())
+res = glm_binom.fit()
+print(res.summary())
