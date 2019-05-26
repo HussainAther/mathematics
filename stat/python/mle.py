@@ -25,4 +25,6 @@ def plot_ll(x):
             temp_mm = 0
         for k in x:
             temp_mm += np.log(norm.pdf(k, j, i)) # The LL function
-        ll_array.append(temp_mm)
+        ll_array.append(temp_mm) # Temporary mu
+    if max_val is None: 
+        max_val = max(ll_array) # Get the maximum likelihood value
