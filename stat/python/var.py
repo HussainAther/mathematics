@@ -32,3 +32,8 @@ results = model.fit(maxlags=15, ic="aic") # Fit to AIC
 # Forecasting using linear predictor
 lag_order = results.k_ar
 results.forecast(data.values[-lag_order:], 5)
+results.plot_forecast(10)
+
+# Impulse response analysis
+irf = results.irf(10)
+irf.plot(orth=False)
