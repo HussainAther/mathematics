@@ -60,3 +60,12 @@ def observations(x, alpha, q0):
             den = 1 - alpha[1][j]*alpha[2][abs(j-i)]*q0
             summ += num/den
     return summ
+
+"""
+The crucial difference with Bush-Mosteller was the successive prediction part. This is the second 
+big discovery during the 1980s, a simple algorithm for valuing the world and learning how to value 
+the world through prediction learning. The Bayesian rendering of these basic ideas retains their 
+essentials but equips an agent with probability distributions over the states of the world and actions 
+available from each state. One normative prescription in that context requires that the agent “should 
+choose” the action that maximizes the average reward.
+"""
