@@ -55,3 +55,10 @@ ax.set_xlim(0, 1)
 ax.set_title("Residual Dependence Plot")
 ax.set_ylabel("Pearson Residuals")
 ax.set_xlabel("Fitted values")
+
+# Standard deviation residuals
+fig, ax = plt.subplots()
+resid = res.resid_deviance.copy()
+resid_std = stats.zscore(resid)
+ax.hist(resid_std, bins=25)
+ax.set_title("Histogram of standardized deviance residuals")
