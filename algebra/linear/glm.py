@@ -2,6 +2,7 @@ import numpy as np
 import statsmodels.api as sm
 
 from scipy import stats
+from statsmodels.graphics.api import abline_plot
 from matplotlib import pyplot as plt
 
 """
@@ -34,3 +35,23 @@ diff = resp_75 - resp_25
 # Interquartile first difference fro percentage of low income households
 print("%2.4f%%" % (diff*100))
 
+# Plot
+nobs = res.nobs
+y = data.endog[:,0]/data.endog.sum(1)
+yhat = res.mu
+fig, ax = plt.subplots()
+ax.scatter(yhat, y)
+line_fit = sm.OLS(y, sm.add_constant(yhat, prepend=True)).fit()
+abline_plot(model_results=line_fit, ax=ax)
+ax.set_title("Model Fit Plot")
+ax.set_ylabel("Observed values")
+ax.set_xlabel("Fitted values")
+
+# Residuals
+fig, ax = plt.subplots()
+ax.scatter(yhat, res.resid_pearson)
+ax.hlines(0, 0, 1)
+ax.set_xlim(0, 1)
+ax.set_title("Residual Dependence Plot")
+ax.set_ylabel("Pearson Residuals")
+ax.set_xlabel("Fitted values")
