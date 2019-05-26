@@ -17,4 +17,7 @@ def Q(n):
     """
     Apply operator Q to our event probabilities n times. 
     """
-     
+    lamd = [] # asymptotic values of the operator Q as n gets very large 
+    for i in a:
+        lamd.append(i/(1-i))
+    Qout = [] 
