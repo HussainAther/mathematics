@@ -30,3 +30,7 @@ means75[0] = lowinc_75per = stats.scoreatpercentile(data.exog[:,0], 75)
 resp_25 = res.predict(means25)
 resp_75 = res.predict(means75)
 diff = resp_75 - resp_25
+
+# Interquartile first difference fro percentage of low income households
+print("%2.4f%%" % (diff*100))
+
