@@ -12,4 +12,8 @@ Correction Models (VECM vecm).
 
 mdata = sm.datasets.macrodata.load_pandas().data
 dates = mdata[["year", "quarter"]]
-quarterly = dates["year"] + "Q" + dates["quarter"]
+quarterly = dates["year"] + "Q" + dates["quarter"].astype(int).astype(str)
+quarterly = dates_from_str(quarterly)
+mdata.index = pd.DatetimeIndex(quarterly)
+data = np.log(mdata).diff().dropna()
+model = VAR(data)
