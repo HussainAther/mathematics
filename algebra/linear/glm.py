@@ -3,6 +3,7 @@ import statsmodels.api as sm
 
 from scipy import stats
 from statsmodels.graphics.api import abline_plot
+from statsmodels import graphics
 from matplotlib import pyplot as plt
 
 """
@@ -62,3 +63,6 @@ resid = res.resid_deviance.copy()
 resid_std = stats.zscore(resid)
 ax.hist(resid_std, bins=25)
 ax.set_title("Histogram of standardized deviance residuals")
+
+# QQ plot of deviation residuals (Q-Q quantile-quantile quantile)
+graphics.gofplots.qqplot(resid, line="r")
