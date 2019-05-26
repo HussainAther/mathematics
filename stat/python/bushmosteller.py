@@ -9,6 +9,8 @@ For t events, we may present a column vector with each operator Tj in an r x r m
 However, since we're only concerned with a single probability that can represent two 
 alternative events A1 and A2, we don't need to use matrixes. Instead, we'll use a trans-
 formed probability vector.  
+
+See "A Stochastic Model with Applications to Learning" by Robert Bush and Frederick Mosteller.
 """
 
 # Event probabilities
@@ -41,3 +43,20 @@ def moment(theta, pi, n):
     for i in range(len(pi)):
         summ += pi[i]*np.exp(theta*a[i]) 
     return summ 
+
+def observations(x, alpha, q0):
+    """
+    For specified values of n number of events and k number of previous occurences of
+    the alternative in question, we can calculate the total number of observations.
+    x is the two-dimensional array that has the values of the nmber of observations that yield the 
+    alternative for a corresponding value of n and k. alpha is a two-dimensional array with the
+    unbiased estimates for n and k. The probability of the alternative to occur is 1 - q with
+    q = alpha*q0
+    """
+    summ = 0
+    for i in range(len(x)): # for all n values
+        for j in range(len(x)): # for all k values
+            num = x[i][j]
+            den = 1 - alpha[1][j]*alpha[2][abs(j-i)]*q0
+            summ += num/den
+    return summ
