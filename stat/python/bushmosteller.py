@@ -26,8 +26,11 @@ def Q(n):
         Qout.append(lamd[i] - (lamd[i] - p)*a[i]**n)
     return Qout
 
-def moment(theta):
+def moment(theta, pi):
     """
     A moment-generating function for theta. These moments are the specific values
-    of the distribution for the events given their probabilities and values.
+    of the distribution for the events given their probabilities and values. theta
+    is the parameter we use to define the function and quantify the distribution. pi are
+    the list of probabilities that when an event occurs, it will be event E.
     """
+    
