@@ -2,7 +2,8 @@ import numpy as np
 
 """
 The Bush-Mosteller (bush mosteller) stochastic model can analyze data with changing
-probabilities.
+probabilities. We may view these stochastic processes as Markov chains with an 
+infinite number of states.
 
 For t events, we may present a column vector with each operator Tj in an r x r matrix.
 However, since we're only concerned with a single probability that can represent two 
