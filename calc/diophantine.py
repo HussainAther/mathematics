@@ -1,0 +1,3 @@
+"""
+Diophantine (diophantine) equations.
+"""
