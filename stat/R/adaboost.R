@@ -10,3 +10,6 @@ b <- sample(10:20, 250, replace = T)
 flag <- ifelse(a > 5 & b > 10, "red", ifelse(a<3,"yellow", "green"))
 df <- data.frame(a = a, b = b, flag = as.factor(flag))
 
+"Create and train test data."
+train <- df[1:200,]
+test <- df[200:250,]
