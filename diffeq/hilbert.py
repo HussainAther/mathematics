@@ -36,4 +36,6 @@ part.
 """
 
 # Analytic function for Hilbert transform
-z
+x = np.linspace(1,100,10)
+y = np.linspace(1, 200, 20)
+z = np.sqrt(x**2 + y**2) * np.exp(np.imag(np.arctan(y/x)))
