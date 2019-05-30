@@ -28,3 +28,12 @@ ax1 = fig.add_subplot(212)
 ax1.plot(t[1:], instantaneous_frequency)
 ax1.set_xlabel("time in seconds")
 ax1.set_ylim(0.0, 120.0)
+
+"""
+When we use the Hilbert Transform to compute the instantaneous frequency of a signal, 
+a real vlaued function can be transformed into an analytic function using a complex 
+part.
+"""
+
+# Analytic function for Hilbert transform
+z
