@@ -13,3 +13,7 @@ df <- data.frame(a = a, b = b, flag = as.factor(flag))
 "Create and train test data."
 train <- df[1:200,]
 test <- df[200:250,]
+
+"Build model."
+model_adabag <- boosting(flag~a+b, data=train, boos=TRUE, mfinal=10)
+names(model_adabag)
