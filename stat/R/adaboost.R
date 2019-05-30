@@ -17,3 +17,7 @@ test <- df[200:250,]
 "Build model."
 model_adabag <- boosting(flag~a+b, data=train, boos=TRUE, mfinal=10)
 names(model_adabag)
+
+"Predict."
+pred <- predict(model_adabag, test)
+
