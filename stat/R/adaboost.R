@@ -21,3 +21,5 @@ names(model_adabag)
 "Predict."
 pred <- predict(model_adabag, test)
 
+"Obtain result."
+result <- cbind(test, pred$prob, pred$class)
