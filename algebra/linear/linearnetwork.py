@@ -1,3 +1,6 @@
+import PyDSTool as pt
+import PyDSTool.Toolbox.phaseplane as ptpp
+
 from PyDSTool import *
 from PyDSTool.Toolbox.phaseplane import *
 
@@ -10,18 +13,15 @@ def make_system(M, ics, pars=None):
     n = len(M)
     xvarlist = ["x%i" %i for i in range(1,n+1)]
     xvars = [Var(x) for x in xvarlist]
-
     varspecs = {}
     jac_str_list = []
     for i, xv in enumerate(xvars):
         M_row = M[i]
-        varspecs[str(xv)] = QuantSpec(str(xv) + "_DE",
+        varspecs[str(xv)] = pt.QuantSpec(str(xv) + "_DE",
                                    "+".join([str(M_row[j]*xvars[j]) for j in range(n)]))
         jac_str_list.append("["+",".join([str(M_row[j]) for j in range(n)])+"]")
-
     jac_str = "[" + ",".join(jac_str_list) + "]"
-    print jac_str
-
+    print(jac_str)
     DSargs = args(name="linear_net")
     DSargs.varspecs = varspecs
     DSargs.ics = dict(zip(xvars, ics))
@@ -30,17 +30,17 @@ def make_system(M, ics, pars=None):
     DSargs.fnspecs = {"Jacobian": (["t"]+xvarlist, jac_str)}
     return Generator.Vode_ODEsystem(DSargs)
 
-
 def display(pts, fignum=1):
+    """
+    Display points pts on the figure.
+    """
     figure(fignum)
     ts = pts["t"]
     for coord in pts.coordnames:
         plt.plot(ts, pts[coord], label=coord)
     plt.legend()
 
-# ------------------------------------------------
-
-g = Par(0.01, "g")
+g = pt.Par(0.01, "g")
 
 M = [[-3, 0, -g, -5],
      [-5, -3, 0, -g],
@@ -58,16 +58,15 @@ pts = traj.sample()
 display(pts)
 plt.show()
 
+origin = pt.Point({"x1": 0, "x2": 0, "x3": 0, "x4": 0})
 
-origin = Point({"x1": 0, "x2": 0, "x3": 0, "x4": 0})
+fp = ptppfixedpoint_nD(net, origin)
 
-fp = fixedpoint_nD(net, origin)
-
-print fp.evals
-print fp.stability
+print(fp.evals)
+print(fp.stability)
 
 ## Continuation to explore stability
-PC = ContClass(net)
+PC = pt.ContClass(net)
 
 PCargs = args()
 PCargs.name = "EQ1"
@@ -92,8 +91,8 @@ plt.draw()
 
 sol = PC["EQ1"].sol
 
-g_BP = sol.bylabel("BP")["g"]
-g_H = sol.bylabel("H")["g"]
+g_BP = pt.sol.bylabel("BP")["g"]
+g_H = pt.sol.bylabel("H")["g"]
 
 net.set(pars={'g': 0.5*(g_BP+g_H)})
 
@@ -108,4 +107,4 @@ pts_osc = traj.sample()
 display(pts_osc, 3)
 
 jac_H = net.Jacobian(0, origin)
-print np.linalg.eigvals(jac_H)
+print(np.linalg.eigvals(jac_H))
