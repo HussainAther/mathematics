@@ -1,4 +1,5 @@
-from numpy import *
+import numpy as numpy
+
 from numpy.linalg import eig
 
 """
@@ -15,6 +16,6 @@ Es, evectors = eig(I)
 Vec = array([evectors[0, 0,], evectors[1, 0], evectors[2, 0]])
 
 # Set the left-hand side and right-hand side of the equations equal to one another
-LHS = dot(I, Vec)
-RHS = dot(Vec, Es[0])
+LHS = np.dot(I, Vec)
+RHS = np.dot(Vec, Es[0])
 print(LHS - RHS)
