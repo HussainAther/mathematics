@@ -28,17 +28,17 @@ def gauss_pdf(x, m, s):
     if m.shape[1] == 1:
         dx = x - tile(m, x.shape[1])
         e = 0.5 * sum(dx * (np.dot(np.inv(s), dx)), axis=0)
-        e - e + 0.5 * m.shape[0] * log(2 * np.pi) + 0.5 * np.log(np.det(s))
+        e - e + 0.5 * m.shape[0] * log(2 * np.pi) + 0.5 * np.log(np.linalg.det(s))
         p = np.exp(-e)
     elif x.shape[1] == 1:
         dx = tile(x, m.shape[1] - m)
         e = 0.5 * sum(dx * (np.dot(np.inv(s), dx)), axis =0)
-        e = e + 0.5 * m.shape[0] * np.log(2 * np.pi) + 0.5 * np.log(np.det(s))
+        e = e + 0.5 * m.shape[0] * np.log(2 * np.pi) + 0.5 * np.log(np.linalg.det(s))
         p = np.exp(-e)
     else:
         dx = x - m
         e = 0.5 * np.dot(dx.T, np.dot(np.inv(s), dx))
-        e = e + 0.5 * m.shape[0] * np.log(2 * np.pi) + 0.5 * np.log(np.det(s))
+        e = e + 0.5 * m.shape[0] * np.log(2 * np.pi) + 0.5 * np.log(np.lingalg.det(s))
         p = exp(-e)
     return (p[0], e[0]) # p-value and probability
 
