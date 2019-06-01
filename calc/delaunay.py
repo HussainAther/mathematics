@@ -89,3 +89,31 @@ class Delaunay2D:
             # Choose one method: inCircleRobust(T, p) or inCircleFast(T, p)
             if self.inCircleFast(T, p):
                 bad_triangles.append(T)
+
+        # Find the CCW boundary (star shape) of the bad triangles,
+        # expressed as a list of edges (point pairs) and the opposite
+        # triangle to each edge.
+        boundary = []
+        # Choose a "random" triangle and edge
+        T = bad_triangles[0]
+        edge = 0
+        
+        # get the opposite triangle of this edge
+        while True:
+            # Check if edge of triangle T is on the boundary...
+            # if opposite triangle of this edge is external to the list
+            tri_op = self.triangles[T][edge]
+            if tri_op not in bad_triangles:
+                # Insert edge and external triangle into boundary list
+                boundary.append((T[(edge+1) % 3], T[(edge-1) % 3], tri_op))
+
+                # Move to next CCW edge in this triangle
+                edge = (edge + 1) % 3
+
+                # Check if boundary is a closed loop
+                if boundary[0][0] == boundary[-1][1]:
+                    break
+            else:
+                # Move to next CCW edge in opposite triangle
+                edge = (self.triangles[tri_op].index(T) + 1) % 3
+                T = tri_op
