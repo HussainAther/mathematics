@@ -48,3 +48,12 @@ class Delaunay2D:
                                  [1],
                                  [1]]],
                       [[[1, 1, 1, 0]]]])
+
+        b = np.hstack((np.sum(pts * pts, axis=1), [1]))
+        x = np.linalg.solve(A, b)
+        bary_coords = x[:-1]
+        center = np.dot(bary_coords, pts)
+
+        # radius = np.linalg.norm(pts[0] - center) # euclidean distance
+        radius = np.sum(np.square(pts[0] - center))  # squared distance
+        return (center, radius)
