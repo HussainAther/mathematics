@@ -23,7 +23,7 @@ class Delaunay2D:
                        center+radius*np.array((+1, -1)),
                        center+radius*np.array((+1, +1)),
                        center+radius*np.array((-1, +1))]
-                       
+
         # Create two dicts to store triangle neighbours and circumcircles.
         self.triangles = {}
         self.circles = {}
@@ -37,3 +37,14 @@ class Delaunay2D:
         # Compute circumcenters and circumradius for each triangle
         for t in self.triangles:
             self.circles[t] = self.circumcenter(t)
+
+    def circumcenter(self, tri):
+        """
+        Compute circumcenter and circumradius of a triangle tri in 2D.
+        """
+        pts = np.asarray([self.coords[v] for v in tri])
+        pts2 = np.dot(pts, pts.T)
+        A = np.bmat([[2 * pts2, [[1],
+                                 [1],
+                                 [1]]],
+                      [[[1, 1, 1, 0]]]])
