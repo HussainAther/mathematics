@@ -11,3 +11,15 @@ class Delaunay2D:
     """
     Class to compute a Delaunay triangulation in 2D
     """
+    def __init__(self, center=(0, 0), radius=10):
+        """
+        Init and create a new frame to contain the triangulation
+        center is the position for the center of the frame. Default (0,0)
+        radius is the distance from corners to the center.
+        """
+        center = np.asarray(center)
+        # Create coordinates for the corners of the frame
+        self.coords = [center+radius*np.array((-1, -1)),
+                       center+radius*np.array((+1, -1)),
+                       center+radius*np.array((+1, +1)),
+                       center+radius*np.array((-1, +1))]
