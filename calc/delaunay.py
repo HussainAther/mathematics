@@ -185,3 +185,9 @@ class Delaunay2D:
         tris = [(a-4, b-4, c-4)
                 for (a, b, c) in self.triangles if a > 3 and b > 3 and c > 3]
         return coord, tris
+
+    def exportExtendedDT(self):
+        """
+        Export the Extended Delaunay Triangulation (with the frame vertex).
+        """
+        return self.coords, list(self.triangles)
