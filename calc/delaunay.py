@@ -152,3 +152,11 @@ class Delaunay2D:
         for i, T in enumerate(new_triangles):
             self.triangles[T][1] = new_triangles[(i+1) % N]   # next
             self.triangles[T][2] = new_triangles[(i-1) % N]   # previous
+
+    def exportTriangles(self):
+        """
+        Export the current list of Delaunay triangles
+        """
+        # Filter out triangles with any vertex in the extended BBox
+        return [(a-4, b-4, c-4)
+                for (a, b, c) in self.triangles if a > 3 and b > 3 and c > 3]
