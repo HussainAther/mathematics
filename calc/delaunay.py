@@ -160,3 +160,16 @@ class Delaunay2D:
         # Filter out triangles with any vertex in the extended BBox
         return [(a-4, b-4, c-4)
                 for (a, b, c) in self.triangles if a > 3 and b > 3 and c > 3]
+
+    def exportCircles(self):
+        """
+        Export the circumcircles as a list of (center, radius)
+        """
+        # Remember to compute circumcircles if not done before
+        # for t in self.triangles:
+        #     self.circles[t] = self.circumcenter(t)
+
+        # Filter out triangles with any vertex in the extended BBox
+        # Do sqrt of radius before of return
+        return [(self.circles[(a, b, c)][0], sqrt(self.circles[(a, b, c)][1]))
+                for (a, b, c) in self.triangles if a > 3 and b > 3 and c > 3]
