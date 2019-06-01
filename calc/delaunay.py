@@ -57,3 +57,10 @@ class Delaunay2D:
         # radius = np.linalg.norm(pts[0] - center) # euclidean distance
         radius = np.sum(np.square(pts[0] - center))  # squared distance
         return (center, radius)
+
+    def inCircleFast(self, tri, p):
+        """
+        Check if point p is inside of precomputed circumcircle of tri.
+        """
+        center, radius = self.circles[tri]
+        return np.sum(np.square(center - p)) <= radius
