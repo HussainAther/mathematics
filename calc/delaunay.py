@@ -122,3 +122,27 @@ class Delaunay2D:
         for T in bad_triangles:
             del self.triangles[T]
             del self.circles[T]
+
+        # Retriangle the hole left by bad_triangles
+        new_triangles = []
+        for (e0, e1, tri_op) in boundary:
+            # Create a new triangle using point p and edge extremes
+            T = (idx, e0, e1)
+
+            # Store circumcenter and circumradius of the triangle
+            self.circles[T] = self.circumcenter(T)
+
+            # Set opposite triangle of the edge as neighbour of T
+            self.triangles[T] = [tri_op, None, None]
+
+            # Try to set T as neighbour of the opposite triangle
+            if tri_op:
+                # search the neighbour of tri_op that use edge (e1, e0)
+                for i, neigh in enumerate(self.triangles[tri_op]):
+                    if neigh:
+                        if e1 in neigh and e0 in neigh:
+                            # change link to use our new triangle
+                            self.triangles[tri_op][i] = T
+
+            # Add triangle to a temporal list
+            new_triangles.append(T)
