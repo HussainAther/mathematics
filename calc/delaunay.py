@@ -64,3 +64,12 @@ class Delaunay2D:
         """
         center, radius = self.circles[tri]
         return np.sum(np.square(center - p)) <= radius
+
+    def inCircleRobust(self, tri, p):
+        """
+        Check if point p is inside of circumcircle around the triangle tri.
+        """
+        m1 = np.asarray([self.coords[v] - p for v in tri])
+        m2 = np.sum(np.square(m1), axis=1).reshape((3, 1))
+        m = np.hstack((m1, m2))    # The 3x3 matrix to check
+        return np.linalg.det(m) <= 0
