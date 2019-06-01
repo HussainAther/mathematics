@@ -23,3 +23,17 @@ class Delaunay2D:
                        center+radius*np.array((+1, -1)),
                        center+radius*np.array((+1, +1)),
                        center+radius*np.array((-1, +1))]
+                       
+        # Create two dicts to store triangle neighbours and circumcircles.
+        self.triangles = {}
+        self.circles = {}
+
+        # Create two CCW triangles for the frame
+        T1 = (0, 1, 3)
+        T2 = (2, 3, 1)
+        self.triangles[T1] = [T2, None, None]
+        self.triangles[T2] = [T1, None, None]
+
+        # Compute circumcenters and circumradius for each triangle
+        for t in self.triangles:
+            self.circles[t] = self.circumcenter(t)
