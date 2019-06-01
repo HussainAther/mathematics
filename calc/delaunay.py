@@ -146,3 +146,9 @@ class Delaunay2D:
 
             # Add triangle to a temporal list
             new_triangles.append(T)
+
+        # Link the new triangles each another
+        N = len(new_triangles)
+        for i, T in enumerate(new_triangles):
+            self.triangles[T][1] = new_triangles[(i+1) % N]   # next
+            self.triangles[T][2] = new_triangles[(i-1) % N]   # previous
