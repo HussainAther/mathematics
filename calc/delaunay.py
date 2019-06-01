@@ -73,3 +73,19 @@ class Delaunay2D:
         m2 = np.sum(np.square(m1), axis=1).reshape((3, 1))
         m = np.hstack((m1, m2))    # The 3x3 matrix to check
         return np.linalg.det(m) <= 0
+
+    def addPoint(self, p):
+        """
+        Add a point p to the current DT, and refine it using Bowyer-Watson.
+        """
+        p = np.asarray(p)
+        idx = len(self.coords)
+        # print("coords[", idx,"] ->",p)
+        self.coords.append(p)
+
+        # Search the triangle(s) whose circumcircle contains p
+        bad_triangles = []
+        for T in self.triangles:
+            # Choose one method: inCircleRobust(T, p) or inCircleFast(T, p)
+            if self.inCircleFast(T, p):
+                bad_triangles.append(T)
