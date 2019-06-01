@@ -173,3 +173,15 @@ class Delaunay2D:
         # Do sqrt of radius before of return
         return [(self.circles[(a, b, c)][0], sqrt(self.circles[(a, b, c)][1]))
                 for (a, b, c) in self.triangles if a > 3 and b > 3 and c > 3]
+
+    def exportDT(self):
+        """
+        Export the current set of Delaunay coordinates and triangles.
+        """
+        # Filter out coordinates in the extended BBox
+        coord = self.coords[4:]
+
+        # Filter out triangles with any vertex in the extended BBox
+        tris = [(a-4, b-4, c-4)
+                for (a, b, c) in self.triangles if a > 3 and b > 3 and c > 3]
+        return coord, tris
