@@ -171,7 +171,7 @@ class Delaunay2D:
 
         # Filter out triangles with any vertex in the extended BBox
         # Do sqrt of radius before of return
-        return [(self.circles[(a, b, c)][0], sqrt(self.circles[(a, b, c)][1]))
+        return [(self.circles[(a, b, c)][0], np.sqrt(self.circles[(a, b, c)][1]))
                 for (a, b, c) in self.triangles if a > 3 and b > 3 and c > 3]
 
     def exportDT(self):
@@ -191,3 +191,41 @@ class Delaunay2D:
         Export the Extended Delaunay Triangulation (with the frame vertex).
         """
         return self.coords, list(self.triangles)
+
+    def exportVoronoiRegions(self):
+        """
+        Export coordinates and regions of Voronoi diagram as indexed data.
+        """
+        # Remember to compute circumcircles if not done before
+        # for t in self.triangles:
+        #     self.circles[t] = self.circumcenter(t)
+        useVertex = {i: [] for i in range(len(self.coords))}
+        vor_coors = []
+        index = {}
+        # Build a list of coordinates and one index per triangle/region
+        for tidx, (a, b, c) in enumerate(sorted(self.triangles)):
+            vor_coors.append(self.circles[(a, b, c)][0])
+            # Insert triangle, rotating it so the key is the "last" vertex
+            useVertex[a] += [(b, c, a)]
+            useVertex[b] += [(c, a, b)]
+            useVertex[c] += [(a, b, c)]
+            # Set tidx as the index to use with this triangle
+            index[(a, b, c)] = tidx
+            index[(c, a, b)] = tidx
+            index[(b, c, a)] = tidx
+
+        # init regions per coordinate dictionary
+        regions = {}
+        # Sort each region in a coherent order, and substitude each triangle
+        # by its index
+        for i in range(4, len(self.coords)):
+            v = useVertex[i][0][0]  # Get a vertex of a triangle
+            r = []
+            for _ in range(len(useVertex[i])):
+                # Search the triangle beginning with vertex v
+                t = [t for t in useVertex[i] if t[0] == v][0]
+                r.append(index[t])  # Add the index of this triangle to region
+                v = t[1]            # Choose the next vertex to search
+            regions[i-4] = r        # Store region.
+
+        return vor_coors, regions
