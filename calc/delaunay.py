@@ -117,3 +117,8 @@ class Delaunay2D:
                 # Move to next CCW edge in opposite triangle
                 edge = (self.triangles[tri_op].index(T) + 1) % 3
                 T = tri_op
+
+        # Remove triangles too near of point p of our solution
+        for T in bad_triangles:
+            del self.triangles[T]
+            del self.circles[T]
