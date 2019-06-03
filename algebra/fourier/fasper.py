@@ -1,6 +1,6 @@
 import numpy as np
 
-from fourier import prod
+from fourier import DFT 
 from math import floor
 
 """
