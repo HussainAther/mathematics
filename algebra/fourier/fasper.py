@@ -1,6 +1,6 @@
 import numpy as np
 
-from fourier import *
+from fourier import prod
 from math import floor
 
 """
@@ -37,7 +37,7 @@ def fastper(x, y, ofac=4, hifac):
     Fast computation of the Lomb Periodogram.
     Given list of data points x[0...n-1] and ordinates y[0...n-1] and oversampling factor ofac, this
     fills array px[0...nout-1] with increasing sequence of frequencies up to hifac times the "average"
-    Nyquist freuqnecy. It fills array py[0...nout-1] with the Lomb normalized periodogram values at those
+    Nyquist frequency. It fills array py[0...nout-1] with the Lomb normalized periodogram values at those
     frequencies. x and y are not altered. The vectors px and py resize to nout if their initial size is less
     than this. Otherwise the first nout components are filled.
     """
@@ -78,7 +78,7 @@ def fastper(x, y, ofac=4, hifac):
         ckk += 1
         wk1 = spread(y[j] - ave, wk1, ck, MACC)
         wk2 = spread(1, wk2, ckk, MACC)
-    DFT(wk1) # Fourier transform
+    DFT(wk1) # Discrete Fourier transform
     DFT(wk2)
     df = 1/(xdif*ofac)
     pmax = -1
@@ -103,5 +103,3 @@ def fastper(x, y, ofac=4, hifac):
     if prob > .02:
         prob = 1-np.power(1-expy, effm)
     return px, py, prob
-
-
