@@ -1,6 +1,6 @@
 import numpy as np
 
-from fourier import *
+from fourier import DFT
 
 """
 Similar to convolution, correlation represents two functions by different but generally similar data sets
