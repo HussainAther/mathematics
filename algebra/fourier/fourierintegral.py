@@ -1,6 +1,6 @@
 import numpy as np
 
-from fourier import *
+from fourier import FFT
 
 """
 We can use the Fast Fourier transform to compute integrals of the form
