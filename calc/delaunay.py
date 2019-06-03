@@ -5,6 +5,9 @@ In mathematics and computational geometry, a Delaunay triangulation (also known 
 for a given set P of discrete points in a plane is a triangulation DT(P) 
 such that no point in P is inside the circumcircle of any triangle in DT(P).
 This methods uses the Bowyer-Watson algorithm in two dimensions (2-D).
+
+This method is used to build meshes for space-discreteized solvers and determine
+the density or intensity of points samplings.
 """
 
 class Delaunay2D:
