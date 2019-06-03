@@ -1,6 +1,6 @@
 import numpy as np
 
-from fourier import * # from the fourier.py script in the same dirctory.
+from fourier import DFT, InverseDFT 
 
 """
 Convolution or deconvolution of a real set of data in array form a of two functions s(t) and r(t) (written as s(t) * r(t)).
