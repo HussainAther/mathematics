@@ -34,4 +34,7 @@ rando = np.random.rand(A.shape[1])
 n = 100 
 for i in range(n):
     # Calculate the norm of the matrix-by-vector product
-    norm = np.linalg.norm(np.dot(A, rando))  
+    norm = np.linalg.norm(np.dot(A, rando))
+    # Apply to the vector 
+    rando =/ norm
+print("Power iteration result " + str(rando)) 
