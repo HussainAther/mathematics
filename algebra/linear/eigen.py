@@ -29,3 +29,9 @@ B = np.matrix([[2,1,0,0],[1,2,0,0],[1,1,1,0],[0,-2,2,-1]])
 
 # Choose a random vector
 rando = np.random.rand(A.shape[1]) 
+
+# Number of iterations or simulations
+n = 100 
+for i in range(n):
+    # Calculate the norm of the matrix-by-vector product
+    norm = np.linalg.norm(np.dot(A, rando))  
