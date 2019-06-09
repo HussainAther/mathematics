@@ -21,9 +21,10 @@ RHS = np.dot(Vec, Es[0])
 print(LHS - RHS)
 
 """
-Straightforward approach for two matrices A and B.
+Power iteration is a straightforward approach for two matrices A and B.
 """
 
 A = np.matrix([[4, -5],[2,-2]])
 B = np.matrix([[2,1,0,0],[1,2,0,0],[1,1,1,0],[0,-2,2,-1]])
+
 
