@@ -27,4 +27,5 @@ Power iteration is a straightforward approach for two matrices A and B.
 A = np.matrix([[4, -5],[2,-2]])
 B = np.matrix([[2,1,0,0],[1,2,0,0],[1,1,1,0],[0,-2,2,-1]])
 
-
+# Choose a random vector
+rando = np.random.rand(A.shape[1]) 
