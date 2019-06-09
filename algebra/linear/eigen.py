@@ -19,3 +19,7 @@ Vec = array([evectors[0, 0,], evectors[1, 0], evectors[2, 0]])
 LHS = np.dot(I, Vec)
 RHS = np.dot(Vec, Es[0])
 print(LHS - RHS)
+
+"""
+Straightforward approach.
+"""
