@@ -202,4 +202,11 @@ dbn = DBN(numpy_rng=numpy_rng, n_ins=28 * 28,
 pretraining_fns = dbn.pretraining_functions(train_set_x=train_set_x,
                                             batch_size=batch_size,
                                             k=k)
-
+start_time = timeit.default_timer()
+for i in range(dbn.n_layers):
+    for epoch in range(pretraining_epochs):
+        c = []
+        for batch_index in range(n_train_batches):
+            c.append(pretraining_fns[i](index=batch_index,
+                                        lr=pretrain_lr))
+    end_time = timeit.default_timer()
