@@ -31,3 +31,35 @@ class DBN(object):
         self.x = T.matrix("x")
         # The labels are presented as 1D vector of [int] labels
         self.y = T.ivector("y")
+        for i in range(self.n_layers):
+            # Construct the sigmoidal layer. The size of the input is 
+            # either the number of hidden units of the layer below or the 
+            # input size if we are on the first layer.
+            if i == 0:
+                input_size = n_ins
+            else:
+                input_size = hidden_layers_sizes[i - 1]
+            # The input to this layer is either the activation of the
+            # hidden layer below or the input of the DBN if you are on
+            # the first layer
+            if i == 0:
+                layer_input = self.x
+            else:
+                layer_input = self.sigmoid_layers[-1].output
+            sigmoid_layer = HiddenLayer(rng=numpy_rng,
+                                        input=layer_input,
+                                        n_in=input_size,
+                                        n_out=hidden_layers_sizes[i],
+                                        activation=T.nnet.sigmoid)
+            # Add the layer to our list of layers
+            self.sigmoid_layers.append(sigmoid_layer)
+            self.params.extend(sigmoid_layer.params)
+            # Construct an RBM that shared weights with this layer
+            rbm_layer = RBM(numpy_rng=numpy_rng,
+                            theano_rng=theano_rng,
+                            input=layer_input,
+                            n_visible=input_size,
+                            n_hidden=hidden_layers_sizes[i],
+                            W=sigmoid_layer.W,
+                            hbias=sigmoid_layer.b)
+            self.rbm_layers.append(rbm_layer)
