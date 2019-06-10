@@ -63,3 +63,15 @@ class DBN(object):
                             W=sigmoid_layer.W,
                             hbias=sigmoid_layer.b)
             self.rbm_layers.append(rbm_layer)
+        self.logLayer = LogisticRegression(
+            input=self.sigmoid_layers[-1].output,
+            n_in=hidden_layers_sizes[-1],
+            n_out=n_outs)
+        self.params.extend(self.logLayer.params)
+        # Compute the cost for second phase of training, defined as the
+        # negative log likelihood of the logistic regression (output) layer
+        self.finetune_cost = self.logLayer.negative_log_likelihood(self.y)
+        # Compute the gradients with respect to the model parameters
+        # symbolic variable that points to the number of errors made on the
+        # minibatch given by self.x and self.y
+        self.errors = self.logLayer.errors(self.y)
