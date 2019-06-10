@@ -75,3 +75,16 @@ class DBN(object):
         # symbolic variable that points to the number of errors made on the
         # minibatch given by self.x and self.y
         self.errors = self.logLayer.errors(self.y)
+
+    def pretraining_functions(self, train_set_x, batch_size, k):
+        """
+        Generate a list of functions, for performing one step of
+        gradient descent at a given layer. The function will require
+        as input the minibatch index, and to train an RBM you just
+        need to iterate, calling the corresponding function on all
+        minibatch indexes. train_x has data for training the RBM.
+        batch_size is the size of a batch. k is the number of Gibbs
+        steps to do in CD-k.
+        """
+        # index to a [mini]batch
+        index = T.lscalar('index')  # index to a minibatch
