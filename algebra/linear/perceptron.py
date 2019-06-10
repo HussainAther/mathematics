@@ -47,22 +47,6 @@ for row in data:
 # model an activation equation
 activation = (w1 * X1) + (w2 * X2) + bias
 
-
-# Estimate Perceptron weights using stochastic gradient descent
-def train_weights(train, l_rate, n_epoch):
-    weights = [0.0 for i in range(len(train[0]))]
-    for epoch in range(n_epoch):
-        sum_error = 0.0
-        for row in train:
-            prediction = predict(row, weights)
-            error = row[-1] - prediction
-            sum_error += error**2
-            weights[0] = weights[0] + l_rate * error
-            for i in range(len(row)-1):
-                weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
-        print(">epoch=%d, lrate=%.3f, error=%.3f" % (epoch, l_rate, sum_error))
-    return weights
-
 def train_weights(train, l_rate, n_epoch):
     """
     Use stochastic gradient descent to estimate weights.
@@ -133,6 +117,8 @@ model.add(Dense(100, activation="relu", input_dim=n_input))
 model.add(Dense(n_output))
 model.compile(optimizer="adam", loss="mse")
 
+weights = train_weights(X, .01, 100)
+
 # Fit model
 model.fit(X, y, epochs=2000, verbose=0)
 
@@ -140,3 +126,4 @@ model.fit(X, y, epochs=2000, verbose=0)
 x_input = array([[70,75,145], [80,85,165], [90,95,185]])
 x_input = x_input.reshape((1, n_input))
 yhat = model.predict(x_input, verbose=0)
+predict(weights)
