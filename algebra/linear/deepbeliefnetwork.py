@@ -198,3 +198,8 @@ dbn = DBN(numpy_rng=numpy_rng, n_ins=28 * 28,
           hidden_layers_sizes=[1000, 1000, 1000],
           n_outs=10)
 
+# Pretrain 
+pretraining_fns = dbn.pretraining_functions(train_set_x=train_set_x,
+                                            batch_size=batch_size,
+                                            k=k)
+
