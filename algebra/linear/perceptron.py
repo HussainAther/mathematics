@@ -14,7 +14,7 @@ f(a) 1 when a >=0 and -1 when a < 0.
 
 def predict(row, weights):
     """
-    Make predcitions by evaluating candidate weight values in stoachastic
+    Make predictions by evaluating candidate weight values in stoachastic
     gradient descent. After the model is finalized we start making predictions on test data.
     """
     activation = weights[0]
