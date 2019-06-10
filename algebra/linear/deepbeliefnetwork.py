@@ -86,5 +86,30 @@ class DBN(object):
         batch_size is the size of a batch. k is the number of Gibbs
         steps to do in CD-k.
         """
-        # index to a [mini]batch
+        # Index to a [mini]batch
         index = T.lscalar('index')  # index to a minibatch
+        learning_rate = T.scalar('lr')  # learning rate to use
+        # Begining of a batch, given index
+        batch_begin = index * batch_size
+        # ending of a batch given `index`
+        batch_end = batch_begin + batch_size
+        pretrain_fns = []
+        for rbm in self.rbm_layers:
+            # Get the cost and the updates list
+            # using CD-k here (persisent=None) for training each RBM.
+            # TODO: change cost function to reconstruction error
+            cost, updates = rbm.get_cost_updates(learning_rate,
+                                                 persistent=None, k=k)
+            # Compile the theano function
+            fn = theano.function(
+                inputs=[index, theano.In(learning_rate, value=0.1)],
+                outputs=cost,
+                updates=updates,
+                givens={
+                    self.x: train_set_x[batch_begin:batch_end]
+                }
+            )
+            # Append f to the list of functions
+            pretrain_fns.append(fn)
+        return pretrain_fns
+
