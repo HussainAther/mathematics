@@ -1,3 +1,5 @@
+import numpy as np
+
 """
 Deep belief network DBN dbn. We create this by stacking several RBMs (Restricted Boltzmann machines
 rbm) on top of each other. The hidden layer of the RBM at layer i becomes the input of the
@@ -187,3 +189,12 @@ class DBN(object):
             """
             return [test_score_i(i) for i in range(n_test_batches)]
         return train_fn, valid_score, test_score
+
+# Set random state
+numpy_rng = np.random.RandomState(123)
+
+# Construct the Deep Belief Network
+dbn = DBN(numpy_rng=numpy_rng, n_ins=28 * 28,
+          hidden_layers_sizes=[1000, 1000, 1000],
+          n_outs=10)
+
