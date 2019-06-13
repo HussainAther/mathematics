@@ -46,3 +46,9 @@ def model(X, hidden_weights1, hidden_bias1, ow):
     """
     hidden_layer = tf.nn.sigmoid(tf.matmul(X, hidden_weights1)+ b)
     return tf.matmul(hidden_layer, ow)
+
+dsX = np.linspace(-1, 1, trainsamples + testsamples).tranpose()
+dsY = 0.8*pow(dsX,2)+2*dsX+np.random.randn(*dsX.shape)*.22+.8
+
+X = tf.placeholder("float")
+Y = tf.placeholder("float")
