@@ -72,4 +72,8 @@ train_op = tf.train.GradientDescentOptimizer(0.05).minimize(cost)
 # Launch the graph in a session.
 epochs = 50
 with tf.Session() as sess:
-  tf.global_variables_initializer().run() # Initialize all variables.
+    tf.global_variables_initializer().run() # Initialize all variables.
+    for i in range(1, epochs):
+        # Randomize the samples to implement a better training.
+        dsX, dsY = shuffle(dsX.tranpose(), dsY)
+        trainX, trainY = dsX[0:trainsamples], dsY[0:trainsamples]
