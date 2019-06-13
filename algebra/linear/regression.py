@@ -33,3 +33,9 @@ def plot_regression_line(x, y, b):
 """
 Tensorflow
 """
+
+import tensorflow as tf
+import numpy as np
+    
+from sklearn.utils import shuffle
+
