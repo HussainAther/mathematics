@@ -63,3 +63,5 @@ ow = tf.Variable(tf.random_normal([10, 1], stddev=0.0))
 b = tf.Variable(tf.random_normal([10], stddev=0.1))
 model_y = model(X, hw1, b, ow)
 
+# Cost function.
+cost = tf.pow(model_y-Y, 2)/(2)
