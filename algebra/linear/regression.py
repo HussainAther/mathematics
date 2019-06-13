@@ -52,3 +52,14 @@ dsY = 0.8*pow(dsX,2)+2*dsX+np.random.randn(*dsX.shape)*.22+.8
 
 X = tf.placeholder("float")
 Y = tf.placeholder("float")
+
+# Create first hidden layer.
+hw1 = tf.Variable(tf.random_normal([1, 10], stddev=0.1))
+
+# Create output connection.
+ow = tf.Variable(tf.random_normal([10, 1], stddev=0.0))
+
+# Create bias.
+b = tf.Variable(tf.random_normal([10], stddev=0.1))
+model_y = model(X, hw1, b, ow)
+
