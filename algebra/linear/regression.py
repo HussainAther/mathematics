@@ -77,3 +77,15 @@ with tf.Session() as sess:
         # Randomize the samples to implement a better training.
         dsX, dsY = shuffle(dsX.tranpose(), dsY)
         trainX, trainY = dsX[0:trainsamples], dsY[0:trainsamples]
+        for x1, y1 in zip(trainX, trainY):
+            sess.run(train_op, feed_dict={X:[[x1]], Y:y})
+        cost1 =0 
+        for x1, y1 in zip(testX, testY):
+            cost1 += sess.run(cost, feed_dict={X:[[x1]], Y:y1}) / testsamples
+            if i%10 == 0:
+                print("Average cost for epoch " + str(i) + ":" + str(cost1))
+
+plt.figure()
+plt.title("Original data)
+plt.scatter(dsX, dsY)
+plt.show()
