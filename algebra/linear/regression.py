@@ -68,3 +68,8 @@ cost = tf.pow(model_y-Y, 2)/(2)
 
 # Construct an optimizer.
 train_op = tf.train.GradientDescentOptimizer(0.05).minimize(cost)
+
+# Launch the graph in a session.
+epochs = 50
+with tf.Session() as sess:
+  tf.global_variables_initializer().run() # Initialize all variables.
