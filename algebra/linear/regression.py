@@ -45,3 +45,4 @@ def model(X, hidden_weights1, hidden_bias1, ow):
     Hidden layer model.
     """
     hidden_layer = tf.nn.sigmoid(tf.matmul(X, hidden_weights1)+ b)
+    return tf.matmul(hidden_layer, ow)
