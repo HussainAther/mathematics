@@ -65,3 +65,6 @@ model_y = model(X, hw1, b, ow)
 
 # Cost function.
 cost = tf.pow(model_y-Y, 2)/(2)
+
+# Construct an optimizer.
+train_op = tf.train.GradientDescentOptimizer(0.05).minimize(cost)
