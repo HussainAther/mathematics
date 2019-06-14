@@ -32,14 +32,10 @@ def f(x):
     return result
 
 def hessian(x, f, d=1e-8):
-    """Numerical approximation to the Hessian matrix
-    x: array-like
-        The evaluation point
-    f: function
-        The function. We assume that the function returns the function value and
-        the associated gradient as the second return element
-    d: float
-        step size
+    """
+    Numerical approximation to the Hessian matrix. x is a list of the evaluation point.
+    f is the function that returns the function value and associated gradient as the
+    second element. d is the step size.
     """
     N = x.size
     h = np.zeros((N,N)) # output Hessian matrix
