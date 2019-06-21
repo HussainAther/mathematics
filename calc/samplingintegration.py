@@ -6,7 +6,7 @@ We'll use the sampling technique of throwing stones into a pond
 as a method of measuring the area of the pond. The ratio of "hits" to
 the total number of stones thrown equals the ratio of the area of the pond
 to that of the box. We can also determine pi through this method (as described
-by Buffon's needle.)
+by Buffon's needle buffon.)
 """
 
 def sample_cosine():
