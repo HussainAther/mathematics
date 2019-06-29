@@ -16,12 +16,12 @@ m.time = p.time
 
 # Parameters
 m.u = m.MV(value=u_meas) #input
-m.K = m.FV(value=1, lb=1, ub=3)    # gain
+m.K = m.FV(value=1, lb=1, ub=3) # gain
 m.tau = m.FV(value=5, lb=1, ub=10) # time constant
 
 # Variables
-m.x = m.SV() #state variable
-m.y = m.CV(value=y_meas) #measurement
+m.x = m.SV() # state variable
+m.y = m.CV(value=y_meas) # measurement
 
 # Equations
 m.Equations([m.tau * m.x.dt() == -m.x + m.u,
