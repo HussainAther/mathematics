@@ -20,3 +20,11 @@ def M(x):
     for i in x:
          summ += 2**(-len(i))
     return summ
+
+"""
+Ray Solomonoff's theory of universal inductive inference is a theory of prediction based on logical 
+observations, such as predicting the next symbol based upon a given series of symbols. The only 
+assumption that the theory makes is that the environment follows some unknown but computable 
+probability distribution. It is a mathematical formalization of Occam's razor and the Principle 
+of Multiple Explanations.
+"""
