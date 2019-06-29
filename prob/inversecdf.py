@@ -69,8 +69,8 @@ This means that we don’t want an unecessarily large M because that makes it mo
 x = np.linspace(0.001,15,100)
 f = lambda x: np.exp(-(x-1)**2/2./x)*(x+1)/12.
 fx = f(x)
-M=0.3                          # scale factor
-u1 = np.random.rand(10000)*15  # uniform random samples scaled out
-u2 = np.random.rand(10000)     # uniform random samples
-idx,= np.where(u2<=f(u1)/M)    # rejection criterion
+M = 0.3  # scale factor
+u1 = np.random.rand(10000)*15 # uniform random samples scaled out
+u2 = np.random.rand(10000) # uniform random samples
+idx,= np.where(u2<=f(u1)/M) # rejection criterion
 v = u1[idx]
