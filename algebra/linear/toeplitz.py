@@ -14,3 +14,8 @@ def checkDiag(mat, i, j):
     res = mat[i][j]
     i += 1
     j += 1
+    while i < col and j < row:
+        if mat[i][j] != res:
+            return False
+        i += 1
+        j += 1
