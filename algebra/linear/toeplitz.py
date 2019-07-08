@@ -25,3 +25,10 @@ def isToeplitz(mat):
     """
     Check whether the matrix is Toeplitz using our routine.
     """
+    for j in range(row):
+        if not checkDiag(mat, 0, j):
+            return False
+    for i in range(1, col):
+        if not checkDiag(mat, i, 0):
+            return False
+    return True
