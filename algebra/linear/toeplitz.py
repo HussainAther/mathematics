@@ -11,3 +11,6 @@ def checkDiag(mat, i, j):
     starting from position (i, j) in the matrix are all the same
     or not.
     """
+    res = mat[i][j]
+    i += 1
+    j += 1
