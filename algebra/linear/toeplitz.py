@@ -20,3 +20,8 @@ def checkDiag(mat, i, j):
         i += 1
         j += 1
     return True
+
+def isToeplitz(mat):
+    """
+    Check whether the matrix is Toeplitz using our routine.
+    """
