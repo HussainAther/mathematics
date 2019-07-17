@@ -109,3 +109,16 @@ hier_a = hierarchical_trace["a"][500:].mean(axis=0)
 hier_b = hierarchical_trace["b"][500:].mean(axis=0)
 indv_a = [unpooled_trace["a"][500:, np.where(county_names==c)[0][0]].mean() for c in county_names]
 indv_b = [unpooled_trace["b"][500:, np.where(county_names==c)[0][0]].mean() for c in county_names]
+
+:
+fig = plt.figure(figsize=(10, 10))
+ax = fig.add_subplot(111, xlabel="Intercept", ylabel="Floor Measure",
+                     title="Hierarchical vs. Non-hierarchical Bayes",
+                     xlim=(0, 3), ylim=(-3, 3))
+
+ax.scatter(indv_a, indv_b, s=26, alpha=0.4, label = "non-hierarchical")
+ax.scatter(hier_a,hier_b, c="red", s=26, alpha=0.4, label = "hierarchical")
+for i in range(len(indv_b)):
+    ax.arrow(indv_a[i], indv_b[i], hier_a[i] - indv_a[i], hier_b[i] - indv_b[i],
+             fc="k", ec="k", length_includes_head=True, alpha=0.4, head_width=.04)
+ax.legend();
