@@ -71,3 +71,6 @@ pm.traceplot(hierarchical_trace,
              var_names=["mu_a", "mu_b",
                         "sigma_a", "sigma_b",
                         "eps"]);
+
+pm.traceplot(hierarchical_trace,
+             var_names=["a"], coords={"a_dim_0": range(5)});
