@@ -63,3 +63,11 @@ with pm.Model() as hierarchical_model:
     # Data likelihood
     radon_like = pm.Normal("radon_like", mu=radon_est,
                            sigma=eps, observed=data.log_radon)
+# Inference button (TM)!
+with hierarchical_model:
+    hierarchical_trace = pm.sample(2000, tune=2000, target_accept=.9)
+    
+pm.traceplot(hierarchical_trace,
+             var_names=["mu_a", "mu_b",
+                        "sigma_a", "sigma_b",
+                        "eps"]);
