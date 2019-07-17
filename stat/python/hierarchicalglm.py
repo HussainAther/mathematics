@@ -104,3 +104,8 @@ for i, c in enumerate(selection):
     if not i % 3:
         axis[i].legend()
         axis[i].set_ylabel("log radon level")
+        
+hier_a = hierarchical_trace["a"][500:].mean(axis=0)
+hier_b = hierarchical_trace["b"][500:].mean(axis=0)
+indv_a = [unpooled_trace["a"][500:, np.where(county_names==c)[0][0]].mean() for c in county_names]
+indv_b = [unpooled_trace["b"][500:, np.where(county_names==c)[0][0]].mean() for c in county_names]
