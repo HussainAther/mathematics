@@ -25,3 +25,16 @@ switch BC
         V=conv(pv,F);
         V=V(3:end-2); %return the valid portion of the convolution
     end
+x=linspace(-pi,pi,100); %forces even spacing in array of 100 pts from –pi to pi
+dx=x(2)-x(1); %determines this spacing, the spatial mesh size
+x=x(2:end); % for periodicity knock of 1st term in x array so that we don’t have repeat
+% value of cos(x) at the endpoints of x (since cos(-pi)=cos(pi))
+f=cos(x); %input array
+d2f=secDer(f,dx,2); %computational solution to the second derivative of f with
+periodic BC
+d2fA=-cos(x); %analytic solution to the second derivative of f
+plot(x,f,'k','LineWidth',3) %plot input f
+hold on
+plot(x,d2f,'b','LineWidth',5) %plot computational result of f"
+plot(x,d2fA,'k:','LineWidth',3) %plot analytic result of f"
+axis([-pi pi -1 1]); set(gca,'fontsize',20)
