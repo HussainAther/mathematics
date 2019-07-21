@@ -1,4 +1,4 @@
-%mach_illusion.m
+%machillusion.m
 clear all; close all
 mexican_hat %creates the mexican hat matrix, MH, & plots
 ramp %creates image with ramp from dark to light, In, & plots
