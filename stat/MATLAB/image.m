@@ -23,3 +23,6 @@ title('contourf')
 subplot(122)
 imagesc(pic(:,:,1))
 title('imagesc')
+plot(rand(3))
+get(gca,'xlim')
+yTik = get(gca,'ytick');
