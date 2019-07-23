@@ -10,3 +10,5 @@ nOutputNodes = 1;
 weights_i2h = randn(nInputsNodes,nHiddenNodes); 
 weights_h2o = randn(nHiddenNodes,nOutputNodes); 
 l_rate = .2;
+hdLayerResp = inputs(ini,:) * weights_i2h; 
+hdLayerResp = 2./(1+exp(-hdLayerResp'*2))-1;
