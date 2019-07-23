@@ -14,3 +14,8 @@ InitParms = [ 2 2 –2 ];
 funch = @(initParms) fitGaussian(initParms,x,gaus); [outparams,sse] = fminsearch(funch,initParms);
 funch = @(x) -sin(x)./x;
 [xval,funcval] = fminsearch(funch,0);
+
+x = randn(1000,1); hold on
+hist(x,40)
+[yy,xx] = hist(x,40); % doesn’t plot anything!
+plot(xx,yy,'r','linew',3)
