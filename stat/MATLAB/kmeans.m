@@ -9,4 +9,6 @@ end
 lineCol = 'rbk';
 hold on
 for i=1:3
-plot(d(gidx==i,1),d(gidx==i,2),[lineCol(i) 'o’]) end
+    plot(d(gidx==i,1),d(gidx==i,2),[lineCol(i) 'o’]) 
+end
+plot(cents(:,1),cents(:,2),'ko’)
