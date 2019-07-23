@@ -20,3 +20,8 @@ weights_h2o = weights_h2o—delta;
 bp = weights_h2o .* (1-hdLayerResp.^2)*inputs(ini,:); 
 delta = l_rate * predError(ini) * bp;
 weights_i2h = weights_i2h—delta';
+iteration = iteration+1;
+totalError(iteration) = sum(predError.^2);
+if totalError(iteration)<.01 || iteration>max_iter
+    toggle=false;
+end
