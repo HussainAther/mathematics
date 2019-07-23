@@ -14,4 +14,6 @@ hdLayerResp = inputs(ini,:) * weights_i2h;
 hdLayerResp = 2./(1+exp(-hdLayerResp'*2))-1;
 otLayerResp = hdLayerResp' * weights_h2o; 
 otLayerResp = 2./(1+exp(-otLayerResp'*2))-1;
-
+predError(ini) = otLayerResp—output(ini);
+delta = l_rate * predError(ini) * hdLayerResp;
+weights_h2o = weights_h2o—delta;
