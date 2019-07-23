@@ -32,3 +32,7 @@ for bini=1:hdata.NumBins
     xidx(ix) = bini;
 end
 
+N = length(data);
+nbins = 8;
+temp = tiedrank(data)/N;
+discr = ceil(temp*nbins);
