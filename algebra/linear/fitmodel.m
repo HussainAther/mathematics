@@ -13,3 +13,6 @@ y(x<c) = a + sqrt(x(x<c).*(b-a).*(c-a));
 y(x>c) = b—sqrt((1-x(x>c)).*(b-a).*(b-c));
 % plot distribution
 hist(y,100)
+
+[y,x] = hist(y,100);
+
