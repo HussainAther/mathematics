@@ -24,3 +24,6 @@ b1 = (x1'*x1)\(x1'*y1);
 % second piece
 x2 = [ones(length(x)-bpoint,1) x(bpoint+1:end)]; y2 = y(bpoint+1:end);
 b2 = (x2'*x2)\(x2'*y2);
+
+yHat = [b1(1)+b1(2)*x1(:,2); b2(1)+b2(2)*x2(:,2)]; 
+sse = sum((yHat-y).^2) / sum(y.^2);
