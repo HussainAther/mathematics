@@ -19,3 +19,9 @@ x = randn(1000,1); hold on
 hist(x,40)
 [yy,xx] = hist(x,40); % doesn’t plot anything!
 plot(xx,yy,'r','linew',3)
+
+hdata = histogram(x,40);
+xvals = (hdata.BinEdges(1:end-1) + ...
+         hdata.BinEdges(2:end))/2;
+plot(xvals,hdata.Values)
+
