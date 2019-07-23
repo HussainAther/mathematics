@@ -31,3 +31,8 @@ x = [ 1 2 3 4 5 ];
 x = [ 3 4 1 2 5 ];
 [~,i]=sort(x);
 x=x(i); y=y(i);
+
+[~,initB] = min(abs(x-.5));
+funch = @(initB)fit2segLinear(initB,x,y); [optBreakPoint,sse,exitflag,fmininfo] = ...
+            fminsearch(funch,initB);
+
