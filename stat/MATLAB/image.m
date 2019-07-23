@@ -18,3 +18,8 @@ contourf(pic(:,:,1),40) % 10 is the default number
 contourf(pic(:,:,1),40,'linecolor','m') 
 contourf(pic(:,:,1),40,'linecolor','none')
 surf(pic(:,:,1))
+subplot(121) contourf(pic(:,:,1),40,'linecolor','none') 
+title('contourf')
+subplot(122)
+imagesc(pic(:,:,1))
+title('imagesc')
