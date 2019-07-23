@@ -25,3 +25,10 @@ xvals = (hdata.BinEdges(1:end-1) + ...
          hdata.BinEdges(2:end))/2;
 plot(xvals,hdata.Values)
 
+xidx = zeros(size(x));
+for bini=1:hdata.NumBins
+    ix = hdata.Data > hdata.BinEdges(bini) & ...
+         hdata.Data < hdata.BinEdges(bini+1);
+    xidx(ix) = bini;
+end
+
