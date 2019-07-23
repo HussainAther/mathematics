@@ -14,3 +14,6 @@ for chani=1:3
     set(gca,'clim',[0 255])
     title([ colorchans{chani} ' channel' ])
 end
+contourf(pic(:,:,1),40) % 10 is the default number 
+contourf(pic(:,:,1),40,'linecolor','m') 
+contourf(pic(:,:,1),40,'linecolor','none')
