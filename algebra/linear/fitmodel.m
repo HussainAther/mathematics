@@ -16,3 +16,11 @@ hist(y,100)
 
 [y,x] = hist(y,100);
 
+% first piece
+x1 = [ones(bpoint,1) x(1:bpoint)];
+y1 = y(1:bpoint);
+b1 = (x1'*x1)\(x1'*y1);
+
+% second piece
+x2 = [ones(length(x)-bpoint,1) x(bpoint+1:end)]; y2 = y(bpoint+1:end);
+b2 = (x2'*x2)\(x2'*y2);
