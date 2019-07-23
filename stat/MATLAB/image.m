@@ -17,3 +17,4 @@ end
 contourf(pic(:,:,1),40) % 10 is the default number 
 contourf(pic(:,:,1),40,'linecolor','m') 
 contourf(pic(:,:,1),40,'linecolor','none')
+surf(pic(:,:,1))
