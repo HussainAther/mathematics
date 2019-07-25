@@ -27,3 +27,8 @@ tiedrank([pi 1 4 5 4 100000])
 temp = tiedrank(d(:,1))/ntrials;
 temp = temp*nbins;
 drank = ceil(temp);
+for i=1:12
+    caf(i,1) = mean(beh(drank==i,1));
+    caf(i,2) = mean(beh(drank==i,2));
+end
+plot(caf(:,2),caf(:,1),'o-')
