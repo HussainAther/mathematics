@@ -13,4 +13,4 @@ tol = .01;
 idx = find(dp>dp2plot-tol & dp<dp2plot+tol);
 [yi,xi] = ind2sub(size(dp),idx);
 plot(x(xi),x(yi))
-
+respBias = -(hitZ+faZ)/2;
