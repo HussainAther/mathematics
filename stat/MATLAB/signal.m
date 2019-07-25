@@ -17,3 +17,8 @@ respBias = -(hitZ+faZ)/2;
 ntrials = 100; nbins = 7;
 d = [500+100*randn(ntrials,1) rand(ntrials,1)>.3]; 
 d = sortrows(d,1);
+binidx = ceil(linspace(0,nbins-1,length(d))); discdata = zeros(2,nbins);
+for i=1:nbins
+    discdata(1,i) = mean(d(binidx==i,1));
+    discdata(2,i) = mean(d(binidx==i,2));
+end
