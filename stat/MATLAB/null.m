@@ -14,3 +14,6 @@ fr_males = 26-r*10;
 r = randn(N,1);
 r(r>0) = log(1+r(r>0));
 fr_females = 30-r*10;
+allfr = cat(1,fr_males,fr_females);
+% same result: allfr = [fr_males fr_females];
+allfr = allfr(randperm(N*2));
