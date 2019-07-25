@@ -14,3 +14,6 @@ idx = find(dp>dp2plot-tol & dp<dp2plot+tol);
 [yi,xi] = ind2sub(size(dp),idx);
 plot(x(xi),x(yi))
 respBias = -(hitZ+faZ)/2;
+ntrials = 100; nbins = 7;
+d = [500+100*randn(ntrials,1) rand(ntrials,1)>.3]; 
+d = sortrows(d,1);
