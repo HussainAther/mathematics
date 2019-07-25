@@ -22,3 +22,5 @@ for i=1:nbins
     discdata(1,i) = mean(d(binidx==i,1));
     discdata(2,i) = mean(d(binidx==i,2));
 end
+tiedrank([pi 1 4 5 4 100000])
+ ans = 2 1 3.5 5 3.5 6
