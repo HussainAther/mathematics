@@ -27,4 +27,5 @@ mean(allfr(conds==1))
 fakeconds = randperm(N*2);
 fakeconds(fakeconds<N+1) = 1;
 fakeconds(fakeconds>1) = 0;
-
+mean(allfr(conds==1)) - mean(allfr(conds==0)) 
+mean(allfr(fakeconds==1)) - mean(allfr(fakeconds==0))
