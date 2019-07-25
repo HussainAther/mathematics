@@ -10,3 +10,7 @@ N = 100;
 r = randn(N,1);
 r(r>0) = log(1+r(r>0));
 fr_males = 26-r*10;
+% female pictures
+r = randn(N,1);
+r(r>0) = log(1+r(r>0));
+fr_females = 30-r*10;
