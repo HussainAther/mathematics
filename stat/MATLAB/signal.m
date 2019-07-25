@@ -32,3 +32,5 @@ for i=1:12
     caf(i,2) = mean(beh(drank==i,2));
 end
 plot(caf(:,2),caf(:,1),'o-')
+nbins = ceil(1+log2(n));
+
