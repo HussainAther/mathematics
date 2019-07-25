@@ -29,3 +29,14 @@ fakeconds(fakeconds<N+1) = 1;
 fakeconds(fakeconds>1) = 0;
 mean(allfr(conds==1)) - mean(allfr(conds==0)) 
 mean(allfr(fakeconds==1)) - mean(allfr(fakeconds==0))
+
+nPerms = 1000;
+permdiffs = zeros(nPerms,1);
+for permi=1:nPerms
+    fconds = randperm(N*2);
+    fconds(fconds<N+1) = 1;
+    fconds(fconds>1) = 0;
+    permdiffs(permi) = ...
+mean(allfr(fconds==0))-mean(allfr(fconds==1));
+end
+
