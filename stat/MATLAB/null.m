@@ -21,3 +21,4 @@ allfr = cat(1,fr_males,fr_females);
 allfr = allfr(neworder);
 conds(neworder<N+1) = 1;
 conds(conds>1) = 0;
+[a,b,c,d,e] = deal(rand)
