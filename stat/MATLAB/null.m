@@ -47,3 +47,4 @@ plot([obsval obsval],get(gca,'ylim'))
 z = (obsval-mean(permdiffs)) / std(permdiffs);
 p = 1-normcdf(abs(z));
 p = sum(permdiffs>obsval)/nPerms;
+
