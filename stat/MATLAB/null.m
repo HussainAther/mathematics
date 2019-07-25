@@ -24,3 +24,7 @@ conds(conds>1) = 0;
 [a,b,c,d,e] = deal(rand)
 mean(fr_males)
 mean(allfr(conds==1))
+fakeconds = randperm(N*2);
+fakeconds(fakeconds<N+1) = 1;
+fakeconds(fakeconds>1) = 0;
+
