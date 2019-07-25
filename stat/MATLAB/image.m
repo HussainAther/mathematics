@@ -26,3 +26,9 @@ title('imagesc')
 plot(rand(3))
 get(gca,'xlim')
 yTik = get(gca,'ytick');
+
+pic = imread(’saturn.png');
+picX = fft2(pic);
+picX1 = fft(pic);
+picX1 = fft(picX1,[],2);
+
