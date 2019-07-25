@@ -40,3 +40,7 @@ for permi=1:nPerms
 mean(allfr(fconds==0))-mean(allfr(fconds==1));
 end
 
+hist(permdiffs,50)
+hold on 
+obsval=mean(allfr(conds==0))-mean(allfr(conds==1)); 
+plot([obsval obsval],get(gca,'ylim'))
