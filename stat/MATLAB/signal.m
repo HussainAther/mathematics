@@ -8,3 +8,6 @@ faP = 3/30;
 faZ = norminv(faP);
 % step 3
 dPrime = hitZ-faZ;
+dp2plot = 1; % soft-coding
+tol = .01;
+idx = find(dp>dp2plot-tol & dp<dp2plot+tol);
