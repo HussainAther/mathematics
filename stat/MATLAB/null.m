@@ -22,3 +22,5 @@ allfr = allfr(neworder);
 conds(neworder<N+1) = 1;
 conds(conds>1) = 0;
 [a,b,c,d,e] = deal(rand)
+mean(fr_males)
+mean(allfr(conds==1))
