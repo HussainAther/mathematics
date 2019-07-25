@@ -24,3 +24,6 @@ for i=1:nbins
 end
 tiedrank([pi 1 4 5 4 100000])
  ans = 2 1 3.5 5 3.5 6
+temp = tiedrank(d(:,1))/ntrials;
+temp = temp*nbins;
+drank = ceil(temp);
