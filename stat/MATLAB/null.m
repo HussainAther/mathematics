@@ -44,3 +44,5 @@ hist(permdiffs,50)
 hold on 
 obsval=mean(allfr(conds==0))-mean(allfr(conds==1)); 
 plot([obsval obsval],get(gca,'ylim'))
+z = (obsval-mean(permdiffs)) / std(permdiffs);
+p = 1-normcdf(abs(z));
