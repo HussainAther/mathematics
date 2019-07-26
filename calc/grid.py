@@ -9,5 +9,10 @@ class Grid:
     given level together with a pointer to a coarser grid.
     """
 
-def __init__(self,name,steplength,u,f,coarser=None):
-    
+    def __init__(self,name,steplength,u,f,coarser=None):
+        self.name = name 
+        self.co = coarser # coarser grid 
+        self.h = steplength # step length h
+        self.h2 = steplength**2 
+        self.u = u # improved variable array
+        self.f = f # right array
