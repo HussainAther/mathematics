@@ -61,3 +61,22 @@ class Grid:
             self.u+=prolong_lin(newc-oldc)
         self.smooth(nu2)
         return self.u 
+
+    def fmg_fas_v_cycle(self,nu0,nu1,nu2):
+        """ 
+        Recursive implementation of FMG-FAS-V-Cycle.
+        """
+        print("FMG-FAS-V-cycle called for grid at %s\n" % self.name)
+        if not self.co:
+            # Coarsest grid
+            self.u=solve(self.f)
+        else:
+            # Restrict f
+            self.co.f=restrict_hw(self.f)
+            # Use recursion to get coarser u
+            self.co.u=self.co.fmg_fas_v_cycle(nu0,nu1,nu2)
+            # Prolong to current u
+            self.u=prolong_lin(self.co.u)
+        for it in range(nu0):
+            self.u=self.fas_v_cycle(nu1, nu2)
+        return self.u
