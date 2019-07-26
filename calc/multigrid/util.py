@@ -21,3 +21,13 @@ def restrict_hw(a):
     r[0: ,0] = a[0: :2,0] 
     r[0: ,-1] = a[0: :2,-1] 
     return r
+
+if __name__ == "__main__":
+    a = np.linspace(1,81,81)
+    b = a.reshape(9,9)
+    c = restrict_hw(b)
+    d = prolong_lin(c)
+    print("original grid\n", b)
+    print("with spacing 1 its norm is ",l2_norm(b,1))
+    print("\n restricted grid\n", c)
+    print("\n prolonged restricted grid\n", d)
