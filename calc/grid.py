@@ -16,3 +16,15 @@ class Grid:
         self.h2 = steplength**2 
         self.u = u # improved variable array
         self.f = f # right array
+
+    def __str__(self):
+        """ 
+        Generate an information string about this level. 
+        """ 
+        sme = "Grid at %s with steplength = %0.4g\n" % (
+            self.name, self.h)
+        if self.co:
+            sco = "Coarser grid with name %s\n" % self.co.name
+        else:
+            sco = "No coarser grid\n"
+        return sme+sco
