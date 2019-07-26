@@ -31,11 +31,33 @@ class Grid:
  
    def smooth(self,nu): 
         """
-        Carry out Newton--Raphson/Gauss--Seidel red--black
-        iteration u-->u, nu times.
+        Carry out Newton-Raphson/Gauss-Seidel red-black
+        iteration u->u, nu times. (red black red-black)
+        Newton Raphson Gauss Seidel
         """
         print("Relax in %s for %d times" % (self.name,nu) v=self.u.copy())
         for i in range(nu):
             v=gs_rb_step(v,self.f,self.h2) 
         self.u=v
 
+    def fas_v_cycle(self,nu1,nu2):
+        """ 
+        Recursive implementation of (nu1, nu2) FAS V-Cycle.
+        """ 
+        print("FAS-V-cycle called for grid at %s\n" % self.name)
+        # Initial smoothing
+        self.smooth(nu1)
+        if self.co:
+            # There is a coarser grid 
+            self.co.u=restrict_hw(self.u)
+            # Get residual 
+            res=self.f-get_lhs(self.u,self.h2)
+            # get coarser f 
+            self.co.f=restrict_hw(res)+get_lhs(self.co.u, self.co.h2)
+            oldc=self.co.u
+            # Get new coarse solution 
+            newc=self.co.fas_v_cycle(nu1,nu2)
+            # Correct current u
+            self.u+=prolong_lin(newc-oldc)
+        self.smooth(nu2)
+        return self.u 
