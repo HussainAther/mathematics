@@ -28,3 +28,14 @@ class Grid:
         else:
             sco = "No coarser grid\n"
         return sme+sco
+ 
+   def smooth(self,nu): 
+        """
+        Carry out Newton--Raphson/Gauss--Seidel red--black
+        iteration u-->u, nu times.
+        """
+        print("Relax in %s for %d times" % (self.name,nu) v=self.u.copy())
+        for i in range(nu):
+            v=gs_rb_step(v,self.f,self.h2) 
+        self.u=v
+
