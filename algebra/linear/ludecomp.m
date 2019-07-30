@@ -34,3 +34,16 @@ function [X]=modlu(A, B)
   C(1) = B(1)/L(1, 1);
   for I = 2:N
     SUM3 = 0;
+    for K = 1:I-1
+      SUM3 = SUM3 + L(I, K) * C(K);
+    end
+    C(I) = B(I) - SUM3;
+  end
+  X(N) = C(N)
+  for J = N-1:-1:1
+    SUM4 = 0;
+    for K = J+1:N
+      SUM4 = SUM4 + U(J, K) * X(K);
+    end
+  X(J) = (C(J) - SUM4)/L(J,J)
+  end
