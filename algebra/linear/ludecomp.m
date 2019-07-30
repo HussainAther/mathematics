@@ -28,4 +28,9 @@ function [X]=modlu(A, B)
       U(J, I) = [A(J, I) - SUM2]/L(J, J);
     end
   end
-
+  L(I, J) = A(I, J) - SUM1
+  U(J, I) = [A(J, I) - SUM2]/L(J, J)
+  X = zeros(N, 1);
+  C(1) = B(1)/L(1, 1);
+  for I = 2:N
+    SUM3 = 0;
