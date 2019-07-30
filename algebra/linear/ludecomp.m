@@ -21,3 +21,11 @@ function [X]=modlu(A, B)
     end
     U(J, J) = 1;
     for I = J+1:N;
+      SUM2 = 0;
+      for K = 1:J-1
+        SUM2 = SUM2 + [L(J, K) * U(K, I)];
+      end
+      U(J, I) = [A(J, I) - SUM2]/L(J, J);
+    end
+  end
+
