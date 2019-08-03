@@ -19,3 +19,8 @@ Xzero = 1.0
 def a(X): return lambda*X
 def b(X): return mu*X
 def bd(X): return mu*np.ones_like(X) 
+
+# Brownian paths
+dW = npr.normal(0.0, np.sqrt(dt), (M, N+1))
+dW[:, 0] = 0.0
+W = np.cumsum(dW, axis=1)
