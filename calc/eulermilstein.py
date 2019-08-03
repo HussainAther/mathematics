@@ -24,3 +24,9 @@ def bd(X): return mu*np.ones_like(X)
 dW = npr.normal(0.0, np.sqrt(dt), (M, N+1))
 dW[:, 0] = 0.0
 W = np.cumsum(dW, axis=1)
+
+# Build the exact solutions at the ends.
+ones = np.ones(M)
+Xexact = Xzero*np.exp((lambda-.5*mu*mu)*ones+mu*W[:, -1])
+Xemerr = np.empty((M, P))
+Xmilerr = np.empty((M, P))
