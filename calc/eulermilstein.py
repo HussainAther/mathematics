@@ -16,4 +16,6 @@ mu = 1.0
 Xzero = 1.0
 
 # Initialize functions.
-def a(X): return 
+def a(X): return lambda*X
+def b(X): return mu*X
+def bd(X): return mu*np.ones_like(X) 
