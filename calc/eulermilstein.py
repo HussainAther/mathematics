@@ -46,3 +46,12 @@ for p in range(P):
         Xmil += Dt*z(Xmil) + deltaW*b(Xmil) + .5*b(Xmil)*bd(Xmil)*(deltaW**2-Dt)
     Xemerr[:, p] = np.abs(Xem - Xexact)
     Xmilerr[:, p] = np.abs(Xmil - Xexact)
+
+# Plot.
+plt.ion()
+Dtvals = dt*np.array([2**p for p in range(P)])
+lDtvals = np.log10(Dtvals)
+Xemerrmean = np.mean(Xemerr, axis=0)
+plt.plot(lDtvals, np.log10(Xemerrmean), "bo")
+plt.plot(lDtvals, np.log10(Xemerrmean), "b:, label="EM actual")
+plt.plot(lDtvals, .5*np.log10*Dtvals), "b-.", label="Em theoretical")
