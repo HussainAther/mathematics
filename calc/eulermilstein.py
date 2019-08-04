@@ -30,3 +30,18 @@ ones = np.ones(M)
 Xexact = Xzero*np.exp((lambda-.5*mu*mu)*ones+mu*W[:, -1])
 Xemerr = np.empty((M, P))
 Xmilerr = np.empty((M, P))
+
+# Loop over refinements.
+for p in range(P):
+    R = 2**p
+    L = N/R
+    Dt = R*dt
+    Xem = Xzero*ones
+    Xmil = Xzero*ones
+    Wc = W[:,::R]
+    for j in range(L):
+        deltaW = Wc[:,j+1] - Wc[:,j]
+        Xem += Dt*z(Xem) + deltaW*b(Xem)
+        Xmil += Dt*z(Xmil) + deltaW*b(Xmil) + .5*b(Xmil)*bd(Xmil)*(deltaW**2-Dt)
+    Xemerr[:, p] = np.abs(Xem - Xexact)
+    Xmilerr[:, p] = np.abs(Xmil - Xexact)
