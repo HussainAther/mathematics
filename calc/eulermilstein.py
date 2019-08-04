@@ -63,3 +63,8 @@ plt.legend(loc="best")
 plt.xlabel(r"$\log_{10}\Delta t$", size=16)
 plt.ylabel(r"$\log_{10}\left(\langle|X_n-X(\tau)|\rangle\right)$", size=16)
 plt.title("Strong convergence of Euler-Maruyama and Milstein", weight="bold", size=16)
+
+emslope = ((np.log10(Xemerrmean[-1]) - np.log10(Xemerrmean[0])) / (lDtvals[-1]-lDtvals[0]))
+print("Empirical EM slope is %g" % emslope)
+milslope = ((np.log10(Xmilerrmean[-1]) - np.log10(Xmilerrmean[0])) / (lDtvals[-1] - lDtvals[0]))
+print("Empirical MIL slope is %g" % milslope) 
