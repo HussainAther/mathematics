@@ -1,3 +1,5 @@
-"""
-Newton polynomial.
-"""
+
+class NewtonPolynomial(PolyNomial):
+    """
+    Newton polynomial.
+    """
