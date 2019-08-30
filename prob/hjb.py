@@ -44,7 +44,16 @@ def vx(x, t):
     result = np.zeros(len(x))
     for i in range(len(x)):
          result[i] = x[i]*t*.5
-     return result
+    return result
+
+def vxx(x, t):
+    """
+    Drift derivative derivative.
+    """
+    result = np.zeros(len(x))
+    for i in range(len(x)):
+         result[i] = t*.5
+    return result
     
 def vt(x, u, t):
     """  
@@ -54,5 +63,5 @@ def vt(x, u, t):
     """
     grandresult = []
     for i in range(t):
-        grandresult.append(l(x, u, i) + np.transpose(f(x, u)) * vx(x, i) + .5* 
+        grandresult.append(l(x, u, i) + np.transpose(f(x, u)) * vx(x, i) + .5*np.trace(vxx(x, t))) 
     return -min(grandresult) 
