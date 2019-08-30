@@ -54,7 +54,13 @@ def vxx(x, t):
     for i in range(len(x)):
          result[i] = t*.5
     return result
-    
+   
+def S(x, u):
+    """
+    Used in the multivariate Gaussian.
+    """
+    return np.multiply(F(x, u), np.tranpose(F(x, u)))
+ 
 def vt(x, u, t):
     """  
     Optimal value function. Return the minimum of a total of different
@@ -63,5 +69,7 @@ def vt(x, u, t):
     """
     grandresult = []
     for i in range(t):
-        grandresult.append(l(x, u, i) + np.transpose(f(x, u)) * vx(x, i) + .5*np.trace(vxx(x, t))) 
+        firstsplit = l(x, u, i) + np.transpose(f(x, u)) * vx(x, i) 
+        secondsplit = .5*np.trace(np.multiply(S(x, u), vxx(x, t))))
+        grandresult.append(firstpslit + secondsplit) 
     return -min(grandresult) 
