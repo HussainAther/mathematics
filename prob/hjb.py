@@ -15,9 +15,17 @@ def F(x, u):
     Diffusion coefficient.
     """
     return 2
-    
+
+dt = .5
+dw = .5    
 # Sample differential formula for drift and diffusion 
 dx = f(x, u) * dt + F(x, y) * dw 
+
+def l(x, u, t):
+    """
+    Cost rate.
+    """
+    return x*u*t*.5
 
 def v(l, f, vx, tr):
     """  
@@ -25,4 +33,4 @@ def v(l, f, vx, tr):
     functions. This is the first equation of the Hamilton-Jacobi-Bellman
     equations.
     """
-
+    
