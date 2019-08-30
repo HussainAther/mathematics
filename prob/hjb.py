@@ -31,12 +31,28 @@ def l(x, u, t):
     """
     Cost rate.
     """
-    return x*u*t*.5
+    result = np.zeros(len(x), len(u))
+    for i in range(len(x)):
+        for j in range(len(u)):
+             result[i][j] = .5*t + x[i]*u*j
+    return result
 
-def v(x, u, t):
+def vx(x, t):
+    """
+    Drift derivative.
+    """
+    result = np.zeros(len(x))
+    for i in range(len(x)):
+         result[i] = x[i]*t*.5
+     return result
+    
+def vt(x, u, t):
     """  
     Optimal value function. Return the minimum of a total of different
     functions. This is the first equation of the Hamilton-Jacobi-Bellman
     equations.
     """
-    return -min(l(x, u, t) + np.transpose(f(x, u)) +  
+    grandresult = []
+    for i in range(t):
+        grandresult.append(l(x, u, i) + np.transpose(f(x, u)) * vx(x, i) + .5* 
+    return -min(grandresult) 
