@@ -16,5 +16,13 @@ def F(x, u):
     """
     return 2
     
-# Sample differential formula for drift and 
+# Sample differential formula for drift and diffusion 
 dx = f(x, u) * dt + F(x, y) * dw 
+
+def v(l, f, vx, tr):
+    """  
+    Optimal value function. Return the minimum of a total of different
+    functions. This is the first equation of the Hamilton-Jacobi-Bellman
+    equations.
+    """
+
