@@ -10,7 +10,11 @@ def f(x, u):
     """
     Drift.
     """
-    return x*u
+    result = np.zeros(len(x), len(u))
+    for i in range(len(x)):
+        for j in range(len(u)):
+             result[i][j] = 1 - x[i]*u*j
+    return result
 
 def F(x, u):
     """
@@ -29,10 +33,10 @@ def l(x, u, t):
     """
     return x*u*t*.5
 
-def v(x, yu, t):
+def v(x, u, t):
     """  
     Optimal value function. Return the minimum of a total of different
     functions. This is the first equation of the Hamilton-Jacobi-Bellman
     equations.
     """
-    return -min(l(x, u, t) + f(x, u) 
+    return -min(l(x, u, t) + np.transpose(f(x, u)) +  
