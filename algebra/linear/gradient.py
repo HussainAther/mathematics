@@ -1,4 +1,7 @@
 import numpy as np
+import sys
+
+from scipy.special import expit
 
 """
 Gradient checking for an artificial neural network.
