@@ -9,3 +9,6 @@ def gradcheck(self, X, y_enc, w1, w2, epsilon, grad1, grad2):
     Apply gradient checking to return the relative error between
     numerically approximated gradients and the backpropagated gradients. 
     """
+    numgrad1 = np.zeros(np.shape(w1))
+    epsilon1 = np.zeros(np.shape(w1))
+    
