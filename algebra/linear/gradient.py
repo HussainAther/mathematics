@@ -7,6 +7,29 @@ from scipy.special import expit
 Gradient checking for an artificial neural network.
 """
 
+class NeuralNetMLP(object):
+    def __init__(self, noutput, nfeatures, nhidden=30, l1=0, l2=0, epochs=500, eta=.001,
+                 alpha=0, decreaseconst=0, shuffle=True, minibatches=1):
+        np.random.seed(1234)
+        self.noutput = noutput
+        self.nfeatures = nfeatures
+        self.nhidden = nhidden
+        self.w1, self.w2 = self.initializeweights()
+        self.l1 = l1
+        self.l2 = l2
+        self.epochs = epochs
+        self.eta = eta
+        self.alpha = alpha
+        self.decreaseconst = decreaseconst
+        self.shuffle = shuffle
+        self.minibatches = minibatches
+     
+    def encodelabels(self, y, k):
+        onehot = np.zeros((k, y.shape[0]))
+        for idx, val in enumerate(y):
+            onehot[val, idx] = 1
+        return onehot
+
 def gradcheck(self, X, yenc, w1, w2, epsilon, grad1, grad2):
     """
     Apply gradient checking to return the relative error between
