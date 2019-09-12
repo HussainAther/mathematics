@@ -21,3 +21,7 @@ S /= S.std(axis=0)  # Standardize data.
 # Mix data.
 A = np.array([[1, 1, 1], [0.5, 2, 1.0], [1.5, 1.0, 2.0]])  # Mixing matrix
 X = np.dot(S, A.T)  # Generate observations.
+# Compute ICA.
+ica = FastICA(n_components=3)
+S_ = ica.fit_transform(X)  # Get the estimated sources
+A_ = ica.mixing_  # Get estimated mixing matrix
