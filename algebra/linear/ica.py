@@ -25,3 +25,7 @@ X = np.dot(S, A.T)  # Generate observations.
 ica = FastICA(n_components=3)
 S_ = ica.fit_transform(X)  # Get the estimated sources
 A_ = ica.mixing_  # Get estimated mixing matrix
+
+# Compute PCA (principal component analysis).
+pca = PCA(n_components=3)
+H = pca.fit_transform(X)  # estimate PCA sources
