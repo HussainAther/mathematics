@@ -15,4 +15,5 @@ time = np.linspace(0, 8, n_samples)
 s1 = np.sin(2 * time)  # Signal 1 : sinusoidal signal
 s2 = np.sign(np.sin(3 * time))  # Signal 2 : square signal
 s3 = signal.sawtooth(2 * np.pi * time)  # Signal 3: sawtooth signal
-
+S = np.c_[s1, s2, s3]
+S += 0.2 * np.random.normal(size=S.shape)  # Add noise
