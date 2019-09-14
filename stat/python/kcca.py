@@ -1,7 +1,23 @@
 import numpy as np
 
 def _listdot(d1, d2): 
+    """
+    Dot product for two lists.
+    """
     return [np.dot(x[0].T, x[1]) for x in zip(d1, d2)]
+
+def _listcorr(a):
+    """
+    Return pairwise row correlations for all items in array as a 
+    list of matrices.
+    """
+    corrs = np.zeros((a[0].shape[1], len(a), len(a)))
+    for i in range(len(a)):
+        for j in range(len(a)):
+            if j > i:
+                corrs[:, i, j] = [np.nan_to_num(np.corrcoef(ai, aj)[0, 1])
+                                  for (ai, aj) in zip(a[i].T, a[j].T)]
+    return corrs
 
 def kcca(data, reg=0., numCC=None, kernelcca=True, ktype="linear",
          gausigma=1.0, degree=2):
