@@ -31,8 +31,18 @@ def kcca(data, reg=0., numCC=None, kernelcca=True, ktype="linear",
     r, Vs = eigh(LH, RH, eigvals=(maxCC - numCC, maxCC - 1))
     r[np.isnan(r)] = 0
     rindex = np.argsort(r)[::-1]
-    comp = []
+    comp = [] # composiiton eigenvalue solution
     Vs = Vs[:, rindex]
     for i in range(nDs):
         comp.append(Vs[sum(nFs[:i]):sum(nFs[:i + 1]), :numCC])
-    return comp
+    nT = data[0].shape[0]
+    if kernelcca:
+        ws = _listdot(data, comp)
+    else:
+        ws = comp
+    ccomp = _listdot([d.T for d in data], ws) # canonical composition
+    corrs = _listcorr(ccomp)
+    if corronly:
+        return corrs # correlates
+    else:
+        return corrs, ws, ccomp # canonical variables
