@@ -11,3 +11,6 @@ def kcca(data, reg=0., numCC=None, kernelcca=True, ktype="linear",
     nDs = len(kernel)
     nFs = [k.shape[0] for k in kernel]
     numCC = min([k.shape[1] for k in kernel]) if numCC is None else numCC
+    # Get the auto- and cross-covariance matrices
+    crosscovs = [np.dot(ki, kj.T) for ki in kernel for kj in kernel]
+
