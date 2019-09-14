@@ -25,3 +25,14 @@ def kcca(data, reg=0., numCC=None, kernelcca=True, ktype="linear",
             if i != j:
                 LH[sum(nFs[:j]) : sum(nFs[:j+1]),
                    sum(nFs[:i]) : sum(nFs[:i+1])] = crosscovs[nDs * j + i]
+    LH = (LH + LH.T) / 2.
+    RH = (RH + RH.T) / 2.
+    maxCC = LH.shape[0]
+    r, Vs = eigh(LH, RH, eigvals=(maxCC - numCC, maxCC - 1))
+    r[np.isnan(r)] = 0
+    rindex = np.argsort(r)[::-1]
+    comp = []
+    Vs = Vs[:, rindex]
+    for i in range(nDs):
+        comp.append(Vs[sum(nFs[:i]):sum(nFs[:i + 1]), :numCC])
+    return comp
