@@ -7,3 +7,7 @@ def kcca(data, reg=0., numCC=None, kernelcca=True, ktype="linear",
         kernel = [_make_kernel(d, ktype=ktype, gausigma=gausigma,
                                degree=degree) for d in data]
     else:
+        kernel = [d.T for d in data]
+    nDs = len(kernel)
+    nFs = [k.shape[0] for k in kernel]
+    numCC = min([k.shape[1] for k in kernel]) if numCC is None else numCC
