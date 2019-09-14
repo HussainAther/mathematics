@@ -16,3 +16,12 @@ def kcca(data, reg=0., numCC=None, kernelcca=True, ktype="linear",
     # Allocate left-hand side (LH) and right-hand side (RH):
     LH = np.zeros((sum(nFs), sum(nFs)))
     RH = np.zeros((sum(nFs), sum(nFs)))
+    # Fill the left and right sides of the eigenvalue problem
+    for i in range(nDs):
+        RH[sum(nFs[:i]) : sum(nFs[:i+1]),
+           sum(nFs[:i]) : sum(nFs[:i+1])] = (crosscovs[i * (nDs + 1)]
+                                             + reg * np.eye(nFs[i]))
+        for j in range(nDs):
+            if i != j:
+                LH[sum(nFs[:j]) : sum(nFs[:j+1]),
+                   sum(nFs[:i]) : sum(nFs[:i+1])] = crosscovs[nDs * j + i]
