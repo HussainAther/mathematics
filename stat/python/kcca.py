@@ -1,7 +1,13 @@
+import numpy as np
+
+def _listdot(d1, d2): 
+    return [np.dot(x[0].T, x[1]) for x in zip(d1, d2)]
+
 def kcca(data, reg=0., numCC=None, kernelcca=True, ktype="linear",
          gausigma=1.0, degree=2):
     """
-    Set up and solve the kernel CCA eigenproblem
+    Set up and solve the kernel CCA eigenproblem (Canonical correlation
+    analysis)
     """
     if kernelcca:
         kernel = [_make_kernel(d, ktype=ktype, gausigma=gausigma,
