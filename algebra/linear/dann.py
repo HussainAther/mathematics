@@ -27,3 +27,7 @@ def dann(X, y, x, nsize=50, epsilon=1, maxiter=1000):
     dists = np.array(dists)
     nn = np.argsort(dists)[:nsize] # nearest neighbors 
     nX = X[nn, :] # X neighborhood 
+    nXmean = nX.mean(axis=0)
+    ny = y[nn]
+    nclasses = np.unque(ny)
+    classfreq = {} # class frequencies
