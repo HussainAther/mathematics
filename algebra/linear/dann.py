@@ -3,13 +3,13 @@ import random
 
 from scipy import stats
 
-def calcdist(x1, x2:
+def calcdist(x1, x2, sigma):
     """
     Calculate the distance between x1 and x2 using the DANN metric at
     query locus.   
     """
     diff = x1 - x2
-    dist = diff.T.dot([x1, x2]).dot(diff)
+    dist = diff.T.dot(sigma).dot(diff)
     return dist
 
 def dann(X, y, x, nsize=50, epsilon=1, maxiter=1000):
@@ -40,3 +40,14 @@ def dann(X, y, x, nsize=50, epsilon=1, maxiter=1000):
         withinclasscov += classcov * classfreq[class]
         classmean = nX[classindices, :].mean(axis=0)
         betweenclasscov += np.outer(classmean - nXmean, classmean - nXmean) * classfreq[class] 
+    Wstar = np.linalg.pinv(np.nan_to_num(np.power(withinclasscov, .5)))
+    Bstar = np.dot(Wstar, betweenclasscov).dot(Wstar)
+    I = np.identity(nfeatures)
+    sigma = Wstar.dot(Bstar + epsilon * I).dot(Wstar)
+    dists = []
+    for row in X:
+        dists.append(calcdist(x, row, sigma))
+    dists = np.array(dists)
+    nearest = dists.argsort()[:k]
+    prediction = stats.mode(y[nearest]).mode[0]
+    return prediction
