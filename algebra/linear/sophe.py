@@ -1,5 +1,10 @@
 import numpy as np
 
+"""
+For polynomials of the form
+g(X) = a0 + a^TX + X^TAX
+"""
+
 def sophe(data, interval, threshold, v):
     """
     SOPHE Second-order polynomial histogram estimators for list of data, interval
