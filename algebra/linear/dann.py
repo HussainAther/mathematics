@@ -29,7 +29,8 @@ def dann(X, y, x, nsize=50, epsilon=1, maxiter=1000):
     nX = X[nn, :] # X neighborhood 
     nXmean = nX.mean(axis=0)
     ny = y[nn]
-    nclasses = np.unque(ny)
+    nclasses = np.unque(ny) # neighborhood classes
     classfreq = {} # class frequencies
     withinclasscov = np.zeros((nfeatures, nfeatures)) # covariance matrices
     betweenclasscov = np.zeros((nfeatures, nfeatures))
+    for class in nclasses: 
