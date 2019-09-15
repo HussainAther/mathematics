@@ -39,4 +39,14 @@ def sophe(data, interval, threshold, v):
     for i in bins:
         if sum(i)/len(i) >= threshold:
             obs.append(i)
-   f  
+    functions = [] # function for each bin
+    modalbins = []
+    for i in obs:   
+        a0 = 0
+        a = np.cov(i)
+        A = 5
+        if localmax(poly(a0, a, i, A)): # if there is a local maxima in the polynomial, there is a mode
+            modalbins.append(1)
+        else:
+            modalbins.append(0)
+   
