@@ -1,11 +1,19 @@
 import numpy as np
 
-from scipy.signal import argreleaxtrema
+from scipy.signal import argrelextrema
 
 """
 For polynomials of the form
 g(X) = a0 + a^TX + X^TAX
 """
+
+def localmax(a):
+    """
+    For a list a, return True if there is a local maximum/a.
+    """
+    if argrelextrema(a, np.greater):
+        return True
+    return False
 
 def poly(a0, a, X, A):
     """
