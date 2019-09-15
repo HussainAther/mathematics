@@ -24,4 +24,6 @@ def dann(X, y, x, nsize=50, epsilon=1, maxiter=1000):
     for row in X:
         dist = np.linalg.norm(row-x)
         dists.append(dist)
-    
+    dists = np.array(dists)
+    nn = np.argsort(dists)[:nsize] # nearest neighbors 
+    nX = X[nn, :] # X neighborhood 
