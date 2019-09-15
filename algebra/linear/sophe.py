@@ -5,6 +5,13 @@ For polynomials of the form
 g(X) = a0 + a^TX + X^TAX
 """
 
+def poly(a0, a, X, A):
+    """
+    For some matrix X, return the second-order polynomial 
+    histogram estimator. AX = ax
+    """
+    return a0 + np.multiply(np.transpose(a), X) + np.multiply(np.transpose(X), A*X)
+ 
 def sophe(data, interval, threshold, v):
     """
     SOPHE Second-order polynomial histogram estimators for list of data, interval
@@ -22,4 +29,4 @@ def sophe(data, interval, threshold, v):
     for i in bins:
         if sum(i)/len(i) >= threshold:
             obs.append(i)
-    
+   a0 =   
