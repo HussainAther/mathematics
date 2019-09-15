@@ -19,5 +19,4 @@ def dann(X, y, nsize=50, epsilon=1, maxiter=1000):
     size, epsilon learning rate, maximum number of iterations through Lloyd's algorithm maxiter,
 
     """
-    x = X.shape
-    nfeatures = len( 
+    nfeatures = X.shape[1]
