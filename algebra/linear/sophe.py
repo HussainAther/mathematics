@@ -1,5 +1,7 @@
 import numpy as np
 
+from scipy.signal import argreleaxtrema
+
 """
 For polynomials of the form
 g(X) = a0 + a^TX + X^TAX
@@ -29,4 +31,4 @@ def sophe(data, interval, threshold, v):
     for i in bins:
         if sum(i)/len(i) >= threshold:
             obs.append(i)
-   a0 =   
+   f  
