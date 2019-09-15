@@ -33,4 +33,5 @@ def dann(X, y, x, nsize=50, epsilon=1, maxiter=1000):
     classfreq = {} # class frequencies
     withinclasscov = np.zeros((nfeatures, nfeatures)) # covariance matrices
     betweenclasscov = np.zeros((nfeatures, nfeatures))
-    for class in nclasses: 
+    for class in nclasses:
+        classindices = np.where(ny == class)[0] 
