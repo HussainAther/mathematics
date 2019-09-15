@@ -31,3 +31,5 @@ def dann(X, y, x, nsize=50, epsilon=1, maxiter=1000):
     ny = y[nn]
     nclasses = np.unque(ny)
     classfreq = {} # class frequencies
+    withinclasscov = np.zeros((nfeatures, nfeatures)) # covariance matrices
+    betweenclasscov = np.zeros((nfeatures, nfeatures))
