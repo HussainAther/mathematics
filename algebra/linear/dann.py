@@ -8,6 +8,9 @@ def calcdist(x1, x2:
     Calculate the distance between x1 and x2 using the DANN metric at
     query locus.   
     """
+    diff = x1 - x2
+    dist = diff.T.dot([x1, x2]).dot(diff)
+    return dist
 
 def dann(X, y, nsize=50, epsilon=1, maxiter=1000):
     """
