@@ -35,6 +35,9 @@ def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, 
     use pairwise distances as input, display can be 0 to 2 for verbosity, 
     init is "pca" for raw input, "cmdscale" for distances, or can be "random"
     or "default".
+    Reference : Sammon, John W. Jr., "A Nonlinear Mapping for Data
+                  Structure Analysis", IEEE Transactions on Computers,
+                  vol. C-18, no. 5, pp 401-409, May 1969.
     """
     if inputdist == "distance":
         D = x
@@ -92,4 +95,6 @@ def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, 
         if abs((E - E_new) / E) < tolfun:
             if display:
                 print("TolFun exceeded: Optimisation terminated")
-            break 
+            break
+    E = E * scale # Fiddle stress
+    return [y,E] 
