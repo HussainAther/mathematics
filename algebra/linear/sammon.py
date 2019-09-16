@@ -60,4 +60,17 @@ def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, 
     d = cdist(y,y) + np.eye(N)
     dinv = 1. / d
     delta = D-d 
-    E = ((delta**2)*Dinv).sum()  
+    E = ((delta**2)*Dinv).sum() 
+    for i in range(maxiter):
+        # Compute gradient, Hessian and search direction (note it is actually
+        # 1/4 of the gradient and Hessian, but the step size is just the ratio
+        # of the gradient and the diagonal of the Hessian so it doesn't
+        # matter).
+        delta = dinv - Dinv
+        deltaone = np.dot(delta,one)
+        g = np.dot(delta,y) - (y * deltaone)
+        dinv3 = dinv ** 3
+        y2 = y ** 2
+        H = np.dot(dinv3,y2) - deltaone - np.dot(2,y) * np.dot(dinv3,y) + y2 * np.dot(dinv3,one)
+        s = -g.flatten(order='F') / np.abs(H.flatten(order='F'))
+        y_old = y 
