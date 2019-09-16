@@ -22,4 +22,6 @@ def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, 
             init = "pca"
     N = x.shape[0]
     scale = 0.5 / D.sum()
-    D = D + np.eye(N)      
+    D = D + np.eye(N)     
+    Dinv = 1 / D
+    if init == 'pca': 
