@@ -1,6 +1,12 @@
 import numpy as np 
     
 from scipy.spatial.distance import cdist
+from cmdscale import cmdscale
+
+def cmdscale(D):
+    """
+    Classical multidimensional scaling (MDS)
+    """
 
 def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, tolfun = 1e-9, init = "default"): 
     """
@@ -24,4 +30,11 @@ def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, 
     scale = 0.5 / D.sum()
     D = D + np.eye(N)     
     Dinv = 1 / D
-    if init == 'pca': 
+    if init == "pca":
+        [UU,DD,_] = np.linalg.svd(x)
+        y = UU[:,:n]*DD[:n] 
+    elif init == "cmdscale":
+        y,e = cmdscale(D)
+        y = y[:,:n]
+    else:
+        y = np.random.normal(0.0,1.0,[N,n]) 
