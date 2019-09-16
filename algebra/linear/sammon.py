@@ -55,4 +55,9 @@ def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, 
         y,e = cmdscale(D)
         y = y[:,:n]
     else:
-        y = np.random.normal(0.0,1.0,[N,n]) 
+        y = np.random.normal(0.0,1.0,[N,n])
+    one = np.ones([N,n])
+    d = cdist(y,y) + np.eye(N)
+    dinv = 1. / d
+    delta = D-d 
+    E = ((delta**2)*Dinv).sum()  
