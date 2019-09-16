@@ -19,4 +19,7 @@ def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, 
     else:
         D = cdist(x, x)
         if init == "default":
-            init = "pca" 
+            init = "pca"
+    N = x.shape[0]
+    scale = 0.5 / D.sum()
+    D = D + np.eye(N)      
