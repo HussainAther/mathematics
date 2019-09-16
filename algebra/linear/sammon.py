@@ -12,4 +12,11 @@ def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, 
     init is "pca" for raw input, "cmdscale" for distances, or can be "random"
     or "default".
     """
-     
+    if inputdist == "distance":
+        D = x
+        if init == "default":
+            init = "cmdscale"
+    else:
+        D = cdist(x, x)
+        if init == "default":
+            init = "pca" 
