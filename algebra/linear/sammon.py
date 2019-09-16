@@ -85,4 +85,11 @@ def sammon(x, n, display = 2, inputdist = "raw", maxhalves = 20, maxiter = 500, 
             if E_new < E:
                 break
             else:
-                s = 0.5*s 
+                s = 0.5*s
+        if j == maxhalves-1:
+            print("Warning: maxhalves exceeded. Sammon mapping may not converge...")
+        # Evaluate termination criterion
+        if abs((E - E_new) / E) < tolfun:
+            if display:
+                print("TolFun exceeded: Optimisation terminated")
+            break 
