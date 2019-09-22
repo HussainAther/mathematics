@@ -23,13 +23,15 @@ def randomsplit(a):
     """
     For attribute y, return a split. 
     """
-    asmax = 0
+    asmax = 0 # max and min of the target values of the attribute
     asmin = 0
     for i in y:
         if targetvariable(i) > asmax:
             asmax = targetvariable(i)
         if targetvariable(i) < asmin:
             asmin = targetvariable(i)
+    ac = np.random.choice(range(asmin, asmax)) # random cut-point
+    return range(a, ac) # Return the split.
 
 def targetvariable(a):
     """
