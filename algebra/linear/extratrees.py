@@ -12,7 +12,20 @@ def nodesplit(s):
     if stopsplit(s):
         return False
 
+def targetvariable(a):
+    """
+    Return the target variable for the input.
+    """
+    return a
+
 def stopsplit(s):
     """
     For subset s, return a boolean if the split should stop. 
     """
+    if abs(s) < nmin: # reached the minimum
+        return True
+    if all(input == targetvariable(input) for input in s): # If all target variables are the same.
+        return True
+    if all(attribute == attribute for attribute in s): # If all attributes are the same.
+        return True 
+    return False 
