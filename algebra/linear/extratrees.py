@@ -17,7 +17,13 @@ def nodesplit(s):
     sp = [] # splits
     for i in range(K):
         at = np.random.choice(range(1, u)) # attribute
-        sp.append(randomsplit(at)) 
+        sp.append(randomsplit(at))
+    maxscore = 0
+    maxsplit = "" 
+    if score(p) > maxscore:
+        maxscore = score(p)
+        maxsplit = p
+    return p, maxscore
 
 def randomsplit(a):
     """
@@ -49,4 +55,10 @@ def stopsplit(s):
         return True
     if all(a == a for a in s): # If all attributes are the same.
         return True 
-    return False 
+    return False
+
+def score(p):
+    """
+    For some split p, return a score.
+    """ 
+    return p
