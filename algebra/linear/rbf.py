@@ -15,3 +15,8 @@ def kmeans(X, k):
     prevClusters = clusters.copy()
     stds = np.zeros(k)
     converged = False
+    while not converged:
+        distances = np.squeeze(np.abs(X[:, np.newaxis] - clusters[np.newaxis, :]))
+        closestCluster = np.argmin(distances, axis=1)
+
+
