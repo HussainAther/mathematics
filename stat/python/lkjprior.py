@@ -66,3 +66,6 @@ pm.traceplot(trace)
 max(np.max(gr_stats) for gr_stats in pm.gelman_rubin(trace).values())
 mupost = trace["mu"].mean(axis=0)
 sigmapost = trace["sigma"].mean(axis=0)
+# Plot the true distribution and posterior distribution
+varpost, Upost = np.linalg.eig(sigmapost)
+anglepost = 180. / np.pi * np.arccos(np.abs(Upost[0, 0]))
