@@ -46,3 +46,4 @@ stable and efficient than direct matrix inversion.
 with pm.Model() as model:
     packed_L = pm.LKJCholeskyCov("packed_L", n=2,
                                  eta=2., sd_dist=pm.HalfCauchy.dist(2.5))
+packed_L.tag.test_value.shape
