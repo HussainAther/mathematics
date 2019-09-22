@@ -59,3 +59,5 @@ with model:
     mu = pm.Normal("mu", 0., 10., shape=2,
                   testval=x.mean(axis=0))
     obs = pm.MvNormal("obs", μ, chol=L, observed=x)
+with model:
+    trace = pm.sample(random_seed=1234, cores=4)
