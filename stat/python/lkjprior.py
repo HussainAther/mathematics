@@ -34,4 +34,11 @@ ax.legend([rect], ["95% density region"], loc=2)
 
 """
 Distribution density f(x | μ,Σ−1)=(2π)−k2|Σ|−12exp(−12(x−μ)⊤Σ−1(x−μ)).
+The LKJ distribution provides a prior on the correlation matrix, C=Corr(xi,xj), 
+which, combined with priors on the standard deviations of each component, induces 
+a prior on the covariance matrix, Σ. Since inverting Σ is numerically unstable 
+and inefficient, it is computationally advantageous to use the Cholesky decompositon 
+of Σ, Σ=LL⊤, where L is a lower-triangular matrix. This decompositon allows 
+computation of the term (x−μ)⊤Σ−1(x−μ) using back-substitution, which is more numerically 
+stable and efficient than direct matrix inversion.
 """
