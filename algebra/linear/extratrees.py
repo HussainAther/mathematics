@@ -14,10 +14,10 @@ def nodesplit(s):
     u = len(set(s)) # Unique elements in s
     K = np.random.choice(range(1, u)) # Choose a non-zero random number K from the number of unique
                                       # elements in s.
-    at = [] # attributes
+    sp = [] # splits
     for i in range(K):
-        at.append(np.random.choice(range(1, u)))
-    
+        at = np.random.choice(range(1, u)) # attribute
+        sp.append(randomsplit(at)) 
 
 def randomsplit(a):
     """
