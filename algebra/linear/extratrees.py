@@ -11,8 +11,10 @@ def nodesplit(s):
     """
     if stopsplit(s):
         return False
-    K = np.random.choice(range(len(set(s))) # Choose a random number K from the number of unique
-                                            # elements in s.
+    u = len(set(s)) # Unique elements in s
+    K = np.random.choice(range(1, u)) # Choose a non-zero random number K from the number of unique
+                                                # elements in s.
+    a  
 
 def targetvariable(a):
     """
@@ -26,8 +28,8 @@ def stopsplit(s):
     """
     if abs(s) < nmin: # reached the minimum
         return True
-    if all(input == targetvariable(input) for input in s): # If all target variables are the same.
+    if all(i == targetvariable(i) for i in s): # If all target variables are the same.
         return True
-    if all(attribute == attribute for attribute in s): # If all attributes are the same.
+    if all(a == a for a in s): # If all attributes are the same.
         return True 
     return False 
