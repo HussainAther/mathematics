@@ -11,6 +11,8 @@ def nodesplit(s):
     """
     if stopsplit(s):
         return False
+    K = np.random.choice(range(len(set(s))) # Choose a random number K from the number of unique
+                                            # elements in s.
 
 def targetvariable(a):
     """
