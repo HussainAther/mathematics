@@ -28,4 +28,6 @@ e.set_alpha(0.5)
 e.set_facecolor(blue)
 e.set_zorder(10)
 ax.add_artist(e)
-
+ax.scatter(x[:, 0], x[:, 1], c="k", alpha=0.05, zorder=11)
+rect = plt.Rectangle((0, 0), 1, 1, fc=blue, alpha=0.5)
+ax.legend([rect], ["95% density region"], loc=2)
