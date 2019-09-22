@@ -43,7 +43,13 @@ computation of the term (x−μ)⊤Σ−1(x−μ) using back-substitution, which
 stable and efficient than direct matrix inversion.
 """
 
+# Model the standard deviations with HalfCaucghy priors and correlation matrix
 with pm.Model() as model:
     packed_L = pm.LKJCholeskyCov("packed_L", n=2,
                                  eta=2., sd_dist=pm.HalfCauchy.dist(2.5))
+# Diagnol and sub-diagonal entries
 packed_L.tag.test_value.shape
+# Transform to lower triangular matrix L in Cholesky decomposition
+with model:
+    L = pm.expand_packed_triangular(2, packed_L)
+    sigma = pm.Deterministic("sigma", L.dot(L.T))
