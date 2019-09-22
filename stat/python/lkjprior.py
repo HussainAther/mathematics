@@ -54,6 +54,7 @@ with model:
     L = pm.expand_packed_triangular(2, packed_L)
     sigma = pm.Deterministic("sigma", L.dot(L.T))
 L.tag.test_value.shape
+# Independent, vague normal priors mu on the components of mu
 with model:
     mu = pm.Normal("mu", 0., 10., shape=2,
                   testval=x.mean(axis=0))
