@@ -8,3 +8,5 @@ LKJ prior distribution. Use the inverse-Wishart distribution as the conjugate pr
 for the covariance matrix of a multivariate normal distribution. Good for modeling
 the covariance matrix of a multivariate normal distribution.
 """
+
+np.random.seed(1234)
