@@ -1,0 +1,3 @@
+"""
+LKJ prior distribution.
+"""
