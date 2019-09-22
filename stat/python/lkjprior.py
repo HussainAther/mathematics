@@ -42,3 +42,7 @@ of Σ, Σ=LL⊤, where L is a lower-triangular matrix. This decompositon allows
 computation of the term (x−μ)⊤Σ−1(x−μ) using back-substitution, which is more numerically 
 stable and efficient than direct matrix inversion.
 """
+
+with pm.Model() as model:
+    packed_L = pm.LKJCholeskyCov("packed_L", n=2,
+                                 eta=2., sd_dist=pm.HalfCauchy.dist(2.5))
