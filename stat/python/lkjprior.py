@@ -64,4 +64,5 @@ with model:
 # Traces and Gelman-Rubin statistics give good coverage
 pm.traceplot(trace)
 max(np.max(gr_stats) for gr_stats in pm.gelman_rubin(trace).values())
-
+mupost = trace["mu"].mean(axis=0)
+sigmapost = trace["sigma"].mean(axis=0)
