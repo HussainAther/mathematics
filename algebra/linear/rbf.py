@@ -24,4 +24,5 @@ def kmeans(X, k):
                 clusters[i] = np.mean(pointsForCluster, axis=0)
         converged = np.linalg.norm(clusters - prevClusters) < 1e-6
         prevClusters = clusters.copy()
-
+    distances = np.squeeze(np.abs(X[:, np.newaxis] - clusters[np.newaxis, :]))
+    closestCluster = np.argmin(distances, axis=1)
