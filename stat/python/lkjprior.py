@@ -61,3 +61,5 @@ with model:
     obs = pm.MvNormal("obs", μ, chol=L, observed=x)
 with model:
     trace = pm.sample(random_seed=1234, cores=4)
+# Traces and Gelman-Rubin statistics give good coverage
+pm.traceplot(trace)
