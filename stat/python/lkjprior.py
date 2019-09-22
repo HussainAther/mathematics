@@ -15,3 +15,5 @@ N = 10000
 muactual = np.array([1, -2])
 sigmaactual = np.array([[.5, -.3], [-.3, 1.]])
 x = np.random.multivariate_normal(muactual, sigmaactual, size=N)
+var, U = np.linalg.eig(sigmaactual)
+angle = 180. / np.pi * np.arccos(np.abs(U[0, 0]))
