@@ -69,3 +69,27 @@ sigmapost = trace["sigma"].mean(axis=0)
 # Plot the true distribution and posterior distribution
 varpost, Upost = np.linalg.eig(sigmapost)
 anglepost = 180. / np.pi * np.arccos(np.abs(Upost[0, 0]))
+fig, ax = plt.subplots(figsize=(8, 6))
+
+e = Ellipse(μ_actual, 2 * np.sqrt(5.991 * var[0]),
+            2 * np.sqrt(5.991 * var[1]),
+            angle=angle)
+e.set_alpha(0.5)
+e.set_facecolor(blue)
+e.set_zorder(10);
+ax.add_artist(e);
+
+e_post = Ellipse(μ_post, 2 * np.sqrt(5.991 * varpost[0]),
+                 2 * np.sqrt(5.991 * varpost[1]),
+                 angle=anglepost)
+e_post.set_alpha(0.5)
+e_post.set_facecolor(red)
+e_post.set_zorder(10)
+ax.add_artist(e_post)
+ax.scatter(x[:, 0], x[:, 1], c="k", alpha=0.05, zorder=11);
+rect = plt.Rectangle((0, 0), 1, 1, fc=blue, alpha=0.5)
+rect_post = plt.Rectangle((0, 0), 1, 1, fc=red, alpha=0.5)
+ax.legend([rect, rect_post],
+          ["95% density region",
+           "95% posterior density region"],
+          loc=2);
