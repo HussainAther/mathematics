@@ -13,8 +13,23 @@ def nodesplit(s):
         return False
     u = len(set(s)) # Unique elements in s
     K = np.random.choice(range(1, u)) # Choose a non-zero random number K from the number of unique
-                                                # elements in s.
-    a  
+                                      # elements in s.
+    at = [] # attributes
+    for i in range(K):
+        at.append(np.random.choice(range(1, u)))
+    
+
+def randomsplit(a):
+    """
+    For attribute y, return a split. 
+    """
+    asmax = 0
+    asmin = 0
+    for i in y:
+        if targetvariable(i) > asmax:
+            asmax = targetvariable(i)
+        if targetvariable(i) < asmin:
+            asmin = targetvariable(i)
 
 def targetvariable(a):
     """
