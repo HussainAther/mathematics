@@ -22,4 +22,6 @@ def kmeans(X, k):
             pointsForCluster = X[closestCluster == i]
             if len(pointsForCluster) > 0:
                 clusters[i] = np.mean(pointsForCluster, axis=0)
+        converged = np.linalg.norm(clusters - prevClusters) < 1e-6
+        prevClusters = clusters.copy()
 
