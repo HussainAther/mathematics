@@ -18,5 +18,8 @@ def kmeans(X, k):
     while not converged:
         distances = np.squeeze(np.abs(X[:, np.newaxis] - clusters[np.newaxis, :]))
         closestCluster = np.argmin(distances, axis=1)
-
+        for i in range(k):
+            pointsForCluster = X[closestCluster == i]
+            if len(pointsForCluster) > 0:
+                clusters[i] = np.mean(pointsForCluster, axis=0)
 
