@@ -34,3 +34,11 @@ def kmeans(X, k):
             continue
         else:
             stds[i] = np.std(X[closestCluster == i])
+    if len(clustersWithNoPoints) > 0:
+        pointsToAverage = []
+        for i in range(k):
+            if i not in clustersWithNoPoints:
+                pointsToAverage.append(X[closestCluster == i])
+        pointsToAverage = np.concatenate(pointsToAverage).ravel()
+        stds[clustersWithNoPoints] = np.mean(np.std(pointsToAverage))
+    return clusters, stds
