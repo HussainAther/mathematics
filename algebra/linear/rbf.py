@@ -26,3 +26,11 @@ def kmeans(X, k):
         prevClusters = clusters.copy()
     distances = np.squeeze(np.abs(X[:, np.newaxis] - clusters[np.newaxis, :]))
     closestCluster = np.argmin(distances, axis=1)
+    clustersWithNoPoints = []
+    for i in range(k):
+        pointsForCluster = X[closestCluster == i]
+        if len(pointsForCluster) < 2:
+            clustersWithNoPoints.append(i)
+            continue
+        else:
+            stds[i] = np.std(X[closestCluster == i])
