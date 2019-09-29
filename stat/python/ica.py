@@ -90,3 +90,33 @@ def savematrixcsvwithcolumnname( X, index, columnname, filename):
     Xpd.columns = columnname
     exec("Xpd.to_csv( \"{}.csv\" )".format( filename ) )
     
+#make scatter plot
+def scatterplotwithsamplename(x, y, xname, yname, samplename, clusternum=0):
+    if clusternum==0:
+        plt.scatter(x, y)
+    else:
+        plt.scatter(x, y, c=clusternum, cmap=plt.get_cmap('jet'))
+        
+    for numofsample in np.arange( 0, samplename.shape[0]-1):
+        plt.text(x[numofsample], y[numofsample], samplename[numofsample], horizontalalignment='left', verticalalignment='top')
+    plt.xlabel(xname)
+    plt.ylabel(yname)
+    plt.show()
+    
+#make tt plots for PCA with clustering result
+def makettplotwithclustering(ScoreT, ClusterNum, Xpd):
+    plt.scatter(ScoreT[:,0], ScoreT[:,1], c=ClusterNum, cmap=plt.get_cmap('jet'))
+    for numofsample in np.arange( 0, ScoreT.shape[0]-1):
+        plt.text(ScoreT[numofsample,0], ScoreT[numofsample,1], Xpd.index[numofsample], horizontalalignment='left', verticalalignment='top')
+    plt.xlabel("First principal component")
+    plt.ylabel("Second principal component")
+    plt.show()
+
+#Calculate r^2
+def calc_r2( ActualY, EstimatedY ):
+    return float( 1 - sum( (ActualY-EstimatedY )**2 ) / sum((ActualY-ActualY.mean(axis=0))**2) )
+
+#Calculate RMSE
+def calc_rmse( ActualY, EstimatedY ):
+    return( math.sqrt( sum( (ActualY-EstimatedY )**2 ) / ActualY.shape[0]) )
+
