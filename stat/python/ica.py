@@ -120,3 +120,23 @@ def calc_r2( ActualY, EstimatedY ):
 def calc_rmse( ActualY, EstimatedY ):
     return( math.sqrt( sum( (ActualY-EstimatedY )**2 ) / ActualY.shape[0]) )
 
+#Make YYplot
+def make_yyplot( ActualY, EstimatedY, YMax, YMin, EstimatedYName ):
+    plt.figure(figsize=figure.figaspect(1))
+    plt.scatter(ActualY,EstimatedY)
+    plt.plot([YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin)], [YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin)], 'k-')
+    plt.ylim(YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin))
+    plt.xlim(YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin))
+    plt.xlabel("Actual Y")
+    plt.ylabel(EstimatedYName)
+    plt.show()
+
+#Make Threshold for T^2 and SPE
+def make_threshold_t2spe( Index, NumOfIndexThreshold ):
+    SortedIndex = np.sort(Index)
+    return( SortedIndex[NumOfIndexThreshold-1] )
+
+#make time plot with threshold
+def make_timeplot_with_threshold(Index, Threshold, xname, yname):
+    plt.plot(Index, 'ko')
+    plt.plot([0,Index.shape[0]], [Threshold,Threshold], 'r-')
