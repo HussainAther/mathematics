@@ -11,32 +11,32 @@ Independent component analysis.
 
 #load unsupervised dataset
 def loadunsuperviseddata():
-    OriginalXpd = pd.read_csv("data.csv", encoding='SHIFT-JIS', index_col=0)
+    OriginalXpd = pd.read_csv("data.csv", encoding="SHIFT-JIS", index_col=0)
     OriginalX = OriginalXpd.as_matrix()
     OriginalX = OriginalX.astype(float)
     return (OriginalX, OriginalXpd)
 
 #load unsupervised dataset with test dataset
 def loadunsuperviseddatawithtestdata():
-    Xpd = pd.read_csv("data.csv", encoding='SHIFT-JIS', index_col=0)
+    Xpd = pd.read_csv("data.csv", encoding="SHIFT-JIS", index_col=0)
     OriginalX = Xpd.as_matrix()
     OriginalX = OriginalX.astype(float)
-    X_predictionpd = pd.read_csv("data_prediction.csv", encoding='SHIFT-JIS', index_col=0)
+    X_predictionpd = pd.read_csv("data_prediction.csv", encoding="SHIFT-JIS", index_col=0)
     OriginalX_prediction = X_predictionpd.as_matrix()
     OriginalX_prediction = OriginalX_prediction.astype(float)
     return (OriginalX, OriginalX_prediction, Xpd, X_predictionpd)
     
 #load supervised dataset for classification
 def loadsuperviseddataforclassification():
-    datapd = pd.read_csv("data.csv", encoding='SHIFT-JIS', index_col=0)
+    datapd = pd.read_csv("data.csv", encoding="SHIFT-JIS", index_col=0)
     data = np.array(datapd)
     Originaly = np.ravel( np.c_[data[:,0]] )
     OriginalX = data[:,1:data.shape[1]].astype(float)
-    data_prediction1pd = pd.read_csv("data_prediction1.csv", encoding='SHIFT-JIS', index_col=0)
+    data_prediction1pd = pd.read_csv("data_prediction1.csv", encoding="SHIFT-JIS", index_col=0)
     data_prediction1 = np.array(data_prediction1pd)
     Originaly_prediction1 = np.ravel( np.c_[data_prediction1[:,0]] )
     OriginalX_prediction1 = data_prediction1[:,1:data.shape[1]].astype(float)
-    data_prediction2pd = pd.read_csv("data_prediction2.csv", encoding='SHIFT-JIS', index_col=0)
+    data_prediction2pd = pd.read_csv("data_prediction2.csv", encoding="SHIFT-JIS", index_col=0)
     OriginalX_prediction2 = np.array(data_prediction2pd)
     OriginalX_prediction2 = OriginalX_prediction2.astype(float)
     return (Originaly, OriginalX, Originaly_prediction1, OriginalX_prediction1, \
@@ -44,17 +44,17 @@ def loadsuperviseddataforclassification():
 
 #load supervised dataset for regression
 def loadsuperviseddataforregression():
-    datapd = pd.read_csv("data.csv", encoding='SHIFT-JIS', index_col=0)
+    datapd = pd.read_csv("data.csv", encoding="SHIFT-JIS", index_col=0)
     data = np.array(datapd)
     data = data.astype(float)
     Originaly = np.c_[data[:,0]]
     OriginalX = data[:,1:data.shape[1]]
-    data_prediction1pd = pd.read_csv("data_prediction1.csv", encoding='SHIFT-JIS', index_col=0)
+    data_prediction1pd = pd.read_csv("data_prediction1.csv", encoding="SHIFT-JIS", index_col=0)
     data_prediction1 = np.array(data_prediction1pd)
     data_prediction1 = data_prediction1.astype(float)
     Originaly_prediction1 = np.c_[data_prediction1[:,0]]
     OriginalX_prediction1 = data_prediction1[:,1:data.shape[1]]
-    data_prediction2pd = pd.read_csv("data_prediction2.csv", encoding='SHIFT-JIS', index_col=0)
+    data_prediction2pd = pd.read_csv("data_prediction2.csv", encoding="SHIFT-JIS", index_col=0)
     OriginalX_prediction2 = np.array(data_prediction2pd)
     OriginalX_prediction2 = OriginalX_prediction2.astype(float)
     return (Originaly, OriginalX, Originaly_prediction1, OriginalX_prediction1, \
@@ -95,19 +95,19 @@ def scatterplotwithsamplename(x, y, xname, yname, samplename, clusternum=0):
     if clusternum==0:
         plt.scatter(x, y)
     else:
-        plt.scatter(x, y, c=clusternum, cmap=plt.get_cmap('jet'))
+        plt.scatter(x, y, c=clusternum, cmap=plt.get_cmap("jet"))
         
     for numofsample in np.arange( 0, samplename.shape[0]-1):
-        plt.text(x[numofsample], y[numofsample], samplename[numofsample], horizontalalignment='left', verticalalignment='top')
+        plt.text(x[numofsample], y[numofsample], samplename[numofsample], horizontalalignment="left", verticalalignment="top")
     plt.xlabel(xname)
     plt.ylabel(yname)
     plt.show()
     
 #make tt plots for PCA with clustering result
 def makettplotwithclustering(ScoreT, ClusterNum, Xpd):
-    plt.scatter(ScoreT[:,0], ScoreT[:,1], c=ClusterNum, cmap=plt.get_cmap('jet'))
+    plt.scatter(ScoreT[:,0], ScoreT[:,1], c=ClusterNum, cmap=plt.get_cmap("jet"))
     for numofsample in np.arange( 0, ScoreT.shape[0]-1):
-        plt.text(ScoreT[numofsample,0], ScoreT[numofsample,1], Xpd.index[numofsample], horizontalalignment='left', verticalalignment='top')
+        plt.text(ScoreT[numofsample,0], ScoreT[numofsample,1], Xpd.index[numofsample], horizontalalignment="left", verticalalignment="top")
     plt.xlabel("First principal component")
     plt.ylabel("Second principal component")
     plt.show()
@@ -124,7 +124,7 @@ def calc_rmse( ActualY, EstimatedY ):
 def make_yyplot( ActualY, EstimatedY, YMax, YMin, EstimatedYName ):
     plt.figure(figsize=figure.figaspect(1))
     plt.scatter(ActualY,EstimatedY)
-    plt.plot([YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin)], [YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin)], 'k-')
+    plt.plot([YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin)], [YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin)], "k-")
     plt.ylim(YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin))
     plt.xlim(YMin-0.05*(YMax-YMin),YMax+0.05*(YMax-YMin))
     plt.xlabel("Actual Y")
@@ -138,5 +138,5 @@ def make_threshold_t2spe( Index, NumOfIndexThreshold ):
 
 #make time plot with threshold
 def make_timeplot_with_threshold(Index, Threshold, xname, yname):
-    plt.plot(Index, 'ko')
-    plt.plot([0,Index.shape[0]], [Threshold,Threshold], 'r-')
+    plt.plot(Index, "ko")
+    plt.plot([0,Index.shape[0]], [Threshold,Threshold], "r-")
