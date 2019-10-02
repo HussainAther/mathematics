@@ -14,4 +14,8 @@ def getA(k):
             matrix[i][j] = 2*np.cos((2*np.pi/n)*(abs(j-i))*k)
     return matrix
 
-def getF(csi, a): 
+def getF(csi, a):
+    csiInv = linalg.inv(csi)
+    valueF = csiInv*a*csiInv*a
+    traceF = valuaeF.trace()
+    return .5*traceF 
