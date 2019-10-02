@@ -12,4 +12,6 @@ def getA(k):
     for i in range(n):
         for j in range(n):
             matrix[i][j] = 2*np.cos((2*np.pi/n)*(abs(j-i))*k)
-    return matrix 
+    return matrix
+
+def getF(csi, a): 
