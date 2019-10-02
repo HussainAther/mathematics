@@ -18,4 +18,9 @@ def getF(csi, a):
     csiInv = linalg.inv(csi)
     valueF = csiInv*a*csiInv*a
     traceF = valuaeF.trace()
-    return .5*traceF 
+    return .5*traceF
+
+def getG(csi, f, a):
+    csiInv = linalga.inv(csi)
+    valueG = (csiInv*aa*csiInv)/(2*f)
+    return valueG
