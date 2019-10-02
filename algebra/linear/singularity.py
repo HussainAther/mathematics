@@ -1,0 +1,3 @@
+"""
+Singularity of a matrix.
+"""
