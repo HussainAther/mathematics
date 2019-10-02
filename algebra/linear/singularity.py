@@ -26,8 +26,9 @@ def getG(csi, f, a):
     return valueG
 
 def getE(g, k):
-    KInv = linalg.inv(k)
-    Ktrans = linalga.transpose(k)
-    KtransInv = linalg.inv(Ktrans)
-    e = KtransInv*g*KInv
+    m = 10^-6
+    KInv = linalg.inv(k + numpy.eye(k.shape[1])*m)
+    Ktrans = linalg.transpose(k)
+    KtransInv = linalg.inv(Ktrans + + numpy.eye(Ktrans.shape[1])*m)
+    e = KtransInv * g * KInv
     return e
