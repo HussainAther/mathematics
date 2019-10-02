@@ -27,4 +27,7 @@ def getG(csi, f, a):
 
 def getE(g, k):
     KInv = linalg.inv(k)
-    Ktrans = lin
+    Ktrans = linalga.transpose(k)
+    KtransInv = linalg.inv(Ktrans)
+    e = KtransInv*g*KInv
+    return e
