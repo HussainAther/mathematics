@@ -24,3 +24,14 @@ q = norm.pdf(x, 2, 2)
 plt.title("KL(P||Q) = %1.3f" % kl_divergence(p, q))
 plt.plot(x, p)
 plt.plot(x, q, c="red")
+
+"""
+Minimize it.
+"""
+
+x = np.arange(-10, 10, 0.001)
+p_pdf = norm.pdf(x, 0, 2).reshape(1, -1)
+np.random.seed(0)
+random_mean = np.random.randint(10, size=1)
+random_sigma = np.random.randint(10, size=1)
+random_pdf = norm.pdf(x, random_mean, random_sigma).reshape(1, -1)
