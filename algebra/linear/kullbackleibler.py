@@ -43,6 +43,12 @@ sigma = tf.Variable(np.eye(1))
 normal = tf.exp(-tf.square(x - mu) / (2 * sigma))
 q = normal / tf.reduce_sum(normal)
 
+kl_divergence = tf.reduce_sum(
+    tf.where(p == 0, tf.zeros(pdf.shape, tf.float64), p * tf.log(p / q))
+)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(kl_divergence)
+Only after
+
 with tf.Session() as sess:
     sess.run(init)
     
