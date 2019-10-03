@@ -37,3 +37,8 @@ random_sigma = np.random.randint(10, size=1)
 random_pdf = norm.pdf(x, random_mean, random_sigma).reshape(1, -1)
 learning_rate = 0.001
 epochs = 100
+p = tf.placeholder(tf.float64, shape=pdf.shape)
+mu = tf.Variable(np.zeros(1))
+sigma = tf.Variable(np.eye(1))
+normal = tf.exp(-tf.square(x - mu) / (2 * sigma))
+q = normal / tf.reduce_sum(normal)
