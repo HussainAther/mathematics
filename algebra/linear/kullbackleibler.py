@@ -35,3 +35,5 @@ np.random.seed(0)
 random_mean = np.random.randint(10, size=1)
 random_sigma = np.random.randint(10, size=1)
 random_pdf = norm.pdf(x, random_mean, random_sigma).reshape(1, -1)
+learning_rate = 0.001
+epochs = 100
