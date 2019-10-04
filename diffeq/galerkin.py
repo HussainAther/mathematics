@@ -31,3 +31,11 @@ for i in range(1,q+1):
 f = np.zeros(q)
 for i in range(1,q+1):
     f[i-1] = np.integrate(p(x)*basis(x,i),[x,0,1])+up1*basis(1,i)-up0*basis(0,i) 
+
+c = np.linalg.solve(k,f)
+solution=0
+for i in range(1,q+1):
+    solution = solution+c[i-1]*basis(x,i)    
+x = np.linspace(0,1,100)
+for i in range(1,q+1): 
+    y = c[0]*basis(x,i)+c[1]*basis(x,i+1)
