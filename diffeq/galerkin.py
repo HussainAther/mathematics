@@ -23,4 +23,7 @@ x = Symbol("x")
 q = input("Enter the value of q: ")
 u0, up0, up1 = input("Enter the boundary conditions [u0,up0,up1]: ")
 
-
+k = np.zeros([q,q])
+for i in range(1,q+1):
+    for j in range(1,q+1):
+        k[i-1,j-1] = np.integrate(np.diff(basis(x,i),x)*np.diff(basis(x,j),x),[x,0,1])   
