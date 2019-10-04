@@ -16,3 +16,7 @@ ci = [Symbol("ci_%i" %i) for i in range(q+1)]
 y = y0 + sum(ci[i]*np.basis[i] for i in range(1,q+1))
 print("The trial solution is: ", u)
 k = Matrix([[0,0,0],[0,0,0],[0,0,0]])
+f = Matrix(1, q, range(q))
+for i in range(1,q+1):
+    for j in range(1,q+1):
+        k[i-1,j-1] = ci[i]*ci[j]*np.diff(np.basis[i], x)*np.diff(np.basis[j], x)
