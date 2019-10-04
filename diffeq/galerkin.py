@@ -26,4 +26,8 @@ u0, up0, up1 = input("Enter the boundary conditions [u0,up0,up1]: ")
 k = np.zeros([q,q])
 for i in range(1,q+1):
     for j in range(1,q+1):
-        k[i-1,j-1] = np.integrate(np.diff(basis(x,i),x)*np.diff(basis(x,j),x),[x,0,1])   
+        k[i-1,j-1] = np.integrate(np.diff(basis(x,i),x)*np.diff(basis(x,j),x),[x,0,1])  
+
+f = np.zeros(q)
+for i in range(1,q+1):
+    f[i-1] = np.integrate(p(x)*basis(x,i),[x,0,1])+up1*basis(1,i)-up0*basis(0,i) 
