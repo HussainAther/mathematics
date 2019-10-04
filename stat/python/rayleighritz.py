@@ -1,6 +1,6 @@
 import numpy as np
 
-from sympy import input, integrate, Matrix, Symbol
+from sympy import Derivative, input, integrate, Matrix, plot, solve, Symbol
 
 """
 Rayleigh-Ritz (rayleigh ritz) method finding approximations to eigenvalue equations 
@@ -23,4 +23,14 @@ for i in range(1,q+1):
 for i in range(1,q+1):
     f[i-1]=2*x*ci[i]*np.basis[i]+ci[i]
 functional= i ntegrate(sum(k.reshape(1,q**2))+sum(f),[x,0,1])
-
+s1 = Derivative(functional,ci[1])
+d1 = s1.doit()
+s2 = Derivative(functional,ci[2])
+d2 = s2.doit()
+s3 = Derivative(functional,ci[3])
+d3 = s3.doit()
+xx = solve([d1,d2,d3],dict=True)
+yt = y.subs(xx)
+print("The Approximate Solution is: yt= ",yt)
+xr = np.linspace(0,1,100)
+yt = xr**3/6 - xr # The Approximate Solution
