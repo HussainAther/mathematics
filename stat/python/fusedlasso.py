@@ -22,7 +22,10 @@ sparsity = rr.llnorm(len(Y), lagrange=.8)
 3 Laagrange polynomial 
 sparsity.lagrange += 1
 
-# Create fused lasso matrix
+# Create fused lasso matrix.
 D = (np.identity(500) + np.diag([-1]*499, k=1))[:-1]
 D = sparse.csr_matrix(D)
-fused = rr.llnorm.linear(D, lagrange=25.5) 
+fused = rr.llnorm.linear(D, lagrange=25.5)
+
+# Combine with container.
+problem = rr.container(loss, sparsity, fused) 
