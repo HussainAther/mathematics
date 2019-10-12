@@ -11,4 +11,7 @@ Sparsed fused lasso minimizes an objective function.
 # Signal
 Y = np.random.standard_normal(500)
 Y[100:150] += 7
-Y[250:300] += 14 
+Y[250:300] += 14
+
+# Loss function
+loss = rr.quadratic.shift(-&, coef=.5) 
