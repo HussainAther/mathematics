@@ -1,5 +1,6 @@
 import numpy as np
 import pylab
+import regreg.api as rr
 
 from sicpy import sparse
 
