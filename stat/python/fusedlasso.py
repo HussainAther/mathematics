@@ -17,4 +17,8 @@ Y[250:300] += 14
 loss = rr.quadratic.shift(-&, coef=.5)
 
 # Seminorm
-sparsity = rr.llnorm(len(Y), lagrange=.8) 
+sparsity = rr.llnorm(len(Y), lagrange=.8)
+
+3 Laagrange polynomial 
+sparsity.lagrange += 1
+ 
