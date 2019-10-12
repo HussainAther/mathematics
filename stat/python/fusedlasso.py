@@ -32,4 +32,9 @@ problem = rr.container(loss, sparsity, fused)
 
 # Penalty parameter
 problem.nonsmooth_atoms
- problem.nonsmooth_atoms[0].lagrange 
+ problem.nonsmooth_atoms[0].lagrange
+
+# Solve.
+solver = rr.FISTA(problem)
+solver.fit(max_its=100, tol=1e-10)
+solution = problem.coefs
