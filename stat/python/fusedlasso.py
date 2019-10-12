@@ -28,4 +28,8 @@ D = sparse.csr_matrix(D)
 fused = rr.llnorm.linear(D, lagrange=25.5)
 
 # Combine with container.
-problem = rr.container(loss, sparsity, fused) 
+problem = rr.container(loss, sparsity, fused)
+
+# Penalty parameter
+problem.nonsmooth_atoms
+ problem.nonsmooth_atoms[0].lagrange 
