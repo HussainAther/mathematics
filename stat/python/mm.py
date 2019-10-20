@@ -18,3 +18,4 @@ def mle(pmat, max_iter=100):
         nxt = nxt / np.mean(nxt)
         if np.linalg.norm(nxt - params, ord=np.inf) < 1e-6:
             return nxt
+        params = nxt
