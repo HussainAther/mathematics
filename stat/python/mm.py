@@ -7,6 +7,9 @@ found with convex optimization methods.
 """
 
 def mle(pmat, max_iter=100):
+    """
+    Maximum-likelihood estimation using pairwise probabilities.
+    """
     n = pmat.shape[0]
     wins = np.sum(pmat, axis=0)
     params = np.ones(n, dtype=float)
@@ -19,3 +22,5 @@ def mle(pmat, max_iter=100):
         if np.linalg.norm(nxt - params, ord=np.inf) < 1e-6:
             return nxt
         params = nxt
+
+
