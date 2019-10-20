@@ -1,7 +1,9 @@
 import numpy as np
 
 """
-Minorization-maximization.
+Minorization-maximization reparametrized Bradley-Terry parameters 
+into a convex function. The maximum-likelihood parameters can be 
+found with convex optimization methods.
 """
 
 def mle(pmat, max_iter=100):
