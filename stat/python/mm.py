@@ -12,3 +12,7 @@ def mle(pmat, max_iter=100):
         tiled = np.tile(params, (n, 1))
         combined = 1.0 / (tiled + tiled.T)
         np.fill_diagonal(combined, 0)
+        nxt = wins / np.sum(combined, axis=0)
+        nxt = nxt / np.mean(nxt)
+        if np.linalg.norm(nxt - params, ord=np.inf) < 1e-6:
+            return nxt
