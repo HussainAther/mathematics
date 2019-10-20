@@ -27,3 +27,6 @@ def mle(pmat, max_iter=100):
 pmat = np.zeros((10, 10))
 for i, j in itertools.permutations(range(10), r=2):
     pmat[i][j] = (j + 1) / (i + j + 2)
+
+params = mle(pmat)
+ranking = np.argsort(params)
