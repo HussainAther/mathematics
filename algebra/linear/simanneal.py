@@ -18,3 +18,6 @@ def simanneal(s):
     simulated annealing.
     """
     oldcost = cost(s)
+    T = 1.0
+    Tmin = .00001
+    alpha = .9
