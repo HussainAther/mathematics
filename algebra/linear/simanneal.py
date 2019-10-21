@@ -27,3 +27,9 @@ def simanneal(s):
             newsol = neighbor(s)
             newcost = cost(s)
             ap = prob(oldcost, newcost, T) # accepteance probability
+            if ap > random():
+                sol = newsol
+                oldcost = newcost
+            i += 1
+        T = T*alpha
+    return sol, cost
