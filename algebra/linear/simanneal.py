@@ -24,4 +24,6 @@ def simanneal(s):
     while T > Tmin:
         i = 1
         while i <= 100:
-
+            newsol = neighbor(s)
+            newcost = cost(s)
+            ap = prob(oldcost, newcost, T) # accepteance probability
