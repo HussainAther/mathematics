@@ -1,4 +1,5 @@
 import numpy as np
+import scipy as sp
 
 """
 K-medoids clustering.
@@ -6,6 +7,7 @@ K-medoids clustering.
 
 def kMeans(data, k, centers=None):
     """
+    K-means (kmeans)
     Return a membership of clusters that looks at the differences then sequares them
     and sums them up for each vector to create a list of square differences. data
     should be a list of vectors that represent the data.
@@ -37,7 +39,9 @@ def kMeans(data, k, centers=None):
 
         return centers, clusters
 
-def minerror(centers):
+def minerror(centers, observ):
     """
-    Minimize error given cluster centers.
+    Minimize error given cluster centers and observations (observ).
     """
+    return sp.optimize.minimize(observ, 0) 
+    
