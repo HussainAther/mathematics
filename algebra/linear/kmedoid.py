@@ -36,3 +36,8 @@ def kMeans(data, k, centers=None):
             centers[i] = center
 
         return centers, clusters
+
+def minerror(centers):
+    """
+    Minimize error given cluster centers.
+    """
