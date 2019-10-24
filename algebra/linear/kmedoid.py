@@ -53,4 +53,6 @@ def minerror(centers, observ):
     """
     minerror = np.inf
     f = observ
+    fprime = None
+    epsilon = .01
     
