@@ -45,6 +45,20 @@ def kMeans(data, k, centers=None):
 
         return centers, clusters
 
+def wrap_function(function, args):
+    """
+    Wrap the function to get its calls.
+    """
+    ncalls = [0]
+    if function is None:
+        return ncalls, None
+
+    def function_wrapper(*wrapper_args):
+        ncalls[0] += 1
+        return function(*(wrapper_args + args))
+
+    return ncalls, function_wrapper
+
 def minerror(centers, observ):
     """
     Minimize error given cluster centers and observations (observ).
@@ -55,4 +69,9 @@ def minerror(centers, observ):
     f = observ
     fprime = None
     epsilon = .01
-    
+    x0 = asarray(x0).flatten()
+    if x0.ndim == 0:
+        x0.shape = (1,)
+    if maxiter is None:
+        maxiter = len(x0) * 200
+    func_calls, f = wrap_function(f, args) 
