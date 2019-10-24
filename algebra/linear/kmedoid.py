@@ -48,7 +48,9 @@ def kMeans(data, k, centers=None):
 def minerror(centers, observ):
     """
     Minimize error given cluster centers and observations (observ).
+    Use the BFGS algorithm. Broyden–Fletcher–Goldfarb–Shanno (BFGS) 
+    algorithm.
     """
     minerror = np.inf
-    return sp.optimize.minimize(observ, 0) 
+    f = observ
     
