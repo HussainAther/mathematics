@@ -61,7 +61,7 @@ def wrap_function(function, args):
 
 def minerror(centers, observ):
     """
-    Minimize error given cluster centers and observations (observ).
+    Minimize error given cluster centers and observations (observ)
     Use the BFGS algorithm. Broyden–Fletcher–Goldfarb–Shanno (BFGS) 
     algorithm.
     """
@@ -75,3 +75,15 @@ def minerror(centers, observ):
     if maxiter is None:
         maxiter = len(x0) * 200
     func_calls, f = wrap_function(f, args) 
+    
+    old_fval = f(x0)
+
+    if fprime is None:
+        grad_calls, myfprime = wrap_function(approx_fprime, (f, epsilon))
+    else:
+        grad_calls, myfprime = wrap_function(fprime, args)
+    gfk = myfprime(x0)
+    k = 0
+    N = len(x0)
+    I = numpy.eye(N, dtype=int)
+    Hk = I
