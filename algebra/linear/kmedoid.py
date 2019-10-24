@@ -5,6 +5,12 @@ import scipy as sp
 K-medoids clustering.
 """
 
+def rosen(x):
+    """
+    The Rosenbrock function.
+    """
+    return sum(100.0*(x[1:]-x[:-1]**2.0)**2.0 + (1-x[:-1])**2.0)
+
 def kMeans(data, k, centers=None):
     """
     K-means (kmeans)
@@ -43,5 +49,6 @@ def minerror(centers, observ):
     """
     Minimize error given cluster centers and observations (observ).
     """
+    minerror = np.inf
     return sp.optimize.minimize(observ, 0) 
     
