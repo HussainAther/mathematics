@@ -17,3 +17,11 @@ plot(hc1, cex = 0.6, hang = -1)
 hc2 <- agnes(df, method = "complete")
 # Agglomerative coefficient
 hc2$ac
+# methods to assess
+m <- c( "average", "single", "complete", "ward")
+names(m) <- c( "average", "single", "complete", "ward")
+# function to compute coefficient
+ac <- function(x) {
+  agnes(df, method = x)$ac
+}
+map_dbl(m, ac)
