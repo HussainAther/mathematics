@@ -27,3 +27,10 @@ ac <- function(x) {
 map_dbl(m, ac)
 hc3 <- agnes(df, method = "ward")
 pltree(hc3, cex = 0.6, hang = -1, main = "Dendrogram of agnes") 
+"Divisive Hierarchical Clustering"
+# compute divisive hierarchical clustering
+hc4 <- diana(df)
+# Divise coefficient; amount of clustering structure found
+hc4$dc
+# plot dendrogram
+pltree(hc4, cex = 0.6, hang = -1, main = "Dendrogram of diana")
