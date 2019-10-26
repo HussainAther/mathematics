@@ -41,3 +41,8 @@ hc5 <- hclust(d, method = "ward.D2" )
 sub_grp <- cutree(hc5, k = 4)
 # Number of members in each cluster
 table(sub_grp)
+USArrests %>%
+  mutate(cluster = sub_grp) %>%
+  head
+plot(hc5, cex = 0.6)
+rect.hclust(hc5, k = 4, border = 2:5)
