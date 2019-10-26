@@ -13,3 +13,7 @@ d <- dist(df, method = "euclidean")
 hc1 <- hclust(d, method = "complete" )
 # Plot the obtained dendrogram
 plot(hc1, cex = 0.6, hang = -1)
+# Compute with agnes
+hc2 <- agnes(df, method = "complete")
+# Agglomerative coefficient
+hc2$ac
