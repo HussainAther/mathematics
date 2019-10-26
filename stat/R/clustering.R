@@ -25,3 +25,5 @@ ac <- function(x) {
   agnes(df, method = x)$ac
 }
 map_dbl(m, ac)
+hc3 <- agnes(df, method = "ward")
+pltree(hc3, cex = 0.6, hang = -1, main = "Dendrogram of agnes") 
