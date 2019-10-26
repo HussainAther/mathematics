@@ -54,3 +54,12 @@ cutree(as.hclust(hc_a), k = 4)
 # Cut diana() tree into 4 groups
 hc_d <- diana(df)
 cutree(as.hclust(hc_d), k = 4)
+# Compute distance matrix
+res.dist <- dist(df, method = "euclidean")
+# Compute 2 hierarchical clusterings
+hc1 <- hclust(res.dist, method = "complete")
+hc2 <- hclust(res.dist, method = "ward.D2")
+# Create two dendrograms
+dend1 <- as.dendrogram (hc1)
+dend2 <- as.dendrogram (hc2)
+tanglegram(dend1, dend2)
