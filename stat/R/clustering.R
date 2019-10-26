@@ -48,4 +48,9 @@ plot(hc5, cex = 0.6)
 rect.hclust(hc5, k = 4, border = 2:5)
 "Scatterplot"
 fviz_cluster(list(data = df, cluster = sub_grp))
-
+# Cut agnes() tree into 4 groups
+hc_a <- agnes(df, method = "ward")
+cutree(as.hclust(hc_a), k = 4)
+# Cut diana() tree into 4 groups
+hc_d <- diana(df)
+cutree(as.hclust(hc_d), k = 4)
