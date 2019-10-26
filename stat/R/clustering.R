@@ -34,3 +34,10 @@ hc4 <- diana(df)
 hc4$dc
 # plot dendrogram
 pltree(hc4, cex = 0.6, hang = -1, main = "Dendrogram of diana")
+"Dendrograms"
+# Ward's method
+hc5 <- hclust(d, method = "ward.D2" )
+# Cut tree into 4 groups
+sub_grp <- cutree(hc5, k = 4)
+# Number of members in each cluster
+table(sub_grp)
