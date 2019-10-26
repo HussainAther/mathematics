@@ -46,3 +46,6 @@ USArrests %>%
   head
 plot(hc5, cex = 0.6)
 rect.hclust(hc5, k = 4, border = 2:5)
+"Scatterplot"
+fviz_cluster(list(data = df, cluster = sub_grp))
+
