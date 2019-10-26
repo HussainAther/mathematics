@@ -5,4 +5,4 @@ library(factoextra) # clustering visualization
 library(dendextend) # for comparing two dendrograms
 df <- USArrests
 df <- na.omit(df)
-
+df <- scale(df)
