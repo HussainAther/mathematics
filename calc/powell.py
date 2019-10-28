@@ -2,6 +2,7 @@ import numpy as np
 
 """
 Powell's algorithm for finding local minima.
+Ideal for minimization functions.
 """
 
 def gaussElim(a, b):
