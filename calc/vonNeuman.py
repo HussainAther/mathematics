@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-from vpython.graph import *
+from vpython.graph import curve, display, label
 
 """
 Monte Carlo integration via stone throwing. A classical example 
@@ -27,7 +27,7 @@ def fx(x):
     """
     Integrand over which we integrate.
     """
-    return x*sin(x)*sin(x)
+    return x*np.sin(x)*np.sin(x)
 
 def plotfunction(): # Plot the function and the box
     inc = 2*np.pi/N
