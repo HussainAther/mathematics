@@ -1,3 +1,5 @@
+import numpy as np
+
 """
 Biscetion algorithm is a simple way for finding a zero of a function.
 """
@@ -11,7 +13,7 @@ def f(x):
     """
     Some function.
     """
-    return 2*cos(x) -x
+    return 2*np.cos(x) - x
 
 for i in range(0, imax):
     x = (xplus + xminus) / 2
