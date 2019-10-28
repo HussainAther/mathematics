@@ -15,7 +15,7 @@ def cd(y, t, h):
     """
     Differentiate around both sides of a point t of interval h.
     """
-    return ( y(t+h/2) -y(t-h/2))/h
+    return (y(t+h/2) - y(t-h/2))/h
 
 # extrapolation
 def ed(y, t, h):
