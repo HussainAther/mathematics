@@ -32,10 +32,16 @@ def prune_index(inner_tree, decisions, index=0):
         inner_tree.children_right[index] = TREE_LEAF
         ##print("Pruned {}".format(index))
 
+def prune(G, v):
+    """
+    Prune a graph G with variables v.
+    """
+     
+
 def sgs(v):
     """
     For a set of variables v, perform the SGS algorithm 
     for discovering causal structure.
     """
     g = colliders(prune_index(DecisionTreeClassifier(len(v)))) # construct the graph
-    gp  
+	gp  
