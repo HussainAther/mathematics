@@ -36,7 +36,8 @@ def prune(G, v):
     """
     Prune a graph G with variables v.
     """
-     
+    for a, b in v:
+        
 
 def sgs(v):
     """
