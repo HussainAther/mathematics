@@ -37,5 +37,5 @@ def sgs(v):
     For a set of variables v, perform the SGS algorithm 
     for discovering causal structure.
     """
-    g = colliders(prune_index(graph(v)))
-    
+    g = colliders(prune_index(DecisionTreeClassifier(len(v)))) # construct the graph
+    gp  
