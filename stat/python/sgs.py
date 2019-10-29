@@ -1,5 +1,6 @@
 import numpy as np
 
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.tree._tree import TREE_LEAF
 
 """
