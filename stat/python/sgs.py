@@ -36,8 +36,9 @@ def prune(G, v):
     """
     Prune a graph G with variables v.
     """
-    for a, b in v:
-        
+    for a, b in v: # for each pair of points
+        for s in (a, b): # for each subset 
+            if a == 
 
 def sgs(v):
     """
