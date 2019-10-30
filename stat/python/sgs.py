@@ -39,13 +39,10 @@ def prune(G, v):
     independencies among all
     variables.
     """
-    for a, b in v: # for each pair of points
-        if a - b == 0: # if a is dependent on b 
-            # remove it               
-    """
-    Apply rules to uniquely determine causal structure
-    consistent with patterns of association from Phase I.
-    """ 
+    for a in v: # for each pair of points
+        for b in v: 
+            if a - b == 0: # if a is dependent on b 
+                v.remove(b) # remove it              
 
 def sgs(v):
     """
@@ -53,4 +50,7 @@ def sgs(v):
     for discovering causal structure.
     """
     g = colliders(prune_index(DecisionTreeClassifier(len(v)))) # construct the graph
-    gp  
+    """
+    Apply rules to uniquely determine causal structure
+    consistent with patterns of association from Phase I.
+    """ 
