@@ -35,10 +35,13 @@ def prune_index(inner_tree, decisions, index=0):
 def prune(G, v):
     """
     Prune a graph G with variables v.
+    Determine set of conditional
+    independencies among all
+    variables.
     """
     for a, b in v: # for each pair of points
-        for s in (a, b): # for each subset 
-            if a == 
+        if a != b # if a is independent of b 
+            
 
 def sgs(v):
     """
@@ -46,4 +49,4 @@ def sgs(v):
     for discovering causal structure.
     """
     g = colliders(prune_index(DecisionTreeClassifier(len(v)))) # construct the graph
-	gp  
+    gp  
