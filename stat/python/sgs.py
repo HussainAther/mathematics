@@ -32,7 +32,7 @@ def prune_index(inner_tree, decisions, index=0):
         inner_tree.children_right[index] = TREE_LEAF
         ##print("Pruned {}".format(index))
 
-def prune(G, v):
+def prune(v):
     """
     Prune a graph G with variables v.
     Determine set of conditional
@@ -43,6 +43,13 @@ def prune(G, v):
         for b in v: 
             if a - b == 0: # if a is dependent on b 
                 v.remove(b) # remove it              
+   return v
+
+def colliders(v):
+    """
+    Apply rules to uniquely determine causal structure
+    consistent with patterns of association from Phase I.
+    """ 
 
 def sgs(v):
     """
@@ -50,7 +57,4 @@ def sgs(v):
     for discovering causal structure.
     """
     g = colliders(prune_index(DecisionTreeClassifier(len(v)))) # construct the graph
-    """
-    Apply rules to uniquely determine causal structure
-    consistent with patterns of association from Phase I.
-    """ 
+    
