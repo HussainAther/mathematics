@@ -4,7 +4,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.tree._tree import TREE_LEAF
 
 """
-Spirtes-Glymour-Scheines algorithm (SGS)
+Spirtes-Glymour-Scheines algorithm (SGS) for causation, causality,
+inferring causal structures from sets of data and trees.
 """
 
 def is_leaf(inner_tree, index):
