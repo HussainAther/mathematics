@@ -40,8 +40,8 @@ def prune(G, v):
     variables.
     """
     for a, b in v: # for each pair of points
-        if a != b # if a is independent of b 
-            
+        if a - b == 0: # if a is dependent on b 
+                    
 
 def sgs(v):
     """
