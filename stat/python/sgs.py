@@ -41,7 +41,11 @@ def prune(G, v):
     """
     for a, b in v: # for each pair of points
         if a - b == 0: # if a is dependent on b 
-                    
+            # remove it               
+    """
+    Apply rules to uniquely determine causal structure
+    consistent with patterns of association from Phase I.
+    """ 
 
 def sgs(v):
     """
