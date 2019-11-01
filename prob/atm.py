@@ -19,22 +19,33 @@ def gradients(img):
     y = cv2.filter2D(img, cv2.CV_64F, np.array([[-1, 0, 1]]).T)
     return x, y
 
-def solveedges(g):
+def elo(input):
+    """
+    Edge linear operator for the LinearOperator function.
+    """
+    v = input.reshape(g.shape)
+    result = np.multiply(v, gradientmag*alpha + addconst) - 
+             multiplyconst*cvs.Laplacian(v, cvs2.CV_64F)
+    return result.reshape(*input.shape)
+
+def solveedges(g, iter, maxiter, tol, alpha, beta, epsilon):
     """
     Find the edges using the linear oeprator.
     """
-    size = g.shape[0]* self.g.shape[1]
-    A = LinearOperator( (size, size), matvec = self.edge_linear_operator, dtype = np.float64)
+    size = g.shape[0]* g.shape[1]
+    
+    A = LinearOperator( (size, size), matvec = elo, dtype = np.float64)
     b = np.ones(size) * beta / (4 * epsilon)
-    edges, _ = scipy.sparse.linalg.cg(A, b, tol = self.tol, maxiter = self.maxiter)
-    return np.power(edges.reshape(*g.shape), 2)
+    edges, _ = scipy.sparse.linalg.cg(A, b, tol = tol, maxiter = maxiter)
+    edges = np.power(edges.reshape(*g.shape), 2)
+    f = inpu 
 
 def minimize():
     """
     Use the minimizer on the natural images.
     """
     for i in range(0, iter):
-        solveedges
+        edges = solveedges(g, i, maxiter, tol, alpha, beta, epsilon)
 
 def justdoit(img, iter = 1, maxiter = 10, tol = 0.1, alpha = 1000, beta = 0.01, epsilon = 0.010:
     """
