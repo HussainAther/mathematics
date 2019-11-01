@@ -23,10 +23,9 @@ def justdoit(img, iter = 1, maxiter = 10, tol = 0.1, alpha = 1000, beta = 0.01, 
     """
     Just do it. Make your dreams come true.
     """
-    f = np.float64(img) / np.max(img) # smooth it over
-    g = f
+    g = np.float64(img) / np.max(img) # smooth it over
     edges = np.zeros(img.shape)
-    gradx, grady = gradients(img)
+    gradx, grady = g
     gradientmag = np.power(gradx, 2) + np.power(grady, 2) # take it to the exponent
     addconst = beta / (4 * epsilon)
     multiplyconst = epsilon * beta
@@ -39,3 +38,9 @@ for channel in cv2.split(img):
     f, v = solver.minimize()
     result.append(f)
     edges.append(v)
+f = cv2.merge(result)
+v = np.maximum(*edges)
+show_image(v, "edges")
+show_image(f, "image")
+show_image(img, "original")
+cv2.waitKey(-1)
