@@ -81,6 +81,12 @@ def justdoit(img, iter = 1, maxiter = 10, tol = 0.1, alpha = 1000, beta = 0.01, 
     addconst = beta / (4 * epsilon)
     multiplyconst = epsilon * beta
 
+def showimage(image, name):
+    img = image * 1
+    cv2.normalize(img, img, 0, 255, cv2.NORM_MINMAX)
+    img = np.uint8(img)
+    cv2.imshow(name, img)
+
 img = cv2.imread(sys.argv[1], 1)
 result, edges = [], []
 for channel in cv2.split(img):
@@ -91,7 +97,7 @@ for channel in cv2.split(img):
     edges.append(v)
 f = cv2.merge(result)
 v = np.maximum(*edges)
-show_image(v, "edges")
-show_image(f, "image")
-show_image(img, "original")
+showimage(v, "edges")
+showimage(f, "image")
+showimage(img, "original")
 cv2.waitKey(-1)
