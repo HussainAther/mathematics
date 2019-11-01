@@ -63,6 +63,12 @@ def minimize():
     """
     for i in range(0, iter):
         f = solve(g, i, maxiter, tol, alpha, beta, epsilon)
+    edges = np.power(edges, .5)
+    cv2.normalize(f, f, 0, 255, c2.NORM_MINMAX)
+    cv2.normalize(edges, edges, 0, 255, cv2.NORM_MINMAX)
+    f = np.uint8(f)
+    edges = 255 - np.uint8(edges)
+    return f, edges
 
 def justdoit(img, iter = 1, maxiter = 10, tol = 0.1, alpha = 1000, beta = 0.01, epsilon = 0.010:
     """
