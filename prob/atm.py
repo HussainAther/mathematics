@@ -13,9 +13,11 @@ the Ambrosio-Tortorelli appoach.
 
 def gradients(img):
     """
-    Return gradients.
+    Return gradients in both directions.
     """
-    return cv2.filter2D(img, cv2.CV_64F, np.array([[-1, 0, 1]])), cv2.filter2D(img, cv2.CV_64F, np.array([[-1, 0, 1]]).T)
+    x = cv2.filter2D(img, cv2.CV_64F, np.array([[-1, 0, 1]]))
+    y = cv2.filter2D(img, cv2.CV_64F, np.array([[-1, 0, 1]]).T)
+    return x, y
 
 def justdoit(img, iter = 1, maxiter = 10, tol = 0.1, alpha = 1000, beta = 0.01, epsilon = 0.010:
     """
