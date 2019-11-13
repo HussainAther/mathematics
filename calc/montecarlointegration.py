@@ -63,6 +63,9 @@ def mcdouble(f, g, x0, x1, y0, y1, n):
             if g(x[i], y[j]) >= 0:
                 numinside += 1
                 fmean += f(x[i], y[j])
+    fmean = fmean/float(numinside)
+    area = numinside/float(n**2)*(x1-x0)*(y1-y0)
+    return area*fmean
 
 """
 Integrate over a circle.
