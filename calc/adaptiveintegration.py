@@ -44,3 +44,11 @@ def adaint(f, a, b, eps, method="midpoint"):
             diff = abs(integral2n - integraln)
             print("midpoint diff: ", diff)
             n *= 2
+    else:
+        print("Unknown method")
+    if diff <= eps:
+        print("Integral computes to: ", integral2n)
+        return n
+    else:
+        return -n
+    
