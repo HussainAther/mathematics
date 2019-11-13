@@ -1,3 +1,4 @@
+import numpy as np
 import sympy
 
 """
@@ -58,4 +59,6 @@ def mcdcircle():
     """
     Check the integral of r over a circle with radius 2.
     """
-
+    r = sympy.symbols("r")
+    Iexact = sympy.integrate(2*np.pi*r*r, (r, 0, 2))
+   
