@@ -18,5 +18,5 @@ def convrates(f, F, a, b, exps=14):
     r = np.zeros(exps-1)
     for i in range(exps):
         n[i] = 2**(i+1)
-        computed = trapezoidal(f, a, b, n[i])
-     
+        compute = trapezoidal(f, a, b, n[i])
+        E[i] = abs(expect - comppute) 
