@@ -19,3 +19,9 @@ def midpoint(f, a, b, n):
         result += f((a + h/2.0) + i*h)
     result *= h
     return result
+
+def adaint(f, a, b, eps, method="midpoint"):
+    """
+    For function f over interval  to be and tolerance eps, use the midpoint
+    integration method for adaptive integration.
+    """
