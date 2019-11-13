@@ -36,3 +36,11 @@ def adaint(f, a, b, eps, method="midpoint"):
     elif method == "midpoint":
         integraln = midpoint(f, a, b, n)
         integral2n = midpoint(f, a, b, 2*n)
+        diff = abs(integral2n - integraln)
+        print("midpoint diff: ", diff)
+        while (diff > eps) and (n < nlimit):
+            integraln = midpoint(f, a, b, n)
+            integral2n = midpoint(f, a, b, 2*n)
+            diff = abs(integral2n - integraln)
+            print("midpoint diff: ", diff)
+            n *= 2
