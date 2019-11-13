@@ -29,3 +29,4 @@ def adaint(f, a, b, eps, method="midpoint"):
     n = 2
     if method == "trapezoidal":
         integraln = trapezoidal(f, a, b, n)
+        integral2n = trapezoidal(f, a, b, 2*n)
