@@ -7,6 +7,18 @@ Convergence rates. We compute them with an algorithm that uses
 general integrands across different intervals.
 """
 
+def trapezoidal(f, a, b, n):
+    """
+    Trapezoidal integration for a function f over a to be with
+    number of steps n.
+    """
+    h = float(b-a)/n
+    result = 0.5*f(a) + 0.5*f(b)
+    for i in range(1, n):
+        result += f(a + i*h)
+    result *= h
+    return result
+
 def convrates(f, F, a, b, exps=14):
     """
     For two different functions f and F over interval from a to b as
