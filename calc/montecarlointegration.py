@@ -55,7 +55,14 @@ def mcdouble(f, g, x0, x1, y0, y1, n):
     # Draw random points inside a rectangle.
     x = np.random.uniform(x0, x1, n)
     y = np.random.uniform(y0, y1, n)
-    
+    # Sum the f values inside the integration domain. 
+    fmean = 0
+    numinside = 0
+    for i in range(len(x)):
+        for j in range(len(y)):
+            if g(x[i], y[j]) >= 0:
+                numinside += 1
+                fmean += f(x[i], y[j])
 
 """
 Integrate over a circle.
