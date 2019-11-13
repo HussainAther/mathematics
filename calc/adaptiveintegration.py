@@ -30,3 +30,9 @@ def adaint(f, a, b, eps, method="midpoint"):
     if method == "trapezoidal":
         integraln = trapezoidal(f, a, b, n)
         integral2n = trapezoidal(f, a, b, 2*n)
+        diff = abs(integral2n - integraln)
+        print("trapezoidal diff: ", diff)
+        n *= 2
+    elif method == "midpoint":
+        integraln = midpoint(f, a, b, n)
+        integral2n = midpoint(f, a, b, 2*n)
