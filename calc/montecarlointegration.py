@@ -43,3 +43,8 @@ def mc(f, a, b):
 """
 Integrate over a circle.
 """
+
+def mcdcircle():
+    """
+    Check the integral of r over a circle with radius 2.
+    """
