@@ -62,4 +62,8 @@ def mcdcircle():
     """
     r = sympy.symbols("r")
     Iexact = sympy.integrate(2*np.pi*r*r, (r, 0, 2))
-   
+    x0 = -2
+    x1 = 2
+    y0 = -2
+    y1 = 2
+ 
