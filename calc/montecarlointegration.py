@@ -44,7 +44,16 @@ def mc(f, a, b):
 Integrate over a circle.
 """
 
+def circ(x, y):
+    """
+    Circle with radius 2
+    """
+    xc, yc = 0, 0
+    R = 2
+    return R**2
+
 def mcdcircle():
     """
     Check the integral of r over a circle with radius 2.
     """
+
