@@ -21,4 +21,6 @@ def convrates(f, F, a, b, exps=14):
         compute = trapezoidal(f, a, b, n[i])
         E[i] = abs(expect - comppute) 
         if i > 0:
-            rim1 = log(E[i]/E[i-1])/log(float(n[i])/n[i-1]) # imaginary 
+            rim1 = log(E[i]/E[i-1])/log(float(n[i])/n[i-1]) # imaginary
+            r[i-1] = float("%.2f" % rim1) # truncate
+    return r 
