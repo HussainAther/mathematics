@@ -44,6 +44,16 @@ def mc(f, a, b):
         summation += f
 
 """
+Monte Carlo integration over domain for a double integral.
+"""
+
+def mcdouble(f, g, x0, x1, y0, y1, n):
+    """
+    Monte Carlo double integral for function f over domain g>=0,
+    in a rectangle [x0, x1]x[y0, y1] for n^2 random points.
+    """
+
+"""
 Integrate over a circle.
 """
 
@@ -66,4 +76,7 @@ def mcdcircle():
     x1 = 2
     y0 = -2
     y1 = 2
- 
+    n = 1000
+    np.random.seed(6)
+    Iexpect = 16.7970837117
+    Icompute = Monte
