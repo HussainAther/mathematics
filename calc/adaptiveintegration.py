@@ -25,3 +25,5 @@ def adaint(f, a, b, eps, method="midpoint"):
     For function f over interval  to be and tolerance eps, use the midpoint
     integration method for adaptive integration.
     """
+    nlimit = 100000 # some really big number that we can start with
+    n = 2
