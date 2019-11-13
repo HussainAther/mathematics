@@ -1,3 +1,5 @@
+import sympy
+
 """
 Standard Monte Carlo technique for integration is based on the mean value theorem:
 
