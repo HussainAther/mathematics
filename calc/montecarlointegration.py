@@ -39,3 +39,7 @@ def mc(f, a, b):
         x = x(i)
         f = f(x)
         summation += f
+
+"""
+Integrate over a circle.
+"""
