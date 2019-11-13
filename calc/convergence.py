@@ -9,5 +9,6 @@ general integrands across different intervals.
 
 def convrates(f, F, a, b, exps=14):
     """
-    for 
+    For two different functions f and F over interval from a to b as
+    well as number of experiments exps, compute the rate of convergence. 
     """
