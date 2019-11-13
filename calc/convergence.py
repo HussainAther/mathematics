@@ -12,3 +12,7 @@ def convrates(f, F, a, b, exps=14):
     For two different functions f and F over interval from a to b as
     well as number of experiments exps, compute the rate of convergence. 
     """
+    expect = F(b) - F(a) # expected rate
+    n = np.zeros(exps, dtype=int)
+    E = np.zeros(exps)
+    r = np.zeros(exps-1)
