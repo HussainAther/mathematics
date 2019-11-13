@@ -52,6 +52,8 @@ def mcdouble(f, g, x0, x1, y0, y1, n):
     Monte Carlo double integral for function f over domain g>=0,
     in a rectangle [x0, x1]x[y0, y1] for n^2 random points.
     """
+    x = np.random.uniform(x0, x1, n)
+    y = np.random.uniform(y0, y1, n)
 
 """
 Integrate over a circle.
