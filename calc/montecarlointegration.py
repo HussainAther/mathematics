@@ -93,4 +93,5 @@ def mcdcircle():
     n = 1000
     np.random.seed(6)
     Iexpect = 16.7970837117
-    Icompute = Monte
+    Icompute = mcdouble(lambda x, y: np.sqrt(x**2 + y**2),
+                        g, x0, x1, y0, y1, n)
