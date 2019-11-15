@@ -5,5 +5,5 @@ X <- matrix(0, 70, 100)
 for (i in 1:100){
    X[1:70, i] <- rnorm(80, mean=0, sd=0.5)
 }
-
-
+colnames(X) = as.character (1:ncol(X))
+rownames(X) = as.character (1:nrow(X))
