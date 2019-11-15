@@ -21,3 +21,5 @@ for(1 in 1:100){
     coeff <- -beta[i] * Xbeta[ai]
     responsep[i] <- 1/(1+exp(coeff))
 }
+"Penalized polynomial function response."
+fit <- penalized(response, X, lambda1 = 2, lambda2=3,fusedl=TRUE)
