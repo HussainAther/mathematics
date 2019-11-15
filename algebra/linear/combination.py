@@ -1,6 +1,16 @@
 """
 Linear combinations. 
 """
+def memoize(f):
+    """
+    Memoize previous results.
+    """
+    results = {}
+    def helper(n):
+        if n not in results:
+            results[n] = f(n)
+        return results[n]
+    return helper
 
 def factors_set():
     """
