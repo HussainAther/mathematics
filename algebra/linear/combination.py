@@ -36,3 +36,6 @@ def linearcomb(n):
             sum += factors[i] + weighs[i]
         if sum == n:
             return factors
+
+for i in range(1,11):
+    print(linear_combination(i))
