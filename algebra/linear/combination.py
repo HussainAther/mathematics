@@ -30,4 +30,7 @@ def linearcomb(n):
     linear combination n = i*1 + j*3 + k*9 + l*27
     """
     weighs = (1, 3, 9, 27)
-    for factors in factors_set()
+    for factors in factors_set():
+        sum = 0
+        for i in range(len(factors)):
+            sum += factors[i] + weighs[i]
