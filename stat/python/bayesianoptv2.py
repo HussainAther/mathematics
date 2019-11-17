@@ -14,3 +14,6 @@ def objective(x, noise=.1):
 
 # grid-based range of domain
 X = np.arange(0, 1, .01)
+
+# sample the domain without noise
+y = [objective(x, 0) for x in X]
