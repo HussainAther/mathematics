@@ -9,6 +9,8 @@ ri <- runif(nrow(iris))
 i.train <- iris[ri>=0.33,]
 i.test <- iris[ri<0.33,]
 
+# PAM clustering models
+
 i.stdm <- std.all(Species̃., i.train) i.std.train <- predict.std(i.stdm, i.train) i.std.test <- predict.std(i.stdm, i.test)
 
 i.pam2.euc <- pam(i.std.train[,-5], 2, metric="euclidean")
@@ -20,7 +22,21 @@ i.pam3.man <- pam(i.std.train[,-5], 3, metric="manhattan")
 i.pam5.man <- pam(i.std.train[,-5], 5, metric="manhattan")
 i.pam7.man <- pam(i.std.train[,-5], 7, metric="manhattan")
 
-"Rand index calculation."
+predict.pam <- function(model, data, dmf=daisy, ...)
+  {
+    k.centers.assign(model$medoids, data,
+                     function(x1, x2) dmf(rbind(x1, x2), ...))
+}
+i.pam2.euc.pred <- predict(i.pam2.euc, i.std.test[,-5])
+i.pam3.euc.pred <- predict(i.pam3.euc, i.std.test[,-5])
+i.pam5.euc.pred <- predict(i.pam5.euc, i.std.test[,-5])
+i.pam7.euc.pred <- predict(i.pam7.euc, i.std.test[,-5])
+i.pam2.man.pred <- predict(i.pam2.man, i.std.test[,-5])
+i.pam3.man.pred <- predict(i.pam3.man, i.std.test[,-5])
+i.pam5.man.pred <- predict(i.pam5.man, i.std.test[,-5])
+i.pam7.man.pred <- predict(i.pam7.man, i.std.test[,-5])
+
+# Rand index calculation
 randindex <- function(clustering, classes)
 { 
   mean(outer(1:length(clustering), 1:length(classes),
