@@ -187,3 +187,25 @@ barplot(sort(silwidth(i.pam2.euc$clustering, 1, i.std.train[,-5])),
 barplot(sort(silwidth(i.pam2.euc$clustering, 2, i.std.train[,-5])),
         xlim=c(-0.2, 1), yaxt="n", horiz=TRUE)
 title("Training set, k=2", outer=TRUE)
+par(mfrow=c(3, 1), mar=c(2, 6, 0, 1), oma=c(0, 0, 2, 0))
+barplot(sort(silwidth(i.pam3.euc$clustering, 1, i.std.train[,-5])),
+        xlim=c(-0.2, 1), yaxt="n", horiz=TRUE)
+barplot(sort(silwidth(i.pam3.euc$clustering, 2, i.std.train[,-5])),
+        xlim=c(-0.2, 1), yaxt="n", horiz=TRUE)
+barplot(sort(silwidth(i.pam3.euc$clustering, 3, i.std.train[,-5])),
+        xlim=c(-0.2, 1), yaxt="n", horiz=TRUE)
+title("Training set, k=3", outer=TRUE)
+par(mfrow=c(2, 1), mar=c(2, 6, 0, 1), oma=c(0, 0, 2, 0))
+barplot(sort(silwidth(i.pam2.euc.pred, 1, i.std.test[,-5])),
+        xlim=c(-0.2, 1), yaxt="n", horiz=TRUE)
+barplot(sort(silwidth(i.pam2.euc.pred, 2, i.std.test[,-5])),
+        xlim=c(-0.2, 1), yaxt="n", horiz=TRUE)
+title("Test set, k=2", outer=TRUE)
+par(mfrow=c(3, 1), mar=c(2, 6, 0, 1), oma=c(0, 0, 2, 0))
+barplot(sort(silwidth(i.pam3.euc.pred, 1, i.std.test[,-5])),
+        xlim=c(-0.2, 1), yaxt="n", horiz=TRUE)
+barplot(sort(silwidth(i.pam3.euc.pred, 2, i.std.test[,-5])),
+        xlim=c(-0.2, 1), yaxt="n", horiz=TRUE)
+barplot(sort(silwidth(i.pam3.euc.pred, 3, i.std.test[,-5])),
+        xlim=c(-0.2, 1), yaxt="n", horiz=TRUE)
+title("Test set, k=3", outer=TRUE)
