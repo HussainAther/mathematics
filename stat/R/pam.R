@@ -43,6 +43,22 @@ diameter <- function(clustering, data, metric="euclidean", stand=FALSE)
   ‘names<-‘(sapply(clusters, function(d) max(dm[clustering==d,clustering==d])),
 clusters)
 }
+diameter(i.pam2.euc$clustering, i.std.train[,-5])
+diameter(i.pam3.euc$clustering, i.std.train[,-5])
+diameter(i.pam5.euc$clustering, i.std.train[,-5])
+diameter(i.pam7.euc$clustering, i.std.train[,-5])
+diameter(i.pam2.man$clustering, i.std.train[,-5], metric="manhattan")
+diameter(i.pam3.man$clustering, i.std.train[,-5], metric="manhattan")
+diameter(i.pam5.man$clustering, i.std.train[,-5], metric="manhattan")
+diameter(i.pam7.man$clustering, i.std.train[,-5], metric="manhattan")
+diameter(i.pam2.euc.pred, i.std.test[,-5])
+diameter(i.pam3.euc.pred, i.std.test[,-5])
+diameter(i.pam5.euc.pred, i.std.test[,-5])
+diameter(i.pam7.euc.pred, i.std.test[,-5])
+diameter(i.pam2.man.pred, i.std.test[,-5], metric="manhattan")
+diameter(i.pam3.man.pred, i.std.test[,-5], metric="manhattan")
+diameter(i.pam5.man.pred, i.std.test[,-5], metric="manhattan")
+diameter(i.pam7.man.pred, i.std.test[,-5], metric="manhattan")
 
 # Rand index calculation
 randindex <- function(clustering, classes)
@@ -54,18 +70,14 @@ randindex <- function(clustering, classes)
                     clustering[i]!=clustering[j] & classes[i]!=classes[j, NA)),
        na.rm=TRUE)
 }
-# Training set
 randindex(i.pam2.euc$clustering, i.std.train[,5])
 randindex(i.pam3.euc$clustering, i.std.train[,5])
 randindex(i.pam5.euc$clustering, i.std.train[,5])
 randindex(i.pam7.euc$clustering, i.std.train[,5])
-
 randindex(i.pam2.man$clustering, i.std.train[,5])
 randindex(i.pam3.man$clustering, i.std.train[,5])
 randindex(i.pam5.man$clustering, i.std.train[,5])
 randindex(i.pam7.man$clustering, i.std.train[,5])
-
-# Test set 
 randindex(i.pam2.man$clustering, i.std.test[,5])
 randindex(i.pam3.man$clustering, i.std.test[,5])
 randindex(i.pam5.man$clustering, i.std.test[,5])
