@@ -1,6 +1,7 @@
 import numpy as np
 
 from matplotlib import pyplot
+from sklearn.gaussian_process import GaussianProcessRegressor
 
 """
 Bayesian optimization.
