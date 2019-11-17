@@ -158,3 +158,10 @@ else {
     (avg.inter-avg.intra)/pmax(avg.inter, avg.intra)
    }
 }
+silwidth.cluster <- function(clustering, data, metric="euclidean", stand=FALSE)
+{
+  clusters <- sort(unique(clustering))
+  ‘names<-‘(sapply(clusters, function(d)
+                             mean(silwidth(clustering, d, data, metric, stand))),
+            clusters)
+}
