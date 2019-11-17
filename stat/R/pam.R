@@ -153,7 +153,8 @@ else {
     avg.inter <- apply(sapply(other,
                               function(d1)
                               apply(dm[clustering==d,clustering==d1,drop=FALSE],
-1, mean)),
+                                    1, mean)),
                        1, min)
     (avg.inter-avg.intra)/pmax(avg.inter, avg.intra)
-} }
+   }
+}
