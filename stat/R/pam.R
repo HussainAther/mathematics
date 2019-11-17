@@ -36,6 +36,14 @@ i.pam3.man.pred <- predict(i.pam3.man, i.std.test[,-5])
 i.pam5.man.pred <- predict(i.pam5.man, i.std.test[,-5])
 i.pam7.man.pred <- predict(i.pam7.man, i.std.test[,-5])
 
+diameter <- function(clustering, data, metric="euclidean", stand=FALSE)
+{
+  clusters <- sort(unique(clustering))
+  dm <- as.matrix(daisy(data, metric, stand))
+  ‘names<-‘(sapply(clusters, function(d) max(dm[clustering==d,clustering==d])),
+clusters)
+}
+
 # Rand index calculation
 randindex <- function(clustering, classes)
 { 
