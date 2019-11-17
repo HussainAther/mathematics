@@ -40,7 +40,7 @@ diameter <- function(clustering, data, metric="euclidean", stand=FALSE)
 {
   clusters <- sort(unique(clustering))
   dm <- as.matrix(daisy(data, metric, stand))
-  ‘names<-‘(sapply(clusters, function(d) max(dm[clustering==d,clustering==d])),
+  'names<-'(sapply(clusters, function(d) max(dm[clustering==d,clustering==d])),
 clusters)
 }
 diameter(i.pam2.euc$clustering, i.std.train[,-5])
@@ -87,7 +87,7 @@ separation <- function(clustering, data, metric="euclidean", stand=FALSE)
 {
   clusters <- sort(unique(clustering))
   dm <- as.matrix(daisy(data, metric, stand))
-  ‘names<-‘(sapply(clusters, function(d) min(dm[clustering==d,clustering!=d])),
+  'names<-'(sapply(clusters, function(d) min(dm[clustering==d,clustering!=d])),
 clusters)
 }
 separation(i.pam2.euc$clustering, i.std.train[,-5])
