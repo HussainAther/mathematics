@@ -61,3 +61,20 @@ def plot(X, y, model):
     pyplot.plot(Xsamples, ysamples)
     # Show the plot.
     pyplot.show()
+
+# Sample the domain sparsely with noise.
+X = random(100)
+y = asarray([objective(x) for x in X])
+
+# Reshape into rows and cols.
+X = X.reshape(len(X), 1)
+y = y.reshape(len(y), 1)
+
+# Define the model.
+model = GaussianProcessRegressor()
+
+# Fit the model.
+model.fit(X, y)
+
+# Plot the surrogate function.
+plot(X, y, model)
