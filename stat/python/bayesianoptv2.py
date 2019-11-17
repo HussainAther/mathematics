@@ -38,10 +38,26 @@ pyplot.show()
 
 def surrogate(model, X):
     """
-    Surrogate (approximation) of the objective function.
+    Surrogate (approximation) of the objective function that we use
+    in plotting to make sure we catch warnings.
     """
     # catch any warning generated when making a prediction
     with catch_warnings():
         # ignore generated warnings
         simplefilter("ignore")
         return model.predict(X, return_std=True)
+
+# plot real observations vs surrogate function
+def plot(X, y, model):
+    """
+    Plot the real function and the surrogate function.
+    """
+    # scatter plot of inputs and real objective function
+    pyplot.scatter(X, y)
+    # line plot of surrogate function across domain
+    Xsamples = np.asarray(np.arange(0, 1, 0.001))
+    Xsamples = Xsamples.reshape(len(Xsamples), 1)
+    ysamples, _ = surrogate(model, Xsamples)
+    pyplot.plot(Xsamples, ysamples)
+    # Show the plot.
+    pyplot.show()
