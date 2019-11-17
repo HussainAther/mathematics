@@ -34,4 +34,15 @@ randindex <- function(clustering, classes)
 randindex(i.pam2.euc$clustering, i.std.train[,5])
 randindex(i.pam3.euc$clustering, i.std.train[,5])
 randindex(i.pam5.euc$clustering, i.std.train[,5])
-randindex(i.pam5.euc$clustering, i.std.train[,5])
+randindex(i.pam7.euc$clustering, i.std.train[,5])
+
+randindex(i.pam2.man$clustering, i.std.train[,5])
+randindex(i.pam3.man$clustering, i.std.train[,5])
+randindex(i.pam5.man$clustering, i.std.train[,5])
+randindex(i.pam7.man$clustering, i.std.train[,5])
+
+# Test set 
+randindex(i.pam2.man$clustering, i.std.test[,5])
+randindex(i.pam3.man$clustering, i.std.test[,5])
+randindex(i.pam5.man$clustering, i.std.test[,5])
+randindex(i.pam7.man$clustering, i.std.test[,5])
