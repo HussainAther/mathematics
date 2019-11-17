@@ -139,3 +139,21 @@ isolation(i.pam2.man.pred, i.std.test[,-5], metric="manhattan")
 isolation(i.pam3.man.pred, i.std.test[,-5], metric="manhattan")
 isolation(i.pam5.man.pred, i.std.test[,-5], metric="manhattan")
 isolation(i.pam7.man.pred, i.std.test[,-5], metric="manhattan")
+# Silhouette width
+silwidth <- function(clustering, d, data, metric="euclidean", stand=FALSE)
+{
+  if (sum(clustering==d)==1)
+    1  # singleton cluster
+else {
+    clusters <- unique(clustering)
+    other <- clusters[! clusters %in% d]
+    dm <- as.matrix(daisy(data, metric, stand))
+    avg.intra <- apply(dm[clustering==d,clustering==d,drop=FALSE], 1, sum)/
+                   (sum(clustering==d)-1)
+    avg.inter <- apply(sapply(other,
+                              function(d1)
+                              apply(dm[clustering==d,clustering==d1,drop=FALSE],
+1, mean)),
+                       1, min)
+    (avg.inter-avg.intra)/pmax(avg.inter, avg.intra)
+} }
