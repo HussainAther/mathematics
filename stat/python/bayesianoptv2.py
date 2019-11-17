@@ -35,3 +35,13 @@ pyplot.scatter(X, ynoise)
 pyplot.plot(X, y)
 # show the plot
 pyplot.show()
+
+def surrogate(model, X):
+    """
+    Surrogate (approximation) of the objective function.
+    """
+    # catch any warning generated when making a prediction
+    with catch_warnings():
+        # ignore generated warnings
+        simplefilter("ignore")
+        return model.predict(X, return_std=True)
