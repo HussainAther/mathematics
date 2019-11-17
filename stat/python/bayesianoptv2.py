@@ -17,3 +17,11 @@ X = np.arange(0, 1, .01)
 
 # sample the domain without noise
 y = [objective(x, 0) for x in X]
+
+
+...
+# sample the domain with noise
+ynoise = [objective(x) for x in X]
+
+# sample the domain with noise
+ynoise = [objective(x) for x in X]
