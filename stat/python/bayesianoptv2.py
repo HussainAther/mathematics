@@ -15,13 +15,12 @@ def objective(x, noise=.1):
 # grid-based range of domain
 X = np.arange(0, 1, .01)
 
-# sample the domain without noise
+# Sample the domain without noise.
 y = [objective(x, 0) for x in X]
 
-
-...
-# sample the domain with noise
+# Sample the domain with noise.
 ynoise = [objective(x) for x in X]
 
-# sample the domain with noise
-ynoise = [objective(x) for x in X]
+# Find best result.
+ix = np.argmax(y)
+print("Optima: x=%.3f, y=%.3f" % (X[ix], y[ix]))
