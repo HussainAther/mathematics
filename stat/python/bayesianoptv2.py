@@ -1,5 +1,7 @@
 import numpy as np
 
+from matplotlib import pyplot
+
 """
 Bayesian optimization.
 """
@@ -24,3 +26,11 @@ ynoise = [objective(x) for x in X]
 # Find best result.
 ix = np.argmax(y)
 print("Optima: x=%.3f, y=%.3f" % (X[ix], y[ix]))
+
+# Plot the points with noise.
+pyplot.scatter(X, ynoise)
+
+# Plot the points without noise
+pyplot.plot(X, y)
+# show the plot
+pyplot.show()
