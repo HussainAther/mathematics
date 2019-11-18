@@ -41,4 +41,22 @@ dgmerge <- function(dg, i1, i2)
 dg.l3 <- lapply(seq(1, length(dg.l4)-1, 2), function(i) dgmerge(dg.l4, i, i+1))
 dg.l2 <- lapply(seq(1, length(dg.l3)-1, 2), function(i) dgmerge(dg.l3, i, i+1))
 dg.l1 <- lapply(seq(1, length(dg.l2)-1, 2), function(i) dgmerge(dg.l2, i, i+1))
-plot(dg.l1[[1]], center=TRUE) 
+plot(dg.l1[[1]], center=TRUE)
+
+# Agglomerative hierarchical clustering
+ahc <- function(data, linkf=ahc.size, diss=euc.dist, bottom=1:nrow(data))
+  {
+    clid <- function(d) # hclust-compatible cluster id scheme
+    { if (d>length(bottom.clusters)) d-length(bottom.clusters) else -d }
+    dm <- as.matrix(dissmat(data, diss)) # instance dissimilarity matrix for linkage
+    bottom.clusters <- unique(bottom) # bottom-level clusters
+    clustering <- bottom # current cluster assignment
+    clusters <- bottom.clusters # current set of clusters
+    merge <- NULL # merge matrix
+    height <- NULL # height vector
+    order <- NULL # order vector
+    links <- outer(1:length(clusters), 1:length(clusters),
+                   Vectorize(function(i1, i2)
+                             if (i1<i2)
+                               linkf(clustering, clusters[i1], clusters[i2], data,
+                                     diss, dm) 
