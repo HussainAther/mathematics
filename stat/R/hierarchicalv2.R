@@ -18,4 +18,13 @@ i.std.train <- predict.std(i.stdm, i.train)
 i.std.test <- predict.std(i.stdm, i.test)
 g.std <- std.all(Type~., g.train) 
 g.std.train <- predict.std(g.stdm, g.train) 
-g.std.test <- predict.std(g.stdm, g.test) 
+g.std.test <- predict.std(g.stdm, g.test)
+dg.l4 <- lapply(1:8, function(i)
+                     {
+                       d <- list(i)
+                       attr(d, "members") <- 1
+                       attr(d, "height") <- 0
+                       attr(d, "leaf") <- TRUE
+                       attr(d, "label") <- i
+                       'class<-'(d, "dendrogram")
+}) 
