@@ -84,4 +84,18 @@ ahc <- function(data, linkf=ahc.size, diss=euc.dist, bottom=1:nrow(data))
       }
         clusters <- c(clusters, d12)
   }
+'class<-'(list(clustering=bottom, link=linkf, data=data,
+                   merge=merge, height=height, order=-t(merge)[t(merge)<0]),
+"hcl")
+
+## Convert to hclust.
+as.hclust.hcl <- function(model) { ‘class<-‘(unclass(model), c("hclust")) }
+  
+## Size linkage (dummy)
+ahc.size <- function(clustering, d1, d2, data, diss, dm)
+{ sum(clustering==d1) + sum(clustering==d2) }
+    
+# Agglomerative clustering for the weathercl data
+wcl.ahc.d <- ahc(wcl.std, linkf=ahc.size)
+as.hclust(wcl.ahc.d)
  
