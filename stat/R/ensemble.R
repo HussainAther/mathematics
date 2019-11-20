@@ -115,3 +115,8 @@ bh.test.mse.lm.wx <- sapply(bh.bm.lm.wx,
                             function(h) mse(predict(h, bh.test), bh.test$medv))
 
 # Random naive Bayes ensemble modeling using m base models
+randnaiveBayes <- function(formula, data, m, ns=0)
+{
+    attributes <- x.vars(formula, data)
+    target <- y.var(formula)
+    ns <- ifelse(ns==0, round(sqrt(length(attributes))),
