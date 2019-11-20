@@ -16,4 +16,5 @@ hv.test <- HouseVotes84[rhv<0.33,]
 rbh <- runif(nrow(BostonHousing))
 bh.train <- BostonHousing[rbh>=0.33,]
 bh.test <- BostonHousing[rbh<0.33,]
-hv.tree <- rpart(Class̃., hv.train) hv.nb <- naiveBayes(Class̃., hv.train)
+hv.tree <- rpart(Clas~., hv.train) 
+hv.nb <- naiveBayes(Clas~., hv.train)
