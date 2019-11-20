@@ -37,3 +37,8 @@ base.ensemble.sample.x <- function(formula, data, m, alg, args=NULL,
 # base models for the HouseVotes84 data
 hv.bm.tree.sx <- base.ensemble.sample.x(Class~., hv.train, 50, rpart) 
 hv.bm.nb.sx <- base.ensemble.sample.x(Class~., hv.train, 50, naiveBayes)
+
+# base models for the BostonHousing data
+bh.bm.tree.sx <- base.ensemble.sample.x(medv~., bh.train, 50, rpart) 
+bh.bm.lm.sx <- base.ensemble.sample.x(medv~., bh.train, 50, lm)
+
