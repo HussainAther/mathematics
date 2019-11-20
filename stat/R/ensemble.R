@@ -62,8 +62,13 @@ bh.test.mse.tree.sx <- sapply(bh.bm.tree.sx,
 bh.test.mse.lm.sx <- sapply(bh.bm.lm.sx,
                               function(h) mse(predict(h, bh.test), bh.test$medv))
 
-# base model test set MSE values for the BostonHousing data
-bh.test.mse.tree.sx <- sapply(bh.bm.tree.sx,
-                              function(h) mse(predict(h, bh.test), bh.test$medv))
-bh.test.mse.lm.sx <- sapply(bh.bm.lm.sx,
-                            function(h) mse(predict(h, bh.test), bh.test$medv))
+## generate base models by instance weighting
+base.ensemble.weight.x <- function(formula, data, m, alg, args=NULL,
+                                   weights=runif(nrow(data), min=0.3, max=3),
+                                   reweight=function(w, p=NULL)
+                                            runif(nrow(data), min=0.3, max=3),
+                                            predf=predict)
+{
+  skip.cond(lapply(1:m,
+                   function(i)
+                   {
