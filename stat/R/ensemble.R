@@ -120,3 +120,12 @@ randnaiveBayes <- function(formula, data, m, ns=0)
     attributes <- x.vars(formula, data)
     target <- y.var(formula)
     ns <- ifelse(ns==0, round(sqrt(length(attributes))),
+    clip.val(ns, 1, length(attributes)))
+    'class<-'(lapply(1:m, function(i)
+                      {
+      bag <- sample(nrow(data), size=nrow(data), replace=TRUE)
+  sa <- sample(length(attributes), ns)
+  naiveBayes(make.formula(target, attributes[sa]),
+             data[bag,])
+}), "randnaiveBayes")
+}
