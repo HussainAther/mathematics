@@ -113,3 +113,5 @@ bh.test.mse.tree.wx <- sapply(bh.bm.tree.wx,
                               function(h) mse(predict(h, bh.test), bh.test$medv))
 bh.test.mse.lm.wx <- sapply(bh.bm.lm.wx,
                             function(h) mse(predict(h, bh.test), bh.test$medv))
+
+# Random naive Bayes ensemble modeling using m base models
