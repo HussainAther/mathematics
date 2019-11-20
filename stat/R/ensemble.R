@@ -24,3 +24,9 @@ bh.tree <- rpart(medv~., bh.train)
 bh.lm <- lm(medv~., bh.train)
 bh.mse.tree <- mse(predict(bh.tree, bh.test), bh.test$medv)
 bh.mse.lm <- mse(predict(bh.lm, bh.test), bh.test$medv)
+## generate base models by instance sampling
+base.ensemble.sample.x <- function(formula, data, m, alg, args=NULL,
+                                   size=nrow(data), replace=TRUE)
+{
+    lapply(1:m, function(i)
+
