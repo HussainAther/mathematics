@@ -61,3 +61,9 @@ bh.test.mse.tree.sx <- sapply(bh.bm.tree.sx,
                               function(h) mse(predict(h, bh.test), bh.test$medv))
 bh.test.mse.lm.sx <- sapply(bh.bm.lm.sx,
                               function(h) mse(predict(h, bh.test), bh.test$medv))
+
+# base model test set MSE values for the BostonHousing data
+bh.test.mse.tree.sx <- sapply(bh.bm.tree.sx,
+                              function(h) mse(predict(h, bh.test), bh.test$medv))
+bh.test.mse.lm.sx <- sapply(bh.bm.lm.sx,
+                            function(h) mse(predict(h, bh.test), bh.test$medv))
