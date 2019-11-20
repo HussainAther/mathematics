@@ -72,3 +72,15 @@ base.ensemble.weight.x <- function(formula, data, m, alg, args=NULL,
   skip.cond(lapply(1:m,
                    function(i)
                    {
+                   if (!is.null(weights))
+                     {
+                       h <- do.call(alg, c(list(formula, data, weights=weights),
+                                           args))
+                       pred <- predf(h, data)
+                       if (!is.null(weights <<- reweight(weights, pred)))
+                         h 
+                     }
+                  }), 
+is.null)
+}
+}
