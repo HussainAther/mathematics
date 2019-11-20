@@ -48,3 +48,10 @@ hv.train.err.tree.sx <- sapply(hv.bm.tree.sx,
                                                hv.train$Class))
 hv.train.err.nb.sx <- sapply(hv.bm.nb.sx,
                              function(h) err(predict(h, hv.train), hv.train$Class))
+
+# base model test set errors for the HouseVotes84 data
+hv.test.err.tree.sx <- sapply(hv.bm.tree.sx,
+                              function(h) err(predict(h, hv.test, type="c"),
+                                              hv.test$Class))
+hv.test.err.nb.sx <- sapply(hv.bm.nb.sx,
+                            function(h) err(predict(h, hv.test), hv.test$Class))
