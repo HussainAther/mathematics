@@ -42,3 +42,9 @@ hv.bm.nb.sx <- base.ensemble.sample.x(Class~., hv.train, 50, naiveBayes)
 bh.bm.tree.sx <- base.ensemble.sample.x(medv~., bh.train, 50, rpart) 
 bh.bm.lm.sx <- base.ensemble.sample.x(medv~., bh.train, 50, lm)
 
+# base model training set errors for the HouseVotes84 data
+hv.train.err.tree.sx <- sapply(hv.bm.tree.sx,
+                               function(h) err(predict(h, hv.train, type="c"),
+                                               hv.train$Class))
+hv.train.err.nb.sx <- sapply(hv.bm.nb.sx,
+                             function(h) err(predict(h, hv.train), hv.train$Class))
