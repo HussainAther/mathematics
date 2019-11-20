@@ -129,3 +129,15 @@ randnaiveBayes <- function(formula, data, m, ns=0)
              data[bag,])
 }), "randnaiveBayes")
 }
+
+## random naive Bayes prediction
+predict.randnaiveBayes <- function(rnb, data, prob=FALSE)
+  {
+    predict.ensemble.prob(rnb, data, predf=function(...) predict(..., type="r"),
+                          prob=prob, labels=rnb[[1]]$levels)
+}
+# random naive Bayes for the HouseVotes84 data hv.rnb <- randnaiveBayes(Class̃., hv.train, 500) hv.pred.rnb <- predict(hv.rnb, hv.test)
+
+# random naive Bayes test set error for the HouseVotes84 data
+hv.err.rnb <- list(nb = err(hv.pred.rnb, hv.test$Class))
+
