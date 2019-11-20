@@ -29,4 +29,9 @@ base.ensemble.sample.x <- function(formula, data, m, alg, args=NULL,
                                    size=nrow(data), replace=TRUE)
 {
     lapply(1:m, function(i)
+                {
+                bag <- sample(nrow(data), size=nrow(data), replace=replace)
+                do.call(alg, c(list(formula, data[bag,]), args))
+                })
+}
 
