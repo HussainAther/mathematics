@@ -61,3 +61,7 @@ fmarg <- function(w, data, cvec)
 ## using the cvec vector of {-1, 1} class labels
 gmarg <- function(w, data, cvec) { fmarg(w, data, cvec)/l2norm(w[-length(w)]) }
 
+## plot separating and b-margin lines for linear threshold classification
+## with 2 attributes
+plot.margin <- function(w, data, cvec, b=1, add=FALSE,
+                        col.sep="black", col.pos="grey70", col.neg="grey30", ...):
