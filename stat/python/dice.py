@@ -15,6 +15,7 @@ def dice(a, b):
 
 def dicev2(a, b):
     """
+    More robust and orthodox method.
     Dice coefficient 2nt/(na + nb).
     """
     if not len(a) or not len(b): return 0.0
