@@ -50,4 +50,14 @@ kmdat.test <- kmdat[201:400,]
 # linearly separable training and test subsets 
 kmdat.ls <- linsep.sub(c~a1+a2+a3+a4, kmdat) 
 kmdat.train.ls <- kmdat[1:200,][kmdat.ls[1:200],] 
-kmdat.test.ls <- kmdat[201:400,][kmdat.ls[201:400],] 
+kmdat.test.ls <- kmdat[201:400,][kmdat.ls[201:400],]
+
+## functional margin of w with respect to instances from data
+## using the cvec vector of {-1, 1} class labels
+fmarg <- function(w, data, cvec)
+{ cvec*predict.par(list(repf=repf.linear, w=w), data) }
+
+## geometric margin of w with respect to instances from data
+## using the cvec vector of {-1, 1} class labels
+gmarg <- function(w, data, cvec) { fmarg(w, data, cvec)/l2norm(w[-length(w)]) }
+
