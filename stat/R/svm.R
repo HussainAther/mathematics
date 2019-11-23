@@ -64,4 +64,21 @@ gmarg <- function(w, data, cvec) { fmarg(w, data, cvec)/l2norm(w[-length(w)]) }
 ## plot separating and b-margin lines for linear threshold classification
 ## with 2 attributes
 plot.margin <- function(w, data, cvec, b=1, add=FALSE,
-                        col.sep="black", col.pos="grey70", col.neg="grey30", ...):
+                        col.sep="black", col.pos="grey70", col.neg="grey30", ...)
+
+{
+  # y value corresponding to x on the regression line represented by w
+  lry <- function(x, w) {sum(-w[c(1,3)]/w[2]*c(x, 1)) }
+if (!add) {
+    plot(data[,1][cvec==1], data[,2][cvec==1], col=col.pos,
+       xlab="a1", ylab="a2", xlim=range(data[,1]), ylim=range(data[,2]), ...)
+    points(data[,1][cvec!=1], data[,2][cvec!=1], col=col.neg, ...)
+  }
+  lines(range(data[,1]), c(lry(min(data[,1]), w),
+                           lry(max(data[,1]), w)), col=col.sep, ...)
+  lines(range(data[,1]), c(lry(min(data[,1]), w-c(0, 0, b)),
+                           lry(max(data[,1]), w-c(0, 0, b))), col=col.pos, ...)
+  lines(range(data[,1]), c(lry(min(data[,1]), w+c(0, 0, b)),
+                           lry(max(data[,1]), w+c(0, 0, b))), col=col.neg, ...)
+  list(fmargin=min(fmarg(w, data, cvec)), gmargin=min(gmarg(w, data, cvec)))
+}
