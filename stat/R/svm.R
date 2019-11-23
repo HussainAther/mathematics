@@ -12,3 +12,9 @@ data(BostonHousing, package="mlbench")
 """
 Kernel support vector machine (svm).
 """
+
+set.seed(12)
+rpid <- runif(nrow(PimaIndiansDiabetes))
+pid.train <- PimaIndiansDiabetes[rpid>=0.33,]
+pid.test <- PimaIndiansDiabetes[rpid<0.33,]
+  
