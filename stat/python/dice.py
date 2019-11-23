@@ -22,11 +22,10 @@ def dicev2(a, b):
     if len(b) == 1:  b=b+u"."
     a_bigram_list=[]
     for i in range(len(a)-1):
-      a_bigram_list.append(a[i:i+2])
+        a_bigram_list.append(a[i:i+2])
     b_bigram_list=[]
     for i in range(len(b)-1):
-      b_bigram_list.append(b[i:i+2])
-      
+        b_bigram_list.append(b[i:i+2])
     a_bigrams = set(a_bigram_list)
     b_bigrams = set(b_bigram_list)
     overlap = len(a_bigrams & b_bigrams)
