@@ -1,0 +1,1 @@
+# Spatial smoothing with splines
