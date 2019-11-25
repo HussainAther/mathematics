@@ -6,3 +6,5 @@ distances <- as.matrix(distances)
 covars <- exp(-distances)
 Cov.YZ <- covars[predict.pt, -predict.pt]
 Var.Z <- covars[-predict.pt, -predict.pt]
+beta <- solve(Var.Z) %*% Cov.YZ
+signif(data.frame(coords[-predict.pt, ], coef = beta), 3)
