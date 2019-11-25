@@ -1,4 +1,4 @@
-# Davies–Bouldin index 
+# Davies–Bouldin index  (Davies Bouldin daviesbouldin)
 dbindex <- function(clustering, centers, data, metric="euclidean", stand=FALSE)
  {
    clusters <- sort(unique(clustering))
