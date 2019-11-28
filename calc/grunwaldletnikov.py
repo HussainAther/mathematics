@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 from scipy.special import factorial, gamma
 
@@ -22,4 +23,9 @@ k = 2
 fa = []
 for i in range(tmin, tmax, dt)
     fa.append(gamma(k+1)/gamma(k+eta+1)*i**(k+eta))
-plt(t, fa) 
+plt(t, fa)
+
+# Grunwalk-Letnikov integration
+c = np.zeros(len(tmax))
+c[0] = eta
+ 
