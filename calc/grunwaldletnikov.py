@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 from scipy.special import factorial, gamma
 
 """
@@ -17,5 +19,7 @@ tmin = 0
 k = 2
 
 # Analytical solution
-fa = gamma(k+1)/gamma(k+eta+1)*t**(k+eta)
- 
+fa = []
+for i in range(tmin, tmax, dt)
+    fa.append(gamma(k+1)/gamma(k+eta+1)*i**(k+eta))
+plt(t, fa) 
