@@ -41,12 +41,13 @@ ax.plot(t, x, lw=2)
 
 ntrials = 10000
 X = np.zeros(ntrials)
+
 # We create bins for the histograms.
 bins = np.linspace(-2., 14., 100)
 fig, ax = plt.subplots(1, 1, figsize=(8, 4))
 
 for i in range(n):
-    # Update the process independently for all trials
+    # Update the process independently for all trials.
     X += dt * (-(X - mu) / tau) + \
         sigma_bis * sqrtdt * np.random.randn(ntrials)
     # Display the histogram for a few points in time
