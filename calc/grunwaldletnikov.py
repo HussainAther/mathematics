@@ -31,4 +31,10 @@ c = np.zeros(steps)
 c[0] = eta
 
 for i in range(2, steps):
-    c[i] = (1-(1+eta)/i)*c[i-1] 
+    c[i] = (1-(1+eta)/i)*c[i-1]
+
+# Initialize solution.
+f = np.zeros(steps)
+
+for i in range(steps-1):
+    f[i+1] = dt**eta*(t[i]**k) + c[1:i]*f[i:-1:1] 
