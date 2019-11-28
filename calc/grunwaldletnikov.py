@@ -13,7 +13,8 @@ eta = .8
 # temporal domain and time step size
 dt = 1e-3
 tmax = 1
-tmin = 0 
+tmin = 0
+steps = tmax/dt 
 
 # Solve the fractional differential equation:
 # d^eta f(t) /dt^eta = t^k
@@ -26,6 +27,8 @@ for i in range(tmin, tmax, dt)
 plt(t, fa)
 
 # Grunwalk-Letnikov integration
-c = np.zeros(len(tmax))
+c = np.zeros(steps)
 c[0] = eta
- 
+
+for i in range(2, steps):
+    c[i] = (1-(1+eta)/i)*c[i-1] 
