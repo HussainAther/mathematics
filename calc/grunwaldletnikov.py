@@ -24,7 +24,8 @@ k = 2
 fa = []
 for i in range(tmin, tmax, dt)
     fa.append(gamma(k+1)/gamma(k+eta+1)*i**(k+eta))
-plt(t, fa)
+
+plt(range(tmin, tmax, dt), fa)
 
 # Grunwalk-Letnikov integration
 c = np.zeros(steps)
@@ -37,4 +38,8 @@ for i in range(2, steps):
 f = np.zeros(steps)
 
 for i in range(steps-1):
-    f[i+1] = dt**eta*(t[i]**k) + c[1:i]*f[i:-1:1] 
+    f[i+1] = dt**eta*(t[i]**k) + c[1:i]*f[i:-1:1]
+
+plt(range(tmin, tmax, dt), f)
+plt.xlabel("time (A.U.)") 
+plt.ylabel("f(t)")
