@@ -31,7 +31,16 @@ def solve_lorenz(N=10, angle=0.0, max_time=4.0, sigma=10.0, beta=8./3, rho=28.0)
 
     def lorenz_deriv(x_y_z, t0, sigma=sigma, beta=beta, rho=rho):
         """
-        Compute the time-derivative of a Lorenz system.
+        Compute the time-derivative (time derivative) of a Lorenz system.
         """
         x, y, z = x_y_z
         return [sigma * (y - x), x * (rho - z) - y, x * y - beta * z]
+
+    # Choose random starting points, uniformly distributed from -15 to 15.
+    np.random.seed(1)
+    x0 = -15 + 30 * np.random.random((N, 3))
+
+    # Solve for the trajectories.
+    t = np.linspace(0, max_time, int(250*max_time))
+    x_t = np.asarray([integrate.odeint(lorenz_deriv, x0i, t)
+                      for x0i in x0])
