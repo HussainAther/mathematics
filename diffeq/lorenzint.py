@@ -57,3 +57,11 @@ def solve_lorenz(N=10, angle=0.0, max_time=4.0, sigma=10.0, beta=8./3, rho=28.0)
     plt.show()
 
     return t, x_t
+
+# Call it.
+t, x_t = solve_lorenz(angle=0, N=10)
+
+# Interactive 
+w = interactive(solve_lorenz, angle=(0.,360.), max_time=(0.1, 4.0),
+                N=(0,50), sigma=(0.0,50.0), rho=(0.0,50.0))
+display(w)
