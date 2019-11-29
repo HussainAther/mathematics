@@ -29,3 +29,9 @@ def solve_lorenz(N=10, angle=0.0, max_time=4.0, sigma=10.0, beta=8./3, rho=28.0)
     ax.set_ylim((-35, 35))
     ax.set_zlim((5, 55))
 
+    def lorenz_deriv(x_y_z, t0, sigma=sigma, beta=beta, rho=rho):
+        """
+        Compute the time-derivative of a Lorenz system.
+        """
+        x, y, z = x_y_z
+        return [sigma * (y - x), x * (rho - z) - y, x * y - beta * z]
