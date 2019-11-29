@@ -65,3 +65,13 @@ t, x_t = solve_lorenz(angle=0, N=10)
 w = interactive(solve_lorenz, angle=(0.,360.), max_time=(0.1, 4.0),
                 N=(0,50), sigma=(0.0,50.0), rho=(0.0,50.0))
 display(w)
+
+t, x_t = w.result
+w.kwargs
+xyz_avg = x_t.mean(axis=1)
+xyz_avg.shape
+
+# Plot.
+plt.title("Average $x(t)$")
+plt.hist(xyz_avg[:,1])
+plt.title("Average $y(t)$")
