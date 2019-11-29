@@ -44,3 +44,16 @@ def solve_lorenz(N=10, angle=0.0, max_time=4.0, sigma=10.0, beta=8./3, rho=28.0)
     t = np.linspace(0, max_time, int(250*max_time))
     x_t = np.asarray([integrate.odeint(lorenz_deriv, x0i, t)
                       for x0i in x0])
+
+    # Choose a different color for each trajectory.
+    colors = plt.cm.viridis(np.linspace(0, 1, N))
+
+    for i in range(N):
+        x, y, z = x_t[i,:,:].T
+        lines = ax.plot(x, y, z, "-", c=colors[i])
+        plt.setp(lines, linewidth=2)
+
+    ax.view_init(30, angle)
+    plt.show()
+
+    return t, x_t
