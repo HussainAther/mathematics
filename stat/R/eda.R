@@ -35,3 +35,6 @@ the boxplot is generated to produce the notches with the option notch=TRUE. Appr
 are specified with the title function. Most importantly, we have used a powerful graphical technique of R 
 through par, which is useful in setting graphical parameters. Here, mfrow indicates that we need a multi-
 row figure with one row and two columns."
+
+yb <- read.table("/.../youden.csv",header=T,sep=",")
+data(yb)
