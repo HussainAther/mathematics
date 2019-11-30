@@ -37,3 +37,13 @@ def prediction2d(x, v, t, a):
                   [t]])
     X_prime = A.dot(X) + B.dot(a)
     return X_prime
+
+def covariance2d(sigma1, sigma2):
+    """
+    Find the covariance of the matrix.
+    """
+    cov1_2 = sigma1 * sigma2
+    cov2_1 = sigma2 * sigma1
+    cov_matrix = np.array([[sigma1 ** 2, cov1_2],
+                           [cov2_1, sigma2 ** 2]])
+    return np.diag(np.diag(cov_matrix))
