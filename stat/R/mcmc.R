@@ -80,3 +80,42 @@ sigma2[t] <- sig[t]*sig[t]}
 # Rejection Rates
 cat("Rejection Rate mu = ",REJmu/(T-B), "\n ")
 cat("Rejection Rate sigma = ",REJsig/(T-B), "\n ")
+
+# Metropolis-Hastings (metropolis hastings) update
+T <- 10000; B <- 1000;
+mu <- sigma2  <- tau <- numeric(T) ; u.mu <-  u.tau <- runif(T)
+tau[1] <- 1; mu[1] <- 0; kap <- 5
+
+# totals for rejections of proposals
+REJmu <- 0; REJtau <- 0
+
+# log posterior density (up to a constant)
+logpost = function(x,mu,tau){sig <- 1/sqrt(tau)
+logpost = sum(dnorm(x,mu,sig,log=T))-log(sig)}
+
+# MCMC sampling loop
+for (t in 2:T) {mucand <- mu[t-1] + runif(1,-0.5,0.5)
+                       taucand <- rgamma(1,kap,kap/tau[t-1])
+# accept (or not) proposal for mu
+log.alph.mu = logpost(x,mucand,tau[t-1])-logpost(x,mu[t-1],tau[t-1])
+if (log(u.mu[t]) < log.alph.mu) mu[t] <- mucand
+else { mu[t] <- mu[t-1]; if(t > B) REJmu <- REJmu+1 }
+# accept (or not) proposal for tau
+Hastcorr <- log(dgamma(tau[t-1],kap,kap/taucand)/dgamma(taucand,
+                                              kap,kap/tau[t-1]))
+log.alph.tau = logpost(x,mu[t],taucand)-logpost(x,mu[t],tau[t-1])
+                                                        +Hastcorr
+if (log(u.tau[t]) < log.alph.tau) tau[t] <- taucand
+else { tau[t] <- tau[t-1]; if (t>B) REJtau <- REJtau+1 }
+sigma2[t] <- 1/tau[t]}
+
+# Rejection Rates
+cat("Rejection Rate mu = ",REJmu/(T-B), "\n ")
+cat("Rejection Rate tau = ",REJtau/(T-B), "\n ")
+
+# Retain samples after Burn-in
+mu <- mu[B+1:T]; sigma2 <- sigma2[B+1:T]
+
+# parameter summaries
+summary(mu); quantile(mu[1:TB], c(0.025, 0.05, 0.90, 0.975))
+summary(sigma2); quantile(sigma2[1:TB], c(0.025, 0.05, 0.90, 0.975))
