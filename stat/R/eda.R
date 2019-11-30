@@ -8,3 +8,4 @@ library(RSADBE)
 
 x <- c(13,17,11,115,12,7,24)
 tab <- cbind(order(x),x[order(x)],c(1:7),c(7:1),pmin(c(1:7), c(7:1)))
+colnames(tab) <- c("x_label","x_order","Position_from_min", "Position_from_max","depth")
