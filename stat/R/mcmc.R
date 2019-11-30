@@ -49,3 +49,34 @@ plot(density(mu),col="red",main=expression(paste("Posterior
                                           Density of ",mu)))
 plot(density(sigma2),col="blue",main=expression(paste("Posterior
 Density of ",sigmâ2)))
+
+# Proposal rejection rates with uniform Metropolis sampling to update mu and sigma
+# MCMC sample settings, arrays for holding samples, initial values
+T <- 10000; B <- 1000;
+mu <- sigma2 <- sig <- numeric(T) ; u.mu <-  u.sig <- runif(T)
+sig[1] <- 1; mu[1] <- 0
+
+# totals for rejections of proposals
+REJmu <- 0; REJsig <- 0
+
+# log posterior density (up to a constant)
+logpost=function(x,mu,sig){logpost= sum(dnorm(x,mu,sig,log=T)) - log(sig)}
+
+# MCMC sampling loop
+for (t in 2:T) {mucand <- mu[t-1] + runif(1,-0.5,0.5)
+                      sigcand <- abs(sig[t-1] + runif(1,-0.5,0.5))
+
+# accept (or not) proposal for mu
+log.alph.mu = logpost(x,mucand,sig[t-1])-logpost(x,mu[t-1],sig[t-1])
+if (log(u.mu[t]) < log.alph.mu) mu[t] <- mucand
+else { mu[t] <- mu[t-1]; if(t > B) REJmu <- REJmu+1 }
+
+# accept (or not) proposal for sigma
+log.alph.sig = logpost(x,mu[t],sigcand)-logpost(x,mu[t],sig[t-1])
+if (log(u.sig[t]) < log.alph.sig) sig[t] <- sigcand
+else { sig[t] <- sig[t-1]; if (t>B) REJsig <- REJsig+1 }
+sigma2[t] <- sig[t]*sig[t]}
+
+# Rejection Rates
+cat("Rejection Rate mu = ",REJmu/(T-B), "\n ")
+cat("Rejection Rate sigma = ",REJsig/(T-B), "\n ")
