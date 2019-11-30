@@ -16,3 +16,12 @@ z = np.c_[x_observations, v_observations]
 a = 2  # Acceleration
 v = 280
 t = 1  # Difference in time
+
+# Process / Estimation Errors
+error_est_x = 20
+error_est_v = 5
+
+# Observation Errors
+error_obs_x = 25  # Uncertainty in the measurement
+error_obs_v = 6
+
