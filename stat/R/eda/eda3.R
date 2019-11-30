@@ -31,3 +31,7 @@ the output Speed contains the kilometers per second information recorded as the 
 light minus the speed registered at the experimental unit. Twenty runs of the experiment 
 is carried out at five different centers. If there is the presence of ether, we would expect 
 this speed to be less than the speed of light in a free medium."
+
+data(morley)
+par(mfrow=c(1,2))
+boxplot(Speed ∼ Expt, data=morley,xlab = "Experiment No.", ylab="Speed of light (km/s minus 299,000)")
