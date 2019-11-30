@@ -1,4 +1,5 @@
 # Logistic regression, M-H estimation with and without predictor selection
+# Metropolis-Hastings (metropolis hastings)
 n = 53;   npar = 5;   T =10000; B=1000; B1 <- B+1
 
 # Input data
