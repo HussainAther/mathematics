@@ -35,3 +35,6 @@ this speed to be less than the speed of light in a free medium."
 data(morley)
 par(mfrow=c(1,2))
 boxplot(Speed ∼ Expt, data=morley,xlab = "Experiment No.", ylab="Speed of light (km/s minus 299,000)")
+abline(h=792.458, lty=3)
+boxplot(Speed ∼ Expt, data=morley,xlab = "Experiment No.", ylab="Speed of light (km/s minus 299,000)",notch=TRUE)
+abline(h=792.458, lty=3)
