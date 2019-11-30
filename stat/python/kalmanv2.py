@@ -60,11 +60,12 @@ n = len(z[0])
 
 for data in z[1:]:
     X = prediction2d(X[0][0], X[1][0], t, a)
+
     # To simplify the problem, professor
     # set off-diagonal terms to 0.
     P = np.diag(np.diag(A.dot(P).dot(A.T)))
 
-    # Calculating the Kalman Gain
+    # Calculating the Kalman Gain.
     H = np.identity(n)
     R = covariance2d(error_obs_x, error_obs_v)
     S = H.dot(P).dot(H.T) + R
@@ -73,11 +74,11 @@ for data in z[1:]:
     # Reshape the new data into the measurement space.
     Y = H.dot(data).reshape(n, -1)
 
-    # Update the State Matrix
+    # Update the State Matrix.
     # Combination of the predicted state, measured values, covariance matrix and Kalman Gain
     X = X + K.dot(Y - H.dot(X))
 
-    # Update Process Covariance Matrix
+    # Update Process Covariance Matrix.
     P = (np.identity(len(K)) - K.dot(H)).dot(P)
 
 print("Kalman Filter State Matrix:\n", X)
