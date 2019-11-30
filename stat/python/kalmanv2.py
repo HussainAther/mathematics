@@ -25,3 +25,15 @@ error_est_v = 5
 error_obs_x = 25  # Uncertainty in the measurement
 error_obs_v = 6
 
+def prediction2d(x, v, t, a):
+    """
+    Predict positions of the aircraft.
+    """
+    A = np.array([[1, t],
+                  [0, 1]])
+    X = np.array([[x],
+                  [v]])
+    B = np.array([[0.5 * t ** 2],
+                  [t]])
+    X_prime = A.dot(X) + B.dot(a)
+    return X_prime
