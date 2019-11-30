@@ -25,3 +25,4 @@ fnid_pleasant <- fnid(memory$Pleasant.memory)
 fnid_unpleasant <- fnid(memory$Unpleasant.memory)
 btskew_pleasant <- (fnid_pleasant[3]-fnid_pleasant[2])/(fnid_pleasant[3]+fnid_pleasant[2]) 
 btskew_unpleasant <- (fnid_unpleasant[3]-fnid_unpleasant[2])/(fnid_unpleasant[3]+fnid_unpleasant[2])
+btskew_pleasant; btskew_unpleasant
