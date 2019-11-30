@@ -47,3 +47,14 @@ def covariance2d(sigma1, sigma2):
     cov_matrix = np.array([[sigma1 ** 2, cov1_2],
                            [cov2_1, sigma2 ** 2]])
     return np.diag(np.diag(cov_matrix))
+
+# Initial Estimation Covariance Matrix
+P = covariance2d(error_est_x, error_est_v)
+A = np.array([[1, t],
+              [0, 1]])
+
+# Initial State Matrix
+X = np.array([[z[0][0]],
+              [v]])
+n = len(z[0])
+
