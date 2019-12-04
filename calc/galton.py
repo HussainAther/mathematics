@@ -23,13 +23,26 @@ class Ball():
  
     def update(self):
         """
-        How does the ball move?
+        How does the ball move? We use the y coordinate to show
+        how deep we've fallen.
         """
         self.x += random.randint(0,1)
         self.y += 1
  
     def fall(self):
         """
-        It falls!
+        It falls! Increase y to show how far we've fallen.
         """
         self.y += 1 
+
+class Board():
+    def __init__(self, width, well_depth, N):
+        """
+        Keep track of each ball on the board.
+        """
+        self.balls = []
+        self.fallen = [0] * (width + 1)
+        self.width = width
+        self.well_depth = well_depth
+        self.N = N
+        self.shift = 4
