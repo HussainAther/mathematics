@@ -46,3 +46,17 @@ class Board():
         self.well_depth = well_depth
         self.N = N
         self.shift = 4
+
+    def update(self):
+        """
+        Determine if the ball falls.
+        """
+        for ball in self.balls:
+            if ball.y < self.width:
+                ball.update()
+            elif ball.y < self.width + self.well_depth - self.fallen[ball.x]:
+                ball.fall()
+            elif ball.y == self.width + self.well_depth - self.fallen[ball.x]:
+                self.fallen[ball.x] += 1
+            else:
+                pass
