@@ -6,7 +6,7 @@ import time
 Bean machine galton box to show the central limit theorem
 """
 
-def print_there(x, y, text):
+def printit(x, y, text):
     """
     Print function for each layer. 
     """
@@ -73,3 +73,23 @@ class Board():
         """
         if(len(self.balls) <= self.N):
             self.balls.append(Ball())
+
+    def printboard(self):
+        """
+        Print it line by line.
+        """
+        for y in range(self.width + 1):
+            for x in range(y):
+                printit( y + 1 ,self.width - y + 2*x + self.shift + 1, "#")
+
+    def printball(self, ball):
+        """
+        Show us the ball's status.
+        """
+        if ball.y <= self.width:
+            x = self.width - ball.y + 2*ball.x + self.shift
+        else:
+            x = 2*ball.x + self.shift
+        y = ball.y + 1
+        printit(y, x, "*")
+ 
