@@ -68,5 +68,8 @@ class Board():
         return len(self.balls) - sum(self.fallen)
  
     def add_ball(self):
+        """
+        Should we add a ball? This is following an update.
+        """
         if(len(self.balls) <= self.N):
             self.balls.append(Ball())
