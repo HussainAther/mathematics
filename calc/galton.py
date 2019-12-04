@@ -92,4 +92,12 @@ class Board():
             x = 2*ball.x + self.shift
         y = ball.y + 1
         printit(y, x, "*")
- 
+
+    def printall(self):
+        """
+        Print everything as they are.
+        """
+        print(chr(27) + "[2J")
+        self.print_board();
+        for ball in self.balls:
+            self.print_ball(ball) 
