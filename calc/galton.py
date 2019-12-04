@@ -60,3 +60,13 @@ class Board():
                 self.fallen[ball.x] += 1
             else:
                 pass
+
+    def balls_on_board(self):
+        """
+        What's going on?
+        """
+        return len(self.balls) - sum(self.fallen)
+ 
+    def add_ball(self):
+        if(len(self.balls) <= self.N):
+            self.balls.append(Ball())
