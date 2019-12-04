@@ -67,7 +67,7 @@ class Board():
         """
         return len(self.balls) - sum(self.fallen)
  
-    def add_ball(self):
+    def addball(self):
         """
         Should we add a ball? This is following an update.
         """
@@ -100,4 +100,22 @@ class Board():
         print(chr(27) + "[2J")
         self.print_board();
         for ball in self.balls:
-            self.print_ball(ball) 
+            self.print_ball(ball)
+
+def main():
+    """
+    Run it.
+    """
+    board = Board(width = 15, well_depth = 5, N = 10)
+    board.addball() # initialization
+    while(board.balls_on_board() > 0):
+         board.printall()
+         time.sleep(0.25)
+         board.update()
+         board.printall()
+         time.sleep(0.25)
+         board.update()
+         board.addball()
+ 
+if __name__=="__main__":
+    main() 
