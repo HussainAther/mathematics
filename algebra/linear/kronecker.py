@@ -1,5 +1,5 @@
 """
-Kronecker product
+Kronecker product one-liner
 """
 
 def kp(m1, m2):
