@@ -57,4 +57,18 @@ def legroots(p, tol=1e-20):
         else:
             roots = np.concatenate((-1.0*roots, [0.0], roots[::-1]))
         err = 0
-    return [roots, err] 
+    return [roots, err]
+
+def glw(p):
+    """
+    get the Gaussian-Legendre weights of polynomial order p
+    """ 
+    W = []
+    [xis, err] = legroots(p)
+    if err == 0:
+        W = 2.0/((1.0 - xis**2)*(dleg(p, xis)**2))
+        err = 0
+    else:
+        err = 1
+    return [W, xis, err]
+   
