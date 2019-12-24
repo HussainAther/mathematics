@@ -32,5 +32,16 @@ def dleg(n, x):
 def legroots(p, tol=1e-20):
     """
     Get the roots of the polynomial of order p with the Newton-Raphson
-    (newton raphson) method.
-    """ 
+    (newton raphson) method. Also use a tolerance tol to determine
+    when to stop the algorithm.
+    """
+    if p < 2:
+        err = 1
+    else:
+        roots = []
+        # The polynomials are even and odd functions. Evaluate only half
+        # of the number of roots.
+        for i in range(1, int(p)/2+1):
+            x = np.cos(np.pi*)i-.25)/p+.5))
+            err = 10*tol 
+            
