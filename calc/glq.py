@@ -71,4 +71,9 @@ def glw(p):
     else:
         err = 1
     return [W, xis, err]
-   
+  
+def glquad(func, p, a, b):
+    """
+    Return the integral value  for a function func, lower and upper integral
+    limits a and b, and polynomial order p.
+    """ 
