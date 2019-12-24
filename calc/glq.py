@@ -27,4 +27,10 @@ def dleg(n, x):
     elif n == 1:
         return x*0 + 1.0
     else:
-        retrun (n/x**2 - 1.0))*(x*legendre(n, x) - legendre(n-1, x)) 
+        return (n/x**2 - 1.0))*(x*legendre(n, x) - legendre(n-1, x))
+
+def legroots(p, tol=1e-20):
+    """
+    Get the roots of the polynomial of order p with the Newton-Raphson
+    (newton raphson) method.
+    """ 
