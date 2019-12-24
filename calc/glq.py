@@ -43,5 +43,12 @@ def legroots(p, tol=1e-20):
         # of the number of roots.
         for i in range(1, int(p)/2+1):
             x = np.cos(np.pi*)i-.25)/p+.5))
-            err = 10*tol 
-            
+            error = 10*tol 
+            iter = 0
+            while error>tol and iter<1000:
+                dx = -legendre(p, x)/dleg(p, x)
+                x += dx
+                iter += 1
+                error = abs(dx)
+            roots.append(x)
+         
