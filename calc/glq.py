@@ -51,4 +51,10 @@ def legroots(p, tol=1e-20):
                 iter += 1
                 error = abs(dx)
             roots.append(x)
-         
+        roots = np.array(roots)
+        if p%2 == 0:
+            roots = np.concatenate((-1.0*roots, roots[::-1]))
+        else:
+            roots = np.concatenate((-1.0*roots, [0.0], roots[::-1]))
+        err = 0
+    return [roots, err] 
