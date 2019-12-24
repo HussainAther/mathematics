@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from scipy.stats import ttest_ind, ttest_1samp, poisson
 
@@ -8,7 +8,6 @@ Simple statistics and methods to quantify uncertainty
 """
 
 # Make up some data I don't know
-# N = 25
 N = 75
 mu1 = 7
 mu2 = 10
@@ -53,7 +52,7 @@ for ii, (imn, iste, c) in enumerate([(mn1, ste1, "b"), (mn2, ste2, "g")]):
     ax.hlines(ymax + 1 + ii, imn - iste, imn + iste, lw=6, color=c)
 ax.set_ylim([None, ax.get_ylim()[-1] + 2])
 
-# Calculate uncertainty
+# Calculate uncertainty.
 data = np.random.poisson(lam=2, size=5000)
 
 mn = data.mean()
@@ -63,7 +62,7 @@ fig, ax = plt.subplots()
 ax.hist(data, bins=np.arange(0, 10, 1))
 ax.hlines(ax.get_ylim()[-1] + 10, mn - ste, mn + ste, lw=10)
 
-# Bootstrap: Randomly sample data, calculate mean, repeat and calculate percentiles of the distribution
+# Bootstrap: Randomly sample data, calculate mean, repeat and calculate percentiles of the distribution.
 n_boots = 1000
 means = np.zeros(n_boots)
 for ii in range(n_boots):
@@ -71,7 +70,7 @@ for ii in range(n_boots):
     sample = data[ixs_sample]
     means[ii] = sample.mean()
 
-# Calculate confidence intervals
+# Calculate confidence intervals.
 clo, chi = np.percentile(means, [2.5, 97.5])
 fig, ax = plt.subplots()
 ax.hist(means, histtype="step", color="r")
