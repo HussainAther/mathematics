@@ -76,4 +76,11 @@ def glquad(func, p, a, b):
     """
     Return the integral value  for a function func, lower and upper integral
     limits a and b, and polynomial order p.
-    """ 
+    """
+    [Ws, xs, err] = glw(p)
+    if err == 0:
+         sol = (b-a)*.5*sum(Ws*func((b-a)*.5*xs + (b+a)*.5))
+    else:
+         err = 1
+         sol = None
+    return [sol, err] 
