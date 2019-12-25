@@ -16,3 +16,9 @@ def kochSnowflake(n, a, b):
     return chain.from_iterable(
         map(kochCurve(n), points, points[1:] + [points[0]])
     )
+
+def kochCurve(n):
+    """
+    List of points on a Koch curve of order n,
+    starting at point ab, and ending at point xy.
+    """
