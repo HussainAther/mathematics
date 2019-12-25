@@ -22,3 +22,7 @@ def kochCurve(n):
     List of points on a Koch curve of order n,
     starting at point ab, and ending at point xy.
     """
+    def koch(n, abxy):
+        """
+        Use the Koch formula to get the points.
+        """
