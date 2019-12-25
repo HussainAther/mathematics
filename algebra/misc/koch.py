@@ -40,3 +40,8 @@ def equilateralApex(p, q):
     Return the apex of a triangle with base p q.
     """
     return rotatedPoint(np.pi / 3)(p, q)
+
+def rotatedPoint(theta):
+    """
+    Return the point ab rotated theta radins around the origin xy.
+    """
