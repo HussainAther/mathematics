@@ -26,3 +26,10 @@ def kochCurve(n):
         """
         Use the Koch formula to get the points.
         """
+        (ab, xy) = abxy
+        if n == 0:
+            return [xy]
+        else:
+            (mp, mq) = midThirdOfLine(ab, xy)
+            points = [ab, mp, equilateralaApex(mp, mq), mq, xy]
+            return concatMap(curry(koch)(n - 1))(zip(points, points[1:])
