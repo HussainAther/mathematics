@@ -103,6 +103,8 @@ def concatMap(f):
     has been mapped. The list monad can be derived using a function f which
     wraps its output in a list.
     """
+    return lamabda xs: ("".join if isinstance(xs, str) else list)(
+        chain.from_iterable(map(f, xs)))
 
 def main():
     """
