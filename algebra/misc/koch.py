@@ -61,3 +61,17 @@ def rotatedVector(theta, xy):
     (x, y) = xy
     return (x*np.cos(theta) - y*np.sin(theta),
             x*np.sin(theta) + y*np.cos(theta))
+
+def midThirdOfLine(ab, xy):
+    """
+    Return the second of three equal segments of the line
+    between ab and xy. 
+    """
+    vector = [x/3 for x in map(sub, xy, ab)]
+    def f(p):
+        """
+        Add the vector to the point and create the map.
+        """
+        return tuple(map(add, vector, p))
+    p = f(ab)
+    return (p, f(p))
