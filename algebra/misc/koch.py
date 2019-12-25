@@ -88,10 +88,10 @@ def svgFromPoints(w):
         xs = " ".join(map(lambda xy: str(round(xy[0], 2)) + " " + str(round(xy[1], 2)),  
                           xys))
         return "\n".join(          
-             ['<svg xmlns="http://www.w3.org/2000/svg"',
-             f'width="512" height="512" viewBox="5 5 {w} {w}">',
-             f'<path d="M{xs}" ',
-             'stroke-width="2" stroke="red" fill="transparent"/>',
+             ['<svg xmlns=\"http://www.w3.org/2000/svg\"',
+             'width=\"512\" height=\"512\" viewBox=\"5 5 {w} {w}\">',
+             '<path d=\"M{xs}\" ',
+             'stroke-width=\"2\" stroke=\"red\" fill=\"transparent\"/>',
              '</svg>'
              ]
         )
@@ -103,7 +103,7 @@ def concatMap(f):
     has been mapped. The list monad can be derived using a function f which
     wraps its output in a list.
     """
-    return lamabda xs: ("".join if isinstance(xs, str) else list)(
+    return lambda xs: ("".join if isinstance(xs, str) else list)(
         chain.from_iterable(map(f, xs)))
 
 def curry(f):
@@ -117,6 +117,4 @@ def main():
     Create an SVG for the Koch snowflake of order 4.
     """
     print(svgFromPoints(1024)(kochSnowflake(4, (200, 600), (800, 600))))
-
-main()
 
