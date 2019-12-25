@@ -45,3 +45,11 @@ def rotatedPoint(theta):
     """
     Return the point ab rotated theta radins around the origin xy.
     """
+    def go(xy, ab):
+        """
+        Go the the next point.
+        """
+        (ox, oy) = xy
+        (a, b) = ab
+        (dx, dy) = rotatedVector(theta, (a-ox, oy-b))
+    return lambda axy, ab: go(xy, ab)
