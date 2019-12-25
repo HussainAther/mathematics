@@ -81,6 +81,21 @@ def svgFromPoints(w):
     Get the width of the square canvas and create a point list
     and an SVG string.
     """
+    def go(w, xys):    
+        """
+        Go to the next point in the map.
+        """   
+        xs = " ".join(map(lambda xy: str(round(xy[0], 2)) + " " + str(round(xy[1], 2)),  
+                          xys))
+        return "\n".join(          
+             ['<svg xmlns="http://www.w3.org/2000/svg"',
+             f'width="512" height="512" viewBox="5 5 {w} {w}">',
+             f'<path d="M{xs}" ',
+             'stroke-width="2" stroke="red" fill="transparent"/>',
+             '</svg>'
+             ]
+        )
+        return lambda xys: go(w, xys) 
 
 def main():
     """
@@ -89,3 +104,4 @@ def main():
     print(svgFromPoints(1024)(kochSnowflake(4, (200, 600), (800, 600))))
 
 main()
+
