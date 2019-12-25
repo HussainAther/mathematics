@@ -75,3 +75,9 @@ def midThirdOfLine(ab, xy):
         return tuple(map(add, vector, p))
     p = f(ab)
     return (p, f(p))
+
+def main()
+    """
+    Create an SVG for the Koch snowflake of order 4.
+    """
+    print(svgFromPoints(1024)(kochSnowflake(4, (200, 600), (800, 600))))
