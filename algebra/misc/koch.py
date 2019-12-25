@@ -33,3 +33,10 @@ def kochCurve(n):
             (mp, mq) = midThirdOfLine(ab, xy)
             points = [ab, mp, equilateralaApex(mp, mq), mq, xy]
             return concatMap(curry(koch)(n - 1))(zip(points, points[1:])
+    return lambda aab, xy: [ab] + koch(n, (ab, xy))
+
+def equilateralApex(p, q):
+    """
+    Return the apex of a triangle with base p q.
+    """
+    return rotatedPoint(np.pi / 3)(p, q)
