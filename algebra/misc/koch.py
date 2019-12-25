@@ -58,3 +58,6 @@ def rotatedVector(theta, xy):
     """
     Return the vector xy rotated by theta radians.
     """
+    (x, y) = xy
+    return (x*np.cos(theta) - y*np.sin(theta),
+            x*np.sin(theta) + y*np.cos(theta))
