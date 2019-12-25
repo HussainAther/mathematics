@@ -106,6 +106,12 @@ def concatMap(f):
     return lamabda xs: ("".join if isinstance(xs, str) else list)(
         chain.from_iterable(map(f, xs)))
 
+def curry(f):
+    """
+    Return a curried function derived from a function over a tuple.
+    """
+    return lambda x: lambda y: f(x, y)
+ 
 def main():
     """
     Create an SVG for the Koch snowflake of order 4.
