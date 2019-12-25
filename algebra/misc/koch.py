@@ -53,3 +53,8 @@ def rotatedPoint(theta):
         (a, b) = ab
         (dx, dy) = rotatedVector(theta, (a-ox, oy-b))
     return lambda axy, ab: go(xy, ab)
+
+def rotatedVector(theta, xy):
+    """
+    Return the vector xy rotated by theta radians.
+    """
