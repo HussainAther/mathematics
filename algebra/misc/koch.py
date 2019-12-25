@@ -97,6 +97,13 @@ def svgFromPoints(w):
         )
         return lambda xys: go(w, xys) 
 
+def concatMap(f):
+    """
+    Create a concatenated list or string over which a function
+    has been mapped. The list monad can be derived using a function f which
+    wraps its output in a list.
+    """
+
 def main():
     """
     Create an SVG for the Koch snowflake of order 4.
