@@ -32,7 +32,7 @@ def kochCurve(n):
         else:
             (mp, mq) = midThirdOfLine(ab, xy)
             points = [ab, mp, equilateralaApex(mp, mq), mq, xy]
-            return concatMap(curry(koch)(n - 1))(zip(points, points[1:])
+            return concatMap(curry(koch)(n - 1))(zip(points, points[1:]))
     return lambda aab, xy: [ab] + koch(n, (ab, xy))
 
 def equilateralApex(p, q):
@@ -76,8 +76,16 @@ def midThirdOfLine(ab, xy):
     p = f(ab)
     return (p, f(p))
 
-def main()
+def svgFromPoints(w):
+    """
+    Get the width of the square canvas and create a point list
+    and an SVG string.
+    """
+
+def main():
     """
     Create an SVG for the Koch snowflake of order 4.
     """
     print(svgFromPoints(1024)(kochSnowflake(4, (200, 600), (800, 600))))
+
+main()
