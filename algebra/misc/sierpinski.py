@@ -6,4 +6,6 @@ def st(n):
     for i in range(n):
         sp = " " * (2**i)
         d = [sp+x+sp for x in d] + [x + " " + x for x in d]
+    print(d)
 
+print("\n".join(st(4)))
