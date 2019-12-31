@@ -34,3 +34,47 @@ def peano(iterations=1):
     kkkj = screenlength(iterations)
     screen.setworldcoordinates(-1, -1, kkkj + 1, kkkj + 1)
     ivan.color("#EEFFFF", "#FFFFFF")
+
+    # The magic  \(^-^)/:
+    def step1(k):
+        global stack
+        stack.append(len(inspect.stack()))
+        if k != 0:
+            ivan.left(90)
+            step2(k - 1)
+            ivan.forward(walk)
+            ivan.right(90)
+            step1(k - 1)
+            ivan.forward(walk)
+            step1(k - 1)
+            ivan.right(90)
+            ivan.forward(walk)
+            step2(k - 1)
+            ivan.left(90)
+    def step2(k):
+        global stack
+        stack.append(len(inspect.stack()))
+        if k != 0:
+            ivan.right(90)
+            step1(k - 1)
+            ivan.forward(walk)
+            ivan.left(90)
+            step2(k - 1)
+            ivan.forward(walk)
+            step2(k - 1)
+            ivan.left(90)
+            ivan.forward(walk)
+            step1(k - 1)
+            ivan.right(90)
+ 
+    # Making the program work:
+    ivan.left(90)
+    step2(iterations)
+ 
+    tt.done()
+ 
+if __name__ == "__main__":
+    peano(4)
+    import pylab as P # This plot, after closing the drawing window, the "stack" graphic.
+    P.plot(stack)
+    P.show()
