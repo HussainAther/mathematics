@@ -30,3 +30,7 @@ def peano(iterations=1):
             length = screenlength(k-1)
             return 2*length + 1
         else: return 0
+
+    kkkj = screenlength(iterations)
+    screen.setworldcoordinates(-1, -1, kkkj + 1, kkkj + 1)
+    ivan.color("#EEFFFF", "#FFFFFF")
