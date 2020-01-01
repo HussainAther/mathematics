@@ -14,3 +14,11 @@ def spiral(n):
             dx, dy = -dy, dx
             x,y = x+dx, y+dy
     return myarray
+
+def printspiral(myarray):
+    n = range(len(myarray))
+    for y in n:
+        for x in n:
+            print("%2i" % myarray[x][y]),
+        print("")
+printspiral(spiral(4))
