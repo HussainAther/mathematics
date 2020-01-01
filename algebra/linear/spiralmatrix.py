@@ -1,3 +1,4 @@
-"""
-Square numbers in a spiral matrix.
-"""
+def spiral(n):
+    """
+    Square numbers in a spiral matrix.
+    """
