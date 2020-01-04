@@ -17,3 +17,15 @@ def fib():
     while True:
         yield a
         a,b = b,a+b
+
+def power_of_threes():
+    """
+    Powers of 3 
+    """
+    return (3**k for k in count(0))
+ 
+def heads(s):
+    """
+    Header of the distribution
+    """
+    for a in s: yield int(str(a)[0])
