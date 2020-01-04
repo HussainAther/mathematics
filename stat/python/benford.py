@@ -18,7 +18,7 @@ def fib():
         yield a
         a,b = b,a+b
 
-def power_of_threes():
+def powerofthrees():
     """
     Powers of 3 
     """
@@ -30,7 +30,7 @@ def heads(s):
     """
     for a in s: yield int(str(a)[0])
 
-def show_dist(title, s):
+def showdist(title, s):
     """
     Show the distribution.
     """
@@ -41,3 +41,6 @@ def show_dist(title, s):
     print("\n%s Benfords deviation" % title)
     for r, e in zip(res, expected):
         print("%5.1f%% %5.1f%%  %5.1f%%" % (r*100., e*100., abs(r - e)*100.))
+
+showdist("fibbed", islice(heads(fib()), 1000))
+showdist("threes", islice(heads(powerofthrees()), 1000))
