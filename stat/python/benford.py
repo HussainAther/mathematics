@@ -1,0 +1,3 @@
+"""
+Benford's (benford) law.
+"""
