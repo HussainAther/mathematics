@@ -1,3 +1,8 @@
+
+"""
+Calculate the Euler constant. 
+"""
+
 e0 = 0
 e = 2
 n = 0
