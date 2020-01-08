@@ -1,6 +1,6 @@
 
 """
-Calculate the Euler constant. 
+Calculate the Euler constant using Brother's formula. 
 """
 
 e0 = 0
