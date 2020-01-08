@@ -1,3 +1,4 @@
+import math
 
 """
 Calculate the Euler constant using Brother's formula. 
