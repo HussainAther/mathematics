@@ -41,3 +41,14 @@ def solvepell(n, a, b):
     e2 = [0]
     f1 = [0]
     f2 = [1]
+    while True:
+        y = r * z - y
+        z = ((n - y * y) // z)
+        r = (x + y) // z
+        func(e1, e2, r)
+        fun(f1, f2, r)
+        a[0] = f2[0]
+        b[0] = e2[0]
+        fun(b, a, x)
+        if a[0] * a[0] - n * b[0] * b[0] == 1:
+            return
