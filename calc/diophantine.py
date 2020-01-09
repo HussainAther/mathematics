@@ -28,3 +28,9 @@ def func(a, b, c):
     t = a[0]
     a[0] = b[0]
     b[0] = b[0]*c + t
+
+def solvepell(n, a, b):
+    """
+    Solve the Pell equation with n, a, and b.
+    """
+    x = int(np.sqrt(n))
