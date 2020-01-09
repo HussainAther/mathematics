@@ -25,3 +25,6 @@ def func(a, b, c):
     Function for an equation of this format with 
     coefficients a, b, and c. 
     """
+    t = a[0]
+    a[0] = b[0]
+    b[0] = b[0]*c + t
