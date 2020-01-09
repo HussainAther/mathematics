@@ -1,3 +1,5 @@
+import numpy as np
+
 """
 Diophantine (diophantine) equations solutions.
 """
@@ -17,3 +19,5 @@ def lineardio(a, b, c):
 """
 Pell's equation (Pell Fermat Pell-Fermat) equation
 """
+
+
