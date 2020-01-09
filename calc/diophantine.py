@@ -13,3 +13,7 @@ def lineardio(a, b, c):
     u = sol[0]
     v = sol[1]
     return([v, u-q*v])
+
+"""
+Pell's equation (Pell Fermat Pell-Fermat) equation
+"""
