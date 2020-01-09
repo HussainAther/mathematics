@@ -20,4 +20,8 @@ def lineardio(a, b, c):
 Pell's equation (Pell Fermat Pell-Fermat) equation
 """
 
-
+def func(a, b, c):
+    """
+    Function for an equation of this format with 
+    coefficients a, b, and c. 
+    """
