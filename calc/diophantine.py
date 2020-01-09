@@ -34,3 +34,10 @@ def solvepell(n, a, b):
     Solve the Pell equation with n, a, and b.
     """
     x = int(np.sqrt(n))
+    y = x
+    z = 1
+    r = x << 1
+    e1 = [1]
+    e2 = [0]
+    f1 = [0]
+    f2 = [1]
