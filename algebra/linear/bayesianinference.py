@@ -389,3 +389,34 @@ def compute_elbo(a, b, nu, omega, x, y, a_0, b_0, mu_0):
     B = elbo_beta(a, b, nu, omega, mu_0);
     Y = elbo_y(a, b, nu, omega, x, y);
     return  L + B + Y
+
+    def update_omega(a, b, x):
+    return (a/b)*(1 + torch.sum(x**2, dim=0))
+
+def update_nu_k(a, b, nu, x, y, k):
+    K = x.size(1)
+    denom = 1. + torch.sum(x[:, k]**2, dim = 0)
+    p0 = mu_0
+    p1 = torch.sum( y.squeeze() * x[:, k] )
+    p3 = -torch.sum(
+        sum(x[:,k] * x[:,j] * nu[j] for j in range(K) if j != k)
+    )
+    return (p0 + p1 + p3) / denom
+
+def update_b(nu, omega, x, y):
+    
+    p1 = tensor(gf(1.5) * 2**(1.5) / np.sqrt(2*np.pi))/omega
+    p2 = (nu - mu_0)**2
+    p3 = 0.5*torch.sum(p1 + p2)
+    
+    p4 = 0.5*torch.sum(y.squeeze()**2)
+    
+    p5 = torch.sum(x * nu[None, :], dim=1)
+    p6 = -torch.sum(y.squeeze()*p5)
+    
+    p7 = torch.sum(x**2*(1./omega + nu**2)[None,:])
+    t = torch.sum(x[:, :, None]*x[:, None,:]*nu[None, :, None]*nu[None, None, :],dim=0)
+    p8 = 2*(t.triu().sum() - t.trace())
+    p9 = 0.5*(p7 + p8)
+    
+    return b_0 + p3 + p4 + p6 + p9
