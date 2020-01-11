@@ -263,3 +263,15 @@ def MH(y, x, k, a_0, b_0, mu_0, n_iterations):
     # Storage for samples
     tau_samples = []
     betas_samples = []
+
+    # Initialize latent variables at prior mean.
+    tau = t_prior.mean
+    betas = torch.ones(k) * b_prior(1./tau).mean
+    
+    for i in range(n_iterations):
+        
+        # Calculate the unnormalized posterior (joint pdf) for the previous latents, p(z, x).
+        tau_logprob = t_prior.log_prob(tau)
+        betas_logprob = b_prior(1./tau).log_prob(betas)
+        ll = loglikelihood(y, betas, x_features, 1./tau)
+        log_p_z_given_x = torch.sum(tau_logprob) + torch.sum(betas_logprob) + torch.sum(ll)
