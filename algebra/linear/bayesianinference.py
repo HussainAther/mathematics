@@ -208,3 +208,37 @@ for i in range(100):
                             inferred_b, inferred_mu, inferred_lambda), alpha=0.02, color="blue")
 plt.xlim(min(x_list_extr),max(x_list_extr))
 plt.show()
+
+"""
+3. Markov Chain Monte Carlo using Metropolis Hastings
+
+First we'll define a function to make proposals and 
+calculate necessary probabilities, given approximate distributions
+Then we'll fill out the specifics of our MH algorithm 
+"""
+
+def propose(transition_dist, prior, prev_val):
+    """
+    General purpose proposal function
+    
+    Inputs
+    ------
+    prev_val: the previous sample, z
+    transition_dist: a function that takes in a val and returns a distribution --> q(z | val)
+    prior: the prior over val --> p(z)
+    
+    Outputs
+    -------
+    new_val: new proposed value, z'
+    prior_logprob: log probability of new_val under its prior p
+    ft_logprob: transition probability from prev_val to new_val --> log q(z'|z)
+    bt_logprob: transition probability from new_val to prev_val --> log q(z|z')
+    
+    """
+    
+    # TO DO
+    # Helpful Syntax--
+    # To take a sample: dist.sample()
+    # To get the log probability of val under dist: dist.log_prob(val) 
+    
+    return new_val, prior_logprob, ft_logprob, bt_logprob      
