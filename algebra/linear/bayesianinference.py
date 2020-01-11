@@ -528,3 +528,25 @@ def stochastic_gradient_variational_bayes(x, y, a_0, b_0, mu_0, k, n_iterations=
         if i%1000==0: print("Iteration", i, "ELBO", elbos[-1])
         
     return omega, nu, elbos
+
+
+omega, nu, elbo = stochastic_gradient_variational_bayes(x, y, a_0, b_0, mu_0, k)
+plt.plot(elbo)
+plt.title("ELBO by update")
+plt.show()
+plt.scatter(x_list, y.numpy())
+plt.title("Actual: " + polynomial_str)
+for i in range(50):
+    betas = MN(nu, 1e-7 + torch.diag(1./omega)).sample().tolist()
+    plt.plot(x_list_extr,polynomial(betas, np.array(x_list_extr)), alpha=0.05, color="blue")
+plt.xlim(min(x_list_extr),max(x_list_extr))
+SGVB_nu = nu.tolist()
+print("SGVB:")
+print(SGVB_nu)
+print("VI:")
+print(VI_nu)
+print("MCMC (expectation): ")
+print(MCMC_expectation)
+print("Analytical: ")
+print(analytical_inferred_mu)
+plt.show()
