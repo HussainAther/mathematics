@@ -69,7 +69,7 @@ def loglikelihood(y, b, x, variance):
     
     Output
     ------
-    Log probability of y"s
+    Log probability of y's
         
     """
     return MN(x.mm(b[:,None]),(1e-7 + variance)*torch.eye(len(y))).log_prob(y)
@@ -114,10 +114,10 @@ mu_0=tensor(0.)
 k=4
 y, betas = sample_from_prior(x, a_0, b_0, mu_0, k)
 polynomial_str = ""
-for i, b in enumerate(betas.numpy()):
+for i, b in enumerate(betas.np()):
     polynomial_str += "{0:.2f}".format(b) + "x^" + str(i) 
     if i < k - 1: polynomial_str += " + "
-plt.scatter(x_arr, y.numpy())
+plt.scatter(x_arr, y.np())
  plt.title(polynomial_str)
   plt.show()
 
@@ -188,19 +188,19 @@ def sample_from_posterior(x, a, b, mu, lmbda):
     """
     variance = 1./Gamma(a, b).sample()
     betas = MN(mu.squeeze(), variance*lmbda.inverse()).sample()
-    return polynomial(betas.numpy(), x)
+    return polynomial(betas.np(), x)
     
 # Inference given sampled y
 inferred_a, inferred_b, inferred_mu, inferred_lambda = analytical_posterior(y, x, a_0, a_0, mu_0, k)
-print("Inferred a: ", inferred_a.numpy())
-print("Inferred b: ", inferred_b.squeeze().numpy())
-analytical_inferred_mu = inferred_mu.squeeze().numpy()
+print("Inferred a: ", inferred_a.np())
+print("Inferred b: ", inferred_b.squeeze().np())
+analytical_inferred_mu = inferred_mu.squeeze().np()
 print("Inferred mu: ", analytical_inferred_mu)
 print("Inferred precision (note dependence between betas): ")
-print(inferred_lambda.numpy()) 
+print(inferred_lambda.np()) 
 
 print("How do samples from the posterior look compared to the data?")
-plt.scatter(x_arr, y.numpy())
+plt.scatter(x_arr, y.np())
 plt.title("Actual: " + polynomial_str)
 for i in range(100):
     plt.plot(x_arr,sample_from_posterior(x, inferred_a, 
@@ -211,7 +211,7 @@ plt.show()
 print("We can also check predictions outside of the range of our dataset:")
 x_list_extr = [-3 + i*0.1 for i in range(61)]
  x_extr = tensor(x_list_extr)
-plt.scatter(x_arr, y.numpy())
+plt.scatter(x_arr, y.np())
 for i in range(100):
     plt.plot(x_list_extr,sample_from_posterior(x_extr, inferred_a, 
                             inferred_b, inferred_mu, inferred_lambda), alpha=0.02, color="blue")
@@ -244,11 +244,16 @@ def propose(transition_dist, prior, prev_val):
     bt_logprob: transition probability from new_val to prev_val --> log q(z|z')
     
     """
-    new_val = transition_dist.sample()
+    # Get proposal value and log q(z'|z)
+    forward_dist = transition_dist(prev_val)
+    new_val = forward_dist.sample()
+    ft_logprob = forward_dist.log_prob(new_val)
+    # log q(z|z')
+    backward_dist = transition_dist(new_val)
+    bt_logprob = backward_dist.log_prob(prev_val)
+    # log p(z)
     prior_logprob = prior.log_prob(new_val)
-    ft_logprob = transition_dist.log_prob(new_val)
-    bt_logprob = transition_dist.log_prob(prev_val)
-    return new_val, prior_logprob, ft_logprob, bt_logprob      
+    return new_val, prior_logprob, ft_logprob, bt_logprob       
 
 """
 To write our MH algorithm, we need to:
@@ -291,20 +296,35 @@ def MH(y, x, k, a_0, b_0, mu_0, n_iterations):
         if i % 2 == 0:
         
             def transition_dist(old_tau):
-                proposal_dist = tau_prior()
-                return proposal_dist
+                min_val = min(pv.numpy(),0)
+                max_val = pv + 1.
+                return Uniform(min_val, max_val)
             tau_prime, tau_logprob, ft_logprob, bt_logprob = propose(transition_dist, t_prior, tau)
             betas_prime = betas 
             betas_logprob = b_prior(1./tau_prime).log_prob(betas_prime) 
-                    else:
+        else:
             tau_prime = tau
             def transition_dist(old_betas):
-                betas_prior()
-                return proposal_dist
+                return MN(pv.squeeze(), torch.eye(k)*1e-2)
             betas_prime, betas_logprob, ft_logprob, bt_logprob = propose(transition_dist, b_prior(1./tau_prime), betas)
+
+        # Compute the log likelihood of the new sampled latents.
+        ll = loglikelihood(y, betas_prime, x_features, 1./tau_prime)
+        # Combine the log probabilities to get the unnormalized posterior for the current latents, p(z' | x).
+        log_p_zprime_given_x = torch.sum(tau_logprob) + torch.sum(betas_logprob) + torch.sum(ll)
         
-        #TO DO: Compute the log likelihood of the new sampled latents 
-        #TO DO: Combine the log probabilities to get the unnormalized posterior for the current latents, p(z', x)
+        # Compute the acceptance/
+        # log acceptance = log(p(z' | x)) + q(z' | z) - log(p(z | x)) - p(z | z')
+        log_acceptance = log_p_zprime_given_x + ft_logprob - log_p_z_given_x - bt_logprob
+        acceptance = torch.exp(log_acceptance)
         
-        #TO DO: log ratio = log(p(z', x)) + log q(z' | z) - log(p(z, x)) - log p(z | z')
-        r = torch.exp(log_ratio).numpy()
+        # Decide whether to accept the new latents by the MH algorithm.
+        r = min(acceptance.numpy(),1)
+        u = Uniform(0,1).sample()
+        if u.numpy() < r:
+            tau = tau_prime
+            betas = betas_prime
+        tau_samples.append(tau.numpy())
+        betas_samples.append(betas.numpy())        
+            
+    return tau_samples, betas_samples
