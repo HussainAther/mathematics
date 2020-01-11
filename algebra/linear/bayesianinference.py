@@ -8,6 +8,8 @@ from torch.distributions.normal import Normal
 from torch.distributions.gamma import Gamma
 from torch.distributions.multivariate_normal import MultivariateNormal as MN
 from torch.distributions.uniform import Uniform
+from torch.optim import Adam
+from torch.nn import Parameter
 
 """
 Bayesian inference in generative models
@@ -466,3 +468,63 @@ print(MCMC_expectation)
 print("Analytical: ")
 print(analytical_inferred_mu)
 plt.show()
+
+def compute_stochastic_elbo(a, b, nu, omega, x, y, a_0, b_0, mu_0):
+    """
+    Return a monte-carlo estimate of the ELBO, using a single sample from Q(sigma^-2, beta)
+    
+    a, b are the Gamma 'shape' and 'rate' parameters for the variational posterior over *precision*: q(tau) = q(sigma^-2)
+    nu_k, omega_k are Normal 'mean' and 'precision' parameters for the variational posterior over weights: q(beta_k)
+    x is an n by k matrix, where each row contains the regression inputs [1, x, x^2, x^3]
+    y is an n by 1 values
+    a_0, b_0 the parameters for the Gamma prior over precision P(tau) = P(sigma^-2)
+    mu_0 is the mean of the Gamma prior on weights beta
+    """
+    
+    # Define mean field variational distribution over (beta, tau).
+    Q_beta = Normal(nu, omega**-0.5)
+    Q_tau = Gamma(a, b) 
+    
+    # Sample from variational distribution: (tau, beta) ~ Q
+    # Use rsample to make sure that the result is differentiable.
+    tau = Q_tau.rsample()
+    sigma = tau**-0.5
+    beta = Q_beta.rsample()
+    
+    # Create a single sample monte-carlo estimate of ELBO.
+    P_tau = Gamma(a_0, b_0) 
+    P_beta = Normal(mu_0, sigma) 
+    P_y = Normal((beta[None, :]*x).sum(dim=1, keepdim=True), sigma) 
+    
+    kl_tau = Q_tau.log_prob(tau) - P_tau.log_prob(tau)
+    kl_beta = Q_beta.log_prob(beta).sum() - P_beta.log_prob(beta).sum()
+    log_likelihood = P_y.log_prob(y).sum()
+
+    elbo = log_likelihood - kl_tau - kl_beta
+    return elbo
+
+
+def stochastic_gradient_variational_bayes(x, y, a_0, b_0, mu_0, k, n_iterations=20000):
+    
+    x = features(x,k)
+    
+    #We'll check that the elbo increases with each update
+    elbos = []
+    
+    #initialize latent variables
+    a = Parameter((k + 1. + len(y))/2. + a_0) #a does not get updated further
+    b = Parameter(b_0.clone())
+    omega = Parameter(Uniform(0.5, 1.5).sample(sample_shape=torch.Size([k])))
+    nu = Parameter(Normal(0,1).sample(sample_shape=torch.Size([k])))
+    
+    optimizer = Adam([a, b, omega, nu], lr=1e-3)
+    #start iterative updates
+    for i in range(n_iterations):
+        elbo = compute_stochastic_elbo(a*1, b*1, nu*1, omega*1, x, y, a_0, b_0, mu_0) #*1 is for making a Tensor
+        elbos.append(elbo.item() if i==0 else 0.9*elbos[-1] + 0.1*elbo.item()) #Keep running average
+        (-elbo).backward()
+        optimizer.step()
+        optimizer.zero_grad()
+        if i%1000==0: print("Iteration", i, "ELBO", elbos[-1])
+        
+    return omega, nu, elbos
