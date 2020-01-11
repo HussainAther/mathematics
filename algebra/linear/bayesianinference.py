@@ -251,3 +251,15 @@ To write our MH algorithm, we need to:
 5. Decide whether to accept the proposal as a sample
 
 """
+
+def MH(y, x, k, a_0, b_0, mu_0, n_iterations):
+    
+    x_features = features(x,k)
+    
+    # Define the priors, p(tau) * p(beta | tau).
+    t_prior = tau_prior(a_0, b_0)
+    b_prior = lambda variance: betas_prior(mu_0, variance)
+
+    # Storage for samples
+    tau_samples = []
+    betas_samples = []
