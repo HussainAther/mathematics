@@ -105,14 +105,21 @@ def sample_from_prior(x, a_0, b_0, mu_0, k):
 
 # Sample from the prior 
 print("~~~Sampling from the prior~~~")
-x_list = [-2 + i*0.1 for i in range(41)]; x = tensor(x_list); x_arr = np.array(x_list)
-a_0 = tensor(0.5); b_0 = tensor(0.5); mu_0=tensor(0.); k=4;
+x_list = [-2 + i*0.1 for i in range(41)]
+ x = tensor(x_list)
+ x_arr = np.array(x_list)
+a_0 = tensor(0.5) 
+b_0 = tensor(0.5) 
+mu_0=tensor(0.) 
+k=4
 y, betas = sample_from_prior(x, a_0, b_0, mu_0, k)
 polynomial_str = ""
 for i, b in enumerate(betas.numpy()):
     polynomial_str += "{0:.2f}".format(b) + "x^" + str(i) 
     if i < k - 1: polynomial_str += " + "
-plt.scatter(x_arr, y.numpy()); plt.title(polynomial_str); plt.show()
+plt.scatter(x_arr, y.numpy())
+ plt.title(polynomial_str)
+  plt.show()
 
 """
 2. Exact posterior inference
@@ -187,13 +194,14 @@ def sample_from_posterior(x, a, b, mu, lmbda):
 inferred_a, inferred_b, inferred_mu, inferred_lambda = analytical_posterior(y, x, a_0, a_0, mu_0, k)
 print("Inferred a: ", inferred_a.numpy())
 print("Inferred b: ", inferred_b.squeeze().numpy())
-analytical_inferred_mu = inferred_mu.squeeze().numpy();
-print("Inferred mu: ", analytical_inferred_mu); 
+analytical_inferred_mu = inferred_mu.squeeze().numpy()
+print("Inferred mu: ", analytical_inferred_mu)
 print("Inferred precision (note dependence between betas): ")
 print(inferred_lambda.numpy()) 
 
 print("How do samples from the posterior look compared to the data?")
-plt.scatter(x_arr, y.numpy()); plt.title("Actual: " + polynomial_str); 
+plt.scatter(x_arr, y.numpy())
+plt.title("Actual: " + polynomial_str)
 for i in range(100):
     plt.plot(x_arr,sample_from_posterior(x, inferred_a, 
                             inferred_b, inferred_mu, inferred_lambda), alpha=0.02, color="blue")
@@ -201,8 +209,9 @@ plt.xlim(min(x_list),max(x_list))
 plt.show()
 
 print("We can also check predictions outside of the range of our dataset:")
-x_list_extr = [-3 + i*0.1 for i in range(61)]; x_extr = tensor(x_list_extr);
-plt.scatter(x_arr, y.numpy());
+x_list_extr = [-3 + i*0.1 for i in range(61)]
+ x_extr = tensor(x_list_extr)
+plt.scatter(x_arr, y.numpy())
 for i in range(100):
     plt.plot(x_list_extr,sample_from_posterior(x_extr, inferred_a, 
                             inferred_b, inferred_mu, inferred_lambda), alpha=0.02, color="blue")
@@ -275,3 +284,27 @@ def MH(y, x, k, a_0, b_0, mu_0, n_iterations):
         betas_logprob = b_prior(1./tau).log_prob(betas)
         ll = loglikelihood(y, betas, x_features, 1./tau)
         log_p_z_given_x = torch.sum(tau_logprob) + torch.sum(betas_logprob) + torch.sum(ll)
+                
+        # Propose new latent variables.
+        # We will implement a "single-site" Metropolis Hastings algorithm.
+        # From iteration to iteration, alternate between proposing a new tau or new betas.
+        if i % 2 == 0:
+        
+            def transition_dist(old_tau):
+                proposal_dist = tau_prior()
+                return proposal_dist
+            tau_prime, tau_logprob, ft_logprob, bt_logprob = propose(transition_dist, t_prior, tau)
+            betas_prime = betas 
+            betas_logprob = b_prior(1./tau_prime).log_prob(betas_prime) 
+                    else:
+            tau_prime = tau
+            def transition_dist(old_betas):
+                betas_prior()
+                return proposal_dist
+            betas_prime, betas_logprob, ft_logprob, bt_logprob = propose(transition_dist, b_prior(1./tau_prime), betas)
+        
+        #TO DO: Compute the log likelihood of the new sampled latents 
+        #TO DO: Combine the log probabilities to get the unnormalized posterior for the current latents, p(z', x)
+        
+        #TO DO: log ratio = log(p(z', x)) + log q(z' | z) - log(p(z, x)) - log p(z | z')
+        r = torch.exp(log_ratio).numpy()
