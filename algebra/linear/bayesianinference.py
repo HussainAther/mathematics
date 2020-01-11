@@ -420,3 +420,31 @@ def update_b(nu, omega, x, y):
     p9 = 0.5*(p7 + p8)
     
     return b_0 + p3 + p4 + p6 + p9
+
+def variational_inference(x, y, a_0, b_0, mu_0, k, n_iterations=10):
+    
+    x = features(x,k)
+    
+    # We'll check that the elbo increases with each update.
+    elbos = []
+    
+    # Initialize latent variables.
+    a = (k + 1. + len(y))/2. + a_0 #a does not get updated further
+    b = b_0
+    omega = Uniform(0.5, 1.5).sample(sample_shape=torch.Size([k]))
+    nu = Normal(0,1).sample(sample_shape=torch.Size([k]))
+    
+    # Start iterative updates.
+    for i in range(n_iterations):
+        # Update b.
+        b = update_b(nu, omega, x, y)
+        elbos.append(compute_elbo(a, b, nu, omega, x, y, a_0, b_0, mu_0).numpy()[0])
+        # Update omega.
+        omega = update_omega(a, b, x)
+        elbos.append(compute_elbo(a, b, nu, omega, x, y, a_0, b_0, mu_0).numpy()[0])
+        # Update each nu in turn.
+        for _k in range(k):
+            nu[_k] = update_nu_k(a, b, nu, x, y, _k)
+            elbos.append(compute_elbo(a, b, nu, omega, x, y, a_0, b_0, mu_0).numpy()[0])
+
+    return omega, nu, elbos
