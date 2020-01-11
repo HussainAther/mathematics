@@ -76,7 +76,7 @@ def loglikelihood(y, b, x, variance):
 
 def features(_x, k):
     """
-    Creates polynomial input features
+    Create polynomial input features.
     
     Input
     -----
@@ -92,3 +92,24 @@ def features(_x, k):
         feature = _x**i 
         x = torch.cat((x, feature[:, None]), 1)
     return x
+
+def sample_from_prior(x, a_0, b_0, mu_0, k):
+    """
+    Returns sample of y"s given x-coordinates and prior params.
+    """
+    x = features(x, k)
+    variance = 1./tau_prior(a_0, b_0).sample()
+    betas = betas_prior(mu_0, variance).sample(sample_shape=torch.Size([k]))
+    y = Normal(x.mm(betas[:, None]), variance**0.5).sample()
+    return y, betas
+
+## Sample from the prior 
+print("~~~Sampling from the prior~~~")
+x_list = [-2 + i*0.1 for i in range(41)]; x = tensor(x_list); x_arr = np.array(x_list)
+a_0 = tensor(0.5); b_0 = tensor(0.5); mu_0=tensor(0.); k=4;
+y, betas = sample_from_prior(x, a_0, b_0, mu_0, k)
+polynomial_str = ""
+for i, b in enumerate(betas.numpy()):
+    polynomial_str += "{0:.2f}".format(b) + "x^" + str(i) 
+    if i < k - 1: polynomial_str += " + "
+plt.scatter(x_arr, y.numpy()); plt.title(polynomial_str); plt.show()
