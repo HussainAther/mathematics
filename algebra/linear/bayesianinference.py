@@ -348,3 +348,44 @@ print(MCMC_expectation)
 print("Analytical: ")
 print(analytical_inferred_mu)
 plt.show()  
+
+"""
+Variational inference
+
+1. Derive the evidence lower bound
+2. Derive updates from the bound
+3. Write iterative updates to variational parameters 
+
+"""
+
+def elbo_lambda(a, b, a_0, b_0):
+    p1 = (a - a_0)*torch.digamma(a) 
+    p2 = -torch.lgamma(a) + torch.lgamma(a_0)
+    p3 = a_0*(torch.log(b) - torch.log(b_0))
+    p4 = a*(b_0 - b)/b
+    return -(p1 + p2 + p3 + p4)
+    
+def elbo_beta(a, b, nu, omega, mu_0):
+    p1 = 0.5*(a/b)*(nu - mu_0)**2
+    p2 = 0.5*(a/(b*omega) - 1. - torch.digamma(a) + torch.log(b) + torch.log(omega))
+    return -torch.sum(p1 + p2)
+
+def elbo_y(a, b, nu, omega, x, y):
+    p1 = len(y) * 0.5*(torch.digamma(a) - torch.log(b) - torch.log(tensor(2*np.pi)))
+    p2 = torch.sum(-(a/(2.*b))*(y**2), dim=0)
+    p3 = torch.sum((a/b)*y.squeeze()*torch.sum(x * nu[None, :], dim=1),dim=0)
+    p4 = torch.sum(torch.sum( x**2*(1./omega + nu**2)[None, :], dim=1),dim=0)
+    x_expand = x[:, :, None]
+    x_expand_T = x[:, None,:]
+    nu_expand = nu[None, :, None]
+    nu_expand_T = nu[None, None, :]
+    t = torch.sum(x_expand*x_expand_T*nu_expand*nu_expand_T,dim=0)
+    p5 = 2*(t.triu().sum() - t.trace())
+    p6 = -(a/(2.*b))*(p4 + p5)
+    return p1 + p2 + p3 + p6
+
+def compute_elbo(a, b, nu, omega, x, y, a_0, b_0, mu_0):
+    L = elbo_lambda(a, b, a_0, b_0); 
+    B = elbo_beta(a, b, nu, omega, mu_0);
+    Y = elbo_y(a, b, nu, omega, x, y);
+    return  L + B + Y
