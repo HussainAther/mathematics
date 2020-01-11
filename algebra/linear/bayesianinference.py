@@ -240,3 +240,14 @@ def propose(transition_dist, prior, prev_val):
     ft_logprob = transition_dist.log_prob(new_val)
     bt_logprob = transition_dist.log_prob(prev_val)
     return new_val, prior_logprob, ft_logprob, bt_logprob      
+
+"""
+To write our MH algorithm, we need to:
+
+1. Initialize the chain at z_0
+2. Define transition distributions q(z'|z)
+3. Sample from q(z'|z)
+4. Compute the acceptance probability
+5. Decide whether to accept the proposal as a sample
+
+"""
