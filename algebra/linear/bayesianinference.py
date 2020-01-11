@@ -103,7 +103,7 @@ def sample_from_prior(x, a_0, b_0, mu_0, k):
     y = Normal(x.mm(betas[:, None]), variance**0.5).sample()
     return y, betas
 
-## Sample from the prior 
+# Sample from the prior 
 print("~~~Sampling from the prior~~~")
 x_list = [-2 + i*0.1 for i in range(41)]; x = tensor(x_list); x_arr = np.array(x_list)
 a_0 = tensor(0.5); b_0 = tensor(0.5); mu_0=tensor(0.); k=4;
@@ -149,7 +149,7 @@ def analytical_posterior(y, x, a_0, b_0, mu_0, k):
     
     x = features(x, k)
     
-    ##p(b|tau, y, x) = N(mu_posterior, (1/tau)*lambda_posterior^-1)
+    # p(b|tau, y, x) = N(mu_posterior, (1/tau)*lambda_posterior^-1)
     XTX = x.t().mm(x)
     lambda_0 = torch.eye(k)
     lambda_posterior = XTX + lambda_0
@@ -159,9 +159,52 @@ def analytical_posterior(y, x, a_0, b_0, mu_0, k):
     inside = lambda_0.mm(mu_0) + x.t().mm(y)
     mu_posterior = lambda_inv.mm(inside)
         
-    ##p(tau| y, X)
+    #p(tau| y, X)
     a_posterior = a_0 + len(y)/2.
     mlm = mu_0.t().mm(lambda_0).mm(mu_0) - mu_posterior.t().mm(lambda_posterior).mm(mu_posterior)
     b_posterior = b_0 + 0.5*(y.t().mm(y) + mlm)
     
     return a_posterior, b_posterior, mu_posterior, lambda_posterior
+
+def polynomial(bs, x):
+    """
+    Return a polynomial of degree x with coefficients bs.
+    """
+    m = np.zeros(len(x))
+    for i, b in enumerate(bs):
+        m += b*(x**i)
+    return m
+
+def sample_from_posterior(x, a, b, mu, lmbda):
+    """
+    Sample betas from the posterior distribution.
+    """
+    variance = 1./Gamma(a, b).sample()
+    betas = MN(mu.squeeze(), variance*lmbda.inverse()).sample()
+    return polynomial(betas.numpy(), x)
+    
+# Inference given sampled y
+inferred_a, inferred_b, inferred_mu, inferred_lambda = analytical_posterior(y, x, a_0, a_0, mu_0, k)
+print("Inferred a: ", inferred_a.numpy())
+print("Inferred b: ", inferred_b.squeeze().numpy())
+analytical_inferred_mu = inferred_mu.squeeze().numpy();
+print("Inferred mu: ", analytical_inferred_mu); 
+print("Inferred precision (note dependence between betas): ")
+print(inferred_lambda.numpy()) 
+
+print("How do samples from the posterior look compared to the data?")
+plt.scatter(x_arr, y.numpy()); plt.title("Actual: " + polynomial_str); 
+for i in range(100):
+    plt.plot(x_arr,sample_from_posterior(x, inferred_a, 
+                            inferred_b, inferred_mu, inferred_lambda), alpha=0.02, color="blue")
+plt.xlim(min(x_list),max(x_list))
+plt.show()
+
+print("We can also check predictions outside of the range of our dataset:")
+x_list_extr = [-3 + i*0.1 for i in range(61)]; x_extr = tensor(x_list_extr);
+plt.scatter(x_arr, y.numpy());
+for i in range(100):
+    plt.plot(x_list_extr,sample_from_posterior(x_extr, inferred_a, 
+                            inferred_b, inferred_mu, inferred_lambda), alpha=0.02, color="blue")
+plt.xlim(min(x_list_extr),max(x_list_extr))
+plt.show()
