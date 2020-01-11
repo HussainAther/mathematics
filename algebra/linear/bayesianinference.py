@@ -328,3 +328,23 @@ def MH(y, x, k, a_0, b_0, mu_0, n_iterations):
         betas_samples.append(betas.numpy())        
             
     return tau_samples, betas_samples
+
+n_iterations = 3000
+tau_samples, betas_samples = MH(y, x, k, a_0, b_0, mu_0, n_iterations)
+plt.scatter(x_list, y.numpy())
+plt.title("Actual: " + polynomial_str)
+burn_in = 100; lag = 10
+
+# Plot sampled posterior mean betas.
+total_samples = 0; 
+for i in range(burn_in,n_iterations,lag):
+    b = betas_samples[i] if total_samples == 0 else b + betas_samples[i]
+    total_samples += 1
+    plt.plot(x_list_extr,polynomial(betas_samples[i], np.array(x_list_extr)), alpha=0.01, color="blue")
+plt.xlim(min(x_list_extr),max(x_list_extr))
+print("MCMC (expectation): ")
+MCMC_expectation = (b*1./total_samples).tolist()
+print(MCMC_expectation)
+print("Analytical: ")
+print(analytical_inferred_mu)
+plt.show()  
