@@ -235,10 +235,8 @@ def propose(transition_dist, prior, prev_val):
     bt_logprob: transition probability from new_val to prev_val --> log q(z|z')
     
     """
-    
-    # TO DO
-    # Helpful Syntax--
-    # To take a sample: dist.sample()
-    # To get the log probability of val under dist: dist.log_prob(val) 
-    
+    new_val = transition_dist.sample()
+    prior_logprob = prior.log_prob(new_val)
+    ft_logprob = transition_dist.log_prob(new_val)
+    bt_logprob = transition_dist.log_prob(prev_val)
     return new_val, prior_logprob, ft_logprob, bt_logprob      
