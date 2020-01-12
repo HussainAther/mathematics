@@ -19,3 +19,12 @@ qqnorm(hfPopulation)
 qqline(hfPopulation)
 qqnorm(controlPopulation)
 qqline(controlPopulation)
+
+set.seed(1) 
+library(downloader)
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
+filename <- "mice_pheno.csv"
+if (!file.exists(filename)) download(url,destfile=filename)
+
+dat <- read.csv("mice_pheno.csv") 
+head(dat)
