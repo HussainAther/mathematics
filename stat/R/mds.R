@@ -17,3 +17,6 @@ PC2 <- s$d[2]*s$v[,2]
 mypar(1,1)
 plot(PC1,PC2,pch=21,bg=as.numeric(group))
 legend("bottomright",levels(group),col=seq(along=levels(group)),pch=15,cex=1.5)
+
+# Plot the variance to show the components separated.
+plot(s$d^2/sum(s$d^2))
