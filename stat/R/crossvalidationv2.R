@@ -55,12 +55,12 @@ Xsmall <- cmdscale(dist(X),k=5)
 set.seed(1)
 ks <- 1:12
 res <- sapply(ks, function(k) {
-  res.k <- sapply(seq_along(idx), function(i) {
-    pred <- knn(train=Xsmall[ -idx[[i]], ],
-                test=Xsmall[ idx[[i]], ],
-                cl=y[ -idx[[i]] ], k = k)
-    mean(y[ idx[[i]] ] != pred)
-  })
-  mean(res.k)
+    res.k <- sapply(seq_along(idx), function(i) {
+        pred <- knn(train=Xsmall[ -idx[[i]], ],
+                    test=Xsmall[ idx[[i]], ],
+                    cl=y[ -idx[[i]] ], k = k)
+        mean(y[ idx[[i]] ] != pred)
+    })
+    mean(res.k)
 })
 plot(ks, res, type="o",ylim=c(0,0.20),ylab="misclassification error")
