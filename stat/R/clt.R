@@ -21,10 +21,10 @@ qqnorm(controlPopulation)
 qqline(controlPopulation)
 
 set.seed(1) 
-library(downloader)
-url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
-filename <- "mice_pheno.csv"
-if (!file.exists(filename)) download(url,destfile=filename)
-
-dat <- read.csv("mice_pheno.csv") 
-head(dat)
+mu_hf <- mean(hfPopulation)
+mu_control <- mean(controlPopulation)
+print(mu_hf - mu_control)x <- controlPopulation
+N <- length(x)
+populationvar <- mean((x-mean(x))^2)
+identical(var(x), populationvar)
+identical(var(x)*(N-1)/N, populationvar)
