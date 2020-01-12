@@ -26,3 +26,8 @@ ttestgenerator <- function(n) {
   return(tstat)
   }
 ttests <- replicate(1000, ttestgenerator(10))
+
+# Plot distribution.
+hist(ttests)
+qqnorm(ttests)
+abline(0,1)
