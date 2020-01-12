@@ -35,3 +35,10 @@ mypar()
 plot(mds[,1],mds[,2],bg=as.numeric(group),pch=21,
      xlab="First dimension",ylab="Second dimension")
 legend("bottomleft",levels(group),col=seq(along=levels(group)),pch=15)
+
+mypar(1,2)
+for(i in 1:2){
+    plot(mds[,i],s$d[i]*s$v[,i],main=paste("PC",i))
+    b = ifelse( cor(mds[,i],s$v[,i]) > 0, 1, -1)
+    abline(0,b) ##b is 1 or -1 depending on the arbitrary sign "flip"
+}
