@@ -28,3 +28,9 @@ N <- length(x)
 populationvar <- mean((x-mean(x))^2)
 identical(var(x), populationvar)
 identical(var(x)*(N-1)/N, populationvar)
+sd_hf <- popsd(hfPopulation)
+sd_control <- popsd(controlPopulation)
+
+N <- 12
+hf <- sample(hfPopulation, 12)
+control <- sample(controlPopulation, 12)
