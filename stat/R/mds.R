@@ -27,3 +27,11 @@ PC4 <- s$d[4]*s$v[,4]
 mypar(1,1)
 plot(PC3,PC4,pch=21,bg=as.numeric(group))
 legend("bottomright",levels(group),col=seq(along=levels(group)),pch=15,cex=1.5)
+
+# Classic multidimensional scaling (cmdscale)
+d <- dist(t(mat))
+mds <- cmdscale(d)
+mypar()
+plot(mds[,1],mds[,2],bg=as.numeric(group),pch=21,
+     xlab="First dimension",ylab="Second dimension")
+legend("bottomleft",levels(group),col=seq(along=levels(group)),pch=15)
