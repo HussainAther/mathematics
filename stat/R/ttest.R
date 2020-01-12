@@ -8,3 +8,14 @@ control <- filter(dat,Diet=="chow") %>% select(Bodyweight) %>% unlist
 treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) %>% unlist
 
 diff <- mean(treatment) - mean(control)
+sd(control)/sqrt(length(control))
+se <- sqrt( 
+    var(treatment)/length(treatment) + 
+    var(control)/length(control) 
+    )
+tstat <- diff/se 
+
+righttail <- 1 - pnorm(abs(tstat)) 
+lefttail <- pnorm(-abs(tstat))
+pval <- lefttail + righttail
+print(pval)
