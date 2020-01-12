@@ -34,3 +34,18 @@ sd_control <- popsd(controlPopulation)
 N <- 12
 hf <- sample(hfPopulation, 12)
 control <- sample(controlPopulation, 12)
+
+# Use qqplots to see how well the CLT works for this data.
+Ns <- c(3,12,25,50)
+B <- 10000 #number of simulations
+res <-  sapply(Ns,function(n) {
+    replicate(B,mean(sample(hfPopulation,n))-mean(sample(controlPopulation,n)))
+})
+mypar(2,2)
+for (i in seq(along=Ns)) {
+  titleavg <- signif(mean(res[,i]),3)
+  titlesd <- signif(popsd(res[,i]),3)
+  title <- paste0("N=",Ns[i]," Avg=",titleavg," SD=",titlesd)
+  qqnorm(res[,i],main=title)
+  qqline(res[,i],col=2)
+}
