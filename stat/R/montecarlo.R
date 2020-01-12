@@ -31,3 +31,14 @@ ttests <- replicate(1000, ttestgenerator(10))
 hist(ttests)
 qqnorm(ttests)
 abline(0,1)
+
+# Parametric simulations
+controls<- rnorm(5000, mean=24, sd=3.5)
+
+ttestgenerator <- function(n, mean=24, sd=3.5) {
+  cases <- rnorm(n,mean,sd)
+  controls <- rnorm(n,mean,sd)
+  tstat <- (mean(cases)-mean(controls)) / 
+      sqrt( var(cases)/n + var(controls)/n ) 
+  return(tstat)
+  } 
