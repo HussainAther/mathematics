@@ -97,16 +97,40 @@ h <- hist(pvals,breaks=seq(0,1,0.01))
 polygon(c(0,0.01,0.01,0),c(0,0,h$counts[1],h$counts[1]),col="grey")
 abline(h=m0/100)
 
-# Benjamin-Hochberg (benjamin hochberg)
+# Benjamini-Hochberg (benjamini hochberg)
 alpha <- 0.05
 i = seq(along=pvals)
 
 mypar(1,2)
 plot(i,sort(pvals))
 abline(0,i/m*alpha)
-##close-up
+# close-up
 plot(i[1:15],sort(pvals)[1:15],main="Close-up")
 abline(0,i/m*alpha)
 k <- max( which( sort(pvals) < i/m*alpha) )
 cutoff <- sort(pvals)[k]
 cat("k =",k,"p-value cutoff=",cutoff)
+fdr <- p.adjust(pvals, method="fdr")
+mypar(1,1)
+plot(pvals,fdr,log="xy")
+abline(h=alpha,v=cutoff) 
+
+alpha <- 0.05
+B <- 1000 # number of simulations. We should increase for more precision
+res <- replicate(B,{
+    controls <- matrix(sample(population, N*m, replace=TRUE),nrow=m)
+    treatments <-  matrix(sample(population, N*m, replace=TRUE),nrow=m)
+    treatments[which(!nullHypothesis),]<-treatments[which(!nullHypothesis),]+delta
+    dat <- cbind(controls,treatments)
+    pvals <- rowttests(dat,g)$p.value 
+    # then the FDR
+    calls <- p.adjust(pvals,method="fdr") < alpha
+    R=sum(calls)
+    Q=ifelse(R>0,sum(nullHypothesis & calls)/R,0)
+    return(c(R,Q))
+})
+Qs <- res[2,]
+mypar(1,1)
+hist(Qs) # Q is a random variable, this is its distribution
+FDR=mean(Qs)
+print(FDR)
