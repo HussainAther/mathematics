@@ -74,3 +74,9 @@ for(i in seq(along=males)){
   if(i>1) abline(h=22*(i-1)-0.5)
   }
 abline(v=45)
+
+# the effect goes away when we position by major
+y=cbind(dat[1:6,3],dat[7:12,3])
+matplot(1:6,y,xaxt="n",xlab="major",ylab="percent",col=c("blue","red"),cex=1.5)
+legend("topright",c("Male","Female"),col=c("blue","red"),pch=c("1","2"),box.lty=0,cex=0.75)
+mean(y[,1]-y[,2])
