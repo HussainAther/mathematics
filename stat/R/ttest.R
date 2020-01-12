@@ -1,5 +1,6 @@
-library(knitr)
 library(dplyr)
+library(knitr)
+library(rafalib)
 dat <- read.csv("femaleMiceWeights.csv")
 
 # T-test (ttest t test) in practice
@@ -19,3 +20,14 @@ righttail <- 1 - pnorm(abs(tstat))
 lefttail <- pnorm(-abs(tstat))
 pval <- lefttail + righttail
 print(pval)
+
+# qqplot
+mypar(1,2)
+qqnorm(treatment)
+qqline(treatment,col=2)
+qqnorm(control)
+qqline(control,col=2)
+
+t.test(treatment, control)
+result <- t.test(treatment,control)
+result$p.value
