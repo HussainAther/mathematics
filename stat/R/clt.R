@@ -13,3 +13,9 @@ hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>%
 mypar(1,2)
 hist(hfPopulation)
 hist(controlPopulation)
+
+mypar(1,2)
+qqnorm(hfPopulation)
+qqline(hfPopulation)
+qqnorm(controlPopulation)
+qqline(controlPopulation)
