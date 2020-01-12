@@ -20,3 +20,10 @@ legend("bottomright",levels(group),col=seq(along=levels(group)),pch=15,cex=1.5)
 
 # Plot the variance to show the components separated.
 plot(s$d^2/sum(s$d^2))
+
+# Show the rest.
+PC3 <- s$d[3]*s$v[,3]
+PC4 <- s$d[4]*s$v[,4]
+mypar(1,1)
+plot(PC3,PC4,pch=21,bg=as.numeric(group))
+legend("bottomright",levels(group),col=seq(along=levels(group)),pch=15,cex=1.5)
