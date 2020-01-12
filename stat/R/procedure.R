@@ -74,3 +74,25 @@ Qs <- replicate(B,{
  Q=ifelse(R>0,sum(nullHypothesis & calls)/R,0)
  return(Q)
 })
+
+# Control FDR (false discovery rate).
+library(rafalib)
+mypar(1,1)
+hist(Qs)
+FDR=mean(Qs)
+print(FDR)
+
+set.seed(1)
+controls <- matrix(sample(population, N*m, replace=TRUE),nrow=m)
+treatments <-  matrix(sample(population, N*m, replace=TRUE),nrow=m)
+treatments[which(!nullHypothesis),]<-treatments[which(!nullHypothesis),]+delta
+dat <- cbind(controls,treatments)
+pvals <- rowttests(dat,g)$p.value 
+
+# Make histogram.
+h <- hist(pvals,breaks=seq(0,1,0.05))
+polygon(c(0,0.05,0.05,0),c(0,0,h$counts[1],h$counts[1]),col="grey")
+abline(h=m0/20)
+h <- hist(pvals,breaks=seq(0,1,0.01))
+polygon(c(0,0.01,0.01,0),c(0,0,h$counts[1],h$counts[1]),col="grey")
+abline(h=m0/100)
