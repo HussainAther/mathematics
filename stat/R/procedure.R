@@ -96,3 +96,17 @@ abline(h=m0/20)
 h <- hist(pvals,breaks=seq(0,1,0.01))
 polygon(c(0,0.01,0.01,0),c(0,0,h$counts[1],h$counts[1]),col="grey")
 abline(h=m0/100)
+
+# Benjamin-Hochberg (benjamin hochberg)
+alpha <- 0.05
+i = seq(along=pvals)
+
+mypar(1,2)
+plot(i,sort(pvals))
+abline(0,i/m*alpha)
+##close-up
+plot(i[1:15],sort(pvals)[1:15],main="Close-up")
+abline(0,i/m*alpha)
+k <- max( which( sort(pvals) < i/m*alpha) )
+cutoff <- sort(pvals)[k]
+cat("k =",k,"p-value cutoff=",cutoff)
