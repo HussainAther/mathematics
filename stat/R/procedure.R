@@ -21,7 +21,7 @@ pvals <- replicate(m,{
 sum(pvals < 0.05)alpha <- 0.05
 N <- 12
 m <- 10000
-p0 <- 0.90 ##10% of diets work, 90% don't
+p0 <- 0.90 # 10% of diets work, 90% don't
 m0 <- m*p0
 m1 <- m-m0
 nullHypothesis <- c( rep(TRUE,m0), rep(FALSE,m1))
@@ -34,3 +34,16 @@ calls <- sapply(1:m, function(i){
           "Called Significant",
           "Not Called Significant")
 })
+null_hypothesis <- factor( nullHypothesis, levels=c("TRUE","FALSE"))
+table(null_hypothesis,calls)
+B <- 10 # number of simulations
+VandS <- replicate(B,{
+  calls <- sapply(1:m, function(i){
+    control <- sample(population,N)
+    treatment <- sample(population,N)
+    if(!nullHypothesis[i]) treatment <- treatment + delta
+    t.test(treatment,control)$p.val < alpha
+  })
+  cat("V =",sum(nullHypothesis & calls), "S =",sum(!nullHypothesis & calls),"\n")
+  c(sum(nullHypothesis & calls),sum(!nullHypothesis & calls))
+  })
