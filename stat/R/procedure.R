@@ -25,7 +25,7 @@ p0 <- 0.90 # 10% of diets work, 90% don't
 m0 <- m*p0
 m1 <- m-m0
 nullHypothesis <- c( rep(TRUE,m0), rep(FALSE,m1))
-delta <- 3set.seed(1)
+delta <- set.seed(1)
 calls <- sapply(1:m, function(i){
   control <- sample(population,N)
   treatment <- sample(population,N)
@@ -47,3 +47,30 @@ VandS <- replicate(B,{
   cat("V =",sum(nullHypothesis & calls), "S =",sum(!nullHypothesis & calls),"\n")
   c(sum(nullHypothesis & calls),sum(!nullHypothesis & calls))
   })
+
+# Vectorize by using a matrix.
+
+library(genefilter) # rowttests is here
+set.seed(1)
+
+# Define groups to be used with rowttests.
+g <- factor( c(rep(0,N),rep(1,N)) )
+B <- 1000 # number of simulations
+Qs <- replicate(B,{
+  # matrix with control data (rows are tests, columns are mice)
+  controls <- matrix(sample(population, N*m, replace=TRUE),nrow=m)
+  
+  # matrix with control data (rows are tests, columns are mice)
+  treatments <-  matrix(sample(population, N*m, replace=TRUE),nrow=m)
+  
+  # add effect to 10% of them
+  treatments[which(!nullHypothesis),]<-treatments[which(!nullHypothesis),]+delta
+  
+  # combine to form one matrix
+  dat <- cbind(controls,treatments)
+  
+ calls <- rowttests(dat,g)$p.value < alpha
+ R=sum(calls)
+ Q=ifelse(R>0,sum(nullHypothesis & calls)/R,0)
+ return(Q)
+})
