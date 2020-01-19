@@ -16,8 +16,7 @@ for m in range(m_min, m_max, step):
         y = m * y * (1-y)
     for i inrange(402, 601):
         y = m * y * (1-y)
-        funct1.plot(pos=(m,y))
         suma = suma + log(abs(m*(1-2*y)))
-    plt.plot((m, suma/401))
+    plt.plot(m, suma/401)
 
 plt.show()
