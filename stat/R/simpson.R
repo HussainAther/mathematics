@@ -8,3 +8,14 @@ sum(admissions$total[admissions$Gender==1]/sum(admissions$Number[admissions$Gend
 
 # percent women get in
 sum(admissions$total[admissions$Gender==0]/sum(admissions$Number[admissions$Gender==0]))
+
+# make a 2 x 2 table
+index = admissions$Gender==1
+men = admissions[index,]
+women = admissions[!index,]
+menYes = sum(men$Number*men$Percent/100)
+menNo = sum(men$Number*(1-men$Percent/100))
+womenYes = sum(women$Number*women$Percent/100)
+womenNo = sum(women$Number*(1-women$Percent/100))
+tab = matrix(c(menYes,womenYes,menNo,womenNo),2,2)
+print(chisq.test(tab)$p.val)
