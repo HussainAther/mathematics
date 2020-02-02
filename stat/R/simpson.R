@@ -19,3 +19,8 @@ womenYes = sum(women$Number*women$Percent/100)
 womenNo = sum(women$Number*(1-women$Percent/100))
 tab = matrix(c(menYes,womenYes,menNo,womenNo),2,2)
 print(chisq.test(tab)$p.val)
+
+# but look at admissions by major?
+y=cbind(admissions[1:6,c(1,3)],admissions[7:12,3])
+colnames(y)[2:3]=c("Male","Female")
+y
