@@ -1,0 +1,2 @@
+"Simpson's paradox (simpson)"
+
