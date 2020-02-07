@@ -60,3 +60,11 @@ def costfunction(features, targets, weights):
 
     # Return average squared error among predictions.
     return 1.0/(2*N) * sqerror.sum()
+
+def updateweights(features, targets, weights, lr):
+    """
+    Features:(200, 3)
+    Targets: (200, 1)
+    Weights:(3, 1)
+    """
+    predictions = predict(features, weights)
