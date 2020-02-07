@@ -68,3 +68,9 @@ def updateweights(features, targets, weights, lr):
     Weights:(3, 1)
     """
     predictions = predict(features, weights)
+
+    # Extract our features.
+    x1 = features[:,0]
+    x2 = features[:,1]
+    x3 = features[:,2]
+
