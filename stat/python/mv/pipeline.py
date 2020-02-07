@@ -16,10 +16,10 @@ def normalize(features):
         fmean = np.mean(feature)
         frange = np.amax(feature) - np.amin(feature)
 
-        #Vector Subtraction
+        # Vector subtraction
         feature -= fmean
 
-        #Vector Division
+        # Vector division
         feature /= frange
 
     return features
@@ -33,3 +33,13 @@ def predict(features, weights):
     """
     predictions = np.dot(features, weights)
     return predictions
+
+# Initialize weights.
+W1 = 0.0
+W2 = 0.0
+W3 = 0.0
+weights = np.array([
+    [W1],
+    [W2],
+    [W3]
+])
