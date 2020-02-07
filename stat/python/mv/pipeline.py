@@ -74,3 +74,8 @@ def updateweights(features, targets, weights, lr):
     x2 = features[:,1]
     x3 = features[:,2]
 
+    # Use matrix cross product (*) to simultaneously
+    # calculate the derivative for each weight.
+    d_w1 = -x1*(targets - predictions)
+    d_w2 = -x2*(targets - predictions)
+    d_w3 = -x3*(targets - predictions)
