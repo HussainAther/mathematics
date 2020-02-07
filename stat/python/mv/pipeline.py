@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-Create a normalized matrix of the shape of the data.
+Multivariate regression pipeline
 """
 
 def normalize(features):
@@ -43,3 +43,20 @@ weights = np.array([
     [W2],
     [W3]
 ])
+
+def costfunction(features, targets, weights):
+    """
+    features:(200,3)
+    targets: (200,1)
+    weights:(3,1)
+    returns average squared error among predictions
+    """
+    N = len(targets)
+
+    predictions = predict(features, weights)
+
+    # Matrix math lets use do this without looping.
+    sqerror = (predictions - targets)**2
+
+    # Return average squared error among predictions.
+    return 1.0/(2*N) * sqerror.sum()
