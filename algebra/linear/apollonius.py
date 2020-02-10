@@ -1,3 +1,7 @@
+import math
+
+from collections import namedtuple
+
 """
 Problem of Apollonius
 Find one or more circles that are tangent to three 
