@@ -10,3 +10,9 @@ line, a point or a circle of any size.
 """
 
 Circle = namedtuple("Circle", "x, y, r")
+
+def solveApollonius(c1, c2, c3, s1, s2, s3):
+    """
+    Find an algebraic solution by setting the 
+    equations describing the circles equal to one another.
+    """
