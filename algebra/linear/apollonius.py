@@ -33,3 +33,7 @@ def solveApollonius(c1, c2, c3, s1, s2, s3):
     w12 = v12/v11
     w13 = v13/v11
     w14 = v14/v11
+
+    w22 = v22/v21-w12
+    w23 = v23/v21-w13
+    w24 = v24/v21-w14
