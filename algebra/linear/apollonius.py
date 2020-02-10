@@ -29,3 +29,7 @@ def solveApollonius(c1, c2, c3, s1, s2, s3):
     v22 = 2*y3 - 2*y2
     v23 = x2*x2 - x3*x3 + y2*y2 - y3*y3 - r2*r2 + r3*r3
     v24 = 2*s3*r3 - 2*s2*r2
+
+    w12 = v12/v11
+    w13 = v13/v11
+    w14 = v14/v11
