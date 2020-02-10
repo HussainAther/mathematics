@@ -53,3 +53,5 @@ def solveApollonius(c1, c2, c3, s1, s2, s3):
  
     xs = M+N*rs
     ys = P+Q*rs
+
+    return Circle(xs, ys, rs)
