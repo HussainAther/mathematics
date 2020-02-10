@@ -16,3 +16,6 @@ def solveApollonius(c1, c2, c3, s1, s2, s3):
     Find an algebraic solution by setting the 
     equations describing the circles equal to one another.
     """
+    x1, y1, r1 = c1
+    x2, y2, r2 = c2
+    x3, y3, r3 = c3
