@@ -1,4 +1,4 @@
-import math
+import numpy as np
 
 from collections import namedtuple
 
@@ -46,3 +46,10 @@ def solveApollonius(c1, c2, c3, s1, s2, s3):
     a = N*N + Q*Q - 1
     b = 2*M*N - 2*N*x1 + 2*P*Q - 2*Q*y1 + 2*s1*r1
     c = x1*x1 + M*M - 2*M*x1 + P*P + y1*y1 - 2*P*y1 - r1*r1 
+
+    # Find a root of a quadratic equation. This requires the circle centers not to be e.g. colinear.
+    D = b*b-4*a*c
+    rs = (-b-np.sqrt(D))/(2*a)
+ 
+    xs = M+N*rs
+    ys = P+Q*rs
