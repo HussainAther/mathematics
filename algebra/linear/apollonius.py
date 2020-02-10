@@ -42,4 +42,7 @@ def solveApollonius(c1, c2, c3, s1, s2, s3):
     Q = w24/w22
     M = -w12*P-w13
     N = w14 - w12*Q
- 
+
+    a = N*N + Q*Q - 1
+    b = 2*M*N - 2*N*x1 + 2*P*Q - 2*Q*y1 + 2*s1*r1
+    c = x1*x1 + M*M - 2*M*x1 + P*P + y1*y1 - 2*P*y1 - r1*r1 
