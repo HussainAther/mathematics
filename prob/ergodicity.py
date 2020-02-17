@@ -39,3 +39,8 @@ We can integrate f over the circle and divide by the circumference to get the sp
 
 The ergodic theorem says that the time average equals the space average, except possibly for a setting of starting values of measure zero.
 """
+
+def spaceaverage(f):
+    """
+    Use scipy's built-in `quad` to integrate and get the space average.
+    """
