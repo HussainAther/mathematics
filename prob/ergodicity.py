@@ -24,6 +24,16 @@ def T(x):
     """
     return (x + goldenangle) % (2*np.pi)
 
+def timeaverage(x, f, T, n):
+    """
+    Integrate to get the time average.
+    """
+    s = 0
+    for k in range(n):
+        s += f(x)
+        x = T(x)
+    return s/n
+
 """
 We can integrate f over the circle and divide by the circumference to get the space average.
 
