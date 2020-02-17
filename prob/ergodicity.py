@@ -46,3 +46,10 @@ def spaceaverage(f):
     """
     integral = quad(f, 0, 2(np.pi)[0]
     return integral/(2*np.pi)
+
+# Run it.
+f = lambda x: np.cos(x)**2
+N = 1e6
+
+print(timeaverage(0, f, T, N))
+print(spaceaverage(f))
