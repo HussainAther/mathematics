@@ -14,10 +14,15 @@ goldenangle = 2*np.pi*golden**-2
 
 """
 If we picked a point x on a circle and rotated it repeatedly by a golden angle,
- then we can use an integrable function f on the circle and form the average of its
+then we can use an integrable function f on the circle and form the average of its
 values at the sequence of rotations. This is the time average.
 """
 
+def T(x):
+    """
+    The ergodic transformation (rotating by the golden angle).
+    """
+    return (x + goldenangle) % (2*np.pi)
 
 """
 We can integrate f over the circle and divide by the circumference to get the space average.
