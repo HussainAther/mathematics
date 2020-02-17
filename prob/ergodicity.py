@@ -44,3 +44,5 @@ def spaceaverage(f):
     """
     Use scipy's built-in `quad` to integrate and get the space average.
     """
+    integral = quad(f, 0, 2(np.pi)[0]
+    return integral/(2*np.pi)
