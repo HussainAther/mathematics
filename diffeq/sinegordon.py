@@ -32,5 +32,6 @@ def sg1sol(x, v, t):
     Sine-Gordon 1-soliton solutions
     """
     g = 1/(1-v**2)
-    g2 = g**2
-    
+    gs = np.sqrt(g)
+    return 4*np.arctan(np.exp(mgs(x-v*t)))
+     
