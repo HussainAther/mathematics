@@ -1,6 +1,6 @@
 %{
 Logistic map
-}%
+%}
 
 function [iterates] = logistic(x0, r, n)
     iterates = [];
