@@ -9,4 +9,10 @@ There are then three cases of dimensional lattices given by:
 u_tt - u_xx = -sin(u)
 u_tt - u_xx - u_yy = -sin(u)
 u_tt - u_xx - u_yy - u_zz = -sin(u)
+
+They have 1-, 2-, and 3-soliton solutions:
+
+
 """
+
+
