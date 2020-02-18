@@ -33,5 +33,26 @@ def sg1sol(x, v, t):
     """
     g = 1/(1-v**2)
     gs = np.sqrt(g)
-    return 4*np.arctan(np.exp(mgs(x-v*t)))
-     
+    phi = 4*np.arctan(np.exp(mgs(x-v*t)))
+    return phi
+    
+"""
+We can use the partial differentials of phi in a more general
+form of the sine-Gordon equation.
+phi_tt - phi_xx + m^2sin(phi) = 0  
+""" 
+
+def aback(phi, dphi, beta):
+    """
+    Use the auto-Bäcklund transform to show that, if u is a solution of the
+    sine-Gordon equation (u_xy = sin(u)), then the system of two equations
+    v_x = u_x + 2asin((v+u)/2)
+    v_y = -u_y + (2/a)(sin((v-u)/2))
+    (for arbitrary parameter a) is solvable with function v that also
+    satisfies the sine-Gordon equation.
+  
+    For the output solution phi for the 1-soliton, we can differentiate
+    phi and use it (with arbitrary parameter beta). For this function, we
+    need phi and dphi to be a tuple with coordinates (u, v).  
+    """
+    dphi[0] = phi[0] + 2*beta*np.sin((dphi+phi)/2) 
