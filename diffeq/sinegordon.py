@@ -12,7 +12,17 @@ u_tt - u_xx - u_yy - u_zz = -sin(u)
 
 They have 1-, 2-, and 3-soliton solutions:
 
+1-soliton:
+phi(x, t) = 4arctan(exp(mγ(x-vt)+δ)
+where
+γ^2 = 1/(1-v^2)
 
+2-soliton:
+
+3-soliton:
+Standing breather collides with a moving kink so the shift
+of the standing breather is
+∆_B = 2arctan(sqrt((1-ω^2)(1-v_K^2)))/(sqrt(1-ω^2))
 """
 
 
