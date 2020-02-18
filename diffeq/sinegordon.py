@@ -1,3 +1,5 @@
+import numpy as np
+
 """
 The sine-Gordon (sine gordon sinegordon) equation is a nonlinear
 partial differential equation:
@@ -25,4 +27,10 @@ of the standing breather is
 ∆_B = 2arctan(sqrt((1-ω^2)(1-v_K^2)))/(sqrt(1-ω^2))
 """
 
-
+def sg1sol(x, v, t):
+    """
+    Sine-Gordon 1-soliton solutions
+    """
+    g = 1/(1-v**2)
+    g2 = g**2
+    
