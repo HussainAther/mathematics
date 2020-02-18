@@ -53,6 +53,10 @@ def aback(phi, dphi, beta):
   
     For the output solution phi for the 1-soliton, we can differentiate
     phi and use it (with arbitrary parameter beta). For this function, we
-    need phi and dphi to be a tuple with coordinates (u, v).  
+    need phi to be a tuple with coordinates (u, v) and dphi to be a single
+    value. 
     """
-    dphi[0] = phi[0] + 2*beta*np.sin((dphi+phi)/2) 
+    dphiuv = ["", ""]
+    dphiuv[0] = phi[0] + 2*beta*np.sin((dphi+phi)/2) 
+    dphiuv[1] = -phi[1] + (2/beta)*np.sin((dphi-phi)/2)
+    return dphiuv
