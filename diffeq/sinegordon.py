@@ -25,6 +25,8 @@ where
 Standing breather collides with a moving kink so the shift
 of the standing breather is
 ∆_B = 2arctan(sqrt((1-ω^2)(1-v_K^2)))/(sqrt(1-ω^2))
+
+for v_K velocity of the kink and ω the breather's frequency.
 """
 
 def sg1sol(x, v, t):
@@ -60,3 +62,10 @@ def aback(phi, dphi, beta):
     dphiuv[0] = phi[0] + 2*beta*np.sin((dphi+phi)/2) 
     dphiuv[1] = -phi[1] + (2/beta)*np.sin((dphi-phi)/2)
     return dphiuv
+
+def deltaB(omega, v_K):
+    """
+    Breather shift for 3-soliton solution 
+    """
+    return 2*np.arctan(np.sqrt((1-omega**2)*(1-v_K**2)))/np.sqrt(1-omega**2)
+
