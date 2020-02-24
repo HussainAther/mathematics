@@ -1,7 +1,7 @@
 % Visualization of a complex valued function
 % The phase of the complex function is displayed using colors
 
-% Script calls the function  ColorCode.m
+% Script calls the function  colorcode.m
 
 
 % INPUTS ==============================================================
@@ -26,7 +26,7 @@ w = 2*pi / T;             % angular frequency
    
    u = R .* exp(W.*t);                    % wavefunction
 
-   % Color mapping for phase phi using script ColorCode.m
+   % Color mapping for phase phi using script colorcode.m
    m = (380-660) / (2*pi);
    b = 380 - m*pi;
   
@@ -91,7 +91,7 @@ figure(3)   % ---------------------------------------------------------
    for cx = 1:N-1
      phase = angle(u(cx));
      CwL = m * phase + b;
-     thisColor = ColorCode(CwL*1e-9);
+     thisColor = colorcode(CwL*1e-9);
      xP = t; yP = R.*ones(1,N);
      h_area = area(xP(cx:cx+1),yP(cx:cx+1));
      set(h_area,'FaceColor',thisColor);
@@ -132,7 +132,7 @@ figure(5)   %----------------------------------------------------------
        for cx = 1:N-1
          phase = xP(cx);
          wL = m * phase + b;
-         thisColor = ColorCode(wL*1e-9);
+         thisColor = colorcode(wL*1e-9);
          h_area = area(xP(cx:cx+1)/pi,yP(cx:cx+1));
          set(h_area,'FaceColor',thisColor);
          set(h_area,'EdgeColor',thisColor); 
