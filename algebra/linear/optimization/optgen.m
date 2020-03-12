@@ -1,4 +1,5 @@
-function a3(wd_coefficient, n_hid, n_iters, learning_rate, momentum_multiplier, do_early_stopping, mini_batch_size)
+function optgen(wd_coefficient, n_hid, n_iters, learning_rate, momentum_multiplier, do_early_stopping, mini_batch_size)
+    % Optimization and generalization algorithm
     warning('error', 'Octave:broadcast');
     if exist('page_output_immediately'), page_output_immediately(1); end
     more off;
