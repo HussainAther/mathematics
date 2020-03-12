@@ -24,3 +24,14 @@ w_dist_history = [];
 
 neg_examples = [neg_examples_nobias,ones(num_neg_examples,1)];
 pos_examples = [pos_examples_nobias,ones(num_pos_examples,1)];
+
+%If weight vectors have not been provided, initialize them appropriately.
+if (~exist('w_init','var') || isempty(w_init))
+    w = randn(3,1);
+else
+    w = w_init;
+end
+
+if (~exist('w_gen_feas','var'))
+    w_gen_feas = [];
+end
