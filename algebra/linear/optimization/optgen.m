@@ -35,3 +35,6 @@ function optgen(wd_coefficient, n_hid, n_iters, learning_rate, momentum_multipli
             best_so_far.validation_loss = validation_data_losses(end);
             best_so_far.after_n_iters = optimization_iteration_i;
         end
+        if mod(optimization_iteration_i, round(n_iters/10)) == 0,
+            fprintf('After %d optimization iterations, training data loss is %f, and validation data loss is %f\n', optimization_iteration_i, training_data_losses(end), validation_data_losses(end));
+        end
