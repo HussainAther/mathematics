@@ -35,3 +35,17 @@ end
 if (~exist('w_gen_feas','var'))
     w_gen_feas = [];
 end
+
+%Find the data points that the perceptron has incorrectly classified
+%and record the number of errors it makes.
+iter = 0;
+[mistakes0, mistakes1] = eval_perceptron(neg_examples,pos_examples,w);
+num_errs = size(mistakes0,1) + size(mistakes1,1);
+num_err_history(end+1) = num_errs;
+fprintf('Number of errors in iteration %d:\t%d\n',iter,num_errs);
+fprintf(['weights:\t', mat2str(w), '\n']);
+plot_perceptron(neg_examples, pos_examples, mistakes0, mistakes1, num_err_history, w, w_dist_history);
+key = input('<Press enter to continue, q to quit.>', 's');
+if (key == 'q')
+    return;
+end
