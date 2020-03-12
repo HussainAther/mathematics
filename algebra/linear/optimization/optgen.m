@@ -38,3 +38,8 @@ function optgen(wd_coefficient, n_hid, n_iters, learning_rate, momentum_multipli
         if mod(optimization_iteration_i, round(n_iters/10)) == 0,
             fprintf('After %d optimization iterations, training data loss is %f, and validation data loss is %f\n', optimization_iteration_i, training_data_losses(end), validation_data_losses(end));
         end
+        if n_iters ~= 0, test_gradient(model, datas.training, wd_coefficient); end % check again, this time with more typical parameters
+        if do_early_stopping,
+            fprintf('Early stopping: validation loss was lowest after %d iterations. We chose the model that we had then.\n', best_so_far.after_n_iters);
+            theta = best_so_far.theta;
+        end
