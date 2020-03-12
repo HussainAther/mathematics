@@ -43,3 +43,27 @@ function optgen(wd_coefficient, n_hid, n_iters, learning_rate, momentum_multipli
             fprintf('Early stopping: validation loss was lowest after %d iterations. We chose the model that we had then.\n', best_so_far.after_n_iters);
             theta = best_so_far.theta;
         end
+        % the optimization is finished. Now do some reporting.
+        model = theta_to_model(theta);
+        if n_iters ~= 0,
+            clf;
+            hold on;
+            plot(training_data_losses, 'b');
+            plot(validation_data_losses, 'r');
+            legend('training', 'validation');
+            ylabel('loss');
+            xlabel('iteration number');
+            hold off;
+        end
+        datas2 = {datas.training, datas.validation, datas.test};
+        data_names = {'training', 'validation', 'test'};
+        for data_i = 1:3,
+            data = datas2{data_i};
+            data_name = data_names{data_i};
+            fprintf('\nThe loss on the %s data is %f\n', data_name, loss(model, data, wd_coefficient));
+            if wd_coefficient~=0,
+                fprintf('The classification loss (i.e. without weight decay) on the %s data is %f\n', data_name, loss(model, data, 0));
+          end
+          fprintf('The classification error rate on the %s data is %f\n', data_name, classification_performance(model, data));
+        end
+end
