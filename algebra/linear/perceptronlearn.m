@@ -55,3 +55,16 @@ end
 if (length(w_gen_feas) ~= 0)
     w_dist_history(end+1) = norm(w - w_gen_feas);
 end
+
+%Iterate until the perceptron has correctly classified all points.
+while (num_errs > 0)
+    iter = iter + 1;
+
+    %Update the weights of the perceptron.
+    w = update_weights(neg_examples,pos_examples,w);
+
+    %If a generously feasible weight vector exists, record the distance
+    %to it from the current weight vector.
+    if (length(w_gen_feas) ~= 0)
+        w_dist_history(end+1) = norm(w - w_gen_feas);
+    end
