@@ -16,3 +16,8 @@ function [w] = learn_perceptron(neg_examples_nobias,pos_examples_nobias,w_init,w
 % Returns:
 %   w - The learned weight vector.
 %%
+
+num_neg_examples = size(neg_examples_nobias,1);
+num_pos_examples = size(pos_examples_nobias,1);
+num_err_history = [];
+w_dist_history = [];
