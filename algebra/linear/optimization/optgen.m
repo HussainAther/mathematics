@@ -164,3 +164,23 @@ function ret = d_loss_by_d_model(model, data, wd_coefficient)
     ret.hid_to_class = model.hid_to_class .* wd_coefficient + (delta_3 * hid_output')/m; %size <number of classes i.e. 10> by <number of hidden units> | 10 X nh
     ret.input_to_hid = model.input_to_hid .* wd_coefficient + (delta_2 * data.inputs')/m; % size <number of hidden units> by <number of inputs i.e. 256> | nh X 256
 end
+
+function ret = model_to_theta(model)
+    % This function takes a model (or gradient in model form), and turns it into one long vector. See also theta_to_model.
+    input_to_hid_transpose = transpose(model.input_to_hid);
+    hid_to_class_transpose = transpose(model.hid_to_class);
+    ret = [input_to_hid_transpose(:); hid_to_class_transpose(:)];
+end
+
+function ret = theta_to_model(theta)
+    % This function takes a model (or gradient) in the form of one long vector (maybe produced by model_to_theta), and restores it to the structure format, i.e. with fields .input_to_hid and .hid_to_class, both matrices.
+    n_hid = size(theta, 1) / (256+10);
+    ret.input_to_hid = transpose(reshape(theta(1: 256*n_hid), 256, n_hid));
+    ret.hid_to_class = reshape(theta(256 * n_hid + 1 : size(theta,1)), n_hid, 10).';
+end
+
+function ret = initial_model(n_hid)
+    n_params = (256+10) * n_hid;
+    as_row_vector = cos(0:(n_params-1));
+    ret = theta_to_model(as_row_vector(:) * 0.1); % We don't use random initialization, for this assignment. This way, everybody will get the same results.
+end
