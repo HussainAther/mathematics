@@ -20,3 +20,9 @@ function a3(wd_coefficient, n_hid, n_iters, learning_rate, momentum_multiplier, 
     end
     for optimization_iteration_i = 1:n_iters,
         model = theta_to_model(theta);
+        training_batch_start = mod((optimization_iteration_i-1) * mini_batch_size, n_training_cases)+1;
+        training_batch.inputs = datas.training.inputs(:, training_batch_start : training_batch_start + mini_batch_size - 1);
+        training_batch.targets = datas.training.targets(:, training_batch_start : training_batch_start + mini_batch_size - 1);
+        gradient = model_to_theta(d_loss_by_d_model(model, training_batch, wd_coefficient));
+        momentum_speed = momentum_speed * momentum_multiplier - gradient;
+        theta = theta + momentum_speed * learning_rate;
