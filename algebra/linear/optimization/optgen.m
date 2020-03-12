@@ -139,3 +139,28 @@ function ret = loss(model, data, wd_coefficient)
     wd_loss = sum(model_to_theta(model).^2)/2*wd_coefficient; % weight decay loss. very straightforward: E = 1/2 * wd_coeffecient * theta^2
     ret = classification_loss + wd_loss;
 end
+
+function ret = d_loss_by_d_model(model, data, wd_coefficient)
+    % model.input_to_hid is a matrix of size <number of hidden units> by <number of inputs i.e. 256>
+    % model.hid_to_class is a matrix of size <number of classes i.e. 10> by <number of hidden units>
+    % data.inputs is a matrix of size <number of inputs i.e. 256> by <number of data cases>. Each column describes a different data case. 
+    % data.targets is a matrix of size <number of classes i.e. 10> by <number of data cases>. Each column describes a different data case. It contains a one-of-N encoding of the class, i.e. one element in every column is 1 and the others are 0.
+  
+    % The returned object is supposed to be exactly like parameter <model>, i.e. it has fields ret.input_to_hid and ret.hid_to_class. However, the contents of those matrices are gradients (d loss by d model parameter), instead of model parameters.
+    
+    m = size(data.inputs, 2);
+    %Compute class probabilities to get loss 
+    % This is the only function that you're expected to change. Right now, it just returns a lot of zeros, which is obviously not the correct output. Your job is to replace that by a correct computation.
+    hid_input = model.input_to_hid * data.inputs; % input to the hidden units, i.e. before the logistic. size: <number of hidden units> by <number of data cases>  | nh X m
+    hid_output = logistic(hid_input); % output of the hidden units, i.e. after the logistic. size: <number of hidden units> by <number of data cases> | nh X m
+    class_input = model.hid_to_class * hid_output; % input to the components of the softmax. size: <number of classes, i.e. 10> by <number of data cases>  
+    %softmax
+    [log_class_prob, class_prob] = softmax(class_input);
+    
+    delta_3 = class_prob - data.targets;     %size: <number of classes, i.e. 10> by <number of data cases> | 10 X m
+    delta_2 = (model.hid_to_class' * delta_3).*logistic_derivative(hid_input); %Size: <number of hidden units> by <number of data cases> | nh X m
+    
+    %gradients 
+    ret.hid_to_class = model.hid_to_class .* wd_coefficient + (delta_3 * hid_output')/m; %size <number of classes i.e. 10> by <number of hidden units> | 10 X nh
+    ret.input_to_hid = model.input_to_hid .* wd_coefficient + (delta_2 * data.inputs')/m; % size <number of hidden units> by <number of inputs i.e. 256> | nh X 256
+end
