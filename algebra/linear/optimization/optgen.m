@@ -26,3 +26,11 @@ function a3(wd_coefficient, n_hid, n_iters, learning_rate, momentum_multiplier, 
         gradient = model_to_theta(d_loss_by_d_model(model, training_batch, wd_coefficient));
         momentum_speed = momentum_speed * momentum_multiplier - gradient;
         theta = theta + momentum_speed * learning_rate;
+        model = theta_to_model(theta);
+        training_data_losses = [training_data_losses, loss(model, datas.training, wd_coefficient)];
+        validation_data_losses = [validation_data_losses, loss(model, datas.validation, wd_coefficient)];
+        if do_early_stopping && validation_data_losses(end) < best_so_far.validation_loss,
+            best_so_far.theta = theta; % this will be overwritten soon
+            best_so_far.validation_loss = validation_data_losses(end);
+            best_so_far.after_n_iters = optimization_iteration_i;
+        end
