@@ -21,3 +21,6 @@ num_neg_examples = size(neg_examples_nobias,1);
 num_pos_examples = size(pos_examples_nobias,1);
 num_err_history = [];
 w_dist_history = [];
+
+neg_examples = [neg_examples_nobias,ones(num_neg_examples,1)];
+pos_examples = [pos_examples_nobias,ones(num_pos_examples,1)];
