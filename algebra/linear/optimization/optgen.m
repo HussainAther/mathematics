@@ -112,3 +112,11 @@ function ret = log_sum_exp_over_rows(a)
     maxs_big = repmat(maxs_small, [num_rows, 1]); % stacks matrix num_rows times vertically i.e. adds rows
     ret = log(sum(exp(a - maxs_big), 1)) + maxs_small;
 end
+
+function [log_class_prob, class_prob] = softmax(class_input)
+    % "Numerically stable" means that this way, there will never be really big numbers involved.
+    % Octave isn't well prepared to deal with really large numbers, like the number 10 to the power 1000. Computations with such numbers get unstable, so we avoid them.
+    class_normalizer = log_sum_exp_over_rows(class_input); % log(sum(exp of class_input)) is what we subtract to get properly normalized log class probabilities. size: <1> by <number of data cases>
+    log_class_prob = class_input - repmat(class_normalizer, [size(class_input, 1), 1]); % log of probability of each class. size: <number of classes, i.e. 10> by <number of data cases>
+    class_prob = exp(log_class_prob); % probability of each class. Each column (i.e. each case) sums to 1. size: <number of classes, i.e. 10> by <number of data cases>
+end
