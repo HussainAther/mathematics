@@ -99,3 +99,24 @@ function [w] = update_weights(neg_examples, pos_examples, w_current)
 %   w - The weight vector after one pass through the dataset using the perceptron
 %       learning rule.
 %%
+w = w_current;
+num_neg_examples = size(neg_examples,1);
+num_pos_examples = size(pos_examples,1);
+for i=1:num_neg_examples
+    this_case = neg_examples(i,:);
+    x = this_case'; %Hint
+    activation = this_case*w;
+    if (activation >= 0)
+        %YOUR CODE HERE
+        w = w - 1*x;
+    end
+end
+for i=1:num_pos_examples
+    this_case = pos_examples(i,:);
+    x = this_case';
+    activation = this_case*w;
+    if (activation < 0)
+        %YOUR CODE HERE
+        w = w + 1*x;
+    end
+end
