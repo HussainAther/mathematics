@@ -49,3 +49,9 @@ key = input('<Press enter to continue, q to quit.>', 's');
 if (key == 'q')
     return;
 end
+
+%If a generously feasible weight vector exists, record the distance
+%to it from the initial weight vector.
+if (length(w_gen_feas) ~= 0)
+    w_dist_history(end+1) = norm(w - w_gen_feas);
+end
