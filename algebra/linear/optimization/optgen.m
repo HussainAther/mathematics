@@ -94,3 +94,21 @@ function test_gradient(model, data, wd_coefficient)
     end
     fprintf('Gradient test passed. That means that the gradient that your code computed is within 0.001%% of the gradient that the finite difference approximation computed, so the gradient calculation procedure is probably correct (not certainly, but probably).\n');
 end
+
+function ret = logistic(input)
+    ret = 1 ./ (1 + exp(-input));
+end
+
+function ret = logistic_derivative(input)
+    ret = logistic(input);
+    ret = ret .* (1.-ret);
+end
+
+function ret = log_sum_exp_over_rows(a)
+    % a is always a column vector
+    % This computes log(sum(exp(a), 1)) in a numerically stable way
+    maxs_small = max(a, [], 1);     %max element in each column
+    num_rows = size(a, 1);          
+    maxs_big = repmat(maxs_small, [num_rows, 1]); % stacks matrix num_rows times vertically i.e. adds rows
+    ret = log(sum(exp(a - maxs_big), 1)) + maxs_small;
+end
