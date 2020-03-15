@@ -30,10 +30,10 @@ def prune_index(inner_tree, decisions, index=0):
         is_leaf(inner_tree, inner_tree.children_right[index]) and
         (decisions[index] == decisions[inner_tree.children_left[index]]) and 
         (decisions[index] == decisions[inner_tree.children_right[index]])):
-        # turn node into a leaf by "unlinking" its children
+        # Turn node into a leaf by "unlinking" its children.
         inner_tree.children_left[index] = TREE_LEAF
         inner_tree.children_right[index] = TREE_LEAF
-        ##print("Pruned {}".format(index))
+        # print("Pruned {}".format(index))
 
 def prune(v):
     """
@@ -59,5 +59,5 @@ def sgs(v):
     For a set of variables v, perform the SGS algorithm 
     for discovering causal structure.
     """
-    g = colliders(prune_index(DecisionTreeClassifier(len(v)))) # construct the graph
+    g = colliders(prune_index(DecisionTreeClassifier(len(v)))) # Construct the graph.
     
