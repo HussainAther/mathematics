@@ -59,11 +59,11 @@ T = 4*P # time interval
 N = int(round(T/dt)) # number of steps
 t = np.linspace(0, N*dt, N+1) # initialize time range
 
-# Initialize arrays and initial condition
-a = np.zeros(N) # this will be our first function
-b = np.zeros(N) # this will be our second function
+# Initialize arrays and initial condition.
+a = np.zeros(N) # first function
+b = np.zeros(N) # second 
 x0 = 2
-a[0] = x0 # start at some 
+a[0] = x0 # start
 b[0] = 0 
 
 # Step forward
