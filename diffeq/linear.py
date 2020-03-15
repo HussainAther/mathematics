@@ -1,5 +1,5 @@
-from PyDSTool import *
 from euler import euler_integrate
+from PyDSTool import *
 
 """
 1D linear ODE (ode ordinary differential equation) for exploring time scales
@@ -15,16 +15,16 @@ v_rhs = "(v0-v)/tau"
 
 vardict = {"v": v_rhs}
 
-# create an empty object instance of the args class, call it DSargs
+# Create an empty object instance of the args class, call it DSargs.
 DSargs = args()
 
-# name our model
+# Name our model.
 DSargs.name = "timescales"
 
-# assign the dictionary of ICs, icdict, to the ICs attribute
+# Assign the dictionary of ICs, icdict, to the ICs attribute.
 DSargs.ics = icdict
 
-# assign the dictionary of parameters, pardict, to the pars attribute
+# Assign the dictionary of parameters, pardict, to the pars attribute.
 DSargs.pars = pardict
 
 # declare how long we expect to integrate for (can be changed later)
@@ -51,12 +51,12 @@ def test_tau(tau):
     pts = traj.sample()
     return pts
 
-# A loop to test a distribution of values of tau
+# A loop to test a distribution of values of tau.
 for tau in 40*exp(-linspace(1, 6, 6)):
     pts = test_tau(tau)
     plt.plot(pts["t"], pts["v"], ".-", label='tau=%.3f (VODE)' %tau)
 
-# Find solutions using Euler integration
+# Find solutions using Euler integration.
 def test_tau_euler(tau, step, symb):
     DS.set(pars={"tau": tau})
     print "Testing Euler method with tau =", tau
@@ -64,8 +64,6 @@ def test_tau_euler(tau, step, symb):
     plt.plot(ts, vs, symb + ":", label='tau=%.2f (Euler@%.2f)' % (tau, step))
 
 test_tau_euler(3, 0.4, "mx")
-
-### TRY THESE AT THE COMMAND PROMPT
 #test_tau_euler(0.3, 0.4, "k.")
 #test_tau_euler(0.1, 0.4, "r.")
 
