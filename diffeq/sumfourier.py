@@ -1,7 +1,7 @@
 import cmath
 import numpy as np
 
-from vpython.graph import *
+from vpython.graph import gcurve, gidsplay, gvbars
 
 """
 Summation of the Fourier series using two methods: sawtooth function
@@ -20,8 +20,8 @@ impart = gvbars(delta = 0.05, color = color.red, display = imagr)
 N = 50 # number of points
 Np = N
 signal = np.zeros((N+1), float)
-twopi = 2*pi
-sq2pi = 1/sqrt(twopi)
+twopi = 2*np.pi
+sq2pi = 1/np.sqrt(twopi)
 h = twopi/N
 dftz = np.zeros((Np), complex) # sequence complex elements
 
@@ -48,7 +48,7 @@ def halfwave(signal):
     omega = .5
     for i in range(0, N+1):
         if i < T/2:
-            signal[i] = sin(omega*i)
+            signal[i] = np.sin(omega*i)
             sigfig.plot(x, signal[i]))
         else:
             signal[i] = 0
@@ -61,8 +61,8 @@ def fourier(dftz):
     for n in range(0, Np):
         zsum = complex(0, 0)
         for k in range(0, N):
-            zexp = complex(0, twopi*k*n/N)
-            zsum += signal[k] * exp(-zexpo)
+            zexp = np.complex(0, twopi*k*n/N)
+            zsum += signal[k] * np.exp(-zexpo)
         dftz[n] = zsum * sq2pi
         if dftz[n].imag != 0:
             impart.plot(pos=(n, dftz[n].imag))
