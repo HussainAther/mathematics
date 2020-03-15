@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 """
 Maximum likelihood estimations (estimates MLE mle) for different values of of mu 
