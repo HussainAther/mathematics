@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from scipy.integrate import odeint # scipy has some neato ordinary differential equation functions.
 
@@ -7,7 +7,7 @@ from scipy.integrate import odeint # scipy has some neato ordinary differential 
 First-order differential equations.
 """
 
-# Define a function which calculates the derivative
+# Define a function which calculates the derivative.
 def dy_dx(y, x):
     return x - y
 
@@ -16,8 +16,8 @@ y0 = 1.0  # the initial condition
 ys = odeint(dy_dx, y0, xs)
 ys = np.array(ys).flatten()
 
-# Plot the numerical solution
-plt.rcParams.update({'font.size': 14})  # increase the font size
+# Plot the numerical solution.
+plt.rcParams.update({"font.size": 14})  # increase the font size
 plt.xlabel("x")
 plt.ylabel("y")
 plt.plot(xs, ys);
@@ -31,4 +31,3 @@ plt.semilogy(xs, y_diff)
 plt.ylabel("Error")
 plt.xlabel("x")
 plt.title("Error in numerical integration")
-# Note the logarithmic scale on the y-axis.
