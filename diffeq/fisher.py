@@ -17,9 +17,10 @@ such that v(z) approaches 0 as z approaches -infinity and v(z) approaches 1 as z
 
 For the special wave speed c = +/- t * sqrt(6), we can find all solutions in the closed form of u(z) as:
 """
+
 C = 10
 z = 1
-u = (1 + C*np.exp(z/np.sqrt(6)))**-2 # there is also a solution with a minus sign in front of z
+u = (1 + C*np.exp(z/np.sqrt(6)))**-2 # There is also a solution with a minus sign in front of z.
 r = 1
 D = 10 
 d2udx2 = (-2*(1 + C*np.exp(z/np.sqrt(6)))**-3) * \
