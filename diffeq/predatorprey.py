@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from scipy.integrate import odeint
 
@@ -41,7 +41,6 @@ plt.xlabel("Rabbits")
 plt.ylabel("Foxes")
 plt.title("Rabbits vs Foxes");
 
-
 ic = np.linspace(1.0, 3.0, 21)
 for r in ic:
     P0 = [r, 1.0]
@@ -49,4 +48,4 @@ for r in ic:
     plt.plot(Ps[:,0], Ps[:,1], "-")
 plt.xlabel("Rabbits")
 plt.ylabel("Foxes")
-plt.title("Rabbits vs Foxes");
+plt.title("Rabbits vs Foxes")
