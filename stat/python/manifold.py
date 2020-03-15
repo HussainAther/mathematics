@@ -1,14 +1,15 @@
 import matplotlib.pyplot as plt
-import seaborn as sns; sns.set()
 import numpy as np
+import seaborn as sns; sns.set()
 
-from sklearn.manifold import MDS, LocallyLinearEmbedding
+from matplotlib.image import imread
 from mpl_toolkits import mplot3d
+from sklearn.manifold import MDS, LocallyLinearEmbedding
 
 """
 Manifold learning is a class of unsupervised estimators that seeks to describe datasets 
 as low-dimensional manifolds embedded in high-dimensional spaces. When you think of a 
-manifold, I'd suggest imagining a sheet of paper: this is a two-dimensional object that 
+manifold, I"d suggest imagining a sheet of paper: this is a two-dimensional object that 
 lives in our familiar three-dimensional world, and can be bent or rolled in that two 
 dimensions. In the parlance of manifold learning, we can think of this sheet as a two-
 dimensional manifold embedded in three-dimensional space.
@@ -24,8 +25,7 @@ def make_hello(N=1000, rseed=42):
     ax.text(0.5, 0.4, "HELLO", va="center", ha="center", weight="bold", size=85)
     fig.savefig("hello.png")
     plt.close(fig)
-    # Open this PNG and draw random points from it
-    from matplotlib.image import imread
+    # Open this PNG and draw random points from it.
     data = imread("hello.png")[::-1, :, 0].T
     rng = np.random.RandomState(rseed)
     X = rng.rand(4 * N, 2)
@@ -90,7 +90,7 @@ Locally linear embedding.
 """
 
 model = LocallyLinearEmbedding(n_neighbors=100, n_components=2, method="modified",
-                               eigen_solver='dense')
+                               eigen_solver="dense")
 out = model.fit_transform(XS)
 fig, ax = plt.subplots()
 ax.scatter(out[:, 0], out[:, 1], **colorize)
