@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from gekko import GEKKO
 
@@ -10,14 +10,14 @@ Optimize some process with GEKKO.
 # Generate "data" with process simulation
 nt = 51
 
-# input steps
+# Input steps
 u_meas = np.zeros(nt)
 u_meas[3:10] = 1.0
 u_meas[10:20] = 2.0
 u_meas[20:40] = 0.5
 u_meas[40:] = 3.0
 
-# simulation model
+# Simulation model
 p = GEKKO()
 p.time = np.linspace(0, 10, nt)
 n = 1 #process model order
@@ -40,20 +40,20 @@ p.y = p.SV() #measurement
 p.Equations([p.tau/n * p.x[i+1].dt() == -p.x[i+1] + p.x[i] for i in range(n)])
 p.Equation(p.y == p.K * p.x[n])
 
-# Simulate
+# Simulate.
 p.options.IMODE = 4
 p.solve(disp=False)
 
-# add measurement noise
+# Add measurement noise.
 y_meas = (np.random.rand(nt)-0.5)*0.2
 for i in range(nt):
     y_meas[i] += p.y.value[i]
 
-# plot our simulated input and output data
+# Plot our simulated input and output data.
 plt.plot(p.time, u_meas, "b:", label="Input (u) measurement")
 plt.plot(p.time, y_meas, "ro", label="Output (y) measurement")
 
-# plot our optimized equation of output  
+# Plot our optimized equation of output.
 plt.plot(p.time, p.y.value, "k-", label="Output (y) actual")
 plt.legend()
 plt.show()
