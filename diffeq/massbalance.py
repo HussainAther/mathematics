@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from gekko import GEKKO
 
@@ -35,16 +35,16 @@ qout2 = m.Intermediate(c2 * h2**0.5 + overflow2)
 m.Equation(Ac*h1.dt()==qin1-qout1)
 m.Equation(Ac*h2.dt()==qin2-qout2)
 
-# minimize overflow
+# Minimize overflow.
 m.Obj(overflow1+overflow2)
 
-# set options
+# Set options.
 m.options.IMODE = 6 # dynamic optimization
 
-# simulate differential equations
+# Simulate differential equations.
 m.solve()
 
-# plot results
+# Plot.
 plt.figure(1)
 plt.plot(m.time,h1, "b-")
 plt.plot(m.time,h2, "r--")
