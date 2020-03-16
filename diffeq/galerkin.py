@@ -1,6 +1,6 @@
 import numpy as np
 
-from sympy import input, Symbol, 
+from sympy import input, Symbol
 
 """
 Galerkin Method to solve the second-order boundary value problem
