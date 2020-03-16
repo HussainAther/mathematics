@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 """
 In numerical analysis, the Bulirsch–Stoer algorithm is a method for the numerical solution of
@@ -25,12 +25,12 @@ delta = 1e-8 # required position accuracy per unit time
 
 def f(r):
     """
-    Function which we will extrapolate.
+    Function which we will extrapolate
     """
-    theta = r[0] # look at the first element of each array
+    theta = r[0] # Look at the first element of each array.
     omega = r[1]
     ftheta = omega
-    fomega = -(g/l)*np.sin(theta) # get our version of omega by applying our force
+    fomega = -(g/l)*np.sin(theta) # Get our version of omega by applying our force.
     return np.array([ftheta,fomega],float)
 
 tpoints = np.arange(a,b,H)
@@ -50,7 +50,7 @@ for t in tpoints:
     # end of the interval
     R1 = np.empty([1,2],float)
     R1[0] = 0.5*(r1 + r2 + 0.5*H*f(r2))
-    # Now increase n until the required accuracy is reached
+    # Now increase n until the required accuracy is reached.
     error = 2*H*delta
     while error>H*delta:
         n += 1
@@ -61,8 +61,8 @@ for t in tpoints:
         for i in range(n-1):
             r1 += h*f(r2)
             r2 += h*f(r1)
-        # Calculate extrapolation estimates.  Arrays R1 and R2
-        # hold the two most recent lines of the table
+        # Calculate extrapolation estimates. Arrays R1 and R2
+        # hold the two most recent lines of the table.
         R2 = R1
         R1 = np.empty([n,2],float)
         R1[0] = 0.5*(r1 + r2 + 0.5*h*f(r2))
@@ -71,9 +71,9 @@ for t in tpoints:
             R1[m] = R1[m-1] + epsilon
         error = abs(epsilon[0])
     # Set r equal to the most accurate estimate we have,
-    # before moving on to the next big step
+    # before moving on to the next big step.
     r = R1[n-1]
 
-# Plot the results
+# Plot.
 plt.plot(tpoints, thetapoints)
 plt.show()
