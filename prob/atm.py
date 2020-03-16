@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
-import sys
 import scipy
+import sys
 
 from scipy.sparse.linalg import LinearOperator
 
@@ -91,7 +91,7 @@ img = cv2.imread(sys.argv[1], 1)
 result, edges = [], []
 for channel in cv2.split(img):
     # Perform the AT Minimization.
-    solver = justdoit(channel, iter = 1, tol = 0.1, maxiter  = 6)
+    solver = justdoit(channel, iter=1, tol=0.1, maxiter=6)
     f, v = minimize(iter)
     result.append(f)
     edges.append(v)
