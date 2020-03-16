@@ -61,7 +61,7 @@ def legroots(p, tol=1e-20):
 
 def glw(p):
     """
-    get the Gaussian-Legendre weights of polynomial order p
+    Get the Gaussian-Legendre weights of polynomial order p.
     """ 
     W = []
     [xis, err] = legroots(p)
