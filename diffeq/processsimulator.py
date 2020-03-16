@@ -7,7 +7,7 @@ from gekko import GEKKO
 Optimize some process with GEKKO.
 """
 
-# Generate "data" with process simulation
+# Generate with process simulation.
 nt = 51
 
 # Input steps
