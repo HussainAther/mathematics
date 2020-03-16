@@ -22,7 +22,7 @@ m.solver_options = ["minlp_maximum_iterations 500", \
                     # covergence tolerance
                     "minlp_gap_tol 0.01"]
 
-# Initialize variables
+# Initialize variables.
 x1 = m.Var(value=1, lb=1, ub=5)
 x2 = m.Var(value=5, lb=1, ub=5)
 
