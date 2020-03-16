@@ -1,5 +1,3 @@
-import numpy as np
-
 """
 Lyapunov's (Lyapnuov lyapunov) "second method" or "direct method" for ordinary differential
 equations of the form:
@@ -31,5 +29,3 @@ def lyapunov(V, x):
                 else:
                     return False
     return True
-           
- 
