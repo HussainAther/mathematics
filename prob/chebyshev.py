@@ -1,5 +1,5 @@
-import sympy
 import simpy.stats as ss
+import sympy
 
 """
 Chebyshev’s Inequality (inequality) drops out directly from the Markov Inequality. Let μ = E( X ) 
