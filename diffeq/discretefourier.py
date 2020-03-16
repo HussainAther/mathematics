@@ -1,7 +1,7 @@
 import cmath # for complex math functions
 import numpy as np
 
-from vpython.graph import gcurve, gidsplay, gvbars
+from vpython.graph import color, gcurve, gidsplay, gvbars
 
 """
 Discrete Fourier Transform (DFT) using built-in complex numbers

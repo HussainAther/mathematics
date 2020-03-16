@@ -1,7 +1,7 @@
 import cmath
 import numpy as np
 
-from vpython.graph import gcurve, gidsplay, gvbars
+from vpython.graph import color, gcurve, gidsplay, gvbars
 
 """
 Summation of the Fourier series using two methods: sawtooth function
