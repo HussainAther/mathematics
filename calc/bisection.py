@@ -23,5 +23,3 @@ for i in range(0, imax):
         xminus = x
     if abs(f(x) < eps): # check for convergence
         print("The zero is at x=" + str(x))
-
-
