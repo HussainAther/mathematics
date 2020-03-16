@@ -1,7 +1,7 @@
 import numpy as np
 
 from numpy.linalg import solve
-from vpython.graph import *
+from vpython.graph import gcurve, gdisplay, fdots, rate
 
 """
 Provide a finite-element method solution of the one-dimensional Laplace equation via a
@@ -125,19 +125,19 @@ for i in range(1, N):
     A[i, 0] = 0
     A[0, i] = 0
 
-# Set the first position for each matrix (array)
+# Set the first position for each matrix (array).
 A[0, 0] = 1
 b[0, 0] = 0
 
 for i in range(1, N):
     """
-    Begin to solve for the eigenvaues eigenvalues and eigenvectors
+    Begin to solve for the eigenvaues eigenvalues and eigenvectors.
     """ 
     b[i, 0] -= 1*A[i, N-1]
     A[i, N-1] = 0
     A[N-1, i] = 0
 
-# Use the built-in solve() function to complete it
+# Use the built-in solve() function to complete it.
 A[N-1, N-1] = 1
 b[N-1, 0] 1
 sol = solve(A, b)
@@ -145,8 +145,10 @@ sol = solve(A, b)
 # Extract and plot the data
 for i in range(0, N):
     u[i] = sol[i, 0]
+
 for i in range(0, 21):
     x2[i] = .05*i
+
 for i in range(0, 21)P:
     rate(6)
     u_fem[i] = numerical(X, u, x2[i])
@@ -154,4 +156,4 @@ for i in range(0, 21)P:
     funct1.plot(pos=(.05*i, u_exact[i]))
     rate(6)
     funct2.plot(pos=(.05*i, u_fem[i]))
-    error[i] = u_fem[i] - u_exact[i] # calcualte global error
+    error[i] = u_fem[i] - u_exact[i] # Calculate global error.
