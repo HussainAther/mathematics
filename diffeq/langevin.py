@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 """
 In stochastic differential equations we can model dynamical systems subject to noise for use
@@ -14,15 +14,15 @@ Langevin equation is:
 dx = -((x-mu)/tau)dt + sigma * sqrt(2/tau) dW
 """
 
-# Let's get Gaussian
+# Let"s get Gaussian.
 sigma = 1 # standard deviation
 mu = 20 # average
 tau = .05 # time constant
 
-dt = .001  # Time step.
-T = 1.  # Total time.
-n = int(T / dt)  # Number of time steps.
-t = np.linspace(0., T, n)  # Vector of times.
+dt = .001  # Time step
+T = 1.  # Total time
+n = int(T / dt)  # Number of time steps
+t = np.linspace(0., T, n)  # Vector of times
 
 sigma_bis = sigma * np.sqrt(2. / tau)
 sqrtdt = np.sqrt(dt)
@@ -31,7 +31,7 @@ x = np.zeros(n)
 
 for i in range(n - 1):
     """
-    Simluate the process with the Euler-Maruyama method. It's the standard Euler method for ODOEs
+    Simluate the process with the Euler-Maruyama method. It"s the standard Euler method for ODOEs
     but with an extra stochastic term (scaled normal random variable).
     """
     x[i + 1] = x[i] + dt * (-(x[i] - mu) / tau) + sigma_bis * sqrtdt * np.random.randn()
@@ -50,11 +50,11 @@ for i in range(n):
     # Update the process independently for all trials.
     X += dt * (-(X - mu) / tau) + \
         sigma_bis * sqrtdt * np.random.randn(ntrials)
-    # Display the histogram for a few points in time
+    # Display the histogram for a few points in time.
     if i in (5, 50, 900):
         hist, _ = np.histogram(X, bins=bins)
         ax.plot((bins[1:] + bins[:-1]) / 2, hist,
-                {5: '-', 50: '.', 900: '-.', }[i],
+                {5: "-", 50: ".", 900: "-.", }[i],
                 label=f"t={i * dt:.2f}")
     ax.legend()
 
