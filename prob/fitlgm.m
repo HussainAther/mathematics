@@ -31,3 +31,36 @@ for j = 1:K
     end
 	A(j,:) = row;
 end
+row1 = 1:K;
+for x = 1:K
+    mu = W'*U(:,x)/sum(W);
+    row1(x) = mu;
+end
+col2 = [1;row1'];
+A = [row1;A];
+A = [A, col2];
+
+% B = [ E[X]; E[X*U(1)]; ... ; E[X*U(K)] ]
+
+B = 1:K;
+for x = 1:K
+    mu = W'*(X.*U(:,x))/sum(W);
+    B(x) = mu;
+end
+mu = W'*X/sum(W);
+B = [mu;B'];
+
+% Solve A*Beta = B
+Beta = A\B;
+
+% Then compute sigma according to eq. (17) in PA description.
+CovU = A(2:end, 1:K)  - A(2:end, K+1) * A(1, 1:K);
+[MuX, SigmaX] = FitG(X, W);
+sigma = sqrt( SigmaX^2 - Beta(1:K)' * CovU * Beta(1:K) );
+
+% Catch in case sigma is badly conditioned.
+if sigma == 0 || ~isreal(sigma)
+    sigma = .01;
+else
+    sigma = sigma + .01;
+end
