@@ -15,3 +15,19 @@ K = size(U,2);
 
 Beta = zeros(K+1,1);
 sigma = 1;
+
+% Collect expectations and solve the linear system.
+% A = [ E[U(1)],      E[U(2)],      ... , E[U(K)],      1     ; 
+%       E[U(1)*U(1)], E[U(2)*U(1)], ... , E[U(K)*U(1)], E[U(1)];
+%       ...         , ...         , ... , ...         , ...   ;
+%       E[U(1)*U(K)], E[U(2)*U(K)], ... , E[U(K)*U(K)], E[U(K)] ]
+
+A = zeros(K,K);
+for j = 1:K
+    row = 1:K;
+    for x = 1:K
+        mu = W'*(U(:,x).*U(:,j))/sum(W);
+        row(x) = mu;
+    end
+	A(j,:) = row;
+end
