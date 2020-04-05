@@ -9,3 +9,9 @@ function [Beta sigma] = FitLG(X, U, W)
 % X: (N x 1), the child variable, N examples
 % U: (N x K), K parent variables, N examples
 % W: (N x 1), weights over the examples.
+
+N = size(U,1);
+K = size(U,2);
+
+Beta = zeros(K+1,1);
+sigma = 1;
