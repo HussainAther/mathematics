@@ -52,6 +52,3 @@ for k = 1:nk
     next = input( 'press RETURN to continue' );
 end
 
-
-
-
