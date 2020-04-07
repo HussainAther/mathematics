@@ -9,41 +9,41 @@ function [X]=modlu(A, B)
   for J=1:N
     U(1, J) = A(1, J)/L(1, 1);
   end
-  SUM1 = 0;
-  SUM2 = 0;
+  sum1 = 0;
+  sum2 = 0;
   for J = 2:N
     for I = J:N
-      SUM1 = 0;
+      sum1 = 0;
       for K = 1:J-1
-        SUM1 = SUM1 + [L(I, K) * U(K, J)];
+        sum1 = sum1 + [L(I, K) * U(K, J)];
         end
-        L(I, J) = [A(I, J) - SUM1];
+        L(I, J) = [A(I, J) - sum1];
     end
     U(J, J) = 1;
     for I = J+1:N;
-      SUM2 = 0;
+      sum2 = 0;
       for K = 1:J-1
-        SUM2 = SUM2 + [L(J, K) * U(K, I)];
+        sum2 = sum2 + [L(J, K) * U(K, I)];
       end
-      U(J, I) = [A(J, I) - SUM2]/L(J, J);
+      U(J, I) = [A(J, I) - sum2]/L(J, J);
     end
   end
-  L(I, J) = A(I, J) - SUM1
-  U(J, I) = [A(J, I) - SUM2]/L(J, J)
+  L(I, J) = A(I, J) - sum1
+  U(J, I) = [A(J, I) - sum2]/L(J, J)
   X = zeros(N, 1);
   C(1) = B(1)/L(1, 1);
   for I = 2:N
-    SUM3 = 0;
+    sum3 = 0;
     for K = 1:I-1
-      SUM3 = SUM3 + L(I, K) * C(K);
+      sum3 = sum3 + L(I, K) * C(K);
     end
-    C(I) = B(I) - SUM3;
+    C(I) = B(I) - sum3;
   end
   X(N) = C(N)
   for J = N-1:-1:1
-    SUM4 = 0;
+    sum4 = 0;
     for K = J+1:N
-      SUM4 = SUM4 + U(J, K) * X(K);
+      sum4 = sum4 + U(J, K) * X(K);
     end
-  X(J) = (C(J) - SUM4)/L(J,J)
+  X(J) = (C(J) - sum4)/L(J,J)
   end
