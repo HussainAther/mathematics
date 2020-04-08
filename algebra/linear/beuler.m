@@ -2,3 +2,15 @@
 function [t,u]= beuler(odefun ,tspan ,y0 ,Nh ,varargin )
 % Solves differential equations using the
 % backward Euler method.
+% [T,Y]= BEULER(ODEFUN ,TSPAN ,Y0 ,NH) with TSPAN=[T0 ,TF]
+% integrates the system of differential equations
+% y'=f(t,y) from time T0 to TF with initial condition
+% Y0 using the backward Euler method on an equispaced
+% grid of NH intervals .
+% Function ODEFUN(T,Y) must return a vector , whose
+% elements hold the evaluation of f(t,y), of the
+% same dimension of Y.
+% Each row in the solution array Y corresponds to a
+% time returned in the column vector T.
+% [T,Y] = BEULER(ODEFUN ,TSPAN ,Y0 ,NH ,P1 ,P2 ,...) passes
+% the additional parameters P1 ,P2 ,...
