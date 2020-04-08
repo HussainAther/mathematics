@@ -1,5 +1,5 @@
 % Backward Euler method
-function [t,u]= beuler(odefun ,tspan ,y0 ,Nh ,varargin )
+function [t,u] = beuler(odefun, tspan, y0, Nh, varargin)
 % Solves differential equations using the
 % backward Euler method.
 % [T,Y]= BEULER(ODEFUN ,TSPAN ,Y0 ,NH) with TSPAN=[T0 ,TF]
@@ -14,11 +14,19 @@ function [t,u]= beuler(odefun ,tspan ,y0 ,Nh ,varargin )
 % time returned in the column vector T.
 % [T,Y] = BEULER(ODEFUN ,TSPAN ,Y0 ,NH ,P1 ,P2 ,...) passes
 % the additional parameters P1 ,P2 ,...
-tt=linspace (tspan(1), tspan(2), Nh +1);
-y=y0 (:); % always create a vector column
-u=y.’;
-global glob_h glob_t glob_y glob_odefun ;
-glob_h=( tspan(2)- tspan (1))/Nh;
-glob_y=y;
-glob_odefun =odefun;
+tt = linspace(tspan(1), tspan(2), Nh +1);
+y = y0(:); % always create a vector column
+u = y.';
+global glob_h glob_t glob_y glob_odefun;
+glob_h = ( tspan(2)- tspan(1))/Nh;
+glob_y = y;
+glob_odefun = odefun;
 glob_t=tt (2);
+w = fsolve(@(w) beulerfun(w), glob_y ,options);
+u = [u; w.'];
+glob_y = w;
+
+function [z] = beulerfun(w)
+    global glob_h glob_t glob_y glob_odefun;
+    z = w-glob_y -glob_h*feval(glob_odefun, glob_t, w);
+end
