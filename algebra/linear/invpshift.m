@@ -18,3 +18,15 @@ if nargin == 1
 elseif nargin == 2
     x0 = rand(n ,1); nmax = 100; tol = 1.e -06;
 end
+[L,U] = lu(A-mu*eye(n));
+if norm (x0) == 0
+    x0 = rand (n ,1);
+end
+x0 = x0/norm (x0);
+z0 = L\x0;
+pro = U\z0;
+lambda = x0 ’*pro;
+err = tol*abs(lambda )+1; iter =0;
+while err >tol*abs(lambda )& abs(lambda )~=0&iter <= nmax
+    x = pro; x = x/norm (x);
+    z = L\x; pro=U\z;
