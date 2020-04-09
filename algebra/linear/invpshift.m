@@ -30,3 +30,10 @@ err = tol*abs(lambda )+1; iter =0;
 while err >tol*abs(lambda )& abs(lambda )~=0&iter <= nmax
     x = pro; x = x/norm (x);
     z = L\x; pro=U\z;
+    lambdanew = x’* pro;
+    err = abs(lambdanew - lambda );
+    lambda = lambdanew ;
+    iter = iter + 1;
+end
+lambda = 1/ lambda + mu;
+return
