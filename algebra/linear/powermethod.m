@@ -44,3 +44,8 @@ for k=1:maxits
         break
     end
 end 
+if illustrate ~= 0
+    ReportConvergence( lambdas, "PowerMethod" );
+end
+
+end
