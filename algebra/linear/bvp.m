@@ -16,3 +16,8 @@ function [xh ,uh] = bvp(a, b, N, mu, eta, sigma, bvpfun,...
 % XH contains the nodes of the discretization ,
 % including the boundary nodes.
 % UH contains the numerical solutions .
+h = (b-a)/(N+1);
+xh = (linspace (a,b,N+2))';
+hm = mu/h^2;
+hd = eta /(2* h);
+e = ones (N ,1);
