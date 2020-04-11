@@ -16,3 +16,6 @@ function [t,u] = predcor(odefun, tspan, y, Nh ,...
 % passes the additional parameters P1 ,... to the
 % functions ODEFUN ,PRED and CORR as ODEFUN(T,Y,P1 ,..),
 % PRED (T,Y,P1 ,P2 ...), CORR
+h = (tspan(2)-tspan(1))/Nh;
+y = y0(:); w=y; u=y.';
+tt = linspace(tspan(1), tspan(2), Nh+1);
