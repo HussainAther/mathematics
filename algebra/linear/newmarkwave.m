@@ -34,3 +34,16 @@ xh = (linspace (xspan(1), xspan(2), N))';
 fn = feval(f, xh, tspan (1), varargin{:});
 un = feval(u0 ,xh, varargin{:});
 vn = feval(v0 ,xh, varargin{:});
+[L,U]=lu(A);
+alpha = dt^2* zeta ; beta = dt ^2*(0.5 - zeta );
+theta1 = 1-theta;
+for t = tspan (1)+ dt:dt:tspan(2)
+    fn1 = feval(f,xh ,t,varargin{:});
+    rhs = An*un+dt*I*vn+alpha*fn1+beta*fn;
+    temp = feval(g, [xspan(1), xspan(2)], t, varargin{:});
+    rhs([1,N]) = temp;
+    uh = L\rhs; uh = U\uh;
+    v = vn + dt*((1- theta)*(c*D*un/h^2+fn )+...
+    theta*(c*D*uh/h^2+ fn1));
+    fn = fn1; un = uh; vn = v;
+end
