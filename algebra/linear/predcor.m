@@ -21,3 +21,7 @@ y = y0(:); w=y; u=y.';
 tt = linspace(tspan(1), tspan(2), Nh+1);
 for t = tt(1:end-1)
     fn = feval(odefun, t, w, varargin{:});
+    upre = feval(predictor, t, w, h, fn);
+    w = feval(corrector, t+h, w, upre, h, odefun ,...
+              fn, varargin {:});
+    u = [u; w.'];
