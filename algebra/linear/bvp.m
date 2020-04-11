@@ -23,3 +23,10 @@ hd = eta /(2* h);
 e = ones (N ,1);
 A = spdiags([-hm*e-hd (2* hm+sigma)*e -hm*e+hd ],...
              -1:1, N, N);
+xi = xh (2:end -1);
+f = feval(bvpfun ,xi ,varargin {:});
+f(1) = f(1)+ ua*(hm+hd );
+f(end) = f(end )+ub*(hm -hd);
+uh = A\f;
+uh = [ua; uh; ub];
+return
