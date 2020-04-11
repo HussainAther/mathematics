@@ -9,3 +9,15 @@ function [xh ,uh] = newmarkwave(xspan, tspan, nstep, param, ...
 % Newmark method with initial conditions U(X,0)= U0(X),
 % DU/DX(X ,0)= V0(X) and Dirichlet boundary conditions
 % U(X,T)=G(X,T) for X=
+% positive constant.
+% NSTEP (1) is the number of space-integration intervals.
+% NSTEP (2) is the number of time-integration intervals.
+% PARAM (1)= ZETA and PARAM (2)= THETA.
+% U0(X), V0(X), G(X,T) and F(x,T) can be defined
+% by inline functions , anonymous functions , or
+% M-files.
+% XH contains the nodes of the discretization .
+% UH contains the numerical solutions at time TSPAN (2).
+% [XH ,UH ]= NEWMARKWAVE (XSPAN ,TSPAN ,NSTEP ,PARAM ,C,...
+% U0 ,V0 ,G,F,P1 ,P2 ,...) passes the additional parameters
+% P1 ,P2 ,... to the functions U0 ,V0 ,G,F.
