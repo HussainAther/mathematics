@@ -19,3 +19,5 @@ function [t,u] = predcor(odefun, tspan, y, Nh ,...
 h = (tspan(2)-tspan(1))/Nh;
 y = y0(:); w=y; u=y.';
 tt = linspace(tspan(1), tspan(2), Nh+1);
+for t = tt(1:end-1)
+    fn = feval(odefun, t, w, varargin{:});
