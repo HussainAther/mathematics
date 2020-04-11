@@ -10,9 +10,9 @@ function [xh ,uh] = bvp(a, b, N, mu, eta, sigma, bvpfun,...
 % internal to (A,B). BVPFUN can be an inline
 % function , an anonymous function or a function
 % defined in a M-file.
-% [XH ,UH ]=BVP(A,B,N,MU ,ETA ,SIGMA ,BVPFUN ,UA ,UB ,...
-% P1 ,P2 ,...) passes the additional parameters
-% P1 , P2 , ... to the function BVPFUN.
+% [XH, UH] = BVP(A, B, N, MU, ETA, SIGMA, BVPFUN, UA, UB,...
+% P1, P2,...) passes the additional parameters
+% P1, P2, ... to the function BVPFUN.
 % XH contains the nodes of the discretization ,
 % including the boundary nodes.
 % UH contains the numerical solutions .
