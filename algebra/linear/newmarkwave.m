@@ -21,3 +21,16 @@ function [xh ,uh] = newmarkwave(xspan, tspan, nstep, param, ...
 % [XH ,UH ]= NEWMARKWAVE (XSPAN ,TSPAN ,NSTEP ,PARAM ,C,...
 % U0 ,V0 ,G,F,P1 ,P2 ,...) passes the additional parameters
 % P1 ,P2 ,... to the functions U0 ,V0 ,G,F.
+h = (xspan(2)-xspan(1))/nstep(1);
+dt = (tspan(2)-tspan(1))/nstep(2);
+zeta = param(1); theta = param(2);
+N = nstep(1)+1;
+e = ones(N ,1); D = spdiags([e -2*e e], [-1,0,1], N, N);
+I = speye(N); lambda = dt/h;
+A = I-c*lambda ^2* zeta *D;
+An = I+c*lambda ^2*(0.5 - zeta )*D;
+A(1,:) = 0; A(1,1) = 1; A(N ,:) = 0; A(N,N) = 1;
+xh = (linspace (xspan(1), xspan(2), N))';
+fn = feval(f, xh, tspan (1), varargin{:});
+un = feval(u0 ,xh, varargin{:});
+vn = feval(v0 ,xh, varargin{:});
