@@ -25,3 +25,6 @@ for t = tt(1:end-1)
     w = feval(corrector, t+h, w, upre, h, odefun ,...
               fn, varargin {:});
     u = [u; w.'];
+end
+t = tt;
+end
