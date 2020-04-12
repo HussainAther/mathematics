@@ -14,3 +14,11 @@ function [xh, yh, uh, error] = poissonfd (a, b, c, d, nx, ny,...
 % [XH, YH, UH, ERROR] = POISSONFD (A, B, C, D, NX, NY, FUN,...
 % BOUND, UEX, P1, P2,...) passes the optional arguments
 % P1, P2,... to the functions FUN, BOUND, UEX.
+if nargin == 8
+    uex = inline('0','x','y');
+end
+nx1 = nx +2; ny1=ny +2; dim = nx1*ny1;
+hx = (b-a)/( nx +1); hy = (d-c)/(ny +1);
+    hx2 = hx ^2; hy2 = hy ^2;
+kii = 2/ hx2 +2/ hy2; kix = -1/hx2; kiy = -1/hy2;
+K = speye(dim ,dim); rhs = zeros(dim ,1);
