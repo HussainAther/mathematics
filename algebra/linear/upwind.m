@@ -32,3 +32,11 @@ cflp1 = cfl +1; cflm1 = cfl -1;
 uh (1 ,:) = feval(u0 ,xh);
 for n=1:Nt-1
     uh(n+1, 1) = feval(ul, th(n+1));
+    if scheme == 1
+    % Lax Friedrichs
+    for j=2:Nx -1
+        uh(n+1,j)=0.5*( - cflm1*uh(n,j+1)+ cflp1*uh(n,j -1));
+    end
+    j=Nx;
+    uh(n+1,j)=0.5*( - cflm1 *(2* uh(n,j)-uh(n,j -1))+...
+        cflp1*uh(n,j -1));
