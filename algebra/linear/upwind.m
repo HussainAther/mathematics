@@ -40,3 +40,19 @@ for n=1:Nt-1
     j=Nx;
     uh(n+1,j)=0.5*( - cflm1 *(2* uh(n,j)-uh(n,j -1))+...
         cflp1*uh(n,j -1));
+    elseif scheme == 2
+    % Lax Wendroff
+    for j=2:Nx -1
+        uh(n+1,j)= cfl21*uh(n,j)+...
+            cfl2 *( cflm1*uh(n,j+1)+ cflp1*uh(n,j -1));
+        end
+        j=Nx;
+        uh(n+1,j)= cfl21*uh(n,j)+...
+            cfl2 *( cflm1 *(2* uh(n,j)-uh(n,j -1))+ cflp1*uh(n,j -1));
+    elseif scheme == 3
+% Upwind
+    for j=2: Nx
+        uh(n+1,j)=- cflm1*uh(n,j)+ cfl*uh(n,j-1);
+    end
+end
+end
