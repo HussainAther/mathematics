@@ -30,3 +30,5 @@ xh = linspace (xspan(1), xspan(2), Nx);
 u = zeros(Nt ,Nx); cfl2 = cfl *0.5; cfl21 = 1-cfl ^2;
 cflp1 = cfl +1; cflm1 = cfl -1;
 uh (1 ,:) = feval(u0 ,xh);
+for n=1:Nt-1
+    uh(n+1, 1) = feval(ul, th(n+1));
