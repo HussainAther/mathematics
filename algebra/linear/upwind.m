@@ -22,3 +22,11 @@ function [xh ,th ,uh] = hyper(xspan, tspan, u0, ul,...
 % UH(n,:) contains the solution at time TT(n)
 % U0 and UL can be either inline , anonymous
 % functions or functions defined by M-file.
+
+Nt = ( tspan(2)- tspan (1))/ deltat +1;
+th = linspace (tspan(1), tspan(2), Nt);
+Nx = ( xspan(2)- xspan (1))/ deltax +1;
+xh = linspace (xspan(1), xspan(2), Nx);
+u = zeros(Nt ,Nx); cfl2 = cfl *0.5; cfl21 = 1-cfl ^2;
+cflp1 = cfl +1; cflm1 = cfl -1;
+uh (1 ,:) = feval(u0 ,xh);
