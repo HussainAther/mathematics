@@ -24,3 +24,10 @@ if (exist('OCTAVE_VERSION'))
     o_ver= OCTAVE_VERSION;
     version = str2num([ o_ver(1), o_ver(3), o_ver (5)]);
 end
+
+function z = cranknicfun(w)
+global glob_h glob_t glob_y glob_odefun;
+z = w - glob_y - ...
+    0.5* glob_h *( feval(glob_odefun, glob_t, w) + ...
+    feval(glob_odefun, glob_t - glob_h, glob_y ));
+end
