@@ -13,4 +13,14 @@ function [t,u] = cranknic(odefun, tspan, y0, Nh, varargin)
 % [T,Y] = CRANKNIC (ODEFUN, TSPAN, Y0, NH, P1, P2,...)
 % passes the additional parameters P1, P2,... to the
 % function ODEFUN as ODEFUN(T,Y,P1 ,P2 ...).
-tt=linspace (tspan(1), tspan(2), Nh +1);
+tt = linspace (tspan(1), tspan(2), Nh +1);
+y = y0(:); % always create a vector column
+u = y.';
+global glob_h glob_t glob_y glob_odefun ;
+glob_h = (tspan(2)-tspan(1))/Nh;
+glob_y = y;
+glob_odefun = odefun;
+if (exist('OCTAVE_VERSION'))
+    o_ver= OCTAVE_VERSION;
+    version = str2num([ o_ver(1), o_ver(3), o_ver (5)]);
+end
