@@ -24,3 +24,13 @@ function [ A_out, t_out ] = HLQ( A )
       t2 ] = FLA_Repart_2x1_to_3x1( tT, ...
                                     tB, ...
                                     1, 'FLA_BOTTOM' );
+
+    [ alpha11, u2, tau1 ] = Housev( alpha11, ...
+                                       a12t' );
+      a12t = u2';
+      
+      w21 = ( a21 + A22 * a12t' )/ tau1;
+    
+      a21 = a21 - w21;
+      A22  = A22 - w21 * a12t;
+
