@@ -27,6 +27,11 @@ function [ Q, R ] = MGS( A )
                                                   RBL, RBR, ...
                                                   1, 1, 'FLA_BR' );
 
+    r01 = Q0' * a1;
+    a1perp = a1 - Q0 * r01;
+    rho11 = norm( a1perp );
+    q1 = a1perp / rho11;
+
     [ AL, AR ] = FLA_Cont_with_1x3_to_1x2( A0, a1, A2, ...
                                            'FLA_LEFT' );
 
