@@ -25,3 +25,13 @@ function [ A_out, t_out ] = HQR( A )
       t2 ] = FLA_Repart_2x1_to_3x1( tT, ...
                                     tB, ...
                                     1, 'FLA_BOTTOM' );
+
+    [ alpha11, ...
+      a21, tau1 ] = Housev( alpha11, ...
+                              a21 );
+                           
+    w12t = ( a12t + a21' * A22 )/ tau1;
+    
+    a12t = a12t - w12t;
+    A22  = A22 - a21 * w12t;
+
