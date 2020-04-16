@@ -42,3 +42,9 @@ while i ~= -1
     
     disp( A );
 end
+
+disp( 'final A' );
+disp( A );
+
+disp( 'Eigenvalues of original matrix' );
+eig( Aold )
