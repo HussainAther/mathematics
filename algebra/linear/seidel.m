@@ -21,3 +21,8 @@ while i ~= -1
         end
         continue
     end
+    j = input( 'enter j:' ); 
+    if j < 1 || j > m || i == j
+        disp( 'Reenter 1 <= i,j <= m')
+        continue
+    end
