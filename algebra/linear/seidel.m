@@ -26,3 +26,19 @@ while i ~= -1
         disp( 'Reenter 1 <= i,j <= m')
         continue
     end
+    % Compute J
+    [ J, Lambda ] = Jacobi_rotation( [ A( i,i )  A(i,j) 
+                                       A( j,i )  A(j,j) ] );
+    
+    % Apply J' from left 
+    rowi = A( i,: );
+    A( i,: ) = J(1,1) * rowi + J(2,1) * A( j,: );
+    A( j,: ) = J(1,2) * rowi + J(2,2) * A( j,: );
+
+    % Apply J from right
+    coli = A( :,i );
+    A( :,i ) = coli * J( 1,1 ) + A( :,j ) * J( 2,1 );
+    A( :,j ) = coli * J( 1,2 ) + A( :,j ) * J( 2,2 );
+    
+    disp( A );
+end
