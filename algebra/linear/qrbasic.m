@@ -9,3 +9,6 @@ if n ~= m, error('The matrix must be squared'); end
 T = A; niter = 0; test = norm(tril (A,-1), inf);
 while niter <= nmax & test >= tol
     [Q,R] = qr(T); T = R*Q;
+    niter = niter + 1;
+    test = norm(tril (T,-1), inf);
+end
