@@ -7,3 +7,5 @@ function D = qrbasic(A, tol, nmax)
 [n, m] = size(A);
 if n ~= m, error('The matrix must be squared'); end
 T = A; niter = 0; test = norm(tril (A,-1), inf);
+while niter <= nmax & test >= tol
+    [Q,R] = qr(T); T = R*Q;
