@@ -12,3 +12,12 @@ while niter <= nmax & test >= tol
     niter = niter + 1;
     test = norm(tril (T,-1), inf);
 end
+if niter > nmax
+    warning(['The method does not converge '...
+    'in the maximum number of iterations ']);
+else
+    fprintf(['The method converges in ' ...
+    '%i iterations \n'],niter );
+end
+D = diag (T);
+return
