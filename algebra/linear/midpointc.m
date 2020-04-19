@@ -9,3 +9,4 @@ function Imp = midpointc(a, b, M, f, varargin)
 % IMP=MIDPOINT (A,B,M,FUN ,P1 ,P2 ,...) calls the function
 % FUN passing the optional parameters P1 ,P2 ,... as
 % FUN(X,P1 ,P2 ,...).
+x = (b-a)/M;
