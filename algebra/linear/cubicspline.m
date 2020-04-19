@@ -9,3 +9,10 @@ function s = cubicspline(x, y, zi, type, der)
 % the endpoints equal to the values DER (1) and DER (2).
 % If TYPE =1 the values DER (1) and DER (2) are
 % the second derivative at the endpoints.
+[n,m]= size (x);
+if n == 1
+    x = x'; y = y'; n = m;
+end
+if nargin == 3
+    der0 = 0; dern = 0; type = 1;
+else
