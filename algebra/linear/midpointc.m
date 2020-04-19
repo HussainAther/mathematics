@@ -10,3 +10,5 @@ function Imp = midpointc(a, b, M, f, varargin)
 % FUN passing the optional parameters P1 ,P2 ,... as
 % FUN(X,P1 ,P2 ,...).
 x = (b-a)/M;
+x = linspace(a+H/2, b-H/2, M);
+fmp = feval(f, x, varargin{:}).*ones(1, M);
