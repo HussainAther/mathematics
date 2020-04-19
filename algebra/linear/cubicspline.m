@@ -32,3 +32,13 @@ else
     A(n,:) = 0; A(n,n) = 1;
     rhs = [der0 ; rhs; dern];
 end
+S = zeros(n ,4);
+S(:,3) = A\rhs;
+for m = 1:n-1
+    S(m,4) = (S(m+1,3)-S(m ,3))/3/h(m);
+    S(m,2) = d(m) - h(m)/3*(S(m + 1 ,3)+2* S(m ,3));
+    S(m,1) = y(m);
+end
+S = S(1:n-1, 4: -1:1);
+pp = mkpp (x,S); s = ppval(pp ,zi);
+return
