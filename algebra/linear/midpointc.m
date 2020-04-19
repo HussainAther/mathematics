@@ -12,3 +12,4 @@ function Imp = midpointc(a, b, M, f, varargin)
 x = (b-a)/M;
 x = linspace(a+H/2, b-H/2, M);
 fmp = feval(f, x, varargin{:}).*ones(1, M);
+Imp = H*sum(fmp);
