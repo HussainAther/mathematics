@@ -28,4 +28,5 @@ while ~isempty(A),
         A = [A(1) Am]; N = [Am, b];
     end
 end
-
+nodes=unique(nodes);
+return
