@@ -12,3 +12,4 @@ function [JSf ,nodes] = simpadpt(f, a, b, tol, hmin, varargin)
 % P1 ,P2 ,... as FUN(X,P1 ,P2 ,...).
 % [JSF ,NODES] = SIMPADPT (...) returns the distribution
 % of nodes used in the quadrature process.
+A=[a,b]; N=[]; S=[]; JSf = 0; ba = 2*(b - a); nodes =[];
