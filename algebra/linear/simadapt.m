@@ -30,3 +30,14 @@ while ~isempty(A),
 end
 nodes=unique(nodes);
 return
+
+function [deltaI, ISc]= caldeltai (A, f, varargin)
+L=A(2)-A(1);
+t=[0; 0.25; 0.5; 0.75; 1];
+x=L*t+A(1); L=L/6;
+w=[1; 4; 1]; wp =[1;4;2;4;1];
+fx=feval(f,x,varargin {:}).* ones (5 ,1);
+IS=L*sum(fx([1 3 5]).*w);
+ISc =0.5*L*sum(fx.*wp);
+deltaI=IS -ISc;
+return
