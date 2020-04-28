@@ -16,3 +16,18 @@ figure (1); title('Row circles ');
 xlabel('Re'); ylabel('Im');
 figure (2); title('Column circles ');
 xlabel('Re'); ylabel('Im');
+
+for k = 1:n
+    circlec(k,:) = center(k)* one + radiic(k)* cosisin;
+    circler(k,:) = center(k)* one + radiir(k)* cosisin;
+    figure (1);
+    patch(real (circler(k,:)), imag (circler (k,:)),'red ');
+    hold on
+    plot(real(circler (k,:)), imag (circler(k,:)),'k-' ,...
+    real(center(k)), imag (center(k)),'kx');
+    figure(2);
+    patch(real(circlec(k,:)), imag (circlec (k,:)),'green');
+    hold on
+    plot(real(circlec(k,:)), imag (circlec(k,:)),'k-' ,...
+    real(center(k)), imag (center(k)),'kx');
+end
