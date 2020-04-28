@@ -8,3 +8,11 @@ if n(1) ~= n(2)
 else
     n = n(1); circler = zeros(n ,201); circlec = circler;
 end
+center = diag (A);
+radiic = sum(abs(A-diag (center )));
+radiir = sum(abs(A’-diag (center )));
+one = ones(1 ,201); cosisin = exp(i*[0: pi /100:2* pi]);
+figure (1); title('Row circles ');
+xlabel('Re'); ylabel('Im');
+figure (2); title('Column circles ');
+xlabel('Re'); ylabel('Im');
