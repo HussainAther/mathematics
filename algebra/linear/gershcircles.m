@@ -21,13 +21,25 @@ for k = 1:n
     circlec(k,:) = center(k)* one + radiic(k)* cosisin;
     circler(k,:) = center(k)* one + radiir(k)* cosisin;
     figure (1);
-    patch(real (circler(k,:)), imag (circler (k,:)),'red ');
+    patch(real(circler(k,:)), imag(circler (k,:)),'red ');
     hold on
     plot(real(circler (k,:)), imag (circler(k,:)),'k-' ,...
     real(center(k)), imag (center(k)),'kx');
     figure(2);
-    patch(real(circlec(k,:)), imag (circlec (k,:)),'green');
+    patch(real(circlec(k,:)), imag(circlec (k,:)),'green');
     hold on
-    plot(real(circlec(k,:)), imag (circlec(k,:)),'k-' ,...
+    plot(real(circlec(k,:)), imag(circlec(k,:)),'k-' ,...
     real(center(k)), imag (center(k)),'kx');
 end
+
+for k = 1:n
+    figure(1);
+    plot(real(circler (k,:)), imag(circler(k,:)),'k-' ,...
+    real(center(k)), imag (center(k)),'kx');
+    figure(2);
+    plot(real(circlec(k,:)), imag(circlec(k,:)),'k-' ,...
+    real(center(k)), imag(center(k)),'kx');
+end
+figure(1); axis image; hold off;
+figure(2); axis image; hold off
+return
